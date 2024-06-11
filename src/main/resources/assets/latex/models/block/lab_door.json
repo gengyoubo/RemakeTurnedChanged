@@ -1,0 +1,9 @@
+{
+  "parent": "latex:custom/lab_door_remastered",
+  "textures": {
+    "all": "latex:blocks/labdoor_texture",
+    "particle": "latex:blocks/labdoor_texture",
+    "0": "latex:blocks/glass",
+    "1": "latex:blocks/labdoor_texture"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "latex:block/blastdoor"
+    },
+    "facing=east": {
+      "model": "latex:block/blastdoor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "latex:block/blastdoor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "latex:block/blastdoor",
+      "y": 270
+    }
+  }
+}

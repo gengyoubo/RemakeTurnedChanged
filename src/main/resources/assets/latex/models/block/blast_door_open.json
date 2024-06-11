@@ -1,0 +1,8 @@
+{
+  "parent": "latex:custom/blast_door_open",
+  "textures": {
+    "all": "latex:blocks/labdoor_open_texture",
+    "particle": "latex:blocks/labdoor_open_texture",
+    "0": "latex:blocks/blast_door_open_texture"
+  }
+}

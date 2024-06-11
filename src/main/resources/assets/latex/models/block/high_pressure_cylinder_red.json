@@ -1,0 +1,8 @@
+{
+  "parent": "latex:custom/gas_canister_red",
+  "textures": {
+    "all": "latex:blocks/gas_canister_texture_red",
+    "particle": "latex:blocks/gas_canister_texture_red",
+    "0": "latex:blocks/gas_canister_texture_red"
+  }
+}

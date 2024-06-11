@@ -1,0 +1,7 @@
+{
+  "parent": "latex:custom/matchlock_musket",
+  "textures": {
+    "1": "latex:blocks/matchlock_musket_texture",
+    "particle": "latex:items/dev_gun"
+  }
+}

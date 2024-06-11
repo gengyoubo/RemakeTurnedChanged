@@ -1,0 +1,7 @@
+{
+  "parent": "latex:custom/scrap_m16",
+  "textures": {
+    "1": "latex:blocks/scrap_m16_texture",
+    "particle": "latex:items/m16"
+  }
+}
