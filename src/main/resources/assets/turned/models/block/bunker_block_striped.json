@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/reinforced_bunker_top_bottom",
+    "up": "turned:blocks/reinforced_bunker_top_bottom",
+    "north": "turned:blocks/striped_bunker_block",
+    "east": "turned:blocks/striped_bunker_block",
+    "south": "turned:blocks/striped_bunker_block",
+    "west": "turned:blocks/striped_bunker_block",
+    "particle": "turned:blocks/reinforced_bunker_top_bottom"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/ally_radio",
+  "textures": {
+    "0": "turned:blocks/scientific_radio_caller_texture",
+    "particle": "turned:items/device_icon"
+  }
+}

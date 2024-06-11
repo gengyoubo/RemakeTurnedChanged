@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/high_pressure_cylinder"
+    },
+    "facing=east": {
+      "model": "turned:block/high_pressure_cylinder",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/high_pressure_cylinder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/high_pressure_cylinder",
+      "y": 270
+    }
+  }
+}

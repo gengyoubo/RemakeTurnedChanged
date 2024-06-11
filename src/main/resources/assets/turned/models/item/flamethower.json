@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/flamethower",
+  "textures": {
+    "0": "turned:blocks/flamethower_texture",
+    "particle": "turned:items/flamethower"
+  }
+}

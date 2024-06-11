@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/beaconactive",
+    "up": "turned:blocks/beaconactive",
+    "north": "turned:blocks/beaconactive",
+    "east": "turned:blocks/beaconactive",
+    "south": "turned:blocks/beaconactive",
+    "west": "turned:blocks/beaconactive",
+    "particle": "turned:blocks/beaconactive"
+  }
+}

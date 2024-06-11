@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "turned:form_d_lbee",
+      "turned:form_dark_latex_cake",
+      "turned:form_dark_latex_centaur",
+      "turned:form_dark_latex_moth",
+      "turned:form_dark_latex_skeleton",
+      "turned:form_dark_latex_snep",
+      "turned:form_dark_latex_spider",
+      "turned:form_darklatex",
+      "turned:form_darklatexcone",
+      "turned:form_dl_squid_dog",
+      "turned:form_dlshark"
+    ]
+  },
+  "criteria": {
+    "has_base": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "changed:dark_latex_goo"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "changed:form_light_latex_wolf"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_base",
+      "has_the_recipe"
+    ]
+  ]
+}

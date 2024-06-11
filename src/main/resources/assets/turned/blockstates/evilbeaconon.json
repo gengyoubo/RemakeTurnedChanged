@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/evilbeaconon"
+    },
+    "facing=east": {
+      "model": "turned:block/evilbeaconon",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/evilbeaconon",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/evilbeaconon",
+      "y": 270
+    }
+  }
+}

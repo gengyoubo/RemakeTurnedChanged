@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "turned:block/red_lab_slabs"
+    },
+    "type=top": {
+      "model": "turned:block/red_lab_slabs_top"
+    },
+    "type=double": {
+      "model": "turned:block/red_lab_slabs_full"
+    }
+  }
+}

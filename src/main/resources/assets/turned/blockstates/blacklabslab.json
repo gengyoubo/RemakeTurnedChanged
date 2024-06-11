@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "turned:block/blacklabslab"
+    },
+    "type=top": {
+      "model": "turned:block/blacklabslab_top"
+    },
+    "type=double": {
+      "model": "turned:block/blacklabslab_full"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "turned:bunkerdooropen",
+    "turned:controlpaneloff",
+    "turned:bunker_wall",
+    "turned:bunker_block_striped",
+    "turned:bunker_stairs",
+    "turned:bunkerhatch",
+    "turned:bunker_hatch_open",
+    "turned:bunker_slabs",
+    "turned:save_station",
+    "turned:bunker_door",
+    "turned:bunkerblock",
+    "turned:bunker_block_smooth",
+    "turned:controlpanelon"
+  ]
+}

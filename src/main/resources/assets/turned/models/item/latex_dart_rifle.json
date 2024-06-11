@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/latex_dart_rifle",
+  "textures": {
+    "0": "turned:blocks/latex_dart_rifle",
+    "particle": "turned:items/dev_gun"
+  }
+}

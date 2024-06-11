@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/m16",
+  "textures": {
+    "0": "turned:blocks/m16_texture",
+    "particle": "turned:items/m16"
+  }
+}

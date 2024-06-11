@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "turned:armed_drone_hertx_wait",
+    "turned:hertx",
+    "turned:hertxvar_sol",
+    "turned:armed_drone_hertx",
+    "turned:drone_hertx_wait",
+    "turned:bee_hertx",
+    "turned:hertxvar_fb",
+    "turned:hertx_f_sit",
+    "turned:ahv_hertx_sit",
+    "turned:ashbury_hertx",
+    "turned:bee_hertx_sit",
+    "turned:hertx_fb_sit",
+    "turned:hertx_sit",
+    "turned:nxt_hertx",
+    "turned:drone_hertx",
+    "turned:hertx_sol_wait",
+    "turned:hertxvar_f",
+    "turned:ahv_hertx"
+  ]
+}

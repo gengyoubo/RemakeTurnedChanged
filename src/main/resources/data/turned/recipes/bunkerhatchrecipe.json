@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012"
+  ],
+  "key": {
+    "0": {
+      "item": "turned:bunker_slabs"
+    },
+    "1": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "2": {
+      "item": "turned:bunker_slabs"
+    }
+  },
+  "result": {
+    "item": "turned:bunkerhatch",
+    "count": 1
+  }
+}

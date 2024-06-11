@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/lab_door_open_remastered",
+  "textures": {
+    "all": "turned:blocks/labdoor_open_texture",
+    "particle": "turned:blocks/labdoor_open_texture",
+    "1": "turned:blocks/labdoor_open_texture"
+  }
+}

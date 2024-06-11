@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/tacticalbombtop",
+    "up": "turned:blocks/tacticalbombtop",
+    "north": "turned:blocks/tactical_bomb",
+    "east": "turned:blocks/tactical_bomb",
+    "south": "turned:blocks/tactical_bomb",
+    "west": "turned:blocks/tactical_bomb",
+    "particle": "turned:blocks/tacticalbombtop"
+  }
+}

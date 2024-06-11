@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/radio",
+  "textures": {
+    "0": "turned:blocks/radio_droppod_texture",
+    "particle": "turned:items/device_icon"
+  }
+}

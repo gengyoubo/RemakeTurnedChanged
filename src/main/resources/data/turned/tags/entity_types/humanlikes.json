@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "turned:prisioner",
+    "turned:evil_military",
+    "player",
+    "vindicator",
+    "turned:prisionermilitia",
+    "turned:militaryflameunit",
+    "zombie",
+    "turned:civilian_militia_melee",
+    "husk",
+    "zombie",
+    "turned:scientist",
+    "turned:civilian",
+    "illusioner",
+    "turned:evil_scientist",
+    "turned:military",
+    "turned:military_riot",
+    "turned:prisioner_militia_melee",
+    "villager",
+    "turned:evil_sniper",
+    "wandering_trader",
+    "zombie_villager",
+    "turned:civlian_militia",
+    "pillager"
+  ]
+}

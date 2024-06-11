@@ -1,0 +1,7 @@
+{
+  "parent": "block/template_wall_side_tall",
+  "textures": {
+    "wall": "turned:blocks/reinforced_bunker_top_bottom",
+    "particle": "turned:blocks/reinforced_bunker_top_bottom"
+  }
+}

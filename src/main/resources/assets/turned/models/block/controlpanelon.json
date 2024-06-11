@@ -1,0 +1,10 @@
+{
+  "parent": "turned:custom/control_pannel",
+  "textures": {
+    "all": "turned:blocks/controll_switch_on",
+    "particle": "turned:blocks/controll_switch_on",
+    "0": "turned:blocks/controll_switch_on",
+    "1": "turned:blocks/block2",
+    "2": "turned:blocks/block1"
+  }
+}

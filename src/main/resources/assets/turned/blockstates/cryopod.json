@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/cryopod"
+    },
+    "facing=east": {
+      "model": "turned:block/cryopod",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/cryopod",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/cryopod",
+      "y": 270
+    }
+  }
+}

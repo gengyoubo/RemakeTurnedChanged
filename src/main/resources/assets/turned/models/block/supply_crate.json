@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/supplycrate",
+  "textures": {
+    "all": "turned:blocks/firstbottle",
+    "particle": "turned:blocks/firstbottle",
+    "0": "turned:blocks/supply_crate"
+  }
+}

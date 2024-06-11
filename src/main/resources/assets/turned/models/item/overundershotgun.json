@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/shotgun_remaster",
+  "textures": {
+    "1": "turned:blocks/shotgun_remaster_texture",
+    "particle": "turned:items/dev_gun"
+  }
+}

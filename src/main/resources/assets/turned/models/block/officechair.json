@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/office_chair",
+  "textures": {
+    "all": "turned:blocks/office_chair_texture",
+    "particle": "turned:blocks/office_chair_texture",
+    "0": "turned:blocks/office_chair_texture"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/latexcapsule"
+    },
+    "facing=east": {
+      "model": "turned:block/latexcapsule",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/latexcapsule",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/latexcapsule",
+      "y": 270
+    }
+  }
+}

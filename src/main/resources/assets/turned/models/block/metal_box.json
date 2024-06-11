@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/metal_box",
+    "up": "turned:blocks/metalbox_top",
+    "north": "turned:blocks/metal_box",
+    "east": "turned:blocks/metal_box",
+    "south": "turned:blocks/metal_box",
+    "west": "turned:blocks/metal_box",
+    "particle": "turned:blocks/metal_box"
+  }
+}

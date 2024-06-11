@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/makeshift_beacon_bottom",
+    "up": "turned:blocks/makeshift_beacon_top",
+    "north": "turned:blocks/makeshift_beacon_on",
+    "east": "turned:blocks/makeshift_beacon_on",
+    "south": "turned:blocks/makeshift_beacon_on",
+    "west": "turned:blocks/makeshift_beacon_on",
+    "particle": "turned:blocks/makeshift_beacon_bottom"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/latex_eater",
+    "up": "turned:blocks/latex_eater",
+    "north": "turned:blocks/latex_eater",
+    "east": "turned:blocks/latex_eater",
+    "south": "turned:blocks/latex_eater",
+    "west": "turned:blocks/latex_eater",
+    "particle": "turned:blocks/latex_eater"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "turned:hertx",
+    "turned:armed_drone_hertx",
+    "zombie",
+    "turned:la_4tankmorphr",
+    "minecart",
+    "chest_minecart",
+    "turned:tsc_outsider",
+    "turned:tsc_outsider_gunner",
+    "iron_golem",
+    "turned:la_4tankmorphm",
+    "command_block_minecart",
+    "tnt_minecart",
+    "turned:nxt_hertx",
+    "turned:tsc_hunter",
+    "turned:tsc_berserk",
+    "turned:ahv_hertx",
+    "turned:armed_drone_hertx_wait",
+    "item",
+    "spawner_minecart",
+    "turned:drone_hertx_wait",
+    "turned:bee_hertx",
+    "furnace_minecart",
+    "turned:ts_cdrone",
+    "hopper_minecart",
+    "turned:drone_hertx",
+    "boat"
+  ]
+}

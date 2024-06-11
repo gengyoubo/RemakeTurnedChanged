@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "turned:darklatexgoo"
+    },
+    "1": {
+      "item": "turned:darklatexcrystal"
+    },
+    "2": {
+      "item": "turned:darklatexgoo"
+    },
+    "3": {
+      "item": "turned:darklatexcrystal"
+    },
+    "4": {
+      "item": "turned:brokendlmask"
+    },
+    "5": {
+      "item": "turned:darklatexcrystal"
+    },
+    "6": {
+      "item": "turned:darklatexgoo"
+    },
+    "7": {
+      "item": "turned:darklatexcrystal"
+    },
+    "8": {
+      "item": "turned:darklatexgoo"
+    }
+  },
+  "result": {
+    "item": "turned:dlmask_helmet",
+    "count": 1
+  }
+}

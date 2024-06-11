@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/locker",
+  "textures": {
+    "all": "turned:blocks/locker_texture",
+    "particle": "turned:blocks/locker_texture",
+    "0": "turned:blocks/locker_texture"
+  }
+}

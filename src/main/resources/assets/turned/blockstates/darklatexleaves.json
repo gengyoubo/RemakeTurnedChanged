@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/darklatexleaves"
+    },
+    "facing=east": {
+      "model": "turned:block/darklatexleaves",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/darklatexleaves",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/darklatexleaves",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "turned:block/darklatexleaves",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "turned:block/darklatexleaves",
+      "x": 90
+    }
+  }
+}

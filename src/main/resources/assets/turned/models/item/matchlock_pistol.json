@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/matchlock_pistol",
+  "textures": {
+    "1": "turned:blocks/matchlock_musket_texture",
+    "particle": "turned:items/matchlock_bayonet_modern_shotgun"
+  }
+}

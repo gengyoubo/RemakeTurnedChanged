@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/microscope",
+  "textures": {
+    "all": "turned:blocks/microscope",
+    "particle": "turned:blocks/microscope",
+    "0": "turned:blocks/microscope"
+  }
+}

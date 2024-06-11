@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/blue3",
+    "up": "turned:blocks/yellow2",
+    "north": "turned:blocks/yellow",
+    "east": "turned:blocks/yellow",
+    "south": "turned:blocks/yellow",
+    "west": "turned:blocks/yellow",
+    "particle": "turned:blocks/blue3"
+  }
+}

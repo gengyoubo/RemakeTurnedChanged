@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    " 45",
+    "6  "
+  ],
+  "key": {
+    "0": {
+      "item": "turned:darklatexcrystal"
+    },
+    "1": {
+      "item": "turned:darklatexcrystal"
+    },
+    "2": {
+      "item": "turned:darklatexgoo"
+    },
+    "4": {
+      "item": "turned:darklatexgoo"
+    },
+    "5": {
+      "item": "turned:darklatexcrystal"
+    },
+    "6": {
+      "item": "turned:darklatexgoo"
+    }
+  },
+  "result": {
+    "item": "turned:dl_scythe",
+    "count": 1
+  }
+}

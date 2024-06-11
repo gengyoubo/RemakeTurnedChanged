@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/inverted_glass_door",
+  "textures": {
+    "all": "turned:blocks/glasswarestand",
+    "particle": "turned:blocks/glasswarestand",
+    "0": "turned:blocks/glass_door"
+  }
+}

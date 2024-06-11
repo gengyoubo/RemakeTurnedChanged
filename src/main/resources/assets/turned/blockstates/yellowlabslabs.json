@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "turned:block/yellowlabslabs"
+    },
+    "type=top": {
+      "model": "turned:block/yellowlabslabs_top"
+    },
+    "type=double": {
+      "model": "turned:block/yellowlabslabs_full"
+    }
+  }
+}

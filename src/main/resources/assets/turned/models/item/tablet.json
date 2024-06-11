@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/tablet_on",
+  "textures": {
+    "0": "turned:blocks/tablet_on",
+    "particle": "turned:items/device_icon"
+  }
+}

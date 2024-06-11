@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/phone",
+  "textures": {
+    "0": "turned:blocks/phone",
+    "particle": "turned:items/hertx_visor"
+  }
+}

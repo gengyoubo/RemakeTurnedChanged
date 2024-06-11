@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "turned:evil_military",
+    "turned:evil_scientist",
+    "turned:prisionermilitia",
+    "turned:prisioner_militia_melee",
+    "turned:ts_cdrone",
+    "turned:evil_sniper",
+    "turned:tsc_hunter",
+    "turned:tsc_outsider",
+    "turned:tsc_outsider_gunner",
+    "turned:tsc_berserk"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/small_box"
+    },
+    "facing=east": {
+      "model": "turned:block/small_box",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/small_box",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/small_box",
+      "y": 270
+    }
+  }
+}

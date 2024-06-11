@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="MIT License"
+
+[[mods]]
+modId="turned"
+version="1.27c-PTBv5"
+displayName="Turned: Changed Patch"
+credits="Refined from MCreator"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/turned-the-changed-mod"
+logoFile="logo.png"
+authors="Alex n' Italy, LtxProgrammer"
+description='''
+The Turned mod adapted as a patch for the Changed: Minecraft Mod.
+'''
+
+[[dependencies.turned]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2]"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.turned]]
+    modId="changed"
+    mandatory=true
+    versionRange="[0.9.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+

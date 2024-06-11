@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: Turned Patch for Changed
+Specification-Vendor: ltxprogrammer
+Specification-Version: 1
+Implementation-Title: TurnedPatchForChanged-m1.18.2-f40.1.0
+Implementation-Version: vPTBv5
+Implementation-Vendor: ltxprogrammer
+Implementation-Timestamp: 2023-01-18T18:24:49-0600
+

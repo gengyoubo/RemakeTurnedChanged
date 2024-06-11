@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "turned:latexcannon"
+    },
+    {
+      "item": "turned:gunrepairkit"
+    }
+  ],
+  "result": {
+    "item": "turned:revolving_goo_cannon",
+    "count": 1
+  }
+}

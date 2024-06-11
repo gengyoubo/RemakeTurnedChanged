@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "turned:hertxengineer_helmet"
+    },
+    "1": {
+      "item": "turned:m_4_assault_rifle"
+    },
+    "2": {
+      "item": "turned:hertxengineer_chestplate"
+    },
+    "3": {
+      "item": "turned:battery"
+    },
+    "4": {
+      "item": "turned:slimeessence"
+    },
+    "5": {
+      "item": "minecraft:redstone"
+    },
+    "6": {
+      "item": "turned:hertxengineer_boots"
+    },
+    "7": {
+      "item": "minecraft:iron_ingot"
+    },
+    "8": {
+      "item": "turned:hertxengineer_leggings"
+    }
+  },
+  "result": {
+    "item": "turned:military_drone_hertx_icon",
+    "count": 1
+  }
+}

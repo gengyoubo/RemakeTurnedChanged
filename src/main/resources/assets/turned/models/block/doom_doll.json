@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/doomdoll",
+  "textures": {
+    "all": "turned:blocks/doom_doll_texture",
+    "particle": "turned:blocks/doom_doll_texture",
+    "0": "turned:blocks/doom_doll_texture"
+  }
+}

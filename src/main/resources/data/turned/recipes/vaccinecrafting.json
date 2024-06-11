@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "turned:slimeessence"
+    },
+    {
+      "item": "turned:blood_syringe"
+    },
+    {
+      "item": "turned:darklatexgoo"
+    }
+  ],
+  "result": {
+    "item": "turned:vaccine_syringe",
+    "count": 1
+  }
+}

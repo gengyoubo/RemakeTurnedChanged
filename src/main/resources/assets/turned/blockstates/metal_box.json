@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/metal_box"
+    },
+    "facing=east": {
+      "model": "turned:block/metal_box",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/metal_box",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/metal_box",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "turned:block/bunker_slabs"
+    },
+    "type=top": {
+      "model": "turned:block/bunker_slabs_top"
+    },
+    "type=double": {
+      "model": "turned:block/bunker_slabs_full"
+    }
+  }
+}

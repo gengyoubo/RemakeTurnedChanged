@@ -1,0 +1,9 @@
+{
+  "parent": "turned:custom/planter_block",
+  "textures": {
+    "all": "turned:blocks/pasted",
+    "particle": "turned:blocks/pasted",
+    "0": "turned:blocks/pasted",
+    "1": "turned:blocks/big_pot"
+  }
+}

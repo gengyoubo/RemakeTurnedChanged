@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/gas_canister_red",
+  "textures": {
+    "all": "turned:blocks/gas_canister_texture_red",
+    "particle": "turned:blocks/gas_canister_texture_red",
+    "0": "turned:blocks/gas_canister_texture_red"
+  }
+}

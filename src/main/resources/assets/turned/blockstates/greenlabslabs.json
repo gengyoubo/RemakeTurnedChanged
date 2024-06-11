@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "turned:block/greenlabslabs"
+    },
+    "type=top": {
+      "model": "turned:block/greenlabslabs_top"
+    },
+    "type=double": {
+      "model": "turned:block/greenlabslabs_full"
+    }
+  }
+}

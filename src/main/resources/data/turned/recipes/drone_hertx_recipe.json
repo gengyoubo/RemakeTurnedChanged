@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "1": {
+      "item": "turned:hertxvisor"
+    },
+    "3": {
+      "item": "turned:hertxengineer_boots"
+    },
+    "4": {
+      "item": "turned:slimeessence"
+    },
+    "5": {
+      "item": "turned:hertxengineer_leggings"
+    },
+    "7": {
+      "item": "turned:hertxengineer_chestplate"
+    }
+  },
+  "result": {
+    "item": "turned:dronehertxicon",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 1 ",
+    "345",
+    " 7 "
+  ],
+  "key": {
+    "1": {
+      "item": "turned:slimeessence"
+    },
+    "3": {
+      "item": "turned:slimeessence"
+    },
+    "4": {
+      "item": "minecraft:slime_block"
+    },
+    "5": {
+      "item": "turned:slimeessence"
+    },
+    "7": {
+      "item": "turned:slimeessence"
+    }
+  },
+  "result": {
+    "item": "turned:latexeaterslime",
+    "count": 1
+  }
+}

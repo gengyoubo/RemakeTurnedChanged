@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/ar_remaster",
+  "textures": {
+    "0": "turned:blocks/ar_remaster",
+    "particle": "turned:items/dev_gun"
+  }
+}

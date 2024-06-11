@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "turned:darklatexhive",
+    "turned:small_box",
+    "turned:box",
+    "turned:box_inventory",
+    "turned:box_trap",
+    "turned:scientific_crate",
+    "turned:crate",
+    "turned:ches_trap",
+    "turned:planter",
+    "turned:thecone"
+  ]
+}

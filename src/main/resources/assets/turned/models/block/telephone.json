@@ -1,0 +1,9 @@
+{
+  "parent": "turned:custom/telephone",
+  "textures": {
+    "all": "turned:blocks/telephone_base",
+    "particle": "turned:blocks/telephone_base",
+    "0": "turned:blocks/phone",
+    "1": "turned:blocks/telephone_base"
+  }
+}

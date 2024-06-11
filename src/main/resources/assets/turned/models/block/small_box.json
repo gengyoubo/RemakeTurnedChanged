@@ -1,0 +1,12 @@
+{
+  "parent": "turned:custom/small_carboard_box",
+  "textures": {
+    "all": "turned:blocks/box_side_1",
+    "particle": "turned:blocks/box_side_1",
+    "0": "turned:blocks/box_down",
+    "1": "turned:blocks/box_side_1",
+    "2": "turned:blocks/box_side_2",
+    "3": "turned:blocks/box_side_3",
+    "4": "turned:blocks/box_up"
+  }
+}

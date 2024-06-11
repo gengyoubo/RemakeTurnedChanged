@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/modern_computer_on",
+  "textures": {
+    "all": "turned:blocks/modern_computer_on",
+    "particle": "turned:blocks/modern_computer_on",
+    "0": "turned:blocks/modern_computer_on"
+  }
+}

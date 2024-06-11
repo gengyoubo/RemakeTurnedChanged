@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "turned:hertx",
+    "turned:hertxvar_sol",
+    "turned:militaryflameunit",
+    "turned:armed_drone_hertx",
+    "turned:civilian_militia_melee",
+    "iron_golem",
+    "turned:hertx_f_sit",
+    "turned:ahv_hertx_sit",
+    "turned:ashbury_hertx",
+    "turned:bee_hertx_sit",
+    "turned:military_riot",
+    "turned:nxt_hertx",
+    "villager",
+    "turned:hertx_sol_wait",
+    "turned:ahv_hertx",
+    "turned:armed_drone_hertx_wait",
+    "turned:drone_hertx_wait",
+    "turned:bee_hertx",
+    "turned:hertxvar_fb",
+    "turned:scientist",
+    "turned:military",
+    "turned:hertx_fb_sit",
+    "turned:hertx_sit",
+    "turned:drone_hertx",
+    "turned:civlian_militia",
+    "turned:hertxvar_f"
+  ]
+}

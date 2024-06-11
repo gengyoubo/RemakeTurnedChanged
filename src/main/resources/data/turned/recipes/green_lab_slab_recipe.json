@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012"
+  ],
+  "key": {
+    "0": {
+      "item": "turned:greenlabblock_2"
+    },
+    "1": {
+      "item": "turned:greenlabblock_2"
+    },
+    "2": {
+      "item": "turned:greenlabblock_2"
+    }
+  },
+  "result": {
+    "item": "turned:greenlabslabs",
+    "count": 6
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "changed:infuser",
+  "ingredients": [
+    {
+      "item": "changed:dark_latex_goo"
+    },
+    {
+      "item": "changed:dark_latex_goo"
+    }
+  ],
+  "form": "turned:form_darklatex"
+}

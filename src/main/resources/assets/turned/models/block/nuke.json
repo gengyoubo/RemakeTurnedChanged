@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/nuke_bottom",
+    "up": "turned:blocks/nuke_bottom",
+    "north": "turned:blocks/nuke",
+    "east": "turned:blocks/nuke",
+    "south": "turned:blocks/nuke",
+    "west": "turned:blocks/nuke",
+    "particle": "turned:blocks/nuke_bottom"
+  }
+}

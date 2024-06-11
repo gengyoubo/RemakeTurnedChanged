@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/blast_door",
+  "textures": {
+    "all": "turned:blocks/labdoor_texture",
+    "particle": "turned:blocks/labdoor_texture",
+    "0": "turned:blocks/blast_door_texture"
+  }
+}

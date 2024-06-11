@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "turned:block/bluelabslabs"
+    },
+    "type=top": {
+      "model": "turned:block/bluelabslabs_top"
+    },
+    "type=double": {
+      "model": "turned:block/bluelabslabs_full"
+    }
+  }
+}

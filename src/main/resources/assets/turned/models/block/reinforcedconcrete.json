@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/reinforced_concrete",
+    "up": "turned:blocks/reinforced_concrete",
+    "north": "turned:blocks/reinforced_concrete",
+    "east": "turned:blocks/reinforced_concrete",
+    "south": "turned:blocks/reinforced_concrete",
+    "west": "turned:blocks/reinforced_concrete",
+    "particle": "turned:blocks/reinforced_concrete"
+  }
+}

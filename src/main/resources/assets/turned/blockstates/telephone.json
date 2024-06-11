@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/telephone"
+    },
+    "facing=east": {
+      "model": "turned:block/telephone",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/telephone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/telephone",
+      "y": 270
+    }
+  }
+}

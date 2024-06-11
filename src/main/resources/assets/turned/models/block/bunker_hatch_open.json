@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/bunker_hatch_open",
+  "textures": {
+    "all": "turned:blocks/reinforced_bunker_top_bottom",
+    "particle": "turned:blocks/reinforced_bunker_top_bottom",
+    "0": "turned:blocks/bunker_hatch"
+  }
+}

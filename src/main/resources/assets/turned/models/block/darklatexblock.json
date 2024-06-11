@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/dark_latex_goo_block",
+    "up": "turned:blocks/dark_latex_goo_block",
+    "north": "turned:blocks/dark_latex_goo_block",
+    "east": "turned:blocks/dark_latex_goo_block",
+    "south": "turned:blocks/dark_latex_goo_block",
+    "west": "turned:blocks/dark_latex_goo_block",
+    "particle": "turned:blocks/dark_latex_goo_block"
+  }
+}

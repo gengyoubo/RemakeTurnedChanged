@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "turned:brokenm_16"
+    },
+    {
+      "item": "turned:gunrepairkit"
+    }
+  ],
+  "result": {
+    "item": "turned:scrap_m_16_rifle",
+    "count": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "turned:custom/hertx_visor",
+  "textures": {
+    "0": "turned:blocks/hertx_visor",
+    "particle": "turned:items/hertx_visor"
+  }
+}

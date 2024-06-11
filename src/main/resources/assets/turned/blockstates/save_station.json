@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/save_station"
+    },
+    "facing=east": {
+      "model": "turned:block/save_station",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/save_station",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/save_station",
+      "y": 270
+    }
+  }
+}

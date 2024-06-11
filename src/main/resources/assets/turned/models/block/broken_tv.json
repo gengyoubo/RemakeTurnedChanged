@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/broken_tv",
+  "textures": {
+    "all": "turned:blocks/broken_tv",
+    "particle": "turned:blocks/broken_tv",
+    "0": "turned:blocks/broken_tv"
+  }
+}

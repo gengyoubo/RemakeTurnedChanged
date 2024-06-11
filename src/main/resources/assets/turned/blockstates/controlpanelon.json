@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/controlpanelon"
+    },
+    "facing=east": {
+      "model": "turned:block/controlpanelon",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/controlpanelon",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/controlpanelon",
+      "y": 270
+    }
+  }
+}

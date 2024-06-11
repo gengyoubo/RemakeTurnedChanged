@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "bottom": "turned:blocks/redlab3",
+    "top": "turned:blocks/redlab3",
+    "side": "turned:blocks/redlab3"
+  }
+}

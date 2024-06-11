@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "01",
+    "23"
+  ],
+  "key": {
+    "0": {
+      "item": "turned:syringe"
+    },
+    "1": {
+      "item": "minecraft:soul_sand"
+    },
+    "2": {
+      "item": "minecraft:slime_ball"
+    },
+    "3": {
+      "item": "turned:slimeessence"
+    }
+  },
+  "result": {
+    "item": "turned:dl_syringe",
+    "count": 1
+  }
+}

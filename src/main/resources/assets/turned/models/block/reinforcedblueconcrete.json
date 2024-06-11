@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/reinforced_blue_conrete",
+    "up": "turned:blocks/reinforced_blue_conrete",
+    "north": "turned:blocks/reinforced_blue_conrete",
+    "east": "turned:blocks/reinforced_blue_conrete",
+    "south": "turned:blocks/reinforced_blue_conrete",
+    "west": "turned:blocks/reinforced_blue_conrete",
+    "particle": "turned:blocks/reinforced_blue_conrete"
+  }
+}

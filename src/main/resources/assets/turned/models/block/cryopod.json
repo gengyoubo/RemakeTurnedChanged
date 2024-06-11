@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/cryopod",
+  "textures": {
+    "all": "turned:blocks/cryopodtexture",
+    "particle": "turned:blocks/cryopodtexture",
+    "0": "turned:blocks/cryopodtexture"
+  }
+}

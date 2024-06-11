@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/bunkerhatch"
+    },
+    "facing=east": {
+      "model": "turned:block/bunkerhatch",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/bunkerhatch",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/bunkerhatch",
+      "y": 270
+    }
+  }
+}

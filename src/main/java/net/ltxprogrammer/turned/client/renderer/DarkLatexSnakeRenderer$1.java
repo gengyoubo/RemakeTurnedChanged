@@ -1,0 +1,29 @@
+/*    */ package net.ltxprogrammer.turned.client.renderer;
+/*    */ 
+/*    */ import net.ltxprogrammer.turned.client.model.Modeldark_latex_snek_model;
+/*    */ import net.ltxprogrammer.turned.entity.DarkLatexSnakeEntity;
+/*    */ import net.minecraft.client.renderer.RenderType;
+/*    */ import net.minecraft.client.renderer.entity.RenderLayerParent;
+/*    */ import net.minecraft.client.renderer.entity.layers.EyesLayer;
+/*    */ import net.minecraft.resources.ResourceLocation;
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ 
+/*    */ class null
+/*    */   extends EyesLayer<DarkLatexSnakeEntity, Modeldark_latex_snek_model>
+/*    */ {
+/*    */   null(RenderLayerParent<DarkLatexSnakeEntity, Modeldark_latex_snek_model> arg0) {
+/* 18 */     super(arg0);
+/*    */   }
+/*    */   public RenderType m_5708_() {
+/* 21 */     return RenderType.m_110488_(new ResourceLocation("turned:textures/entities/dark_latex_snake_glow.png"));
+/*    */   }
+/*    */ }
+
+
+/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\renderer\DarkLatexSnakeRenderer$1.class
+ * Java compiler version: 17 (61.0)
+ * JD-Core Version:       1.1.3
+ */

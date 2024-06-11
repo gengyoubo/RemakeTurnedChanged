@@ -1,0 +1,10 @@
+{
+  "parent": "turned:custom/save_station",
+  "textures": {
+    "all": "turned:blocks/block3",
+    "particle": "turned:blocks/block5",
+    "0": "turned:blocks/block3",
+    "2": "turned:blocks/block4",
+    "3": "turned:blocks/crafting_table_front"
+  }
+}

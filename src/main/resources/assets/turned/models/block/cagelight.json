@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/cagelight",
+  "textures": {
+    "all": "turned:blocks/cagelight",
+    "particle": "turned:blocks/cagelight",
+    "0": "turned:blocks/cagelight"
+  }
+}

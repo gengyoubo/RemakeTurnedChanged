@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "turned:blocks/reinforced_bunker_top_bottom",
+    "top": "turned:blocks/reinforced_bunker_top_bottom",
+    "side": "turned:blocks/reinforced_bunker_top_bottom"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/flask_container",
+  "textures": {
+    "all": "turned:blocks/flaskcontainer",
+    "particle": "turned:blocks/flaskcontainer",
+    "1": "turned:blocks/flaskcontainer"
+  }
+}

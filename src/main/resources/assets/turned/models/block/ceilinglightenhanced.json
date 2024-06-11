@@ -1,0 +1,8 @@
+{
+  "parent": "turned:custom/ceiling_lamp",
+  "textures": {
+    "all": "turned:blocks/cagelight",
+    "particle": "turned:blocks/cagelight",
+    "0": "turned:blocks/ceiling_lamp_texture"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "turned:block/darklatexcarpet"
+    },
+    "facing=east": {
+      "model": "turned:block/darklatexcarpet",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "turned:block/darklatexcarpet",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "turned:block/darklatexcarpet",
+      "y": 270
+    }
+  }
+}

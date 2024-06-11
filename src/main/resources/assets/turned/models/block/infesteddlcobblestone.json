@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "turned:blocks/infested_dl_cobblestone",
+    "up": "turned:blocks/infested_dl_cobblestone",
+    "north": "turned:blocks/infested_dl_cobblestone",
+    "east": "turned:blocks/infested_dl_cobblestone",
+    "south": "turned:blocks/infested_dl_cobblestone",
+    "west": "turned:blocks/infested_dl_cobblestone",
+    "particle": "turned:blocks/infested_dl_cobblestone"
+  }
+}

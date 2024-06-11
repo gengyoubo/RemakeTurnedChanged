@@ -1,0 +1,12 @@
+{
+  "parent": "turned:custom/lab",
+  "textures": {
+    "all": "turned:blocks/custom_fineflask",
+    "particle": "turned:blocks/custom_fineflask",
+    "0": "turned:blocks/animation",
+    "1": "turned:blocks/finaljar",
+    "2": "turned:blocks/firstbottle",
+    "3": "turned:blocks/finaljaremptypart",
+    "4": "turned:blocks/glasswarestand"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    " 4 ",
+    " 7 "
+  ],
+  "key": {
+    "0": {
+      "item": "turned:darklatexcrystal"
+    },
+    "1": {
+      "item": "turned:darklatexcrystal"
+    },
+    "2": {
+      "item": "turned:darklatexcrystal"
+    },
+    "4": {
+      "item": "turned:darklatexgoo"
+    },
+    "7": {
+      "item": "turned:darklatexgoo"
+    }
+  },
+  "result": {
+    "item": "turned:dl_pickaxe",
+    "count": 1
+  }
+}

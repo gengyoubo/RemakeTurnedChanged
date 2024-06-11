@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "turned:block/bunker_block_striped"
+    }
+  }
+}

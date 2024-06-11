@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "turned:block/darklatexlog",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "turned:block/darklatexlog"
+    },
+    "axis=z": {
+      "model": "turned:block/darklatexlog",
+      "x": 90
+    }
+  }
+}
