@@ -1,195 +1,169 @@
-/*     */ package net.mcreator.latexes.entity;
-/*     */ import java.util.Random;
-/*     */ import java.util.Set;
-/*     */ import javax.annotation.Nullable;
-/*     */ import net.mcreator.latexes.init.LatexModBlocks;
-/*     */ import net.mcreator.latexes.init.LatexModEntities;
-/*     */ import net.mcreator.latexes.init.LatexModItems;
-/*     */ import net.mcreator.latexes.procedures.DarklatexslugNaturalEntitySpawningConditionProcedure;
-/*     */ import net.mcreator.latexes.procedures.DarklatexslugOnEntityTickUpdateProcedure;
-/*     */ import net.mcreator.latexes.procedures.DarklatexslugOnInitialEntitySpawnProcedure;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.nbt.CompoundTag;
-/*     */ import net.minecraft.network.protocol.Packet;
-/*     */ import net.minecraft.resources.ResourceLocation;
-/*     */ import net.minecraft.sounds.SoundEvent;
-/*     */ import net.minecraft.world.DifficultyInstance;
-/*     */ import net.minecraft.world.damagesource.DamageSource;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.LivingEntity;
-/*     */ import net.minecraft.world.entity.Mob;
-/*     */ import net.minecraft.world.entity.MobCategory;
-/*     */ import net.minecraft.world.entity.MobSpawnType;
-/*     */ import net.minecraft.world.entity.MobType;
-/*     */ import net.minecraft.world.entity.PathfinderMob;
-/*     */ import net.minecraft.world.entity.SpawnGroupData;
-/*     */ import net.minecraft.world.entity.SpawnPlacements;
-/*     */ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-/*     */ import net.minecraft.world.entity.ai.attributes.Attributes;
-/*     */ import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.EatBlockGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.FloatGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.FollowMobGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.Goal;
-/*     */ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.MoveBackToVillageGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RemoveBlockGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RestrictSunGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-/*     */ import net.minecraft.world.entity.monster.Monster;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.ServerLevelAccessor;
-/*     */ import net.minecraft.world.level.biome.MobSpawnSettings;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ import net.minecraft.world.level.levelgen.Heightmap;
-/*     */ import net.minecraftforge.event.world.BiomeLoadingEvent;
-/*     */ import net.minecraftforge.eventbus.api.SubscribeEvent;
-/*     */ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-/*     */ import net.minecraftforge.network.NetworkHooks;
-/*     */ import net.minecraftforge.network.PlayMessages;
-/*     */ import net.minecraftforge.registries.ForgeRegistries;
-/*     */ 
-/*     */ @EventBusSubscriber
-/*     */ public class DarklatexslugEntity extends Monster {
-/*  61 */   private static final Set<ResourceLocation> SPAWN_BIOMES = Set.of(new ResourceLocation[] { new ResourceLocation("savanna_plateau"), new ResourceLocation("forest"), new ResourceLocation("sunflower_plains"), new ResourceLocation("taiga"), new ResourceLocation("flower_forest"), new ResourceLocation("swamp"), new ResourceLocation("eroded_badlands"), new ResourceLocation("windswept_hills"), new ResourceLocation("latex:dark_latex_biome"), new ResourceLocation("plains"), new ResourceLocation("savanna"), new ResourceLocation("windswept_savanna"), new ResourceLocation("the_void"), new ResourceLocation("jungle"), new ResourceLocation("windswept_gravelly_hills"), new ResourceLocation("desert") });
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   @SubscribeEvent
-/*     */   public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
-/*  70 */     if (SPAWN_BIOMES.contains(event.getName()))
-/*  71 */       event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData((EntityType)LatexModEntities.DARKLATEXSLUG.get(), 5, 1, 3)); 
-/*     */   }
-/*     */   
-/*     */   public DarklatexslugEntity(PlayMessages.SpawnEntity packet, Level world) {
-/*  75 */     this((EntityType<DarklatexslugEntity>)LatexModEntities.DARKLATEXSLUG.get(), world);
-/*     */   }
-/*     */   
-/*     */   public DarklatexslugEntity(EntityType<DarklatexslugEntity> type, Level world) {
-/*  79 */     super(type, world);
-/*  80 */     this.xpReward = 1;
-/*  81 */     setNoAi(false);
-/*  82 */     setPersistenceRequired();
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public Packet<?> getAddEntityPacket() {
-/*  87 */     return NetworkHooks.getEntitySpawningPacket((Entity)this);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   protected void registerGoals() {
-/*  92 */     super.registerGoals();
-/*  93 */     this.goalSelector.addGoal(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.2D, false)
-/*     */         {
-/*     */           protected double getAttackReachSqr(LivingEntity entity) {
-/*  96 */             return 4.0D + (entity.getBbWidth() * entity.getBbWidth());
-/*     */           }
-/*     */         });
-/*  99 */     this.goalSelector.addGoal(2, (Goal)new AvoidEntityGoal((PathfinderMob)this, Monster.class, 16.0F, 1.0D, 1.2D));
-/* 100 */     this.goalSelector.addGoal(3, (Goal)new AvoidEntityGoal((PathfinderMob)this, PathfinderMob.class, 12.0F, 1.0D, 1.0D));
-/* 101 */     this.goalSelector.addGoal(4, (Goal)new AvoidEntityGoal((PathfinderMob)this, Player.class, 16.0F, 1.0D, 1.25D));
-/* 102 */     this.goalSelector.addGoal(5, (Goal)new FollowMobGoal((Mob)this, 0.800000011920929D, 10.0F, 5.0F));
-/* 103 */     this.goalSelector.addGoal(6, (Goal)new RandomStrollGoal((PathfinderMob)this, 0.6D));
-/* 104 */     this.targetSelector.addGoal(7, (Goal)(new HurtByTargetGoal((PathfinderMob)this, new Class[0])).setAlertOthers(new Class[0]));
-/* 105 */     this.goalSelector.addGoal(8, (Goal)new RemoveBlockGoal(Blocks.CHEST, (PathfinderMob)this, 1.0D, 3));
-/* 106 */     this.goalSelector.addGoal(9, (Goal)new RemoveBlockGoal((Block)LatexModBlocks.BOX.get(), (PathfinderMob)this, 1.0D, 3));
-/* 107 */     this.goalSelector.addGoal(10, (Goal)new RemoveBlockGoal((Block)LatexModBlocks.BOX_INVENTORY.get(), (PathfinderMob)this, 1.0D, 3));
-/* 108 */     this.goalSelector.addGoal(11, (Goal)new RestrictSunGoal((PathfinderMob)this));
-/* 109 */     this.goalSelector.addGoal(12, (Goal)new MoveBackToVillageGoal((PathfinderMob)this, 0.6D, false));
-/* 110 */     this.goalSelector.addGoal(13, (Goal)new EatBlockGoal((Mob)this));
-/* 111 */     this.goalSelector.addGoal(14, (Goal)new RandomLookAroundGoal((Mob)this));
-/* 112 */     this.goalSelector.addGoal(15, (Goal)new FloatGoal((Mob)this));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public MobType getMobType() {
-/* 117 */     return MobType.UNDEFINED;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-/* 122 */     return false;
-/*     */   }
-/*     */   
-/*     */   protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-/* 126 */     super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-/* 127 */     spawnAtLocation(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public SoundEvent getAmbientSound() {
-/* 132 */     return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.ambient"));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public SoundEvent getHurtSound(DamageSource ds) {
-/* 137 */     return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public SoundEvent getDeathSound() {
-/* 142 */     return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean hurt(DamageSource source, float amount) {
-/* 147 */     if (source == DamageSource.FALL)
-/* 148 */       return false; 
-/* 149 */     if (source == DamageSource.WITHER)
-/* 150 */       return false; 
-/* 151 */     if (source.getMsgId().equals("witherSkull"))
-/* 152 */       return false; 
-/* 153 */     return super.hurt(source, amount);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-/* 159 */     SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-/* 160 */     DarklatexslugOnInitialEntitySpawnProcedure.execute((LevelAccessor)world, getX(), getY(), getZ(), (Entity)this);
-/* 161 */     return retval;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public void baseTick() {
-/* 166 */     super.baseTick();
-/* 167 */     DarklatexslugOnEntityTickUpdateProcedure.execute((LevelAccessor)this.level, getX(), getY(), getZ(), (Entity)this);
-/*     */   }
-/*     */   
-/*     */   public static void init() {
-/* 171 */     SpawnPlacements.register((EntityType)LatexModEntities.DARKLATEXSLUG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) -> {
-/*     */           int x = pos.getX();
-/*     */           int y = pos.getY();
-/*     */           int z = pos.getZ();
-/*     */           return DarklatexslugNaturalEntitySpawningConditionProcedure.execute((LevelAccessor)world);
-/*     */         });
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public static AttributeSupplier.Builder createAttributes() {
-/* 181 */     AttributeSupplier.Builder builder = Mob.createMobAttributes();
-/* 182 */     builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35D);
-/* 183 */     builder = builder.add(Attributes.MAX_HEALTH, 4.0D);
-/* 184 */     builder = builder.add(Attributes.ARMOR, 0.0D);
-/* 185 */     builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0D);
-/* 186 */     builder = builder.add(Attributes.FOLLOW_RANGE, 9.0D);
-/* 187 */     return builder;
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.entity;
 
+import java.util.Set;
+import javax.annotation.Nullable;
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModEntities;
+import net.mcreator.latexes.init.LatexModItems;
+import net.mcreator.latexes.procedures.DarklatexslugNaturalEntitySpawningConditionProcedure;
+import net.mcreator.latexes.procedures.DarklatexslugOnEntityTickUpdateProcedure;
+import net.mcreator.latexes.procedures.DarklatexslugOnInitialEntitySpawnProcedure;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.EatBlockGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowMobGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.MoveBackToVillageGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.RemoveBlockGoal;
+import net.minecraft.world.entity.ai.goal.RestrictSunGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
+import net.minecraftforge.registries.ForgeRegistries;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\entity\DarklatexslugEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+@Mod.EventBusSubscriber
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarklatexslugEntity.class */
+public class DarklatexslugEntity extends Monster {
+    private static final Set<ResourceLocation> SPAWN_BIOMES = Set.of((Object[]) new ResourceLocation[]{new ResourceLocation("savanna_plateau"), new ResourceLocation("forest"), new ResourceLocation("sunflower_plains"), new ResourceLocation("taiga"), new ResourceLocation("flower_forest"), new ResourceLocation("swamp"), new ResourceLocation("eroded_badlands"), new ResourceLocation("windswept_hills"), new ResourceLocation("latex:dark_latex_biome"), new ResourceLocation("plains"), new ResourceLocation("savanna"), new ResourceLocation("windswept_savanna"), new ResourceLocation("the_void"), new ResourceLocation("jungle"), new ResourceLocation("windswept_gravelly_hills"), new ResourceLocation("desert")});
+
+    @SubscribeEvent
+    public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
+        if (SPAWN_BIOMES.contains(event.getName())) {
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARKLATEXSLUG.get(), 5, 1, 3));
+        }
+    }
+
+    public DarklatexslugEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this((EntityType) LatexModEntities.DARKLATEXSLUG.get(), world);
+    }
+
+    public DarklatexslugEntity(EntityType<DarklatexslugEntity> type, Level world) {
+        super(type, world);
+        this.xpReward = 1;
+        setNoAi(false);
+        setPersistenceRequired();
+    }
+
+    public Packet<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.DarklatexslugEntity$1  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarklatexslugEntity$1.class */
+    class AnonymousClass1 extends MeleeAttackGoal {
+        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
+            super(arg0, arg1, arg2);
+        }
+
+        protected double getAttackReachSqr(LivingEntity entity) {
+            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+        }
+    }
+
+    protected void registerGoals() {
+        registerGoals();
+        this.goalSelector.addGoal(1, new AnonymousClass1(this, 1.2d, false));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal(this, Monster.class, 16.0f, 1.0d, 1.2d));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal(this, PathfinderMob.class, 12.0f, 1.0d, 1.0d));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal(this, Player.class, 16.0f, 1.0d, 1.25d));
+        this.goalSelector.addGoal(5, new FollowMobGoal(this, 0.800000011920929d, 10.0f, 5.0f));
+        this.goalSelector.addGoal(6, new RandomStrollGoal(this, 0.6d));
+        this.targetSelector.addGoal(7, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(8, new RemoveBlockGoal(Blocks.CHEST, this, 1.0d, 3));
+        this.goalSelector.addGoal(9, new RemoveBlockGoal((Block) LatexModBlocks.BOX.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(10, new RemoveBlockGoal((Block) LatexModBlocks.BOX_INVENTORY.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(11, new RestrictSunGoal(this));
+        this.goalSelector.addGoal(12, new MoveBackToVillageGoal(this, 0.6d, false));
+        this.goalSelector.addGoal(13, new EatBlockGoal(this));
+        this.goalSelector.addGoal(14, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(15, new FloatGoal(this));
+    }
+
+    public MobType getMobType() {
+        return MobType.UNDEFINED;
+    }
+
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return false;
+    }
+
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+        dropCustomDeathLoot(source, looting, recentlyHitIn);
+        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+    }
+
+    public SoundEvent getAmbientSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.ambient"));
+    }
+
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+    }
+
+    public SoundEvent getDeathSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+    }
+
+    public boolean hurt(DamageSource source, float amount) {
+        if (source == DamageSource.FALL || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+            return false;
+        }
+        return hurt(source, amount);
+    }
+
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        DarklatexslugOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
+        return retval;
+    }
+
+    public void baseTick() {
+        baseTick();
+        DarklatexslugOnEntityTickUpdateProcedure.execute(this.level, getX(), getY(), getZ(), this);
+    }
+
+    public static void init() {
+        SpawnPlacements.register((EntityType) LatexModEntities.DARKLATEXSLUG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, entityType, world, reason, pos, random -> {
+            pos.getX();
+            pos.getY();
+            pos.getZ();
+            return DarklatexslugNaturalEntitySpawningConditionProcedure.execute(world);
+        });
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.35d).add(Attributes.MAX_HEALTH, 4.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 1.0d).add(Attributes.FOLLOW_RANGE, 9.0d);
+    }
+}

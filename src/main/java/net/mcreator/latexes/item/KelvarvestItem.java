@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.mcreator.latexes.item;
 
 import net.minecraft.resources.ResourceLocation;
@@ -18,46 +13,56 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/KelvarvestItem.class */
 public abstract class KelvarvestItem extends ArmorItem {
-    public KelvarvestItem(EquipmentSlot slot, Item.Properties properties) {
-        super(new ArmorMaterial() {
-            public int getDurabilityForSlot(EquipmentSlot slot) {
-                return (new int[]{13, 15, 16, 11})[slot.getIndex()] * 200;
-            }
 
-            public int getDefenseForSlot(EquipmentSlot slot) {
-                return (new int[]{0, 0, 7, 0})[slot.getIndex()];
-            }
+    /* renamed from: net.mcreator.latexes.item.KelvarvestItem$1  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/KelvarvestItem$1.class */
+    class AnonymousClass1 implements ArmorMaterial {
+        AnonymousClass1() {
+        }
 
-            public int getEnchantmentValue() {
-                return 9;
-            }
+        public int getDurabilityForSlot(EquipmentSlot slot) {
+            return new int[]{13, 15, 16, 11}[slot.getIndex()] * 200;
+        }
 
-            public SoundEvent getEquipSound() {
-                return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.armor.equip_chain"));
-            }
+        public int getDefenseForSlot(EquipmentSlot slot) {
+            return new int[]{0, 0, 7, 0}[slot.getIndex()];
+        }
 
-            public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack(Items.IRON_INGOT), new ItemStack(Items.IRON_NUGGET), new ItemStack(Items.LEATHER)});
-            }
+        public int getEnchantmentValue() {
+            return 9;
+        }
 
-            public String getName() {
-                return "kelvarvest";
-            }
+        public SoundEvent getEquipSound() {
+            return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.armor.equip_chain"));
+        }
 
-            public float getToughness() {
-                return 1.0F;
-            }
+        public Ingredient getRepairIngredient() {
+            return Ingredient.of(new ItemStack[]{new ItemStack(Items.IRON_INGOT), new ItemStack(Items.IRON_NUGGET), new ItemStack(Items.LEATHER)});
+        }
 
-            public float getKnockbackResistance() {
-                return 0.5F;
-            }
-        }, slot, properties);
+        public String getName() {
+            return "kelvarvest";
+        }
+
+        public float getToughness() {
+            return 1.0f;
+        }
+
+        public float getKnockbackResistance() {
+            return 0.5f;
+        }
     }
 
+    public KelvarvestItem(EquipmentSlot slot, Item.Properties properties) {
+        super(new AnonymousClass1(), slot, properties);
+    }
+
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/KelvarvestItem$Chestplate.class */
     public static class Chestplate extends KelvarvestItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, (new Item.Properties()).tab((CreativeModeTab)null));
+            super(EquipmentSlot.CHEST, new Item.Properties().tab((CreativeModeTab) null));
         }
 
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {

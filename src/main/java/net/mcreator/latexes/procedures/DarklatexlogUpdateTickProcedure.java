@@ -1,209 +1,204 @@
-/*     */ package net.mcreator.latexes.procedures;
-/*     */ 
-/*     */ import com.google.common.collect.UnmodifiableIterator;
-/*     */ import java.util.Map;
-/*     */ import net.mcreator.latexes.init.LatexModBlocks;
-/*     */ import net.mcreator.latexes.init.LatexModGameRules;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraft.world.level.block.state.properties.Property;
-/*     */ 
-/*     */ public class DarklatexlogUpdateTickProcedure {
-/*     */   public static void execute(LevelAccessor world, double x, double y, double z) {
-/*  16 */     if (Math.random() * 100.0D <= world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED)) {
-/*  17 */       if (world.getBlockState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.OAK_LEAVES) {
-/*     */         
-/*  19 */         BlockPos _bp = new BlockPos(x + 1.0D, y, z);
-/*  20 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
-/*  21 */         BlockState _bso = world.getBlockState(_bp);
-/*  22 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  23 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  24 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  26 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  27 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  30 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/*  32 */       else if (world.getBlockState(new BlockPos(x - 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.OAK_LEAVES) {
-/*     */         
-/*  34 */         BlockPos _bp = new BlockPos(x - 1.0D, y, z);
-/*  35 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
-/*  36 */         BlockState _bso = world.getBlockState(_bp);
-/*  37 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  38 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  39 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  41 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  42 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  45 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/*  47 */       else if (world.getBlockState(new BlockPos(x + 0.0D, y + 1.0D, z + 0.0D)).getBlock() == Blocks.OAK_LEAVES) {
-/*     */         
-/*  49 */         BlockPos _bp = new BlockPos(x, y + 1.0D, z);
-/*  50 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
-/*  51 */         BlockState _bso = world.getBlockState(_bp);
-/*  52 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  53 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  54 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  56 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  57 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  60 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/*  62 */       else if (world.getBlockState(new BlockPos(x + 0.0D, y + 0.0D, z + 1.0D)).getBlock() == Blocks.OAK_LEAVES) {
-/*     */         
-/*  64 */         BlockPos _bp = new BlockPos(x, y, z + 1.0D);
-/*  65 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
-/*  66 */         BlockState _bso = world.getBlockState(_bp);
-/*  67 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  68 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  69 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  71 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  72 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  75 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/*  77 */       else if (world.getBlockState(new BlockPos(x + 0.0D, y + 0.0D, z - 1.0D)).getBlock() == Blocks.OAK_LEAVES) {
-/*     */         
-/*  79 */         BlockPos _bp = new BlockPos(x, y, z - 1.0D);
-/*  80 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
-/*  81 */         BlockState _bso = world.getBlockState(_bp);
-/*  82 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  83 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  84 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  86 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  87 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  90 */         world.setBlock(_bp, _bs, 3);
-/*     */       } 
-/*     */       
-/*  93 */       if (world.getBlockState(new BlockPos(x + 0.0D, y + 1.0D, z + 0.0D)).getBlock() == Blocks.OAK_LOG) {
-/*     */         
-/*  95 */         BlockPos _bp = new BlockPos(x, y + 1.0D, z);
-/*  96 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLOG.get()).defaultBlockState();
-/*  97 */         BlockState _bso = world.getBlockState(_bp);
-/*  98 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  99 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 100 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 102 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 103 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 106 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/* 108 */       else if (world.getBlockState(new BlockPos(x + 0.0D, y - 1.0D, z + 0.0D)).getBlock() == Blocks.OAK_LOG) {
-/*     */         
-/* 110 */         BlockPos _bp = new BlockPos(x, y - 1.0D, z);
-/* 111 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXLOG.get()).defaultBlockState();
-/* 112 */         BlockState _bso = world.getBlockState(_bp);
-/* 113 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 114 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 115 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 117 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 118 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 121 */         world.setBlock(_bp, _bs, 3);
-/*     */       } 
-/*     */       
-/* 124 */       if (world.getBlockState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.BEE_NEST) {
-/*     */         
-/* 126 */         BlockPos _bp = new BlockPos(x + 1.0D, y, z);
-/* 127 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
-/* 128 */         BlockState _bso = world.getBlockState(_bp);
-/* 129 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 130 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 131 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 133 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 134 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 137 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/* 139 */       else if (world.getBlockState(new BlockPos(x - 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.BEE_NEST) {
-/*     */         
-/* 141 */         BlockPos _bp = new BlockPos(x - 1.0D, y, z);
-/* 142 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
-/* 143 */         BlockState _bso = world.getBlockState(_bp);
-/* 144 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 145 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 146 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 148 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 149 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 152 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/* 154 */       else if (world.getBlockState(new BlockPos(x + 0.0D, y + 0.0D, z + 1.0D)).getBlock() == Blocks.BEE_NEST) {
-/*     */         
-/* 156 */         BlockPos _bp = new BlockPos(x, y, z + 1.0D);
-/* 157 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
-/* 158 */         BlockState _bso = world.getBlockState(_bp);
-/* 159 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 160 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 161 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 163 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 164 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 167 */         world.setBlock(_bp, _bs, 3);
-/*     */       }
-/* 169 */       else if (world.getBlockState(new BlockPos(x + 0.0D, y + 0.0D, z - 1.0D)).getBlock() == Blocks.BEE_NEST) {
-/*     */         
-/* 171 */         BlockPos _bp = new BlockPos(x, y, z - 1.0D);
-/* 172 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
-/* 173 */         BlockState _bso = world.getBlockState(_bp);
-/* 174 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 175 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 176 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 178 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 179 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 182 */         world.setBlock(_bp, _bs, 3);
-/*     */       } 
-/*     */       
-/* 185 */       if (world.getBlockState(new BlockPos(x + 0.0D, y - 1.0D, z + 0.0D)).getBlock() == Blocks.DIRT || world
-/* 186 */         .getBlockState(new BlockPos(x + 0.0D, y - 1.0D, z + 0.0D)).getBlock() == Blocks.GRASS_BLOCK) {
-/*     */         
-/* 188 */         BlockPos _bp = new BlockPos(x, y - 1.0D, z);
-/* 189 */         BlockState _bs = ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
-/* 190 */         BlockState _bso = world.getBlockState(_bp);
-/* 191 */         for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 192 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 193 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/* 195 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 196 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 199 */         world.setBlock(_bp, _bs, 3);
-/*     */       } 
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.procedures;
 
+import com.google.common.collect.UnmodifiableIterator;
+import java.util.Map;
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModGameRules;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarklatexlogUpdateTickProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarklatexlogUpdateTickProcedure.class */
+public class DarklatexlogUpdateTickProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
+        if (Math.random() * 100.0d <= ((double) world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED))) {
+            if (world.getBlockState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.OAK_LEAVES) {
+                BlockPos _bp = new BlockPos(x + 1.0d, y, z);
+                BlockState _bs = ((Block) LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
+                UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
+                    Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                    if (!(_property == null || _bs.getValue(_property) == null)) {
+                        try {
+                            _bs = (BlockState) _bs.setValue(_property, entry.getValue());
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+                world.setBlock(_bp, _bs, 3);
+            } else if (world.getBlockState(new BlockPos(x - 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.OAK_LEAVES) {
+                BlockPos _bp2 = new BlockPos(x - 1.0d, y, z);
+                BlockState _bs2 = ((Block) LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
+                UnmodifiableIterator it2 = world.getBlockState(_bp2).getValues().entrySet().iterator();
+                while (it2.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry2 = (Map.Entry) it2.next();
+                    Property _property2 = _bs2.getBlock().getStateDefinition().getProperty(entry2.getKey().getName());
+                    if (!(_property2 == null || _bs2.getValue(_property2) == null)) {
+                        try {
+                            _bs2 = (BlockState) _bs2.setValue(_property2, entry2.getValue());
+                        } catch (Exception e2) {
+                        }
+                    }
+                }
+                world.setBlock(_bp2, _bs2, 3);
+            } else if (world.getBlockState(new BlockPos(x + 0.0d, y + 1.0d, z + 0.0d)).getBlock() == Blocks.OAK_LEAVES) {
+                BlockPos _bp3 = new BlockPos(x, y + 1.0d, z);
+                BlockState _bs3 = ((Block) LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
+                UnmodifiableIterator it3 = world.getBlockState(_bp3).getValues().entrySet().iterator();
+                while (it3.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry3 = (Map.Entry) it3.next();
+                    Property _property3 = _bs3.getBlock().getStateDefinition().getProperty(entry3.getKey().getName());
+                    if (!(_property3 == null || _bs3.getValue(_property3) == null)) {
+                        try {
+                            _bs3 = (BlockState) _bs3.setValue(_property3, entry3.getValue());
+                        } catch (Exception e3) {
+                        }
+                    }
+                }
+                world.setBlock(_bp3, _bs3, 3);
+            } else if (world.getBlockState(new BlockPos(x + 0.0d, y + 0.0d, z + 1.0d)).getBlock() == Blocks.OAK_LEAVES) {
+                BlockPos _bp4 = new BlockPos(x, y, z + 1.0d);
+                BlockState _bs4 = ((Block) LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
+                UnmodifiableIterator it4 = world.getBlockState(_bp4).getValues().entrySet().iterator();
+                while (it4.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry4 = (Map.Entry) it4.next();
+                    Property _property4 = _bs4.getBlock().getStateDefinition().getProperty(entry4.getKey().getName());
+                    if (!(_property4 == null || _bs4.getValue(_property4) == null)) {
+                        try {
+                            _bs4 = (BlockState) _bs4.setValue(_property4, entry4.getValue());
+                        } catch (Exception e4) {
+                        }
+                    }
+                }
+                world.setBlock(_bp4, _bs4, 3);
+            } else if (world.getBlockState(new BlockPos(x + 0.0d, y + 0.0d, z - 1.0d)).getBlock() == Blocks.OAK_LEAVES) {
+                BlockPos _bp5 = new BlockPos(x, y, z - 1.0d);
+                BlockState _bs5 = ((Block) LatexModBlocks.DARKLATEXLEAVES.get()).defaultBlockState();
+                UnmodifiableIterator it5 = world.getBlockState(_bp5).getValues().entrySet().iterator();
+                while (it5.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry5 = (Map.Entry) it5.next();
+                    Property _property5 = _bs5.getBlock().getStateDefinition().getProperty(entry5.getKey().getName());
+                    if (!(_property5 == null || _bs5.getValue(_property5) == null)) {
+                        try {
+                            _bs5 = (BlockState) _bs5.setValue(_property5, entry5.getValue());
+                        } catch (Exception e5) {
+                        }
+                    }
+                }
+                world.setBlock(_bp5, _bs5, 3);
+            }
+            if (world.getBlockState(new BlockPos(x + 0.0d, y + 1.0d, z + 0.0d)).getBlock() == Blocks.OAK_LOG) {
+                BlockPos _bp6 = new BlockPos(x, y + 1.0d, z);
+                BlockState _bs6 = ((Block) LatexModBlocks.DARKLATEXLOG.get()).defaultBlockState();
+                UnmodifiableIterator it6 = world.getBlockState(_bp6).getValues().entrySet().iterator();
+                while (it6.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry6 = (Map.Entry) it6.next();
+                    Property _property6 = _bs6.getBlock().getStateDefinition().getProperty(entry6.getKey().getName());
+                    if (!(_property6 == null || _bs6.getValue(_property6) == null)) {
+                        try {
+                            _bs6 = (BlockState) _bs6.setValue(_property6, entry6.getValue());
+                        } catch (Exception e6) {
+                        }
+                    }
+                }
+                world.setBlock(_bp6, _bs6, 3);
+            } else if (world.getBlockState(new BlockPos(x + 0.0d, y - 1.0d, z + 0.0d)).getBlock() == Blocks.OAK_LOG) {
+                BlockPos _bp7 = new BlockPos(x, y - 1.0d, z);
+                BlockState _bs7 = ((Block) LatexModBlocks.DARKLATEXLOG.get()).defaultBlockState();
+                UnmodifiableIterator it7 = world.getBlockState(_bp7).getValues().entrySet().iterator();
+                while (it7.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry7 = (Map.Entry) it7.next();
+                    Property _property7 = _bs7.getBlock().getStateDefinition().getProperty(entry7.getKey().getName());
+                    if (!(_property7 == null || _bs7.getValue(_property7) == null)) {
+                        try {
+                            _bs7 = (BlockState) _bs7.setValue(_property7, entry7.getValue());
+                        } catch (Exception e7) {
+                        }
+                    }
+                }
+                world.setBlock(_bp7, _bs7, 3);
+            }
+            if (world.getBlockState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.BEE_NEST) {
+                BlockPos _bp8 = new BlockPos(x + 1.0d, y, z);
+                BlockState _bs8 = ((Block) LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
+                UnmodifiableIterator it8 = world.getBlockState(_bp8).getValues().entrySet().iterator();
+                while (it8.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry8 = (Map.Entry) it8.next();
+                    Property _property8 = _bs8.getBlock().getStateDefinition().getProperty(entry8.getKey().getName());
+                    if (!(_property8 == null || _bs8.getValue(_property8) == null)) {
+                        try {
+                            _bs8 = (BlockState) _bs8.setValue(_property8, entry8.getValue());
+                        } catch (Exception e8) {
+                        }
+                    }
+                }
+                world.setBlock(_bp8, _bs8, 3);
+            } else if (world.getBlockState(new BlockPos(x - 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.BEE_NEST) {
+                BlockPos _bp9 = new BlockPos(x - 1.0d, y, z);
+                BlockState _bs9 = ((Block) LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
+                UnmodifiableIterator it9 = world.getBlockState(_bp9).getValues().entrySet().iterator();
+                while (it9.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry9 = (Map.Entry) it9.next();
+                    Property _property9 = _bs9.getBlock().getStateDefinition().getProperty(entry9.getKey().getName());
+                    if (!(_property9 == null || _bs9.getValue(_property9) == null)) {
+                        try {
+                            _bs9 = (BlockState) _bs9.setValue(_property9, entry9.getValue());
+                        } catch (Exception e9) {
+                        }
+                    }
+                }
+                world.setBlock(_bp9, _bs9, 3);
+            } else if (world.getBlockState(new BlockPos(x + 0.0d, y + 0.0d, z + 1.0d)).getBlock() == Blocks.BEE_NEST) {
+                BlockPos _bp10 = new BlockPos(x, y, z + 1.0d);
+                BlockState _bs10 = ((Block) LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
+                UnmodifiableIterator it10 = world.getBlockState(_bp10).getValues().entrySet().iterator();
+                while (it10.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry10 = (Map.Entry) it10.next();
+                    Property _property10 = _bs10.getBlock().getStateDefinition().getProperty(entry10.getKey().getName());
+                    if (!(_property10 == null || _bs10.getValue(_property10) == null)) {
+                        try {
+                            _bs10 = (BlockState) _bs10.setValue(_property10, entry10.getValue());
+                        } catch (Exception e10) {
+                        }
+                    }
+                }
+                world.setBlock(_bp10, _bs10, 3);
+            } else if (world.getBlockState(new BlockPos(x + 0.0d, y + 0.0d, z - 1.0d)).getBlock() == Blocks.BEE_NEST) {
+                BlockPos _bp11 = new BlockPos(x, y, z - 1.0d);
+                BlockState _bs11 = ((Block) LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState();
+                UnmodifiableIterator it11 = world.getBlockState(_bp11).getValues().entrySet().iterator();
+                while (it11.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry11 = (Map.Entry) it11.next();
+                    Property _property11 = _bs11.getBlock().getStateDefinition().getProperty(entry11.getKey().getName());
+                    if (!(_property11 == null || _bs11.getValue(_property11) == null)) {
+                        try {
+                            _bs11 = (BlockState) _bs11.setValue(_property11, entry11.getValue());
+                        } catch (Exception e11) {
+                        }
+                    }
+                }
+                world.setBlock(_bp11, _bs11, 3);
+            }
+            if (world.getBlockState(new BlockPos(x + 0.0d, y - 1.0d, z + 0.0d)).getBlock() == Blocks.DIRT || world.getBlockState(new BlockPos(x + 0.0d, y - 1.0d, z + 0.0d)).getBlock() == Blocks.GRASS_BLOCK) {
+                BlockPos _bp12 = new BlockPos(x, y - 1.0d, z);
+                BlockState _bs12 = ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
+                UnmodifiableIterator it12 = world.getBlockState(_bp12).getValues().entrySet().iterator();
+                while (it12.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry12 = (Map.Entry) it12.next();
+                    Property _property12 = _bs12.getBlock().getStateDefinition().getProperty(entry12.getKey().getName());
+                    if (!(_property12 == null || _bs12.getValue(_property12) == null)) {
+                        try {
+                            _bs12 = (BlockState) _bs12.setValue(_property12, entry12.getValue());
+                        } catch (Exception e12) {
+                        }
+                    }
+                }
+                world.setBlock(_bp12, _bs12, 3);
+            }
+        }
+    }
+}

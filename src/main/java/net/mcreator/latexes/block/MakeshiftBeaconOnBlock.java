@@ -1,128 +1,103 @@
-/*     */ package net.mcreator.latexes.block;
-/*     */ 
-/*     */ import java.util.Collections;
-/*     */ import java.util.List;
-/*     */ import java.util.Random;
-/*     */ import net.mcreator.latexes.procedures.CheckevilraidProcedure;
-/*     */ import net.mcreator.latexes.procedures.MakeshiftBeaconOnUpdateTickProcedure;
-/*     */ import net.minecraft.client.Minecraft;
-/*     */ import net.minecraft.client.player.LocalPlayer;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.core.Direction;
-/*     */ import net.minecraft.core.particles.ParticleOptions;
-/*     */ import net.minecraft.core.particles.ParticleTypes;
-/*     */ import net.minecraft.server.level.ServerLevel;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.Item;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.item.TieredItem;
-/*     */ import net.minecraft.world.item.context.BlockPlaceContext;
-/*     */ import net.minecraft.world.level.BlockGetter;
-/*     */ import net.minecraft.world.level.ItemLike;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-/*     */ import net.minecraft.world.level.block.Mirror;
-/*     */ import net.minecraft.world.level.block.Rotation;
-/*     */ import net.minecraft.world.level.block.SoundType;
-/*     */ import net.minecraft.world.level.block.state.BlockBehaviour;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraft.world.level.block.state.StateDefinition;
-/*     */ import net.minecraft.world.level.block.state.properties.DirectionProperty;
-/*     */ import net.minecraft.world.level.block.state.properties.Property;
-/*     */ import net.minecraft.world.level.material.Material;
-/*     */ import net.minecraft.world.level.storage.loot.LootContext;
-/*     */ import net.minecraftforge.api.distmarker.Dist;
-/*     */ import net.minecraftforge.api.distmarker.OnlyIn;
-/*     */ 
-/*     */ public class MakeshiftBeaconOnBlock extends Block {
-/*  40 */   public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-/*     */   
-/*     */   public MakeshiftBeaconOnBlock() {
-/*  43 */     super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0F, 12.0F).lightLevel(s -> 12)
-/*  44 */         .requiresCorrectToolForDrops());
-/*  45 */     registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue((Property)FACING, (Comparable)Direction.NORTH));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-/*  50 */     return 15;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-/*  55 */     builder.add(new Property[] { (Property)FACING });
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public BlockState getStateForPlacement(BlockPlaceContext context) {
-/*  60 */     return (BlockState)defaultBlockState().setValue((Property)FACING, (Comparable)context.getHorizontalDirection().getOpposite());
-/*     */   }
-/*     */   
-/*     */   public BlockState rotate(BlockState state, Rotation rot) {
-/*  64 */     return (BlockState)state.setValue((Property)FACING, (Comparable)rot.rotate((Direction)state.getValue((Property)FACING)));
-/*     */   }
-/*     */   
-/*     */   public BlockState mirror(BlockState state, Mirror mirrorIn) {
-/*  68 */     return state.rotate(mirrorIn.getRotation((Direction)state.getValue((Property)FACING)));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-/*  73 */     Item item = player.getInventory().getSelected().getItem(); if (item instanceof TieredItem) { TieredItem tieredItem = (TieredItem)item;
-/*  74 */       return (tieredItem.getTier().getLevel() >= 1); }
-/*  75 */      return false;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-/*  80 */     List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-/*  81 */     if (!dropsOriginal.isEmpty())
-/*  82 */       return dropsOriginal; 
-/*  83 */     return Collections.singletonList(new ItemStack((ItemLike)this, 1));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
-/*  88 */     super.onPlace(blockstate, world, pos, oldState, moving);
-/*  89 */     world.scheduleTick(pos, this, 10);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
-/*  94 */     super.tick(blockstate, world, pos, random);
-/*  95 */     int x = pos.getX();
-/*  96 */     int y = pos.getY();
-/*  97 */     int z = pos.getZ();
-/*     */     
-/*  99 */     MakeshiftBeaconOnUpdateTickProcedure.execute((LevelAccessor)world, x, y, z);
-/* 100 */     world.scheduleTick(pos, this, 10);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   @OnlyIn(Dist.CLIENT)
-/*     */   public void animateTick(BlockState blockstate, Level world, BlockPos pos, Random random) {
-/* 106 */     super.animateTick(blockstate, world, pos, random);
-/* 107 */     LocalPlayer localPlayer = (Minecraft.getInstance()).player;
-/* 108 */     int x = pos.getX();
-/* 109 */     int y = pos.getY();
-/* 110 */     int z = pos.getZ();
-/* 111 */     if (CheckevilraidProcedure.execute((LevelAccessor)world))
-/* 112 */       for (int l = 0; l < 3; l++) {
-/* 113 */         double x0 = (x + random.nextFloat());
-/* 114 */         double y0 = (y + random.nextFloat());
-/* 115 */         double z0 = (z + random.nextFloat());
-/* 116 */         double dx = (random.nextFloat() - 0.5D) * 0.5D;
-/* 117 */         double dy = (random.nextFloat() - 0.5D) * 0.5D;
-/* 118 */         double dz = (random.nextFloat() - 0.5D) * 0.5D;
-/* 119 */         world.addParticle((ParticleOptions)ParticleTypes.SOUL_FIRE_FLAME, x0, y0, z0, dx, dy, dz);
-/*     */       }  
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.block;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import net.mcreator.latexes.procedures.CheckevilraidProcedure;
+import net.mcreator.latexes.procedures.MakeshiftBeaconOnUpdateTickProcedure;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\block\MakeshiftBeaconOnBlock.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/MakeshiftBeaconOnBlock.class */
+public class MakeshiftBeaconOnBlock extends Block {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
+    public MakeshiftBeaconOnBlock() {
+        super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0f, 12.0f).lightLevel(s -> {
+            return 12;
+        }).requiresCorrectToolForDrops());
+        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        return 15;
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{FACING});
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    }
+
+    public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
+        TieredItem tieredItem = player.getInventory().getSelected().getItem();
+        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 1;
+    }
+
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> dropsOriginal = getDrops(state, builder);
+        if (!dropsOriginal.isEmpty()) {
+            return dropsOriginal;
+        }
+        return Collections.singletonList(new ItemStack(this, 1));
+    }
+
+    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+        onPlace(blockstate, world, pos, oldState, moving);
+        world.scheduleTick(pos, this, 10);
+    }
+
+    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+        tick(blockstate, world, pos, random);
+        MakeshiftBeaconOnUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        world.scheduleTick(pos, this, 10);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(BlockState blockstate, Level world, BlockPos pos, Random random) {
+        animateTick(blockstate, world, pos, random);
+        LocalPlayer localPlayer = Minecraft.getInstance().player;
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        if (CheckevilraidProcedure.execute(world)) {
+            for (int l = 0; l < 3; l++) {
+                world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, (double) (((float) x) + random.nextFloat()), (double) (((float) y) + random.nextFloat()), (double) (((float) z) + random.nextFloat()), (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d);
+            }
+        }
+    }
+}

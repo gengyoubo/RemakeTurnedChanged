@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.mcreator.latexes.entity;
 
 import java.util.List;
@@ -34,6 +29,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -77,16 +73,17 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity.class */
 public class ProtectorSlimelingEntity extends TamableAnimal {
     public ProtectorSlimelingEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get(), world);
+        this((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get(), world);
     }
 
     public ProtectorSlimelingEntity(EntityType<ProtectorSlimelingEntity> type, Level world) {
         super(type, world);
         this.xpReward = 6;
-        this.setNoAi(false);
-        this.setPersistenceRequired();
+        setNoAi(false);
+        setPersistenceRequired();
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -94,143 +91,194 @@ public class ProtectorSlimelingEntity extends TamableAnimal {
     }
 
     protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 0.9, 12.0F, 2.0F, false));
+        registerGoals();
+        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 0.9d, 12.0f, 2.0f, false));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.goalSelector.addGoal(3, new OwnerHurtByTargetGoal(this));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2, false) {
-            protected double getAttackReachSqr(LivingEntity entity) {
-                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
-            }
-        });
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, false, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckentityislatexProcedure.execute(entity);
-            }
-        });
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, LivingEntity.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckEvilProcedure.execute(entity);
-            }
-        });
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Pillager.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Vindicator.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Illusioner.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Evoker.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Piglin.class, true, false) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.goalSelector.addGoal(13, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXICE.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(14, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXBLOCKCRYSTALGROW.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXBLOCK.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(16, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXCARPET.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(17, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXLEAVES.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(18, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXLOG.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(19, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXCRYSTALEGG.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0, 3));
-        this.goalSelector.addGoal(21, new LookAtPlayerGoal(this, Player.class, 9.0F));
-        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, ScientistEntity.class, 9.0F));
-        this.goalSelector.addGoal(23, new LookAtPlayerGoal(this, Villager.class, 9.0F));
-        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, WanderingTrader.class, 9.0F));
-        this.goalSelector.addGoal(25, new TemptGoal(this, 0.6, Ingredient.of(new ItemLike[]{(ItemLike)LatexModItems.DARKLATEXGOO.get()}), true) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.goalSelector.addGoal(26, new TemptGoal(this, 0.6, Ingredient.of(new ItemLike[]{Items.SLIME_BALL}), true) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.goalSelector.addGoal(27, new TemptGoal(this, 0.7, Ingredient.of(new ItemLike[]{(ItemLike)LatexModItems.LATEX_SOUP.get()}), true) {
-            public boolean canUse() {
-                double x = ProtectorSlimelingEntity.this.getX();
-                double y = ProtectorSlimelingEntity.this.getY();
-                double z = ProtectorSlimelingEntity.this.getZ();
-                Entity entity = ProtectorSlimelingEntity.this;
-                Level world = ProtectorSlimelingEntity.this.level;
-                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
-            }
-        });
-        this.goalSelector.addGoal(28, new RandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(4, new AnonymousClass1(this, 1.2d, false));
+        this.targetSelector.addGoal(5, new AnonymousClass2(this, LivingEntity.class, false, false));
+        this.targetSelector.addGoal(6, new AnonymousClass3(this, LivingEntity.class, true, false));
+        this.targetSelector.addGoal(7, new AnonymousClass4(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(8, new AnonymousClass5(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(9, new AnonymousClass6(this, Illusioner.class, true, false));
+        this.targetSelector.addGoal(10, new AnonymousClass7(this, Evoker.class, true, false));
+        this.targetSelector.addGoal(11, new AnonymousClass8(this, PiglinBrute.class, true, false));
+        this.targetSelector.addGoal(12, new AnonymousClass9(this, Piglin.class, true, false));
+        this.goalSelector.addGoal(13, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXICE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(14, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXBLOCKCRYSTALGROW.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXBLOCK.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(16, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXCARPET.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(17, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXLEAVES.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(18, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXLOG.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(19, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXCRYSTALEGG.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(21, new LookAtPlayerGoal(this, Player.class, 9.0f));
+        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, ScientistEntity.class, 9.0f));
+        this.goalSelector.addGoal(23, new LookAtPlayerGoal(this, Villager.class, 9.0f));
+        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, WanderingTrader.class, 9.0f));
+        this.goalSelector.addGoal(25, new AnonymousClass10(this, 0.6d, Ingredient.of(new ItemLike[]{(ItemLike) LatexModItems.DARKLATEXGOO.get()}), true));
+        this.goalSelector.addGoal(26, new AnonymousClass11(this, 0.6d, Ingredient.of(new ItemLike[]{Items.SLIME_BALL}), true));
+        this.goalSelector.addGoal(27, new AnonymousClass12(this, 0.7d, Ingredient.of(new ItemLike[]{(ItemLike) LatexModItems.LATEX_SOUP.get()}), true));
+        this.goalSelector.addGoal(28, new RandomStrollGoal(this, 1.0d));
         this.goalSelector.addGoal(29, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(30, new OpenDoorGoal(this, false));
-        this.targetSelector.addGoal(31, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(31, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(32, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(33, new FloatGoal(this));
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$1  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$1.class */
+    class AnonymousClass1 extends MeleeAttackGoal {
+        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
+            super(arg0, arg1, arg2);
+        }
+
+        protected double getAttackReachSqr(LivingEntity entity) {
+            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$2  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$2.class */
+    class AnonymousClass2 extends NearestAttackableTargetGoal {
+        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            ProtectorSlimelingEntity.this.getX();
+            ProtectorSlimelingEntity.this.getY();
+            ProtectorSlimelingEntity.this.getZ();
+            Entity entity = ProtectorSlimelingEntity.this;
+            Level level = ProtectorSlimelingEntity.this.level;
+            return canUse() && CheckentityislatexProcedure.execute(entity);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$3  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$3.class */
+    class AnonymousClass3 extends NearestAttackableTargetGoal {
+        AnonymousClass3(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            ProtectorSlimelingEntity.this.getX();
+            ProtectorSlimelingEntity.this.getY();
+            ProtectorSlimelingEntity.this.getZ();
+            Entity entity = ProtectorSlimelingEntity.this;
+            Level level = ProtectorSlimelingEntity.this.level;
+            return canUse() && CheckEvilProcedure.execute(entity);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$4  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$4.class */
+    class AnonymousClass4 extends NearestAttackableTargetGoal {
+        AnonymousClass4(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$5  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$5.class */
+    class AnonymousClass5 extends NearestAttackableTargetGoal {
+        AnonymousClass5(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$6  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$6.class */
+    class AnonymousClass6 extends NearestAttackableTargetGoal {
+        AnonymousClass6(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$7  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$7.class */
+    class AnonymousClass7 extends NearestAttackableTargetGoal {
+        AnonymousClass7(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$8  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$8.class */
+    class AnonymousClass8 extends NearestAttackableTargetGoal {
+        AnonymousClass8(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$9  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$9.class */
+    class AnonymousClass9 extends NearestAttackableTargetGoal {
+        AnonymousClass9(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$10  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$10.class */
+    class AnonymousClass10 extends TemptGoal {
+        AnonymousClass10(PathfinderMob arg0, double arg1, Ingredient arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$11  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$11.class */
+    class AnonymousClass11 extends TemptGoal {
+        AnonymousClass11(PathfinderMob arg0, double arg1, Ingredient arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.entity.ProtectorSlimelingEntity$12  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ProtectorSlimelingEntity$12.class */
+    class AnonymousClass12 extends TemptGoal {
+        AnonymousClass12(PathfinderMob arg0, double arg1, Ingredient arg2, boolean arg3) {
+            super(arg0, arg1, arg2, arg3);
+        }
+
+        public boolean canUse() {
+            return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+        }
     }
 
     public MobType getMobType() {
@@ -242,41 +290,32 @@ public class ProtectorSlimelingEntity extends TamableAnimal {
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-        this.spawnAtLocation(new ItemStack((ItemLike)LatexModItems.SLIMEESSENCE.get()));
+        dropCustomDeathLoot(source, looting, recentlyHitIn);
+        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.SLIMEESSENCE.get()));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
+        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
-            if (source == DamageSource.FALL) {
-                return false;
-            } else if (source == DamageSource.CACTUS) {
-                return false;
-            } else if (source == DamageSource.WITHER) {
-                return false;
-            } else {
-                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
-            }
-        } else {
+        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
             return false;
         }
+        return hurt(source, amount);
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        SlimelingTamedOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
+        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        SlimelingTamedOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
         return retval;
     }
 
@@ -285,77 +324,67 @@ public class ProtectorSlimelingEntity extends TamableAnimal {
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
         if (itemstack.getItem() instanceof SpawnEggItem) {
-            retval = super.mobInteract(sourceentity, hand);
+            retval = mobInteract(sourceentity, hand);
         } else if (this.level.isClientSide()) {
-            retval = (!this.isTame() || !this.isOwnedBy(sourceentity)) && !this.isFood(itemstack) ? InteractionResult.PASS : InteractionResult.sidedSuccess(this.level.isClientSide());
-        } else if (this.isTame()) {
-            if (this.isOwnedBy(sourceentity)) {
-                if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-                    this.usePlayerItem(sourceentity, hand, itemstack);
-                    this.heal((float)item.getFoodProperties().getNutrition());
+            if ((!isTame() || !isOwnedBy(sourceentity)) && !isFood(itemstack)) {
+                retval = InteractionResult.PASS;
+            } else {
+                retval = InteractionResult.sidedSuccess(this.level.isClientSide());
+            }
+        } else if (isTame()) {
+            if (isOwnedBy(sourceentity)) {
+                if (item.isEdible() && isFood(itemstack) && getHealth() < getMaxHealth()) {
+                    usePlayerItem(sourceentity, hand, itemstack);
+                    heal((float) item.getFoodProperties().getNutrition());
                     retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-                } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
-                    this.usePlayerItem(sourceentity, hand, itemstack);
-                    this.heal(4.0F);
-                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
+                } else if (!isFood(itemstack) || getHealth() >= getMaxHealth()) {
+                    retval = mobInteract(sourceentity, hand);
                 } else {
-                    retval = super.mobInteract(sourceentity, hand);
+                    usePlayerItem(sourceentity, hand, itemstack);
+                    heal(4.0f);
+                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
                 }
             }
-        } else if (this.isFood(itemstack)) {
-            this.usePlayerItem(sourceentity, hand, itemstack);
-            if (this.random.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, sourceentity)) {
-                this.tame(sourceentity);
-                this.level.broadcastEntityEvent(this, (byte)7);
+        } else if (isFood(itemstack)) {
+            usePlayerItem(sourceentity, hand, itemstack);
+            if (this.random.nextInt(3) != 0 || ForgeEventFactory.onAnimalTame(this, sourceentity)) {
+                this.level.broadcastEntityEvent(this, (byte) 6);
             } else {
-                this.level.broadcastEntityEvent(this, (byte)6);
+                tame(sourceentity);
+                this.level.broadcastEntityEvent(this, (byte) 7);
             }
-
-            this.setPersistenceRequired();
+            setPersistenceRequired();
             retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         } else {
-            retval = super.mobInteract(sourceentity, hand);
+            retval = mobInteract(sourceentity, hand);
             if (retval == InteractionResult.SUCCESS || retval == InteractionResult.CONSUME) {
-                this.setPersistenceRequired();
+                setPersistenceRequired();
             }
         }
-
-        double x = this.getX();
-        double y = this.getY();
-        double z = this.getZ();
-        Entity entity = this;
-        Level world = this.level;
-        ProtectorSlimelingRightClickedOnEntityProcedure.execute(world, x, y, z, entity, sourceentity);
+        ProtectorSlimelingRightClickedOnEntityProcedure.execute(this.level, getX(), getY(), getZ(), this, sourceentity);
         return retval;
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        super.awardKillScore(entity, score, damageSource);
-        ProtectorSlimelingThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity, this);
+        awardKillScore(entity, score, damageSource);
+        ProtectorSlimelingThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        ProtectorSlimelingEntity retval = (ProtectorSlimelingEntity)((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get()).create(serverWorld);
-        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
+        ProtectorSlimelingEntity retval = ((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get()).create(serverWorld);
+        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
         return retval;
     }
 
     public boolean isFood(ItemStack stack) {
-        return List.of((Item)LatexModItems.DARKLATEXGOO.get(), Items.SLIME_BALL, (Item)LatexModItems.LATEX_SOUP.get()).contains(stack.getItem());
+        return List.of((Item) LatexModItems.DARKLATEXGOO.get(), Items.SLIME_BALL, (Item) LatexModItems.LATEX_SOUP.get()).contains(stack.getItem());
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-        builder = builder.add(Attributes.MAX_HEALTH, 32.0);
-        builder = builder.add(Attributes.ARMOR, 0.0);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
-        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.1);
-        return builder;
+        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.MAX_HEALTH, 32.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.1d);
     }
 }

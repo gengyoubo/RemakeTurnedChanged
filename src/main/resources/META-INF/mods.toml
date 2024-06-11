@@ -4,14 +4,14 @@ license="MIT License"
 
 [[mods]]
 modId="latex"
-version="1.27.1"
+version="1.27.2"
 displayName="Turned"
-credits="Created using mod maker MCreator and A LOT of patience - https://mcreator.net/about"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/turned-the-changed-mod"
+credits="耿悠博(Created using mod maker MCreator and A LOT of patience - https://mcreator.net/about)"
+displayURL="https://legacy.curseforge.com/minecraft/mc-mods/remake-turned-the-changed-mod"
 logoFile="logo.png"
-authors="Alex n' Italy"
+authors="耿悠博"
 description='''
-A Minecraft Changed+ Mod.
+This is a remake turned mod!.
 '''
 
 [[dependencies.latex]]

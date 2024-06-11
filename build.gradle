@@ -16,7 +16,7 @@ plugins {
 apply plugin: 'net.minecraftforge.gradle'
 
 
-version = '1.27.1'
+version = '1.27.2'
 group = 'net.mcreator.latexes' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'latexes'
 

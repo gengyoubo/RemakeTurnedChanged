@@ -1,60 +1,57 @@
-/*    */ package net.mcreator.latexes.procedures;
-/*    */ 
-/*    */ import com.google.common.collect.UnmodifiableIterator;
-/*    */ import java.util.Map;
-/*    */ import net.mcreator.latexes.init.LatexModBlocks;
-/*    */ import net.minecraft.core.BlockPos;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.block.Block;
-/*    */ import net.minecraft.world.level.block.Blocks;
-/*    */ import net.minecraft.world.level.block.state.BlockState;
-/*    */ import net.minecraft.world.level.block.state.properties.Property;
-/*    */ 
-/*    */ public class DarklatexslugOnEntityTickUpdateProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/* 16 */     if (entity == null)
-/*    */       return; 
-/* 18 */     if (world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.CHEST) {
-/* 19 */       if (!entity.level.isClientSide()) {
-/* 20 */         entity.discard();
-/*    */       }
-/* 22 */       BlockPos _bp = new BlockPos(x, y - 1.0D, z);
-/* 23 */       BlockState _bs = ((Block)LatexModBlocks.CHES_TRAP.get()).defaultBlockState();
-/* 24 */       BlockState _bso = world.getBlockState(_bp);
-/* 25 */       for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 26 */         Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 27 */         if (_property != null && _bs.getValue(_property) != null) {
-/*    */           try {
-/* 29 */             _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 30 */           } catch (Exception exception) {}
-/*    */         } }
-/*    */       
-/* 33 */       world.setBlock(_bp, _bs, 3);
-/*    */     }
-/* 35 */     else if (world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == LatexModBlocks.BOX.get() || world
-/* 36 */       .getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == LatexModBlocks.BOX_INVENTORY.get()) {
-/* 37 */       if (!entity.level.isClientSide()) {
-/* 38 */         entity.discard();
-/*    */       }
-/* 40 */       BlockPos _bp = new BlockPos(x, y - 1.0D, z);
-/* 41 */       BlockState _bs = ((Block)LatexModBlocks.BOX_TRAP.get()).defaultBlockState();
-/* 42 */       BlockState _bso = world.getBlockState(_bp);
-/* 43 */       for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 44 */         Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 45 */         if (_property != null && _bs.getValue(_property) != null) {
-/*    */           try {
-/* 47 */             _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 48 */           } catch (Exception exception) {}
-/*    */         } }
-/*    */       
-/* 51 */       world.setBlock(_bp, _bs, 3);
-/*    */     } 
-/*    */   }
-/*    */ }
+package net.mcreator.latexes.procedures;
 
+import com.google.common.collect.UnmodifiableIterator;
+import java.util.Map;
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarklatexslugOnEntityTickUpdateProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarklatexslugOnEntityTickUpdateProcedure.class */
+public class DarklatexslugOnEntityTickUpdateProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            if (world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CHEST) {
+                if (!entity.level.isClientSide()) {
+                    entity.discard();
+                }
+                BlockPos _bp = new BlockPos(x, y - 1.0d, z);
+                BlockState _bs = ((Block) LatexModBlocks.CHES_TRAP.get()).defaultBlockState();
+                UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
+                    Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                    if (!(_property == null || _bs.getValue(_property) == null)) {
+                        try {
+                            _bs = (BlockState) _bs.setValue(_property, entry.getValue());
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+                world.setBlock(_bp, _bs, 3);
+            } else if (world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == LatexModBlocks.BOX.get() || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == LatexModBlocks.BOX_INVENTORY.get()) {
+                if (!entity.level.isClientSide()) {
+                    entity.discard();
+                }
+                BlockPos _bp2 = new BlockPos(x, y - 1.0d, z);
+                BlockState _bs2 = ((Block) LatexModBlocks.BOX_TRAP.get()).defaultBlockState();
+                UnmodifiableIterator it2 = world.getBlockState(_bp2).getValues().entrySet().iterator();
+                while (it2.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry2 = (Map.Entry) it2.next();
+                    Property _property2 = _bs2.getBlock().getStateDefinition().getProperty(entry2.getKey().getName());
+                    if (!(_property2 == null || _bs2.getValue(_property2) == null)) {
+                        try {
+                            _bs2 = (BlockState) _bs2.setValue(_property2, entry2.getValue());
+                        } catch (Exception e2) {
+                        }
+                    }
+                }
+                world.setBlock(_bp2, _bs2, 3);
+            }
+        }
+    }
+}

@@ -1,110 +1,106 @@
-/*     */ package net.mcreator.latexes.procedures;
-/*     */ 
-/*     */ import com.google.common.collect.UnmodifiableIterator;
-/*     */ import java.util.Map;
-/*     */ import net.mcreator.latexes.init.LatexModBlocks;
-/*     */ import net.mcreator.latexes.init.LatexModGameRules;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraft.world.level.block.state.properties.Property;
-/*     */ 
-/*     */ public class DarkLatexDragonEntityDiesProcedure {
-/*     */   public static void execute(LevelAccessor world, double x, double y, double z) {
-/*  16 */     if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK)) {
-/*     */       
-/*  18 */       BlockPos _bp = new BlockPos(x, y, z);
-/*  19 */       BlockState _bs = ((Block)LatexModBlocks.DARKLATEXCRYSTALEGG.get()).defaultBlockState();
-/*  20 */       BlockState _bso = world.getBlockState(_bp); UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator;
-/*  21 */       for (unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  22 */         Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  23 */         if (_property != null && _bs.getValue(_property) != null) {
-/*     */           try {
-/*  25 */             _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  26 */           } catch (Exception exception) {}
-/*     */         } }
-/*     */       
-/*  29 */       world.setBlock(_bp, _bs, 3);
-/*     */       
-/*  31 */       if (((world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.BEDROCK) ? true : false) != true) {
-/*     */         
-/*  33 */         _bp = new BlockPos(x, y - 1.0D, z);
-/*  34 */         _bs = ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
-/*  35 */         _bso = world.getBlockState(_bp);
-/*  36 */         for (unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  37 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  38 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  40 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  41 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  44 */         world.setBlock(_bp, _bs, 3);
-/*     */ 
-/*     */         
-/*  47 */         _bp = new BlockPos(x + 1.0D, y - 1.0D, z);
-/*  48 */         _bs = ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
-/*  49 */         _bso = world.getBlockState(_bp);
-/*  50 */         for (unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  51 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  52 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  54 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  55 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  58 */         world.setBlock(_bp, _bs, 3);
-/*     */ 
-/*     */         
-/*  61 */         _bp = new BlockPos(x - 1.0D, y - 1.0D, z);
-/*  62 */         _bs = ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
-/*  63 */         _bso = world.getBlockState(_bp);
-/*  64 */         for (unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  65 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  66 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  68 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  69 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  72 */         world.setBlock(_bp, _bs, 3);
-/*     */ 
-/*     */         
-/*  75 */         _bp = new BlockPos(x, y - 1.0D, z + 1.0D);
-/*  76 */         _bs = ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
-/*  77 */         _bso = world.getBlockState(_bp);
-/*  78 */         for (unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  79 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  80 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  82 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  83 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/*  86 */         world.setBlock(_bp, _bs, 3);
-/*     */ 
-/*     */         
-/*  89 */         _bp = new BlockPos(x, y - 1.0D, z - 1.0D);
-/*  90 */         _bs = ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
-/*  91 */         _bso = world.getBlockState(_bp);
-/*  92 */         for (unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  93 */           Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  94 */           if (_property != null && _bs.getValue(_property) != null) {
-/*     */             try {
-/*  96 */               _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  97 */             } catch (Exception exception) {}
-/*     */           } }
-/*     */         
-/* 100 */         world.setBlock(_bp, _bs, 3);
-/*     */       } 
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.procedures;
 
+import com.google.common.collect.UnmodifiableIterator;
+import java.util.Map;
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModGameRules;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarkLatexDragonEntityDiesProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarkLatexDragonEntityDiesProcedure.class */
+public class DarkLatexDragonEntityDiesProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
+        if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK)) {
+            BlockPos _bp = new BlockPos(x, y, z);
+            BlockState _bs = ((Block) LatexModBlocks.DARKLATEXCRYSTALEGG.get()).defaultBlockState();
+            UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
+                Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                if (!(_property == null || _bs.getValue(_property) == null)) {
+                    try {
+                        _bs = (BlockState) _bs.setValue(_property, entry.getValue());
+                    } catch (Exception e) {
+                    }
+                }
+            }
+            world.setBlock(_bp, _bs, 3);
+            if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.BEDROCK)) {
+                BlockPos _bp2 = new BlockPos(x, y - 1.0d, z);
+                BlockState _bs2 = ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
+                UnmodifiableIterator it2 = world.getBlockState(_bp2).getValues().entrySet().iterator();
+                while (it2.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry2 = (Map.Entry) it2.next();
+                    Property _property2 = _bs2.getBlock().getStateDefinition().getProperty(entry2.getKey().getName());
+                    if (!(_property2 == null || _bs2.getValue(_property2) == null)) {
+                        try {
+                            _bs2 = (BlockState) _bs2.setValue(_property2, entry2.getValue());
+                        } catch (Exception e2) {
+                        }
+                    }
+                }
+                world.setBlock(_bp2, _bs2, 3);
+                BlockPos _bp3 = new BlockPos(x + 1.0d, y - 1.0d, z);
+                BlockState _bs3 = ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
+                UnmodifiableIterator it3 = world.getBlockState(_bp3).getValues().entrySet().iterator();
+                while (it3.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry3 = (Map.Entry) it3.next();
+                    Property _property3 = _bs3.getBlock().getStateDefinition().getProperty(entry3.getKey().getName());
+                    if (!(_property3 == null || _bs3.getValue(_property3) == null)) {
+                        try {
+                            _bs3 = (BlockState) _bs3.setValue(_property3, entry3.getValue());
+                        } catch (Exception e3) {
+                        }
+                    }
+                }
+                world.setBlock(_bp3, _bs3, 3);
+                BlockPos _bp4 = new BlockPos(x - 1.0d, y - 1.0d, z);
+                BlockState _bs4 = ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
+                UnmodifiableIterator it4 = world.getBlockState(_bp4).getValues().entrySet().iterator();
+                while (it4.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry4 = (Map.Entry) it4.next();
+                    Property _property4 = _bs4.getBlock().getStateDefinition().getProperty(entry4.getKey().getName());
+                    if (!(_property4 == null || _bs4.getValue(_property4) == null)) {
+                        try {
+                            _bs4 = (BlockState) _bs4.setValue(_property4, entry4.getValue());
+                        } catch (Exception e4) {
+                        }
+                    }
+                }
+                world.setBlock(_bp4, _bs4, 3);
+                BlockPos _bp5 = new BlockPos(x, y - 1.0d, z + 1.0d);
+                BlockState _bs5 = ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
+                UnmodifiableIterator it5 = world.getBlockState(_bp5).getValues().entrySet().iterator();
+                while (it5.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry5 = (Map.Entry) it5.next();
+                    Property _property5 = _bs5.getBlock().getStateDefinition().getProperty(entry5.getKey().getName());
+                    if (!(_property5 == null || _bs5.getValue(_property5) == null)) {
+                        try {
+                            _bs5 = (BlockState) _bs5.setValue(_property5, entry5.getValue());
+                        } catch (Exception e5) {
+                        }
+                    }
+                }
+                world.setBlock(_bp5, _bs5, 3);
+                BlockPos _bp6 = new BlockPos(x, y - 1.0d, z - 1.0d);
+                BlockState _bs6 = ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState();
+                UnmodifiableIterator it6 = world.getBlockState(_bp6).getValues().entrySet().iterator();
+                while (it6.hasNext()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry6 = (Map.Entry) it6.next();
+                    Property _property6 = _bs6.getBlock().getStateDefinition().getProperty(entry6.getKey().getName());
+                    if (!(_property6 == null || _bs6.getValue(_property6) == null)) {
+                        try {
+                            _bs6 = (BlockState) _bs6.setValue(_property6, entry6.getValue());
+                        } catch (Exception e6) {
+                        }
+                    }
+                }
+                world.setBlock(_bp6, _bs6, 3);
+            }
+        }
+    }
+}

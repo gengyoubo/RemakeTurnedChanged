@@ -1,419 +1,441 @@
-/*     */ package net.mcreator.latexes.procedures;
-/*     */ 
-/*     */ import net.mcreator.latexes.entity.EvilMilitaryEntity;
-/*     */ import net.mcreator.latexes.entity.EvilSniperEntity;
-/*     */ import net.mcreator.latexes.entity.TSCBerserkEntity;
-/*     */ import net.mcreator.latexes.entity.TSCHunterEntity;
-/*     */ import net.mcreator.latexes.entity.TSCOutsiderEntity;
-/*     */ import net.mcreator.latexes.entity.TSCOutsiderGunnerEntity;
-/*     */ import net.mcreator.latexes.entity.TSCdroneEntity;
-/*     */ import net.mcreator.latexes.init.LatexModEntities;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.server.level.ServerLevel;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.Mob;
-/*     */ import net.minecraft.world.entity.MobSpawnType;
-/*     */ import net.minecraft.world.entity.monster.Evoker;
-/*     */ import net.minecraft.world.entity.monster.Pillager;
-/*     */ import net.minecraft.world.entity.monster.Vindicator;
-/*     */ import net.minecraft.world.level.Explosion;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.ServerLevelAccessor;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ 
-/*     */ public class DROPPODOnEntityTickUpdateProcedure {
-/*     */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/*  28 */     if (entity == null)
-/*     */       return; 
-/*  30 */     if (((world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.CAVE_AIR || world
-/*  31 */       .getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.VOID_AIR || world
-/*  32 */       .getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.AIR || world
-/*  33 */       .getBlockState(new BlockPos(x + 1.0D, y - 1.0D, z)).getBlock() == Blocks.CAVE_AIR || world
-/*  34 */       .getBlockState(new BlockPos(x + 1.0D, y - 1.0D, z)).getBlock() == Blocks.VOID_AIR || world
-/*  35 */       .getBlockState(new BlockPos(x + 1.0D, y - 1.0D, z)).getBlock() == Blocks.AIR || world
-/*  36 */       .getBlockState(new BlockPos(x - 1.0D, y - 1.0D, z)).getBlock() == Blocks.CAVE_AIR || world
-/*  37 */       .getBlockState(new BlockPos(x - 1.0D, y - 1.0D, z)).getBlock() == Blocks.VOID_AIR || world
-/*  38 */       .getBlockState(new BlockPos(x - 1.0D, y - 1.0D, z)).getBlock() == Blocks.AIR || world
-/*  39 */       .getBlockState(new BlockPos(x, y - 1.0D, z + 1.0D)).getBlock() == Blocks.CAVE_AIR || world
-/*  40 */       .getBlockState(new BlockPos(x, y - 1.0D, z + 1.0D)).getBlock() == Blocks.VOID_AIR || world
-/*  41 */       .getBlockState(new BlockPos(x, y - 1.0D, z + 1.0D)).getBlock() == Blocks.AIR || world
-/*  42 */       .getBlockState(new BlockPos(x, y - 1.0D, z - 1.0D)).getBlock() == Blocks.CAVE_AIR || world
-/*  43 */       .getBlockState(new BlockPos(x, y - 1.0D, z - 1.0D)).getBlock() == Blocks.VOID_AIR || world
-/*  44 */       .getBlockState(new BlockPos(x, y - 1.0D, z - 1.0D)).getBlock() == Blocks.AIR) ? true : false) != true) {
-/*  45 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide())
-/*  46 */           _level.explode(null, x, y, z, 4.0F, Explosion.BlockInteraction.DESTROY);  }
-/*  47 */        if (Math.random() < 0.2D) {
-/*  48 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  49 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/*  50 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/*  51 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/*  52 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/*  53 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/*  54 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  56 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/*  58 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  59 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/*  60 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/*  61 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/*  62 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/*  63 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/*  64 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  66 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/*  68 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  69 */           TSCOutsiderGunnerEntity tSCOutsiderGunnerEntity = new TSCOutsiderGunnerEntity((EntityType)LatexModEntities.TSC_OUTSIDER_GUNNER.get(), (Level)_level);
-/*  70 */           tSCOutsiderGunnerEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/*  71 */           tSCOutsiderGunnerEntity.setYBodyRot(0.0F);
-/*  72 */           tSCOutsiderGunnerEntity.setYHeadRot(0.0F);
-/*  73 */           if (tSCOutsiderGunnerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderGunnerEntity;
-/*  74 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderGunnerEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  76 */           world.addFreshEntity((Entity)tSCOutsiderGunnerEntity); }
-/*     */       
-/*  78 */       } else if (Math.random() < 0.15D) {
-/*  79 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  80 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/*  81 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/*  82 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/*  83 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/*  84 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/*  85 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  87 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/*  89 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  90 */           EvilSniperEntity evilSniperEntity = new EvilSniperEntity((EntityType)LatexModEntities.EVIL_SNIPER.get(), (Level)_level);
-/*  91 */           evilSniperEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/*  92 */           evilSniperEntity.setYBodyRot(0.0F);
-/*  93 */           evilSniperEntity.setYHeadRot(0.0F);
-/*  94 */           if (evilSniperEntity instanceof Mob) { Mob _mobToSpawn = (Mob)evilSniperEntity;
-/*  95 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(evilSniperEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  97 */           world.addFreshEntity((Entity)evilSniperEntity); }
-/*     */         
-/*  99 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 100 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 101 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 102 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 103 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 104 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 105 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 107 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */       
-/* 109 */       } else if (Math.random() < 0.15D) {
-/* 110 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 111 */           TSCHunterEntity tSCHunterEntity = new TSCHunterEntity((EntityType)LatexModEntities.TSC_HUNTER.get(), (Level)_level);
-/* 112 */           tSCHunterEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 113 */           tSCHunterEntity.setYBodyRot(0.0F);
-/* 114 */           tSCHunterEntity.setYHeadRot(0.0F);
-/* 115 */           if (tSCHunterEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCHunterEntity;
-/* 116 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCHunterEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 118 */           world.addFreshEntity((Entity)tSCHunterEntity); }
-/*     */         
-/* 120 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 121 */           TSCdroneEntity tSCdroneEntity = new TSCdroneEntity((EntityType)LatexModEntities.TS_CDRONE.get(), (Level)_level);
-/* 122 */           tSCdroneEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 123 */           tSCdroneEntity.setYBodyRot(0.0F);
-/* 124 */           tSCdroneEntity.setYHeadRot(0.0F);
-/* 125 */           if (tSCdroneEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCdroneEntity;
-/* 126 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCdroneEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 128 */           world.addFreshEntity((Entity)tSCdroneEntity); }
-/*     */         
-/* 130 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 131 */           TSCdroneEntity tSCdroneEntity = new TSCdroneEntity((EntityType)LatexModEntities.TS_CDRONE.get(), (Level)_level);
-/* 132 */           tSCdroneEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 133 */           tSCdroneEntity.setYBodyRot(0.0F);
-/* 134 */           tSCdroneEntity.setYHeadRot(0.0F);
-/* 135 */           if (tSCdroneEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCdroneEntity;
-/* 136 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCdroneEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 138 */           world.addFreshEntity((Entity)tSCdroneEntity); }
-/*     */       
-/* 140 */       } else if (Math.random() < 0.15D) {
-/* 141 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 142 */           Evoker evoker = new Evoker(EntityType.EVOKER, (Level)_level);
-/* 143 */           evoker.moveTo(x, y, z, 0.0F, 0.0F);
-/* 144 */           evoker.setYBodyRot(0.0F);
-/* 145 */           evoker.setYHeadRot(0.0F);
-/* 146 */           if (evoker instanceof Mob) { Mob _mobToSpawn = (Mob)evoker;
-/* 147 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(evoker.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 149 */           world.addFreshEntity((Entity)evoker); }
-/*     */         
-/* 151 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 152 */           Pillager pillager = new Pillager(EntityType.PILLAGER, (Level)_level);
-/* 153 */           pillager.moveTo(x, y, z, 0.0F, 0.0F);
-/* 154 */           pillager.setYBodyRot(0.0F);
-/* 155 */           pillager.setYHeadRot(0.0F);
-/* 156 */           if (pillager instanceof Mob) { Mob _mobToSpawn = (Mob)pillager;
-/* 157 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(pillager.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 159 */           world.addFreshEntity((Entity)pillager); }
-/*     */         
-/* 161 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 162 */           Vindicator vindicator = new Vindicator(EntityType.VINDICATOR, (Level)_level);
-/* 163 */           vindicator.moveTo(x, y, z, 0.0F, 0.0F);
-/* 164 */           vindicator.setYBodyRot(0.0F);
-/* 165 */           vindicator.setYHeadRot(0.0F);
-/* 166 */           if (vindicator instanceof Mob) { Mob _mobToSpawn = (Mob)vindicator;
-/* 167 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(vindicator.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 169 */           world.addFreshEntity((Entity)vindicator); }
-/*     */         
-/* 171 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 172 */           Vindicator vindicator = new Vindicator(EntityType.VINDICATOR, (Level)_level);
-/* 173 */           vindicator.moveTo(x, y, z, 0.0F, 0.0F);
-/* 174 */           vindicator.setYBodyRot(0.0F);
-/* 175 */           vindicator.setYHeadRot(0.0F);
-/* 176 */           if (vindicator instanceof Mob) { Mob _mobToSpawn = (Mob)vindicator;
-/* 177 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(vindicator.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 179 */           world.addFreshEntity((Entity)vindicator); }
-/*     */       
-/* 181 */       } else if (Math.random() < 0.15D) {
-/* 182 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 183 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 184 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 185 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 186 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 187 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 188 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 190 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/* 192 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 193 */           TSCHunterEntity tSCHunterEntity = new TSCHunterEntity((EntityType)LatexModEntities.TSC_HUNTER.get(), (Level)_level);
-/* 194 */           tSCHunterEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 195 */           tSCHunterEntity.setYBodyRot(0.0F);
-/* 196 */           tSCHunterEntity.setYHeadRot(0.0F);
-/* 197 */           if (tSCHunterEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCHunterEntity;
-/* 198 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCHunterEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 200 */           world.addFreshEntity((Entity)tSCHunterEntity); }
-/*     */         
-/* 202 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 203 */           TSCOutsiderGunnerEntity tSCOutsiderGunnerEntity = new TSCOutsiderGunnerEntity((EntityType)LatexModEntities.TSC_OUTSIDER_GUNNER.get(), (Level)_level);
-/* 204 */           tSCOutsiderGunnerEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 205 */           tSCOutsiderGunnerEntity.setYBodyRot(0.0F);
-/* 206 */           tSCOutsiderGunnerEntity.setYHeadRot(0.0F);
-/* 207 */           if (tSCOutsiderGunnerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderGunnerEntity;
-/* 208 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderGunnerEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 210 */           world.addFreshEntity((Entity)tSCOutsiderGunnerEntity); }
-/*     */         
-/* 212 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 213 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 214 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 215 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 216 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 217 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 218 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 220 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */       
-/* 222 */       } else if (Math.random() < 0.15D) {
-/* 223 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 224 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 225 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 226 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 227 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 228 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 229 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 231 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/* 233 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 234 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 235 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 236 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 237 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 238 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 239 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 241 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/* 243 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 244 */           EvilMilitaryEntity evilMilitaryEntity = new EvilMilitaryEntity((EntityType)LatexModEntities.EVIL_MILITARY.get(), (Level)_level);
-/* 245 */           evilMilitaryEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 246 */           evilMilitaryEntity.setYBodyRot(0.0F);
-/* 247 */           evilMilitaryEntity.setYHeadRot(0.0F);
-/* 248 */           if (evilMilitaryEntity instanceof Mob) { Mob _mobToSpawn = (Mob)evilMilitaryEntity;
-/* 249 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(evilMilitaryEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 251 */           world.addFreshEntity((Entity)evilMilitaryEntity); }
-/*     */         
-/* 253 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 254 */           EvilMilitaryEntity evilMilitaryEntity = new EvilMilitaryEntity((EntityType)LatexModEntities.EVIL_MILITARY.get(), (Level)_level);
-/* 255 */           evilMilitaryEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 256 */           evilMilitaryEntity.setYBodyRot(0.0F);
-/* 257 */           evilMilitaryEntity.setYHeadRot(0.0F);
-/* 258 */           if (evilMilitaryEntity instanceof Mob) { Mob _mobToSpawn = (Mob)evilMilitaryEntity;
-/* 259 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(evilMilitaryEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 261 */           world.addFreshEntity((Entity)evilMilitaryEntity); }
-/*     */       
-/* 263 */       } else if (Math.random() < 0.15D) {
-/* 264 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 265 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 266 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 267 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 268 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 269 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 270 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 272 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/* 274 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 275 */           Vindicator vindicator = new Vindicator(EntityType.VINDICATOR, (Level)_level);
-/* 276 */           vindicator.moveTo(x, y, z, 0.0F, 0.0F);
-/* 277 */           vindicator.setYBodyRot(0.0F);
-/* 278 */           vindicator.setYHeadRot(0.0F);
-/* 279 */           if (vindicator instanceof Mob) { Mob _mobToSpawn = (Mob)vindicator;
-/* 280 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(vindicator.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 282 */           world.addFreshEntity((Entity)vindicator); }
-/*     */         
-/* 284 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 285 */           Pillager pillager = new Pillager(EntityType.PILLAGER, (Level)_level);
-/* 286 */           pillager.moveTo(x, y, z, 0.0F, 0.0F);
-/* 287 */           pillager.setYBodyRot(0.0F);
-/* 288 */           pillager.setYHeadRot(0.0F);
-/* 289 */           if (pillager instanceof Mob) { Mob _mobToSpawn = (Mob)pillager;
-/* 290 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(pillager.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 292 */           world.addFreshEntity((Entity)pillager); }
-/*     */         
-/* 294 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 295 */           Vindicator vindicator = new Vindicator(EntityType.VINDICATOR, (Level)_level);
-/* 296 */           vindicator.moveTo(x, y, z, 0.0F, 0.0F);
-/* 297 */           vindicator.setYBodyRot(0.0F);
-/* 298 */           vindicator.setYHeadRot(0.0F);
-/* 299 */           if (vindicator instanceof Mob) { Mob _mobToSpawn = (Mob)vindicator;
-/* 300 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(vindicator.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 302 */           world.addFreshEntity((Entity)vindicator); }
-/*     */       
-/* 304 */       } else if (Math.random() < 0.15D) {
-/* 305 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 306 */           Evoker evoker = new Evoker(EntityType.EVOKER, (Level)_level);
-/* 307 */           evoker.moveTo(x, y, z, 0.0F, 0.0F);
-/* 308 */           evoker.setYBodyRot(0.0F);
-/* 309 */           evoker.setYHeadRot(0.0F);
-/* 310 */           if (evoker instanceof Mob) { Mob _mobToSpawn = (Mob)evoker;
-/* 311 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(evoker.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 313 */           world.addFreshEntity((Entity)evoker); }
-/*     */         
-/* 315 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 316 */           EvilMilitaryEntity evilMilitaryEntity = new EvilMilitaryEntity((EntityType)LatexModEntities.EVIL_MILITARY.get(), (Level)_level);
-/* 317 */           evilMilitaryEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 318 */           evilMilitaryEntity.setYBodyRot(0.0F);
-/* 319 */           evilMilitaryEntity.setYHeadRot(0.0F);
-/* 320 */           if (evilMilitaryEntity instanceof Mob) { Mob _mobToSpawn = (Mob)evilMilitaryEntity;
-/* 321 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(evilMilitaryEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 323 */           world.addFreshEntity((Entity)evilMilitaryEntity); }
-/*     */         
-/* 325 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 326 */           TSCOutsiderGunnerEntity tSCOutsiderGunnerEntity = new TSCOutsiderGunnerEntity((EntityType)LatexModEntities.TSC_OUTSIDER_GUNNER.get(), (Level)_level);
-/* 327 */           tSCOutsiderGunnerEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 328 */           tSCOutsiderGunnerEntity.setYBodyRot(0.0F);
-/* 329 */           tSCOutsiderGunnerEntity.setYHeadRot(0.0F);
-/* 330 */           if (tSCOutsiderGunnerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderGunnerEntity;
-/* 331 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderGunnerEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 333 */           world.addFreshEntity((Entity)tSCOutsiderGunnerEntity); }
-/*     */       
-/* 335 */       } else if (Math.random() < 0.3D) {
-/* 336 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 337 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 338 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 339 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 340 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 341 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 342 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 344 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/* 346 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 347 */           TSCBerserkEntity tSCBerserkEntity = new TSCBerserkEntity((EntityType)LatexModEntities.TSC_BERSERK.get(), (Level)_level);
-/* 348 */           tSCBerserkEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 349 */           tSCBerserkEntity.setYBodyRot(0.0F);
-/* 350 */           tSCBerserkEntity.setYHeadRot(0.0F);
-/* 351 */           if (tSCBerserkEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCBerserkEntity;
-/* 352 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCBerserkEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 354 */           world.addFreshEntity((Entity)tSCBerserkEntity); }
-/*     */         
-/* 356 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 357 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 358 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 359 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 360 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 361 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 362 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 364 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */       
-/* 366 */       } else if (Math.random() < 0.1D) {
-/* 367 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 368 */           TSCBerserkEntity tSCBerserkEntity = new TSCBerserkEntity((EntityType)LatexModEntities.TSC_BERSERK.get(), (Level)_level);
-/* 369 */           tSCBerserkEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 370 */           tSCBerserkEntity.setYBodyRot(0.0F);
-/* 371 */           tSCBerserkEntity.setYHeadRot(0.0F);
-/* 372 */           if (tSCBerserkEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCBerserkEntity;
-/* 373 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCBerserkEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 375 */           world.addFreshEntity((Entity)tSCBerserkEntity); }
-/*     */         
-/* 377 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 378 */           TSCHunterEntity tSCHunterEntity = new TSCHunterEntity((EntityType)LatexModEntities.TSC_HUNTER.get(), (Level)_level);
-/* 379 */           tSCHunterEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 380 */           tSCHunterEntity.setYBodyRot(0.0F);
-/* 381 */           tSCHunterEntity.setYHeadRot(0.0F);
-/* 382 */           if (tSCHunterEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCHunterEntity;
-/* 383 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCHunterEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 385 */           world.addFreshEntity((Entity)tSCHunterEntity); }
-/*     */       
-/*     */       } else {
-/* 388 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 389 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 390 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 391 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 392 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 393 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 394 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 396 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */         
-/* 398 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 399 */           TSCOutsiderEntity tSCOutsiderEntity = new TSCOutsiderEntity((EntityType)LatexModEntities.TSC_OUTSIDER.get(), (Level)_level);
-/* 400 */           tSCOutsiderEntity.moveTo(x, y, z, 0.0F, 0.0F);
-/* 401 */           tSCOutsiderEntity.setYBodyRot(0.0F);
-/* 402 */           tSCOutsiderEntity.setYHeadRot(0.0F);
-/* 403 */           if (tSCOutsiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)tSCOutsiderEntity;
-/* 404 */             _mobToSpawn.finalizeSpawn((ServerLevelAccessor)_level, world.getCurrentDifficultyAt(tSCOutsiderEntity.blockPosition()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 406 */           world.addFreshEntity((Entity)tSCOutsiderEntity); }
-/*     */       
-/*     */       } 
-/* 409 */       if (!entity.level.isClientSide())
-/* 410 */         entity.discard(); 
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.procedures;
 
+import net.mcreator.latexes.entity.EvilMilitaryEntity;
+import net.mcreator.latexes.entity.EvilSniperEntity;
+import net.mcreator.latexes.entity.TSCBerserkEntity;
+import net.mcreator.latexes.entity.TSCHunterEntity;
+import net.mcreator.latexes.entity.TSCOutsiderEntity;
+import net.mcreator.latexes.entity.TSCOutsiderGunnerEntity;
+import net.mcreator.latexes.entity.TSCdroneEntity;
+import net.mcreator.latexes.init.LatexModEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DROPPODOnEntityTickUpdateProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DROPPODOnEntityTickUpdateProcedure.class */
+public class DROPPODOnEntityTickUpdateProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x + 1.0d, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x + 1.0d, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + 1.0d, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x - 1.0d, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x - 1.0d, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x - 1.0d, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z + 1.0d)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z + 1.0d)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z + 1.0d)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z - 1.0d)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z - 1.0d)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z - 1.0d)).getBlock() == Blocks.AIR)) {
+                if (world instanceof Level) {
+                    Level _level = (Level) world;
+                    if (!_level.isClientSide()) {
+                        _level.explode((Entity) null, x, y, z, 4.0f, Explosion.BlockInteraction.DESTROY);
+                    }
+                }
+                if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level2 = (ServerLevel) world;
+                        Entity entityToSpawn = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level2);
+                        entityToSpawn.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn.setYBodyRot(0.0f);
+                        entityToSpawn.setYHeadRot(0.0f);
+                        if (entityToSpawn instanceof Mob) {
+                            ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level3 = (ServerLevel) world;
+                        Entity entityToSpawn2 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level3);
+                        entityToSpawn2.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn2.setYBodyRot(0.0f);
+                        entityToSpawn2.setYHeadRot(0.0f);
+                        if (entityToSpawn2 instanceof Mob) {
+                            ((Mob) entityToSpawn2).finalizeSpawn(_level3, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn2);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level4 = (ServerLevel) world;
+                        Entity entityToSpawn3 = new TSCOutsiderGunnerEntity((EntityType<TSCOutsiderGunnerEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER_GUNNER.get()), (Level) _level4);
+                        entityToSpawn3.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn3.setYBodyRot(0.0f);
+                        entityToSpawn3.setYHeadRot(0.0f);
+                        if (entityToSpawn3 instanceof Mob) {
+                            ((Mob) entityToSpawn3).finalizeSpawn(_level4, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn3);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level5 = (ServerLevel) world;
+                        Entity entityToSpawn4 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level5);
+                        entityToSpawn4.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn4.setYBodyRot(0.0f);
+                        entityToSpawn4.setYHeadRot(0.0f);
+                        if (entityToSpawn4 instanceof Mob) {
+                            ((Mob) entityToSpawn4).finalizeSpawn(_level5, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn4);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level6 = (ServerLevel) world;
+                        Entity entityToSpawn5 = new EvilSniperEntity((EntityType<EvilSniperEntity>) ((EntityType) LatexModEntities.EVIL_SNIPER.get()), (Level) _level6);
+                        entityToSpawn5.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn5.setYBodyRot(0.0f);
+                        entityToSpawn5.setYHeadRot(0.0f);
+                        if (entityToSpawn5 instanceof Mob) {
+                            ((Mob) entityToSpawn5).finalizeSpawn(_level6, world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn5);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level7 = (ServerLevel) world;
+                        Entity entityToSpawn6 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level7);
+                        entityToSpawn6.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn6.setYBodyRot(0.0f);
+                        entityToSpawn6.setYHeadRot(0.0f);
+                        if (entityToSpawn6 instanceof Mob) {
+                            ((Mob) entityToSpawn6).finalizeSpawn(_level7, world.getCurrentDifficultyAt(entityToSpawn6.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn6);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level8 = (ServerLevel) world;
+                        Entity entityToSpawn7 = new TSCHunterEntity((EntityType<TSCHunterEntity>) ((EntityType) LatexModEntities.TSC_HUNTER.get()), (Level) _level8);
+                        entityToSpawn7.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn7.setYBodyRot(0.0f);
+                        entityToSpawn7.setYHeadRot(0.0f);
+                        if (entityToSpawn7 instanceof Mob) {
+                            ((Mob) entityToSpawn7).finalizeSpawn(_level8, world.getCurrentDifficultyAt(entityToSpawn7.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn7);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level9 = (ServerLevel) world;
+                        Entity entityToSpawn8 = new TSCdroneEntity((EntityType<TSCdroneEntity>) ((EntityType) LatexModEntities.TS_CDRONE.get()), (Level) _level9);
+                        entityToSpawn8.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn8.setYBodyRot(0.0f);
+                        entityToSpawn8.setYHeadRot(0.0f);
+                        if (entityToSpawn8 instanceof Mob) {
+                            ((Mob) entityToSpawn8).finalizeSpawn(_level9, world.getCurrentDifficultyAt(entityToSpawn8.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn8);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level10 = (ServerLevel) world;
+                        Entity entityToSpawn9 = new TSCdroneEntity((EntityType<TSCdroneEntity>) ((EntityType) LatexModEntities.TS_CDRONE.get()), (Level) _level10);
+                        entityToSpawn9.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn9.setYBodyRot(0.0f);
+                        entityToSpawn9.setYHeadRot(0.0f);
+                        if (entityToSpawn9 instanceof Mob) {
+                            ((Mob) entityToSpawn9).finalizeSpawn(_level10, world.getCurrentDifficultyAt(entityToSpawn9.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn9);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level11 = (ServerLevel) world;
+                        Entity entityToSpawn10 = new Evoker(EntityType.EVOKER, _level11);
+                        entityToSpawn10.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn10.setYBodyRot(0.0f);
+                        entityToSpawn10.setYHeadRot(0.0f);
+                        if (entityToSpawn10 instanceof Mob) {
+                            ((Mob) entityToSpawn10).finalizeSpawn(_level11, world.getCurrentDifficultyAt(entityToSpawn10.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn10);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level12 = (ServerLevel) world;
+                        Entity entityToSpawn11 = new Pillager(EntityType.PILLAGER, _level12);
+                        entityToSpawn11.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn11.setYBodyRot(0.0f);
+                        entityToSpawn11.setYHeadRot(0.0f);
+                        if (entityToSpawn11 instanceof Mob) {
+                            ((Mob) entityToSpawn11).finalizeSpawn(_level12, world.getCurrentDifficultyAt(entityToSpawn11.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn11);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level13 = (ServerLevel) world;
+                        Entity entityToSpawn12 = new Vindicator(EntityType.VINDICATOR, _level13);
+                        entityToSpawn12.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn12.setYBodyRot(0.0f);
+                        entityToSpawn12.setYHeadRot(0.0f);
+                        if (entityToSpawn12 instanceof Mob) {
+                            ((Mob) entityToSpawn12).finalizeSpawn(_level13, world.getCurrentDifficultyAt(entityToSpawn12.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn12);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level14 = (ServerLevel) world;
+                        Entity entityToSpawn13 = new Vindicator(EntityType.VINDICATOR, _level14);
+                        entityToSpawn13.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn13.setYBodyRot(0.0f);
+                        entityToSpawn13.setYHeadRot(0.0f);
+                        if (entityToSpawn13 instanceof Mob) {
+                            ((Mob) entityToSpawn13).finalizeSpawn(_level14, world.getCurrentDifficultyAt(entityToSpawn13.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn13);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level15 = (ServerLevel) world;
+                        Entity entityToSpawn14 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level15);
+                        entityToSpawn14.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn14.setYBodyRot(0.0f);
+                        entityToSpawn14.setYHeadRot(0.0f);
+                        if (entityToSpawn14 instanceof Mob) {
+                            ((Mob) entityToSpawn14).finalizeSpawn(_level15, world.getCurrentDifficultyAt(entityToSpawn14.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn14);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level16 = (ServerLevel) world;
+                        Entity entityToSpawn15 = new TSCHunterEntity((EntityType<TSCHunterEntity>) ((EntityType) LatexModEntities.TSC_HUNTER.get()), (Level) _level16);
+                        entityToSpawn15.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn15.setYBodyRot(0.0f);
+                        entityToSpawn15.setYHeadRot(0.0f);
+                        if (entityToSpawn15 instanceof Mob) {
+                            ((Mob) entityToSpawn15).finalizeSpawn(_level16, world.getCurrentDifficultyAt(entityToSpawn15.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn15);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level17 = (ServerLevel) world;
+                        Entity entityToSpawn16 = new TSCOutsiderGunnerEntity((EntityType<TSCOutsiderGunnerEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER_GUNNER.get()), (Level) _level17);
+                        entityToSpawn16.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn16.setYBodyRot(0.0f);
+                        entityToSpawn16.setYHeadRot(0.0f);
+                        if (entityToSpawn16 instanceof Mob) {
+                            ((Mob) entityToSpawn16).finalizeSpawn(_level17, world.getCurrentDifficultyAt(entityToSpawn16.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn16);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level18 = (ServerLevel) world;
+                        Entity entityToSpawn17 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level18);
+                        entityToSpawn17.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn17.setYBodyRot(0.0f);
+                        entityToSpawn17.setYHeadRot(0.0f);
+                        if (entityToSpawn17 instanceof Mob) {
+                            ((Mob) entityToSpawn17).finalizeSpawn(_level18, world.getCurrentDifficultyAt(entityToSpawn17.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn17);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level19 = (ServerLevel) world;
+                        Entity entityToSpawn18 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level19);
+                        entityToSpawn18.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn18.setYBodyRot(0.0f);
+                        entityToSpawn18.setYHeadRot(0.0f);
+                        if (entityToSpawn18 instanceof Mob) {
+                            ((Mob) entityToSpawn18).finalizeSpawn(_level19, world.getCurrentDifficultyAt(entityToSpawn18.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn18);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level20 = (ServerLevel) world;
+                        Entity entityToSpawn19 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level20);
+                        entityToSpawn19.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn19.setYBodyRot(0.0f);
+                        entityToSpawn19.setYHeadRot(0.0f);
+                        if (entityToSpawn19 instanceof Mob) {
+                            ((Mob) entityToSpawn19).finalizeSpawn(_level20, world.getCurrentDifficultyAt(entityToSpawn19.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn19);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level21 = (ServerLevel) world;
+                        Entity entityToSpawn20 = new EvilMilitaryEntity((EntityType<EvilMilitaryEntity>) ((EntityType) LatexModEntities.EVIL_MILITARY.get()), (Level) _level21);
+                        entityToSpawn20.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn20.setYBodyRot(0.0f);
+                        entityToSpawn20.setYHeadRot(0.0f);
+                        if (entityToSpawn20 instanceof Mob) {
+                            ((Mob) entityToSpawn20).finalizeSpawn(_level21, world.getCurrentDifficultyAt(entityToSpawn20.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn20);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level22 = (ServerLevel) world;
+                        Entity entityToSpawn21 = new EvilMilitaryEntity((EntityType<EvilMilitaryEntity>) ((EntityType) LatexModEntities.EVIL_MILITARY.get()), (Level) _level22);
+                        entityToSpawn21.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn21.setYBodyRot(0.0f);
+                        entityToSpawn21.setYHeadRot(0.0f);
+                        if (entityToSpawn21 instanceof Mob) {
+                            ((Mob) entityToSpawn21).finalizeSpawn(_level22, world.getCurrentDifficultyAt(entityToSpawn21.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn21);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level23 = (ServerLevel) world;
+                        Entity entityToSpawn22 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level23);
+                        entityToSpawn22.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn22.setYBodyRot(0.0f);
+                        entityToSpawn22.setYHeadRot(0.0f);
+                        if (entityToSpawn22 instanceof Mob) {
+                            ((Mob) entityToSpawn22).finalizeSpawn(_level23, world.getCurrentDifficultyAt(entityToSpawn22.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn22);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level24 = (ServerLevel) world;
+                        Entity entityToSpawn23 = new Vindicator(EntityType.VINDICATOR, _level24);
+                        entityToSpawn23.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn23.setYBodyRot(0.0f);
+                        entityToSpawn23.setYHeadRot(0.0f);
+                        if (entityToSpawn23 instanceof Mob) {
+                            ((Mob) entityToSpawn23).finalizeSpawn(_level24, world.getCurrentDifficultyAt(entityToSpawn23.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn23);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level25 = (ServerLevel) world;
+                        Entity entityToSpawn24 = new Pillager(EntityType.PILLAGER, _level25);
+                        entityToSpawn24.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn24.setYBodyRot(0.0f);
+                        entityToSpawn24.setYHeadRot(0.0f);
+                        if (entityToSpawn24 instanceof Mob) {
+                            ((Mob) entityToSpawn24).finalizeSpawn(_level25, world.getCurrentDifficultyAt(entityToSpawn24.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn24);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level26 = (ServerLevel) world;
+                        Entity entityToSpawn25 = new Vindicator(EntityType.VINDICATOR, _level26);
+                        entityToSpawn25.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn25.setYBodyRot(0.0f);
+                        entityToSpawn25.setYHeadRot(0.0f);
+                        if (entityToSpawn25 instanceof Mob) {
+                            ((Mob) entityToSpawn25).finalizeSpawn(_level26, world.getCurrentDifficultyAt(entityToSpawn25.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn25);
+                    }
+                } else if (Math.random() < 0.15d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level27 = (ServerLevel) world;
+                        Entity entityToSpawn26 = new Evoker(EntityType.EVOKER, _level27);
+                        entityToSpawn26.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn26.setYBodyRot(0.0f);
+                        entityToSpawn26.setYHeadRot(0.0f);
+                        if (entityToSpawn26 instanceof Mob) {
+                            ((Mob) entityToSpawn26).finalizeSpawn(_level27, world.getCurrentDifficultyAt(entityToSpawn26.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn26);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level28 = (ServerLevel) world;
+                        Entity entityToSpawn27 = new EvilMilitaryEntity((EntityType<EvilMilitaryEntity>) ((EntityType) LatexModEntities.EVIL_MILITARY.get()), (Level) _level28);
+                        entityToSpawn27.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn27.setYBodyRot(0.0f);
+                        entityToSpawn27.setYHeadRot(0.0f);
+                        if (entityToSpawn27 instanceof Mob) {
+                            ((Mob) entityToSpawn27).finalizeSpawn(_level28, world.getCurrentDifficultyAt(entityToSpawn27.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn27);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level29 = (ServerLevel) world;
+                        Entity entityToSpawn28 = new TSCOutsiderGunnerEntity((EntityType<TSCOutsiderGunnerEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER_GUNNER.get()), (Level) _level29);
+                        entityToSpawn28.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn28.setYBodyRot(0.0f);
+                        entityToSpawn28.setYHeadRot(0.0f);
+                        if (entityToSpawn28 instanceof Mob) {
+                            ((Mob) entityToSpawn28).finalizeSpawn(_level29, world.getCurrentDifficultyAt(entityToSpawn28.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn28);
+                    }
+                } else if (Math.random() < 0.3d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level30 = (ServerLevel) world;
+                        Entity entityToSpawn29 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level30);
+                        entityToSpawn29.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn29.setYBodyRot(0.0f);
+                        entityToSpawn29.setYHeadRot(0.0f);
+                        if (entityToSpawn29 instanceof Mob) {
+                            ((Mob) entityToSpawn29).finalizeSpawn(_level30, world.getCurrentDifficultyAt(entityToSpawn29.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn29);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level31 = (ServerLevel) world;
+                        Entity entityToSpawn30 = new TSCBerserkEntity((EntityType<TSCBerserkEntity>) ((EntityType) LatexModEntities.TSC_BERSERK.get()), (Level) _level31);
+                        entityToSpawn30.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn30.setYBodyRot(0.0f);
+                        entityToSpawn30.setYHeadRot(0.0f);
+                        if (entityToSpawn30 instanceof Mob) {
+                            ((Mob) entityToSpawn30).finalizeSpawn(_level31, world.getCurrentDifficultyAt(entityToSpawn30.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn30);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level32 = (ServerLevel) world;
+                        Entity entityToSpawn31 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level32);
+                        entityToSpawn31.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn31.setYBodyRot(0.0f);
+                        entityToSpawn31.setYHeadRot(0.0f);
+                        if (entityToSpawn31 instanceof Mob) {
+                            ((Mob) entityToSpawn31).finalizeSpawn(_level32, world.getCurrentDifficultyAt(entityToSpawn31.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn31);
+                    }
+                } else if (Math.random() < 0.1d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level33 = (ServerLevel) world;
+                        Entity entityToSpawn32 = new TSCBerserkEntity((EntityType<TSCBerserkEntity>) ((EntityType) LatexModEntities.TSC_BERSERK.get()), (Level) _level33);
+                        entityToSpawn32.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn32.setYBodyRot(0.0f);
+                        entityToSpawn32.setYHeadRot(0.0f);
+                        if (entityToSpawn32 instanceof Mob) {
+                            ((Mob) entityToSpawn32).finalizeSpawn(_level33, world.getCurrentDifficultyAt(entityToSpawn32.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn32);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level34 = (ServerLevel) world;
+                        Entity entityToSpawn33 = new TSCHunterEntity((EntityType<TSCHunterEntity>) ((EntityType) LatexModEntities.TSC_HUNTER.get()), (Level) _level34);
+                        entityToSpawn33.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn33.setYBodyRot(0.0f);
+                        entityToSpawn33.setYHeadRot(0.0f);
+                        if (entityToSpawn33 instanceof Mob) {
+                            ((Mob) entityToSpawn33).finalizeSpawn(_level34, world.getCurrentDifficultyAt(entityToSpawn33.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn33);
+                    }
+                } else {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level35 = (ServerLevel) world;
+                        Entity entityToSpawn34 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level35);
+                        entityToSpawn34.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn34.setYBodyRot(0.0f);
+                        entityToSpawn34.setYHeadRot(0.0f);
+                        if (entityToSpawn34 instanceof Mob) {
+                            ((Mob) entityToSpawn34).finalizeSpawn(_level35, world.getCurrentDifficultyAt(entityToSpawn34.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn34);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level36 = (ServerLevel) world;
+                        Entity entityToSpawn35 = new TSCOutsiderEntity((EntityType<TSCOutsiderEntity>) ((EntityType) LatexModEntities.TSC_OUTSIDER.get()), (Level) _level36);
+                        entityToSpawn35.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn35.setYBodyRot(0.0f);
+                        entityToSpawn35.setYHeadRot(0.0f);
+                        if (entityToSpawn35 instanceof Mob) {
+                            ((Mob) entityToSpawn35).finalizeSpawn(_level36, world.getCurrentDifficultyAt(entityToSpawn35.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn35);
+                    }
+                }
+                if (!entity.level.isClientSide()) {
+                    entity.discard();
+                }
+            }
+        }
+    }
+}
