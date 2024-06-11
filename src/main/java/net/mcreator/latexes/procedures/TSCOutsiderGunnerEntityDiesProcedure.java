@@ -1,11 +1,7 @@
 package net.mcreator.latexes.procedures;
 
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/TSCOutsiderGunnerEntityDiesProcedure.class */
 public class TSCOutsiderGunnerEntityDiesProcedure {
-  public static void execute() {}
+    public static void execute() {
+    }
 }
-
-
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\TSCOutsiderGunnerEntityDiesProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */

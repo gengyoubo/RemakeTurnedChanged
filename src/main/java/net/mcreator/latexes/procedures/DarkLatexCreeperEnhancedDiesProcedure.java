@@ -1,178 +1,237 @@
-/*     */ package net.mcreator.latexes.procedures;
-/*     */ import net.mcreator.latexes.init.LatexModBlocks;
-/*     */ import net.mcreator.latexes.init.LatexModGameRules;
-/*     */ import net.mcreator.latexes.init.LatexModItems;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.item.ItemEntity;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.item.Items;
-/*     */ import net.minecraft.world.level.Explosion;
-/*     */ import net.minecraft.world.level.ItemLike;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ 
-/*     */ public class DarkLatexCreeperEnhancedDiesProcedure {
-/*     */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/*  19 */     if (entity == null)
-/*     */       return; 
-/*  21 */     boolean found = false;
-/*  22 */     double sx = 0.0D;
-/*  23 */     double sy = 0.0D;
-/*  24 */     double sz = 0.0D;
-/*  25 */     if (entity.isOnFire() && Math.random() <= 0.9D) {
-/*  26 */       if (!entity.level.isClientSide())
-/*  27 */         entity.discard(); 
-/*  28 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide())
-/*  29 */           _level.explode(null, x, y, z, 8.0F, Explosion.BlockInteraction.BREAK);  }
-/*  30 */        sx = -5.0D;
-/*  31 */       found = false;
-/*  32 */       for (int index0 = 0; index0 < 9; index0++) {
-/*  33 */         sy = -9.0D;
-/*  34 */         for (int index1 = 0; index1 < 9; index1++) {
-/*  35 */           sz = -5.0D;
-/*  36 */           for (int index2 = 0; index2 < 9; index2++) {
-/*  37 */             if (world.getBlockState(new BlockPos(x + sx, y + sy, z + sz)).getBlock() != Blocks.CAVE_AIR && world
-/*  38 */               .getBlockState(new BlockPos(x + sx, y + sy, z + sz)).getBlock() != Blocks.VOID_AIR && world
-/*  39 */               .getBlockState(new BlockPos(x + sx, y + sy, z + sz)).getBlock() != Blocks.AIR) {
-/*  40 */               found = true;
-/*     */             }
-/*  42 */             sz++;
-/*     */           } 
-/*  44 */           sy++;
-/*     */         } 
-/*  46 */         sx++;
-/*     */       } 
-/*  48 */       if (found == true && (
-/*  49 */         world.getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.AIR || world
-/*  50 */         .getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.VOID_AIR || world
-/*  51 */         .getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.CAVE_AIR)) {
-/*  52 */         world.setBlock(new BlockPos(x, y + 1.0D, z), ((Block)LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3);
-/*     */       }
-/*     */     } else {
-/*     */       
-/*  56 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  57 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
-/*  58 */           entityToSpawn.setPickUpDelay(10);
-/*  59 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  61 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  62 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
-/*  63 */           entityToSpawn.setPickUpDelay(10);
-/*  64 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  66 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  67 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXCRYSTAL.get()));
-/*  68 */           entityToSpawn.setPickUpDelay(10);
-/*  69 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  71 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  72 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.BONE));
-/*  73 */           entityToSpawn.setPickUpDelay(10);
-/*  74 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  76 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  77 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/*  78 */           entityToSpawn.setPickUpDelay(10);
-/*  79 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  81 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  82 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/*  83 */           entityToSpawn.setPickUpDelay(10);
-/*  84 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  86 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  87 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/*  88 */           entityToSpawn.setPickUpDelay(10);
-/*  89 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*     */         }  }
-/*  91 */        if (Math.random() < 0.35D) {
-/*  92 */         if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  93 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
-/*  94 */             entityToSpawn.setPickUpDelay(10);
-/*  95 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/*  97 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/*  98 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.BONE));
-/*  99 */             entityToSpawn.setPickUpDelay(10);
-/* 100 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 102 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 103 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.BONE));
-/* 104 */             entityToSpawn.setPickUpDelay(10);
-/* 105 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 107 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 108 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXCRYSTAL.get()));
-/* 109 */             entityToSpawn.setPickUpDelay(10);
-/* 110 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 112 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 113 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXCRYSTAL.get()));
-/* 114 */             entityToSpawn.setPickUpDelay(10);
-/* 115 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/*     */       
-/* 118 */       }  if (Math.random() < 0.1D) {
-/* 119 */         if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 120 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXCRYSTAL.get()));
-/* 121 */             entityToSpawn.setPickUpDelay(10);
-/* 122 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 124 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 125 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 126 */             entityToSpawn.setPickUpDelay(10);
-/* 127 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 129 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 130 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 131 */             entityToSpawn.setPickUpDelay(10);
-/* 132 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 134 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 135 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 136 */             entityToSpawn.setPickUpDelay(10);
-/* 137 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*     */           }  }
-/* 139 */          if (Math.random() < 0.1D) {
-/* 140 */           if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 141 */               ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXCRYSTAL.get()));
-/* 142 */               entityToSpawn.setPickUpDelay(10);
-/* 143 */               _level.addFreshEntity((Entity)entityToSpawn);
-/*     */             }  }
-/* 145 */            if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 146 */               ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 147 */               entityToSpawn.setPickUpDelay(10);
-/* 148 */               _level.addFreshEntity((Entity)entityToSpawn);
-/*     */             }  }
-/* 150 */            if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 151 */               ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 152 */               entityToSpawn.setPickUpDelay(10);
-/* 153 */               _level.addFreshEntity((Entity)entityToSpawn);
-/*     */             }  }
-/* 155 */            if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 156 */               ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 157 */               entityToSpawn.setPickUpDelay(10);
-/* 158 */               _level.addFreshEntity((Entity)entityToSpawn);
-/*     */             }  }
-/*     */         
-/*     */         } 
-/* 162 */       }  if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK) == true && (
-/* 163 */         (world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.BEDROCK) ? true : false) != true && (
-/* 164 */         world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.CAVE_AIR || world
-/* 165 */         .getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.VOID_AIR || world
-/* 166 */         .getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.AIR) && 
-/* 167 */         Math.random() < 0.72D && 
-/* 168 */         !entity.isOnFire())
-/* 169 */         world.setBlock(new BlockPos(x, y, z), ((Block)LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3); 
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.procedures;
 
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModGameRules;
+import net.mcreator.latexes.init.LatexModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarkLatexCreeperEnhancedDiesProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarkLatexCreeperEnhancedDiesProcedure.class */
+public class DarkLatexCreeperEnhancedDiesProcedure {
+    /* JADX WARN: Type inference failed for: r0v265, types: [double] */
+    /* JADX WARN: Type inference failed for: r0v270, types: [double] */
+    /* JADX WARN: Type inference failed for: r0v275, types: [double] */
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            if (!entity.isOnFire() || Math.random() > 0.9d) {
+                if (world instanceof Level) {
+                    Level _level = (Level) world;
+                    if (!_level.isClientSide()) {
+                        ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+                        entityToSpawn.setPickUpDelay(10);
+                        _level.addFreshEntity(entityToSpawn);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level2 = (Level) world;
+                    if (!_level2.isClientSide()) {
+                        ItemEntity entityToSpawn2 = new ItemEntity(_level2, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+                        entityToSpawn2.setPickUpDelay(10);
+                        _level2.addFreshEntity(entityToSpawn2);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level3 = (Level) world;
+                    if (!_level3.isClientSide()) {
+                        ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXCRYSTAL.get()));
+                        entityToSpawn3.setPickUpDelay(10);
+                        _level3.addFreshEntity(entityToSpawn3);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level4 = (Level) world;
+                    if (!_level4.isClientSide()) {
+                        ItemEntity entityToSpawn4 = new ItemEntity(_level4, x, y, z, new ItemStack(Items.BONE));
+                        entityToSpawn4.setPickUpDelay(10);
+                        _level4.addFreshEntity(entityToSpawn4);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level5 = (Level) world;
+                    if (!_level5.isClientSide()) {
+                        ItemEntity entityToSpawn5 = new ItemEntity(_level5, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn5.setPickUpDelay(10);
+                        _level5.addFreshEntity(entityToSpawn5);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level6 = (Level) world;
+                    if (!_level6.isClientSide()) {
+                        ItemEntity entityToSpawn6 = new ItemEntity(_level6, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn6.setPickUpDelay(10);
+                        _level6.addFreshEntity(entityToSpawn6);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level7 = (Level) world;
+                    if (!_level7.isClientSide()) {
+                        ItemEntity entityToSpawn7 = new ItemEntity(_level7, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn7.setPickUpDelay(10);
+                        _level7.addFreshEntity(entityToSpawn7);
+                    }
+                }
+                if (Math.random() < 0.35d) {
+                    if (world instanceof Level) {
+                        Level _level8 = (Level) world;
+                        if (!_level8.isClientSide()) {
+                            ItemEntity entityToSpawn8 = new ItemEntity(_level8, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+                            entityToSpawn8.setPickUpDelay(10);
+                            _level8.addFreshEntity(entityToSpawn8);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level9 = (Level) world;
+                        if (!_level9.isClientSide()) {
+                            ItemEntity entityToSpawn9 = new ItemEntity(_level9, x, y, z, new ItemStack(Items.BONE));
+                            entityToSpawn9.setPickUpDelay(10);
+                            _level9.addFreshEntity(entityToSpawn9);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level10 = (Level) world;
+                        if (!_level10.isClientSide()) {
+                            ItemEntity entityToSpawn10 = new ItemEntity(_level10, x, y, z, new ItemStack(Items.BONE));
+                            entityToSpawn10.setPickUpDelay(10);
+                            _level10.addFreshEntity(entityToSpawn10);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level11 = (Level) world;
+                        if (!_level11.isClientSide()) {
+                            ItemEntity entityToSpawn11 = new ItemEntity(_level11, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXCRYSTAL.get()));
+                            entityToSpawn11.setPickUpDelay(10);
+                            _level11.addFreshEntity(entityToSpawn11);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level12 = (Level) world;
+                        if (!_level12.isClientSide()) {
+                            ItemEntity entityToSpawn12 = new ItemEntity(_level12, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXCRYSTAL.get()));
+                            entityToSpawn12.setPickUpDelay(10);
+                            _level12.addFreshEntity(entityToSpawn12);
+                        }
+                    }
+                }
+                if (Math.random() < 0.1d) {
+                    if (world instanceof Level) {
+                        Level _level13 = (Level) world;
+                        if (!_level13.isClientSide()) {
+                            ItemEntity entityToSpawn13 = new ItemEntity(_level13, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXCRYSTAL.get()));
+                            entityToSpawn13.setPickUpDelay(10);
+                            _level13.addFreshEntity(entityToSpawn13);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level14 = (Level) world;
+                        if (!_level14.isClientSide()) {
+                            ItemEntity entityToSpawn14 = new ItemEntity(_level14, x, y, z, new ItemStack(Items.GUNPOWDER));
+                            entityToSpawn14.setPickUpDelay(10);
+                            _level14.addFreshEntity(entityToSpawn14);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level15 = (Level) world;
+                        if (!_level15.isClientSide()) {
+                            ItemEntity entityToSpawn15 = new ItemEntity(_level15, x, y, z, new ItemStack(Items.GUNPOWDER));
+                            entityToSpawn15.setPickUpDelay(10);
+                            _level15.addFreshEntity(entityToSpawn15);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level16 = (Level) world;
+                        if (!_level16.isClientSide()) {
+                            ItemEntity entityToSpawn16 = new ItemEntity(_level16, x, y, z, new ItemStack(Items.GUNPOWDER));
+                            entityToSpawn16.setPickUpDelay(10);
+                            _level16.addFreshEntity(entityToSpawn16);
+                        }
+                    }
+                    if (Math.random() < 0.1d) {
+                        if (world instanceof Level) {
+                            Level _level17 = (Level) world;
+                            if (!_level17.isClientSide()) {
+                                ItemEntity entityToSpawn17 = new ItemEntity(_level17, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXCRYSTAL.get()));
+                                entityToSpawn17.setPickUpDelay(10);
+                                _level17.addFreshEntity(entityToSpawn17);
+                            }
+                        }
+                        if (world instanceof Level) {
+                            Level _level18 = (Level) world;
+                            if (!_level18.isClientSide()) {
+                                ItemEntity entityToSpawn18 = new ItemEntity(_level18, x, y, z, new ItemStack(Items.GUNPOWDER));
+                                entityToSpawn18.setPickUpDelay(10);
+                                _level18.addFreshEntity(entityToSpawn18);
+                            }
+                        }
+                        if (world instanceof Level) {
+                            Level _level19 = (Level) world;
+                            if (!_level19.isClientSide()) {
+                                ItemEntity entityToSpawn19 = new ItemEntity(_level19, x, y, z, new ItemStack(Items.GUNPOWDER));
+                                entityToSpawn19.setPickUpDelay(10);
+                                _level19.addFreshEntity(entityToSpawn19);
+                            }
+                        }
+                        if (world instanceof Level) {
+                            Level _level20 = (Level) world;
+                            if (!_level20.isClientSide()) {
+                                ItemEntity entityToSpawn20 = new ItemEntity(_level20, x, y, z, new ItemStack(Items.GUNPOWDER));
+                                entityToSpawn20.setPickUpDelay(10);
+                                _level20.addFreshEntity(entityToSpawn20);
+                            }
+                        }
+                    }
+                }
+                if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK)) {
+                    if (world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.BEDROCK) {
+                        return;
+                    }
+                    if ((world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.AIR) && Math.random() < 0.72d && !entity.isOnFire()) {
+                        world.setBlock(new BlockPos(x, y, z), ((Block) LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            if (!entity.level.isClientSide()) {
+                entity.discard();
+            }
+            if (world instanceof Level) {
+                Level _level21 = (Level) world;
+                if (!_level21.isClientSide()) {
+                    _level21.explode((Entity) null, x, y, z, 8.0f, Explosion.BlockInteraction.BREAK);
+                }
+            }
+            char c = 0;
+            boolean found = false;
+            for (int index0 = 0; index0 < 9; index0++) {
+                char c2 = 0;
+                for (int index1 = 0; index1 < 9; index1++) {
+                    char c3 = 0;
+                    for (int index2 = 0; index2 < 9; index2++) {
+                        if (!(world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.AIR)) {
+                            found = true;
+                        }
+                        c3 += 0;
+                    }
+                    c2 += 0;
+                }
+                c += 0;
+            }
+            if (!found) {
+                return;
+            }
+            if (world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.CAVE_AIR) {
+                world.setBlock(new BlockPos(x, y + 1.0d, z), ((Block) LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3);
+            }
+        }
+    }
+}

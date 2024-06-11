@@ -1,25 +1,18 @@
-/*    */ package net.mcreator.latexes.procedures;
-/*    */ 
-/*    */ import net.minecraft.core.BlockPos;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.block.Block;
-/*    */ import net.minecraft.world.level.block.Blocks;
-/*    */ 
-/*    */ public class CeilinglightBlockIsPlacedByProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z) {
-/* 10 */     if (world.getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.AIR || world
-/* 11 */       .getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.CAVE_AIR || world
-/* 12 */       .getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.VOID_AIR) {
-/*    */       
-/* 14 */       BlockPos _pos = new BlockPos(x, y, z);
-/* 15 */       Block.dropResources(world.getBlockState(_pos), world, new BlockPos(x, y, z), null);
-/* 16 */       world.destroyBlock(_pos, false);
-/*    */     } 
-/*    */   }
-/*    */ }
+package net.mcreator.latexes.procedures;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\CeilinglightBlockIsPlacedByProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/CeilinglightBlockIsPlacedByProcedure.class */
+public class CeilinglightBlockIsPlacedByProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
+        if (world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.VOID_AIR) {
+            BlockPos _pos = new BlockPos(x, y, z);
+            Block.dropResources(world.getBlockState(_pos), world, new BlockPos(x, y, z), (BlockEntity) null);
+            world.destroyBlock(_pos, false);
+        }
+    }
+}

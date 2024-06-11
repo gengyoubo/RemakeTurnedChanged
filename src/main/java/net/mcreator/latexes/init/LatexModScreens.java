@@ -1,38 +1,27 @@
-/*    */ package net.mcreator.latexes.init;
-/*    */ 
-/*    */ import net.minecraft.client.gui.screens.MenuScreens;
-/*    */ import net.minecraftforge.api.distmarker.Dist;
-/*    */ import net.minecraftforge.eventbus.api.SubscribeEvent;
-/*    */ import net.minecraftforge.fml.common.Mod;
-/*    */ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-/*    */ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ @EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
-/*    */ public class LatexModScreens
-/*    */ {
-/*    */   @SubscribeEvent
-/*    */   public static void clientLoad(FMLClientSetupEvent event) {
-/* 24 */     event.enqueueWork(() -> {
-/*    */           MenuScreens.register(LatexModMenus.BOXGUI, net.mcreator.latexes.client.gui.BoxguiScreen::new);
-/*    */           MenuScreens.register(LatexModMenus.LOCKER_GUI, net.mcreator.latexes.client.gui.LockerGUIScreen::new);
-/*    */           MenuScreens.register(LatexModMenus.CRATEGUI, net.mcreator.latexes.client.gui.CrateguiScreen::new);
-/*    */           MenuScreens.register(LatexModMenus.SUPPLY_CRATE_GUI, net.mcreator.latexes.client.gui.SupplyCrateGuiScreen::new);
-/*    */           MenuScreens.register(LatexModMenus.SMALLBOXGUI, net.mcreator.latexes.client.gui.SmallboxguiScreen::new);
-/*    */         });
-/*    */   }
-/*    */ }
+package net.mcreator.latexes.init;
 
+import net.mcreator.latexes.client.gui.BoxguiScreen;
+import net.mcreator.latexes.client.gui.CrateguiScreen;
+import net.mcreator.latexes.client.gui.LockerGUIScreen;
+import net.mcreator.latexes.client.gui.SmallboxguiScreen;
+import net.mcreator.latexes.client.gui.SupplyCrateGuiScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\init\LatexModScreens.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/init/LatexModScreens.class */
+public class LatexModScreens {
+    @SubscribeEvent
+    public static void clientLoad(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            MenuScreens.register(LatexModMenus.BOXGUI, BoxguiScreen::new);
+            MenuScreens.register(LatexModMenus.LOCKER_GUI, LockerGUIScreen::new);
+            MenuScreens.register(LatexModMenus.CRATEGUI, CrateguiScreen::new);
+            MenuScreens.register(LatexModMenus.SUPPLY_CRATE_GUI, SupplyCrateGuiScreen::new);
+            MenuScreens.register(LatexModMenus.SMALLBOXGUI, SmallboxguiScreen::new);
+        });
+    }
+}

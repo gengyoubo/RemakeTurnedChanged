@@ -1,101 +1,113 @@
-/*    */ package net.mcreator.latexes.procedures;
-/*    */ import net.mcreator.latexes.init.LatexModBlocks;
-/*    */ import net.mcreator.latexes.init.LatexModGameRules;
-/*    */ import net.mcreator.latexes.init.LatexModItems;
-/*    */ import net.minecraft.core.BlockPos;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.item.ItemEntity;
-/*    */ import net.minecraft.world.item.ItemStack;
-/*    */ import net.minecraft.world.item.Items;
-/*    */ import net.minecraft.world.level.Explosion;
-/*    */ import net.minecraft.world.level.ItemLike;
-/*    */ import net.minecraft.world.level.Level;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.block.Block;
-/*    */ import net.minecraft.world.level.block.Blocks;
-/*    */ 
-/*    */ public class DarkLatexCreeperdiesProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/* 19 */     if (entity == null)
-/*    */       return; 
-/* 21 */     boolean found = false;
-/* 22 */     double sx = 0.0D;
-/* 23 */     double sy = 0.0D;
-/* 24 */     double sz = 0.0D;
-/* 25 */     if (entity.isOnFire() && Math.random() <= 0.75D) {
-/* 26 */       if (!entity.level.isClientSide())
-/* 27 */         entity.discard(); 
-/* 28 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide())
-/* 29 */           _level.explode(null, x, y, z, 5.0F, Explosion.BlockInteraction.BREAK);  }
-/* 30 */        sx = -3.0D;
-/* 31 */       found = false;
-/* 32 */       for (int index0 = 0; index0 < 6; index0++) {
-/* 33 */         sy = -5.0D;
-/* 34 */         for (int index1 = 0; index1 < 6; index1++) {
-/* 35 */           sz = -3.0D;
-/* 36 */           for (int index2 = 0; index2 < 6; index2++) {
-/* 37 */             if (world.getBlockState(new BlockPos(x + sx, y + sy, z + sz)).getBlock() != Blocks.CAVE_AIR && world
-/* 38 */               .getBlockState(new BlockPos(x + sx, y + sy, z + sz)).getBlock() != Blocks.VOID_AIR && world
-/* 39 */               .getBlockState(new BlockPos(x + sx, y + sy, z + sz)).getBlock() != Blocks.AIR) {
-/* 40 */               found = true;
-/*    */             }
-/* 42 */             sz++;
-/*    */           } 
-/* 44 */           sy++;
-/*    */         } 
-/* 46 */         sx++;
-/*    */       } 
-/* 48 */       if (found == true && (
-/* 49 */         world.getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.AIR || world
-/* 50 */         .getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.VOID_AIR || world
-/* 51 */         .getBlockState(new BlockPos(x, y + 1.0D, z)).getBlock() == Blocks.CAVE_AIR)) {
-/* 52 */         world.setBlock(new BlockPos(x, y + 1.0D, z), ((Block)LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3);
-/*    */       }
-/*    */     } else {
-/*    */       
-/* 56 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 57 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
-/* 58 */           entityToSpawn.setPickUpDelay(10);
-/* 59 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*    */         }  }
-/* 61 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 62 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 63 */           entityToSpawn.setPickUpDelay(10);
-/* 64 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*    */         }  }
-/* 66 */        if (Math.random() < 0.35D) {
-/* 67 */         if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 68 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
-/* 69 */             entityToSpawn.setPickUpDelay(10);
-/* 70 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*    */           }  }
-/* 72 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 73 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.BONE));
-/* 74 */             entityToSpawn.setPickUpDelay(10);
-/* 75 */             _level.addFreshEntity((Entity)entityToSpawn);
-/*    */           }  }
-/*    */       
-/* 78 */       }  if (Math.random() < 0.1D && 
-/* 79 */         world instanceof Level) { Level _level = (Level)world; if (!_level.isClientSide()) {
-/* 80 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.GUNPOWDER));
-/* 81 */           entityToSpawn.setPickUpDelay(10);
-/* 82 */           _level.addFreshEntity((Entity)entityToSpawn);
-/*    */         }  }
-/*    */       
-/* 85 */       if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK) == true && (
-/* 86 */         (world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.BEDROCK) ? true : false) != true && (
-/* 87 */         world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.CAVE_AIR || world
-/* 88 */         .getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.VOID_AIR || world
-/* 89 */         .getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.AIR) && 
-/* 90 */         Math.random() < 0.72D && 
-/* 91 */         !entity.isOnFire())
-/* 92 */         world.setBlock(new BlockPos(x, y, z), ((Block)LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3); 
-/*    */     } 
-/*    */   }
-/*    */ }
+package net.mcreator.latexes.procedures;
 
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModGameRules;
+import net.mcreator.latexes.init.LatexModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarkLatexCreeperdiesProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarkLatexCreeperdiesProcedure.class */
+public class DarkLatexCreeperdiesProcedure {
+    /* JADX WARN: Type inference failed for: r0v113, types: [double] */
+    /* JADX WARN: Type inference failed for: r0v118, types: [double] */
+    /* JADX WARN: Type inference failed for: r0v123, types: [double] */
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            if (!entity.isOnFire() || Math.random() > 0.75d) {
+                if (world instanceof Level) {
+                    Level _level = (Level) world;
+                    if (!_level.isClientSide()) {
+                        ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+                        entityToSpawn.setPickUpDelay(10);
+                        _level.addFreshEntity(entityToSpawn);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level2 = (Level) world;
+                    if (!_level2.isClientSide()) {
+                        ItemEntity entityToSpawn2 = new ItemEntity(_level2, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn2.setPickUpDelay(10);
+                        _level2.addFreshEntity(entityToSpawn2);
+                    }
+                }
+                if (Math.random() < 0.35d) {
+                    if (world instanceof Level) {
+                        Level _level3 = (Level) world;
+                        if (!_level3.isClientSide()) {
+                            ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+                            entityToSpawn3.setPickUpDelay(10);
+                            _level3.addFreshEntity(entityToSpawn3);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level4 = (Level) world;
+                        if (!_level4.isClientSide()) {
+                            ItemEntity entityToSpawn4 = new ItemEntity(_level4, x, y, z, new ItemStack(Items.BONE));
+                            entityToSpawn4.setPickUpDelay(10);
+                            _level4.addFreshEntity(entityToSpawn4);
+                        }
+                    }
+                }
+                if (Math.random() < 0.1d && (world instanceof Level)) {
+                    Level _level5 = (Level) world;
+                    if (!_level5.isClientSide()) {
+                        ItemEntity entityToSpawn5 = new ItemEntity(_level5, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn5.setPickUpDelay(10);
+                        _level5.addFreshEntity(entityToSpawn5);
+                    }
+                }
+                if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK)) {
+                    if (world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.BEDROCK) {
+                        return;
+                    }
+                    if ((world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.AIR) && Math.random() < 0.72d && !entity.isOnFire()) {
+                        world.setBlock(new BlockPos(x, y, z), ((Block) LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            if (!entity.level.isClientSide()) {
+                entity.discard();
+            }
+            if (world instanceof Level) {
+                Level _level6 = (Level) world;
+                if (!_level6.isClientSide()) {
+                    _level6.explode((Entity) null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
+                }
+            }
+            char c = 0;
+            boolean found = false;
+            for (int index0 = 0; index0 < 6; index0++) {
+                char c2 = 0;
+                for (int index1 = 0; index1 < 6; index1++) {
+                    char c3 = 0;
+                    for (int index2 = 0; index2 < 6; index2++) {
+                        if (!(world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.AIR)) {
+                            found = true;
+                        }
+                        c3 += 0;
+                    }
+                    c2 += 0;
+                }
+                c += 0;
+            }
+            if (!found) {
+                return;
+            }
+            if (world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y + 1.0d, z)).getBlock() == Blocks.CAVE_AIR) {
+                world.setBlock(new BlockPos(x, y + 1.0d, z), ((Block) LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState(), 3);
+            }
+        }
+    }
+}

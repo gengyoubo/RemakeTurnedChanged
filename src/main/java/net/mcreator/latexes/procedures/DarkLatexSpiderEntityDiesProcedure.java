@@ -1,26 +1,24 @@
-/*    */ package net.mcreator.latexes.procedures;
-/*    */ 
-/*    */ import net.mcreator.latexes.init.LatexModBlocks;
-/*    */ import net.mcreator.latexes.init.LatexModGameRules;
-/*    */ import net.minecraft.core.BlockPos;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.block.Block;
-/*    */ import net.minecraft.world.level.block.Blocks;
-/*    */ 
-/*    */ public class DarkLatexSpiderEntityDiesProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z) {
-/* 12 */     if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK) == true && (
-/* 13 */       (world.getBlockState(new BlockPos(x, y - 1.0D, z)).getBlock() == Blocks.BEDROCK) ? true : false) != true)
-/* 14 */       if (Math.random() < 0.64D) {
-/* 15 */         world.setBlock(new BlockPos(x, y - 1.0D, z), ((Block)LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState(), 3);
-/* 16 */       } else if (Math.random() < 0.12D) {
-/* 17 */         world.setBlock(new BlockPos(x, y - 1.0D, z), ((Block)LatexModBlocks.LATEXCOBWEBFIX.get()).defaultBlockState(), 3);
-/*    */       }  
-/*    */   }
-/*    */ }
+package net.mcreator.latexes.procedures;
 
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModGameRules;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarkLatexSpiderEntityDiesProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarkLatexSpiderEntityDiesProcedure.class */
+public class DarkLatexSpiderEntityDiesProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
+        if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK)) {
+            if (world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.BEDROCK) {
+                return;
+            }
+            if (Math.random() < 0.64d) {
+                world.setBlock(new BlockPos(x, y - 1.0d, z), ((Block) LatexModBlocks.DARKLATEXBLOCK.get()).defaultBlockState(), 3);
+            } else if (Math.random() < 0.12d) {
+                world.setBlock(new BlockPos(x, y - 1.0d, z), ((Block) LatexModBlocks.LATEXCOBWEBFIX.get()).defaultBlockState(), 3);
+            }
+        }
+    }
+}

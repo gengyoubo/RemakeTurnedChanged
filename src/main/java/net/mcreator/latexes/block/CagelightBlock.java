@@ -1,112 +1,134 @@
-/*     */ package net.mcreator.latexes.block;
-/*     */ 
-/*     */ import java.util.Collections;
-/*     */ import java.util.List;
-/*     */ import net.mcreator.latexes.init.LatexModBlocks;
-/*     */ import net.minecraft.client.renderer.ItemBlockRenderTypes;
-/*     */ import net.minecraft.client.renderer.RenderType;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.core.Direction;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.Item;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.item.TieredItem;
-/*     */ import net.minecraft.world.item.context.BlockPlaceContext;
-/*     */ import net.minecraft.world.level.BlockGetter;
-/*     */ import net.minecraft.world.level.ItemLike;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.DirectionalBlock;
-/*     */ import net.minecraft.world.level.block.Mirror;
-/*     */ import net.minecraft.world.level.block.Rotation;
-/*     */ import net.minecraft.world.level.block.SoundType;
-/*     */ import net.minecraft.world.level.block.state.BlockBehaviour;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraft.world.level.block.state.StateDefinition;
-/*     */ import net.minecraft.world.level.block.state.properties.DirectionProperty;
-/*     */ import net.minecraft.world.level.block.state.properties.Property;
-/*     */ import net.minecraft.world.level.material.Material;
-/*     */ import net.minecraft.world.level.storage.loot.LootContext;
-/*     */ import net.minecraft.world.phys.shapes.CollisionContext;
-/*     */ import net.minecraft.world.phys.shapes.VoxelShape;
-/*     */ import net.minecraftforge.api.distmarker.Dist;
-/*     */ import net.minecraftforge.api.distmarker.OnlyIn;
-/*     */ 
-/*     */ 
-/*     */ public class CagelightBlock
-/*     */   extends Block
-/*     */ {
-/*  38 */   public static final DirectionProperty FACING = DirectionalBlock.FACING;
-/*     */   
-/*     */   public CagelightBlock() {
-/*  41 */     super(BlockBehaviour.Properties.of(Material.GLASS).sound(SoundType.GLASS).strength(0.5F, 5.0F).lightLevel(s -> 15).requiresCorrectToolForDrops()
-/*  42 */         .noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
-/*  43 */     registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue((Property)FACING, (Comparable)Direction.NORTH));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
-/*  48 */     return true;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-/*  53 */     return 0;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-/*  59 */     switch ((Direction)state.getValue((Property)FACING)) { default: case NORTH: case EAST: case WEST: case UP: case DOWN: break; }  return 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/*  65 */       box(5.0D, 14.0D, 5.0D, 11.0D, 16.0D, 11.0D);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-/*  71 */     builder.add(new Property[] { (Property)FACING });
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public BlockState getStateForPlacement(BlockPlaceContext context) {
-/*  76 */     return (BlockState)defaultBlockState().setValue((Property)FACING, (Comparable)context.getNearestLookingDirection().getOpposite());
-/*     */   }
-/*     */   
-/*     */   public BlockState rotate(BlockState state, Rotation rot) {
-/*  80 */     return (BlockState)state.setValue((Property)FACING, (Comparable)rot.rotate((Direction)state.getValue((Property)FACING)));
-/*     */   }
-/*     */   
-/*     */   public BlockState mirror(BlockState state, Mirror mirrorIn) {
-/*  84 */     return state.rotate(mirrorIn.getRotation((Direction)state.getValue((Property)FACING)));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-/*  89 */     Item item = player.getInventory().getSelected().getItem(); if (item instanceof TieredItem) { TieredItem tieredItem = (TieredItem)item;
-/*  90 */       return (tieredItem.getTier().getLevel() >= 0); }
-/*  91 */      return false;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-/*  96 */     List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-/*  97 */     if (!dropsOriginal.isEmpty())
-/*  98 */       return dropsOriginal; 
-/*  99 */     return Collections.singletonList(new ItemStack((ItemLike)this, 1));
-/*     */   }
-/*     */   
-/*     */   @OnlyIn(Dist.CLIENT)
-/*     */   public static void registerRenderLayer() {
-/* 104 */     ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.CAGELIGHT.get(), renderType -> (renderType == RenderType.cutout()));
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.block;
 
+import java.util.Collections;
+import java.util.List;
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\block\CagelightBlock.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/CagelightBlock.class */
+public class CagelightBlock extends Block {
+    public static final DirectionProperty FACING = DirectionalBlock.FACING;
+
+    public CagelightBlock() {
+        super(BlockBehaviour.Properties.of(Material.GLASS).sound(SoundType.GLASS).strength(0.5f, 5.0f).lightLevel(s -> {
+            return 15;
+        }).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
+            return false;
+        }));
+        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+        return true;
+    }
+
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        return 0;
+    }
+
+    /* renamed from: net.mcreator.latexes.block.CagelightBlock$1  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/CagelightBlock$1.class */
+    static /* synthetic */ class AnonymousClass1 {
+        static final /* synthetic */ int[] $SwitchMap$net$minecraft$core$Direction = new int[Direction.values().length];
+
+        static {
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.NORTH.ordinal()] = 1;
+            } catch (NoSuchFieldError e) {
+            }
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.EAST.ordinal()] = 2;
+            } catch (NoSuchFieldError e2) {
+            }
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.WEST.ordinal()] = 3;
+            } catch (NoSuchFieldError e3) {
+            }
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.UP.ordinal()] = 4;
+            } catch (NoSuchFieldError e4) {
+            }
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.DOWN.ordinal()] = 5;
+            } catch (NoSuchFieldError e5) {
+            }
+        }
+    }
+
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        switch (AnonymousClass1.$SwitchMap$net$minecraft$core$Direction[state.getValue(FACING).ordinal()]) {
+            case 1:
+                return box(5.0d, 5.0d, 14.0d, 11.0d, 11.0d, 16.0d);
+            case 2:
+                return box(0.0d, 5.0d, 5.0d, 2.0d, 11.0d, 11.0d);
+            case 3:
+                return box(14.0d, 5.0d, 5.0d, 16.0d, 11.0d, 11.0d);
+            case 4:
+                return box(5.0d, 0.0d, 5.0d, 11.0d, 2.0d, 11.0d);
+            case 5:
+                return box(5.0d, 14.0d, 5.0d, 11.0d, 16.0d, 11.0d);
+            default:
+                return box(5.0d, 5.0d, 0.0d, 11.0d, 11.0d, 2.0d);
+        }
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{FACING});
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return (BlockState) defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
+    }
+
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    }
+
+    public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
+        TieredItem tieredItem = player.getInventory().getSelected().getItem();
+        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 0;
+    }
+
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> dropsOriginal = getDrops(state, builder);
+        if (!dropsOriginal.isEmpty()) {
+            return dropsOriginal;
+        }
+        return Collections.singletonList(new ItemStack(this, 1));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void registerRenderLayer() {
+        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.CAGELIGHT.get(), renderType -> {
+            return renderType == RenderType.cutout();
+        });
+    }
+}

@@ -1,158 +1,182 @@
-/*     */ package net.mcreator.latexes.procedures;
-/*     */ 
-/*     */ import net.mcreator.latexes.entity.OverundershotgunEntity;
-/*     */ import net.mcreator.latexes.init.LatexModEntities;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.projectile.Projectile;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ 
-/*     */ public class OverundershotgunRangedItemUsedProcedure
-/*     */ {
-/*     */   public static void execute(Entity entity, ItemStack itemstack) {
-/*  14 */     if (entity == null) {
-/*     */       return;
-/*     */     }
-/*  17 */     Entity _shootFrom = entity;
-/*  18 */     Level projectileLevel = _shootFrom.level;
-/*  19 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/*  29 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/*  30 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/*  31 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/*  32 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */ 
-/*     */     
-/*  36 */     _shootFrom = entity;
-/*  37 */     projectileLevel = _shootFrom.level;
-/*  38 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/*  48 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/*  49 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/*  50 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/*  51 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */ 
-/*     */     
-/*  55 */     _shootFrom = entity;
-/*  56 */     projectileLevel = _shootFrom.level;
-/*  57 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/*  67 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/*  68 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/*  69 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/*  70 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */ 
-/*     */     
-/*  74 */     _shootFrom = entity;
-/*  75 */     projectileLevel = _shootFrom.level;
-/*  76 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/*  86 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/*  87 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/*  88 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/*  89 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */ 
-/*     */     
-/*  93 */     _shootFrom = entity;
-/*  94 */     projectileLevel = _shootFrom.level;
-/*  95 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/* 105 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/* 106 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/* 107 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/* 108 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */ 
-/*     */     
-/* 112 */     _shootFrom = entity;
-/* 113 */     projectileLevel = _shootFrom.level;
-/* 114 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/* 124 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/* 125 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/* 126 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/* 127 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */ 
-/*     */     
-/* 131 */     _shootFrom = entity;
-/* 132 */     projectileLevel = _shootFrom.level;
-/* 133 */     if (!projectileLevel.isClientSide()) {
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */       
-/* 143 */       Projectile _entityToSpawn = (new Object() { public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) { OverundershotgunEntity overundershotgunEntity = new OverundershotgunEntity((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), level); overundershotgunEntity.setOwner(shooter); overundershotgunEntity.setBaseDamage(damage); overundershotgunEntity.setKnockback(knockback); overundershotgunEntity.setSilent(true); return (Projectile)overundershotgunEntity; } }).getArrow(projectileLevel, entity, 3.0F, 2);
-/* 144 */       _entityToSpawn.setPos(_shootFrom.getX(), _shootFrom.getEyeY() - 0.1D, _shootFrom.getZ());
-/* 145 */       _entityToSpawn.shoot((_shootFrom.getLookAngle()).x, (_shootFrom.getLookAngle()).y, (_shootFrom.getLookAngle()).z, 1.0F, 2.0F);
-/* 146 */       projectileLevel.addFreshEntity((Entity)_entityToSpawn);
-/*     */     } 
-/*     */     
-/* 149 */     if (itemstack.getOrCreateTag().getDouble("ammo") >= 1.0D)
-/* 150 */       itemstack.getOrCreateTag().putDouble("ammo", itemstack.getOrCreateTag().getDouble("ammo") - 1.0D); 
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.procedures;
 
+import net.mcreator.latexes.entity.OverundershotgunEntity;
+import net.mcreator.latexes.init.LatexModEntities;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\OverundershotgunRangedItemUsedProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure.class */
+public class OverundershotgunRangedItemUsedProcedure {
+    public static void execute(Entity entity, ItemStack itemstack) {
+        if (entity != null) {
+            Level projectileLevel = entity.level;
+            if (!projectileLevel.isClientSide()) {
+                Projectile _entityToSpawn = new AnonymousClass1().getArrow(projectileLevel, entity, 3.0f, 2);
+                _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel.addFreshEntity(_entityToSpawn);
+            }
+            Level projectileLevel2 = entity.level;
+            if (!projectileLevel2.isClientSide()) {
+                Projectile _entityToSpawn2 = new AnonymousClass2().getArrow(projectileLevel2, entity, 3.0f, 2);
+                _entityToSpawn2.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn2.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel2.addFreshEntity(_entityToSpawn2);
+            }
+            Level projectileLevel3 = entity.level;
+            if (!projectileLevel3.isClientSide()) {
+                Projectile _entityToSpawn3 = new AnonymousClass3().getArrow(projectileLevel3, entity, 3.0f, 2);
+                _entityToSpawn3.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn3.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel3.addFreshEntity(_entityToSpawn3);
+            }
+            Level projectileLevel4 = entity.level;
+            if (!projectileLevel4.isClientSide()) {
+                Projectile _entityToSpawn4 = new AnonymousClass4().getArrow(projectileLevel4, entity, 3.0f, 2);
+                _entityToSpawn4.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn4.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel4.addFreshEntity(_entityToSpawn4);
+            }
+            Level projectileLevel5 = entity.level;
+            if (!projectileLevel5.isClientSide()) {
+                Projectile _entityToSpawn5 = new AnonymousClass5().getArrow(projectileLevel5, entity, 3.0f, 2);
+                _entityToSpawn5.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn5.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel5.addFreshEntity(_entityToSpawn5);
+            }
+            Level projectileLevel6 = entity.level;
+            if (!projectileLevel6.isClientSide()) {
+                Projectile _entityToSpawn6 = new AnonymousClass6().getArrow(projectileLevel6, entity, 3.0f, 2);
+                _entityToSpawn6.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn6.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel6.addFreshEntity(_entityToSpawn6);
+            }
+            Level projectileLevel7 = entity.level;
+            if (!projectileLevel7.isClientSide()) {
+                Projectile _entityToSpawn7 = new AnonymousClass7().getArrow(projectileLevel7, entity, 3.0f, 2);
+                _entityToSpawn7.setPos(entity.getX(), entity.getEyeY() - 0.1d, entity.getZ());
+                _entityToSpawn7.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, 1.0f, 2.0f);
+                projectileLevel7.addFreshEntity(_entityToSpawn7);
+            }
+            if (itemstack.getOrCreateTag().getDouble("ammo") >= 1.0d) {
+                itemstack.getOrCreateTag().putDouble("ammo", itemstack.getOrCreateTag().getDouble("ammo") - 1.0d);
+            }
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$1  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$1.class */
+    class AnonymousClass1 {
+        AnonymousClass1() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$2  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$2.class */
+    class AnonymousClass2 {
+        AnonymousClass2() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$3  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$3.class */
+    class AnonymousClass3 {
+        AnonymousClass3() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$4  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$4.class */
+    class AnonymousClass4 {
+        AnonymousClass4() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$5  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$5.class */
+    class AnonymousClass5 {
+        AnonymousClass5() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$6  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$6.class */
+    class AnonymousClass6 {
+        AnonymousClass6() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+
+    /* renamed from: net.mcreator.latexes.procedures.OverundershotgunRangedItemUsedProcedure$7  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/OverundershotgunRangedItemUsedProcedure$7.class */
+    class AnonymousClass7 {
+        AnonymousClass7() {
+        }
+
+        public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
+            AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+            entityToSpawn.setOwner(shooter);
+            entityToSpawn.setBaseDamage((double) damage);
+            entityToSpawn.setKnockback(knockback);
+            entityToSpawn.setSilent(true);
+            return entityToSpawn;
+        }
+    }
+}

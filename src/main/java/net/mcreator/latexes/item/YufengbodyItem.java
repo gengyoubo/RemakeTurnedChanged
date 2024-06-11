@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.mcreator.latexes.item;
 
 import java.util.List;
@@ -26,50 +21,60 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/YufengbodyItem.class */
 public abstract class YufengbodyItem extends ArmorItem {
-    public YufengbodyItem(EquipmentSlot slot, Item.Properties properties) {
-        super(new ArmorMaterial() {
-            public int getDurabilityForSlot(EquipmentSlot slot) {
-                return (new int[]{13, 15, 16, 11})[slot.getIndex()] * 0;
-            }
 
-            public int getDefenseForSlot(EquipmentSlot slot) {
-                return (new int[]{0, 0, 2, 0})[slot.getIndex()];
-            }
+    /* renamed from: net.mcreator.latexes.item.YufengbodyItem$1  reason: invalid class name */
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/YufengbodyItem$1.class */
+    class AnonymousClass1 implements ArmorMaterial {
+        AnonymousClass1() {
+        }
 
-            public int getEnchantmentValue() {
-                return 0;
-            }
+        public int getDurabilityForSlot(EquipmentSlot slot) {
+            return new int[]{13, 15, 16, 11}[slot.getIndex()] * 0;
+        }
 
-            public SoundEvent getEquipSound() {
-                return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:transfur"));
-            }
+        public int getDefenseForSlot(EquipmentSlot slot) {
+            return new int[]{0, 0, 2, 0}[slot.getIndex()];
+        }
 
-            public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get())});
-            }
+        public int getEnchantmentValue() {
+            return 0;
+        }
 
-            public String getName() {
-                return "yufengbody";
-            }
+        public SoundEvent getEquipSound() {
+            return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:transfur"));
+        }
 
-            public float getToughness() {
-                return 0.0F;
-            }
+        public Ingredient getRepairIngredient() {
+            return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get())});
+        }
 
-            public float getKnockbackResistance() {
-                return 0.0F;
-            }
-        }, slot, properties);
+        public String getName() {
+            return "yufengbody";
+        }
+
+        public float getToughness() {
+            return 0.0f;
+        }
+
+        public float getKnockbackResistance() {
+            return 0.0f;
+        }
     }
 
+    public YufengbodyItem(EquipmentSlot slot, Item.Properties properties) {
+        super(new AnonymousClass1(), slot, properties);
+    }
+
+    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/YufengbodyItem$Chestplate.class */
     public static class Chestplate extends YufengbodyItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, (new Item.Properties()).tab((CreativeModeTab)null));
+            super(EquipmentSlot.CHEST, new Item.Properties().tab((CreativeModeTab) null));
         }
 
         public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-            super.appendHoverText(itemstack, world, list, flag);
+            appendHoverText(itemstack, world, list, flag);
             list.add(new TextComponent("How did you got this?! HANDS OFF."));
         }
 

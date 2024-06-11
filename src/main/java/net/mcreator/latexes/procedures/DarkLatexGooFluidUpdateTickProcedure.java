@@ -1,153 +1,128 @@
-/*     */ package net.mcreator.latexes.procedures;
-/*     */ 
-/*     */ import com.google.common.collect.UnmodifiableIterator;
-/*     */ import java.util.Map;
-/*     */ import net.mcreator.latexes.init.LatexModBlocks;
-/*     */ import net.mcreator.latexes.init.LatexModGameRules;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraft.world.level.block.state.properties.Property;
-/*     */ 
-/*     */ public class DarkLatexGooFluidUpdateTickProcedure {
-/*     */   public static boolean execute(LevelAccessor world, double x, double y, double z) {
-/*  16 */     if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXFLUIDS) == true && 
-/*  17 */       world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSPREAD) == true) {
-/*  18 */       if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSUNLIGHTONLY) == true && 
-/*     */         
-/*  20 */         !((world.canSeeSkyFromBelowWater(new BlockPos(x, y + 1.0D, z)) && world.getMaxLocalRawBrightness(new BlockPos(x, y + 1.0D, z)) >= 5) ? 1 : 0)) {
-/*  21 */         return true;
-/*     */       }
-/*  23 */       if (Math.random() * 100.0D <= world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED) && 
-/*  24 */         Math.random() * 100.0D < world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED)) {
-/*  25 */         if (world.getFluidState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  26 */           .getFluidState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  27 */           .getFluidState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world
-/*  28 */           .getBlockState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.TALL_SEAGRASS || world
-/*  29 */           .getBlockState(new BlockPos(x + 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.SEAGRASS) {
-/*     */           
-/*  31 */           BlockPos _bp = new BlockPos(x + 1.0D, y, z);
-/*  32 */           BlockState _bs = ((Block)LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
-/*  33 */           BlockState _bso = world.getBlockState(_bp);
-/*  34 */           for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  35 */             Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  36 */             if (_property != null && _bs.getValue(_property) != null) {
-/*     */               try {
-/*  38 */                 _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  39 */               } catch (Exception exception) {}
-/*     */             } }
-/*     */           
-/*  42 */           world.setBlock(_bp, _bs, 3);
-/*     */         }
-/*  44 */         else if (world.getFluidState(new BlockPos(x - 1.0D, y + 0.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  45 */           .getFluidState(new BlockPos(x - 1.0D, y + 0.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  46 */           .getFluidState(new BlockPos(x - 1.0D, y + 0.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world
-/*  47 */           .getBlockState(new BlockPos(x + 1.0D, y - 0.0D, z + 0.0D)).getBlock() == Blocks.TALL_SEAGRASS || world
-/*  48 */           .getBlockState(new BlockPos(x - 1.0D, y + 0.0D, z + 0.0D)).getBlock() == Blocks.SEAGRASS) {
-/*     */           
-/*  50 */           BlockPos _bp = new BlockPos(x - 1.0D, y, z);
-/*  51 */           BlockState _bs = ((Block)LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
-/*  52 */           BlockState _bso = world.getBlockState(_bp);
-/*  53 */           for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  54 */             Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  55 */             if (_property != null && _bs.getValue(_property) != null) {
-/*     */               try {
-/*  57 */                 _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  58 */               } catch (Exception exception) {}
-/*     */             } }
-/*     */           
-/*  61 */           world.setBlock(_bp, _bs, 3);
-/*     */         }
-/*  63 */         else if (world.getFluidState(new BlockPos(x - 0.0D, y + 1.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  64 */           .getFluidState(new BlockPos(x - 0.0D, y + 1.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  65 */           .getFluidState(new BlockPos(x - 0.0D, y + 1.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world
-/*  66 */           .getBlockState(new BlockPos(x + 0.0D, y + 1.0D, z + 0.0D)).getBlock() == Blocks.TALL_SEAGRASS || world
-/*  67 */           .getBlockState(new BlockPos(x - 0.0D, y + 1.0D, z + 0.0D)).getBlock() == Blocks.SEAGRASS) {
-/*     */           
-/*  69 */           BlockPos _bp = new BlockPos(x, y + 1.0D, z);
-/*  70 */           BlockState _bs = ((Block)LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
-/*  71 */           BlockState _bso = world.getBlockState(_bp);
-/*  72 */           for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  73 */             Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  74 */             if (_property != null && _bs.getValue(_property) != null) {
-/*     */               try {
-/*  76 */                 _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  77 */               } catch (Exception exception) {}
-/*     */             } }
-/*     */           
-/*  80 */           world.setBlock(_bp, _bs, 3);
-/*     */         }
-/*  82 */         else if (world.getFluidState(new BlockPos(x - 0.0D, y - 1.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  83 */           .getFluidState(new BlockPos(x - 0.0D, y - 1.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/*  84 */           .getFluidState(new BlockPos(x - 0.0D, y - 1.0D, z + 0.0D)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world
-/*  85 */           .getBlockState(new BlockPos(x + 0.0D, y - 1.0D, z + 0.0D)).getBlock() == Blocks.TALL_SEAGRASS || world
-/*  86 */           .getBlockState(new BlockPos(x - 0.0D, y - 1.0D, z + 0.0D)).getBlock() == Blocks.SEAGRASS) {
-/*     */           
-/*  88 */           BlockPos _bp = new BlockPos(x, y - 1.0D, z);
-/*  89 */           BlockState _bs = ((Block)LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
-/*  90 */           BlockState _bso = world.getBlockState(_bp);
-/*  91 */           for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/*  92 */             Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/*  93 */             if (_property != null && _bs.getValue(_property) != null) {
-/*     */               try {
-/*  95 */                 _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/*  96 */               } catch (Exception exception) {}
-/*     */             } }
-/*     */           
-/*  99 */           world.setBlock(_bp, _bs, 3);
-/*     */         }
-/* 101 */         else if (world.getFluidState(new BlockPos(x - 0.0D, y - 0.0D, z + 1.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/* 102 */           .getFluidState(new BlockPos(x - 0.0D, y - 0.0D, z + 1.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/* 103 */           .getFluidState(new BlockPos(x - 0.0D, y + 0.0D, z + 1.0D)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world
-/* 104 */           .getBlockState(new BlockPos(x + 0.0D, y - 0.0D, z + 1.0D)).getBlock() == Blocks.TALL_SEAGRASS || world
-/* 105 */           .getBlockState(new BlockPos(x - 0.0D, y - 0.0D, z + 1.0D)).getBlock() == Blocks.SEAGRASS) {
-/*     */           
-/* 107 */           BlockPos _bp = new BlockPos(x, y, z + 1.0D);
-/* 108 */           BlockState _bs = ((Block)LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
-/* 109 */           BlockState _bso = world.getBlockState(_bp);
-/* 110 */           for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 111 */             Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 112 */             if (_property != null && _bs.getValue(_property) != null) {
-/*     */               try {
-/* 114 */                 _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 115 */               } catch (Exception exception) {}
-/*     */             } }
-/*     */           
-/* 118 */           world.setBlock(_bp, _bs, 3);
-/*     */         }
-/* 120 */         else if (world.getFluidState(new BlockPos(x - 0.0D, y - 0.0D, z - 1.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/* 121 */           .getFluidState(new BlockPos(x - 0.0D, y - 0.0D, z - 1.0D)).createLegacyBlock().getBlock() == Blocks.WATER || world
-/* 122 */           .getFluidState(new BlockPos(x - 0.0D, y + 0.0D, z - 1.0D)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world
-/* 123 */           .getBlockState(new BlockPos(x + 0.0D, y - 0.0D, z - 1.0D)).getBlock() == Blocks.TALL_SEAGRASS || world
-/* 124 */           .getBlockState(new BlockPos(x - 0.0D, y - 0.0D, z - 1.0D)).getBlock() == Blocks.SEAGRASS) {
-/*     */           
-/* 126 */           BlockPos _bp = new BlockPos(x, y, z - 1.0D);
-/* 127 */           BlockState _bs = ((Block)LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
-/* 128 */           BlockState _bso = world.getBlockState(_bp);
-/* 129 */           for (UnmodifiableIterator<Map.Entry<Property<?>, Comparable<?>>> unmodifiableIterator = _bso.getValues().entrySet().iterator(); unmodifiableIterator.hasNext(); ) { Map.Entry<Property<?>, Comparable<?>> entry = unmodifiableIterator.next();
-/* 130 */             Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
-/* 131 */             if (_property != null && _bs.getValue(_property) != null) {
-/*     */               try {
-/* 133 */                 _bs = (BlockState)_bs.setValue(_property, entry.getValue());
-/* 134 */               } catch (Exception exception) {}
-/*     */             } }
-/*     */           
-/* 137 */           world.setBlock(_bp, _bs, 3);
-/*     */         } 
-/*     */       }
-/*     */     } 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */     
-/* 145 */     return false;
-/*     */   }
-/*     */ }
+package net.mcreator.latexes.procedures;
 
+import com.google.common.collect.UnmodifiableIterator;
+import java.util.Map;
+import net.mcreator.latexes.init.LatexModBlocks;
+import net.mcreator.latexes.init.LatexModGameRules;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Property;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\DarkLatexGooFluidUpdateTickProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarkLatexGooFluidUpdateTickProcedure.class */
+public class DarkLatexGooFluidUpdateTickProcedure {
+    public static boolean execute(LevelAccessor world, double x, double y, double z) {
+        if (!world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXFLUIDS) || !world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSPREAD)) {
+            return false;
+        }
+        if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSUNLIGHTONLY)) {
+            if (!(world.canSeeSkyFromBelowWater(new BlockPos(x, y + 1.0d, z)) && world.getMaxLocalRawBrightness(new BlockPos(x, y + 1.0d, z)) >= 5)) {
+                return true;
+            }
+        }
+        if (Math.random() * 100.0d > ((double) world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED)) || Math.random() * 100.0d >= ((double) world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED))) {
+            return false;
+        }
+        if (world.getFluidState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.TALL_SEAGRASS || world.getBlockState(new BlockPos(x + 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.SEAGRASS) {
+            BlockPos _bp = new BlockPos(x + 1.0d, y, z);
+            BlockState _bs = ((Block) LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
+            UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
+                Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                if (!(_property == null || _bs.getValue(_property) == null)) {
+                    try {
+                        _bs = (BlockState) _bs.setValue(_property, entry.getValue());
+                    } catch (Exception e) {
+                    }
+                }
+            }
+            world.setBlock(_bp, _bs, 3);
+            return false;
+        } else if (world.getFluidState(new BlockPos(x - 1.0d, y + 0.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 1.0d, y + 0.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 1.0d, y + 0.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x + 1.0d, y - 0.0d, z + 0.0d)).getBlock() == Blocks.TALL_SEAGRASS || world.getBlockState(new BlockPos(x - 1.0d, y + 0.0d, z + 0.0d)).getBlock() == Blocks.SEAGRASS) {
+            BlockPos _bp2 = new BlockPos(x - 1.0d, y, z);
+            BlockState _bs2 = ((Block) LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
+            UnmodifiableIterator it2 = world.getBlockState(_bp2).getValues().entrySet().iterator();
+            while (it2.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry2 = (Map.Entry) it2.next();
+                Property _property2 = _bs2.getBlock().getStateDefinition().getProperty(entry2.getKey().getName());
+                if (!(_property2 == null || _bs2.getValue(_property2) == null)) {
+                    try {
+                        _bs2 = (BlockState) _bs2.setValue(_property2, entry2.getValue());
+                    } catch (Exception e2) {
+                    }
+                }
+            }
+            world.setBlock(_bp2, _bs2, 3);
+            return false;
+        } else if (world.getFluidState(new BlockPos(x - 0.0d, y + 1.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 0.0d, y + 1.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 0.0d, y + 1.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x + 0.0d, y + 1.0d, z + 0.0d)).getBlock() == Blocks.TALL_SEAGRASS || world.getBlockState(new BlockPos(x - 0.0d, y + 1.0d, z + 0.0d)).getBlock() == Blocks.SEAGRASS) {
+            BlockPos _bp3 = new BlockPos(x, y + 1.0d, z);
+            BlockState _bs3 = ((Block) LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
+            UnmodifiableIterator it3 = world.getBlockState(_bp3).getValues().entrySet().iterator();
+            while (it3.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry3 = (Map.Entry) it3.next();
+                Property _property3 = _bs3.getBlock().getStateDefinition().getProperty(entry3.getKey().getName());
+                if (!(_property3 == null || _bs3.getValue(_property3) == null)) {
+                    try {
+                        _bs3 = (BlockState) _bs3.setValue(_property3, entry3.getValue());
+                    } catch (Exception e3) {
+                    }
+                }
+            }
+            world.setBlock(_bp3, _bs3, 3);
+            return false;
+        } else if (world.getFluidState(new BlockPos(x - 0.0d, y - 1.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 0.0d, y - 1.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 0.0d, y - 1.0d, z + 0.0d)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x + 0.0d, y - 1.0d, z + 0.0d)).getBlock() == Blocks.TALL_SEAGRASS || world.getBlockState(new BlockPos(x - 0.0d, y - 1.0d, z + 0.0d)).getBlock() == Blocks.SEAGRASS) {
+            BlockPos _bp4 = new BlockPos(x, y - 1.0d, z);
+            BlockState _bs4 = ((Block) LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
+            UnmodifiableIterator it4 = world.getBlockState(_bp4).getValues().entrySet().iterator();
+            while (it4.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry4 = (Map.Entry) it4.next();
+                Property _property4 = _bs4.getBlock().getStateDefinition().getProperty(entry4.getKey().getName());
+                if (!(_property4 == null || _bs4.getValue(_property4) == null)) {
+                    try {
+                        _bs4 = (BlockState) _bs4.setValue(_property4, entry4.getValue());
+                    } catch (Exception e4) {
+                    }
+                }
+            }
+            world.setBlock(_bp4, _bs4, 3);
+            return false;
+        } else if (world.getFluidState(new BlockPos(x - 0.0d, y - 0.0d, z + 1.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 0.0d, y - 0.0d, z + 1.0d)).createLegacyBlock().getBlock() == Blocks.WATER || world.getFluidState(new BlockPos(x - 0.0d, y + 0.0d, z + 1.0d)).createLegacyBlock().getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x + 0.0d, y - 0.0d, z + 1.0d)).getBlock() == Blocks.TALL_SEAGRASS || world.getBlockState(new BlockPos(x - 0.0d, y - 0.0d, z + 1.0d)).getBlock() == Blocks.SEAGRASS) {
+            BlockPos _bp5 = new BlockPos(x, y, z + 1.0d);
+            BlockState _bs5 = ((Block) LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
+            UnmodifiableIterator it5 = world.getBlockState(_bp5).getValues().entrySet().iterator();
+            while (it5.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry5 = (Map.Entry) it5.next();
+                Property _property5 = _bs5.getBlock().getStateDefinition().getProperty(entry5.getKey().getName());
+                if (!(_property5 == null || _bs5.getValue(_property5) == null)) {
+                    try {
+                        _bs5 = (BlockState) _bs5.setValue(_property5, entry5.getValue());
+                    } catch (Exception e5) {
+                    }
+                }
+            }
+            world.setBlock(_bp5, _bs5, 3);
+            return false;
+        } else if (world.getFluidState(new BlockPos(x - 0.0d, y - 0.0d, z - 1.0d)).createLegacyBlock().getBlock() != Blocks.WATER && world.getFluidState(new BlockPos(x - 0.0d, y - 0.0d, z - 1.0d)).createLegacyBlock().getBlock() != Blocks.WATER && world.getFluidState(new BlockPos(x - 0.0d, y + 0.0d, z - 1.0d)).createLegacyBlock().getBlock() != Blocks.BUBBLE_COLUMN && world.getBlockState(new BlockPos(x + 0.0d, y - 0.0d, z - 1.0d)).getBlock() != Blocks.TALL_SEAGRASS && world.getBlockState(new BlockPos(x - 0.0d, y - 0.0d, z - 1.0d)).getBlock() != Blocks.SEAGRASS) {
+            return false;
+        } else {
+            BlockPos _bp6 = new BlockPos(x, y, z - 1.0d);
+            BlockState _bs6 = ((Block) LatexModBlocks.DARK_LATEX_GOO_FLUID.get()).defaultBlockState();
+            UnmodifiableIterator it6 = world.getBlockState(_bp6).getValues().entrySet().iterator();
+            while (it6.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry6 = (Map.Entry) it6.next();
+                Property _property6 = _bs6.getBlock().getStateDefinition().getProperty(entry6.getKey().getName());
+                if (!(_property6 == null || _bs6.getValue(_property6) == null)) {
+                    try {
+                        _bs6 = (BlockState) _bs6.setValue(_property6, entry6.getValue());
+                    } catch (Exception e6) {
+                    }
+                }
+            }
+            world.setBlock(_bp6, _bs6, 3);
+            return false;
+        }
+    }
+}

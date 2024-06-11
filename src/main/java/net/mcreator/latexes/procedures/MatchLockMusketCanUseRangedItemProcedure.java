@@ -1,25 +1,18 @@
-/*    */ package net.mcreator.latexes.procedures;
-/*    */ 
-/*    */ import net.mcreator.latexes.init.LatexModItems;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.LivingEntity;
-/*    */ import net.minecraft.world.item.ItemStack;
-/*    */ 
-/*    */ public class MatchLockMusketCanUseRangedItemProcedure
-/*    */ {
-/*    */   public static boolean execute(Entity entity, ItemStack itemstack) {
-/* 11 */     if (entity == null) {
-/* 12 */       return false;
-/*    */     }
-/* 14 */     if (itemstack.getOrCreateTag().getDouble("ammo") > 0.0D) { LivingEntity _livEnt = (LivingEntity)entity; if (((entity instanceof LivingEntity) ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.MATCH_LOCK_MUSKET
-/* 15 */         .get()); }
-/*    */     
-/*    */     return false;
-/*    */   }
-/*    */ }
+package net.mcreator.latexes.procedures;
 
+import net.mcreator.latexes.init.LatexModItems;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 
-/* Location:              C:\Users\Administrator\.gradle\caches\forge_gradle\deobf_dependencies\curse\maven\1-1034197\5414946_mapped_official_1.18.2\1-1034197-5414946_mapped_official_1.18.2.jar!\net\mcreator\latexes\procedures\MatchLockMusketCanUseRangedItemProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/MatchLockMusketCanUseRangedItemProcedure.class */
+public class MatchLockMusketCanUseRangedItemProcedure {
+    public static boolean execute(Entity entity, ItemStack itemstack) {
+        if (entity != null && itemstack.getOrCreateTag().getDouble("ammo") > 0.0d) {
+            if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.MATCH_LOCK_MUSKET.get()) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
