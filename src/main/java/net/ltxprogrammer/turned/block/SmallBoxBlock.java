@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.ltxprogrammer.turned.block;
 
 import io.netty.buffer.Unpooled;
@@ -26,7 +21,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -42,9 +36,9 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -58,15 +52,16 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/block/SmallBoxBlock.class */
 public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
-    public static final DirectionProperty FACING;
-    public static final BooleanProperty WATERLOGGED;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public SmallBoxBlock() {
-        super(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.65F, 3.5F).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> {
+        super(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.65f, 3.5f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
+        registerDefaultState((BlockState) ((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -82,71 +77,63 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        boolean flag = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
-        return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, flag);
+        return (BlockState) ((BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
+        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
     public FluidState getFluidState(BlockState state) {
-        return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+        return ((Boolean) state.getValue(WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if ((Boolean)state.getValue(WATERLOGGED)) {
+        if (((Boolean) state.getValue(WATERLOGGED)).booleanValue()) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-
-        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+        return updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
     public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-        Item var6 = player.getInventory().getSelected().getItem();
-        if (var6 instanceof TieredItem tieredItem) {
-            return tieredItem.getTier().getLevel() >= 0;
-        } else {
-            return false;
-        }
+        TieredItem tieredItem = player.getInventory().getSelected().getItem();
+        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 0;
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
-        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModBlocks.BOX_INVENTORY.get()));
+        List<ItemStack> dropsOriginal = getDrops(state, builder);
+        if (!dropsOriginal.isEmpty()) {
+            return dropsOriginal;
+        }
+        return Collections.singletonList(new ItemStack((ItemLike) LatexModBlocks.BOX_INVENTORY.get()));
     }
 
     public InteractionResult use(BlockState blockstate, Level world, final BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
-        super.use(blockstate, world, pos, entity, hand, hit);
-        if (entity instanceof ServerPlayer player) {
-            NetworkHooks.openGui(player, new MenuProvider() {
+        use(blockstate, world, pos, entity, hand, hit);
+        if (entity instanceof ServerPlayer) {
+            NetworkHooks.openGui((ServerPlayer) entity, new MenuProvider() { // from class: net.ltxprogrammer.turned.block.SmallBoxBlock.1
                 public Component getDisplayName() {
                     return new TextComponent("Small Box");
                 }
 
                 public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-                    return new SmallboxguiMenu(id, inventory, (new FriendlyByteBuf(Unpooled.buffer())).writeBlockPos(pos));
+                    return new SmallboxguiMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(pos));
                 }
             }, pos);
         }
-
         return InteractionResult.SUCCESS;
     }
 
     public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-        MenuProvider var10000;
-        if (tileEntity instanceof MenuProvider menuProvider) {
-            var10000 = menuProvider;
-        } else {
-            var10000 = null;
+        if (tileEntity instanceof MenuProvider) {
+            return (MenuProvider) tileEntity;
         }
-
-        return var10000;
+        return null;
     }
 
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -154,7 +141,7 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
     }
 
     public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
-        super.triggerEvent(state, world, pos, eventID, eventParam);
+        triggerEvent(state, world, pos, eventID, eventParam);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
     }
@@ -163,14 +150,11 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof SmallBoxBlockEntity) {
-                SmallBoxBlockEntity be = (SmallBoxBlockEntity)blockEntity;
-                Containers.dropContents(world, pos, be);
+                Containers.dropContents(world, pos, (SmallBoxBlockEntity) blockEntity);
                 world.updateNeighbourForOutputSignal(pos, this);
             }
-
-            super.onRemove(state, world, pos, newState, isMoving);
+            onRemove(state, world, pos, newState, isMoving);
         }
-
     }
 
     public boolean hasAnalogOutputSignal(BlockState state) {
@@ -179,22 +163,16 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
 
     public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
         BlockEntity tileentity = world.getBlockEntity(pos);
-        if (tileentity instanceof SmallBoxBlockEntity be) {
-            return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
-        } else {
-            return 0;
+        if (tileentity instanceof SmallBoxBlockEntity) {
+            return AbstractContainerMenu.getRedstoneSignalFromContainer((SmallBoxBlockEntity) tileentity);
         }
+        return 0;
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.SMALL_BOX.get(), (renderType) -> {
+        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.SMALL_BOX.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
-    }
-
-    static {
-        FACING = HorizontalDirectionalBlock.FACING;
-        WATERLOGGED = BlockStateProperties.WATERLOGGED;
     }
 }

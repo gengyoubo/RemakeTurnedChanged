@@ -1,128 +1,138 @@
-/*     */ package net.ltxprogrammer.turned.block;
-/*     */ 
-/*     */ import java.util.Collections;
-/*     */ import java.util.List;
-/*     */ import net.ltxprogrammer.turned.init.LatexModBlocks;
-/*     */ import net.ltxprogrammer.turned.procedures.VentOnBlockRightClickedProcedure;
-/*     */ import net.minecraft.client.renderer.ItemBlockRenderTypes;
-/*     */ import net.minecraft.client.renderer.RenderType;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.core.Direction;
-/*     */ import net.minecraft.world.InteractionHand;
-/*     */ import net.minecraft.world.InteractionResult;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.Item;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.item.TieredItem;
-/*     */ import net.minecraft.world.item.context.BlockPlaceContext;
-/*     */ import net.minecraft.world.level.BlockGetter;
-/*     */ import net.minecraft.world.level.ItemLike;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.Block;
-/*     */ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-/*     */ import net.minecraft.world.level.block.Mirror;
-/*     */ import net.minecraft.world.level.block.Rotation;
-/*     */ import net.minecraft.world.level.block.SoundType;
-/*     */ import net.minecraft.world.level.block.state.BlockBehaviour;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraft.world.level.block.state.StateDefinition;
-/*     */ import net.minecraft.world.level.block.state.properties.DirectionProperty;
-/*     */ import net.minecraft.world.level.block.state.properties.Property;
-/*     */ import net.minecraft.world.level.material.Material;
-/*     */ import net.minecraft.world.level.storage.loot.LootContext;
-/*     */ import net.minecraft.world.phys.BlockHitResult;
-/*     */ import net.minecraft.world.phys.shapes.CollisionContext;
-/*     */ import net.minecraft.world.phys.shapes.VoxelShape;
-/*     */ import net.minecraftforge.api.distmarker.Dist;
-/*     */ import net.minecraftforge.api.distmarker.OnlyIn;
-/*     */ 
-/*     */ public class VentBlock extends Block {
-/*  41 */   public static final DirectionProperty FACING = HorizontalDirectionalBlock.f_54117_;
-/*     */   
-/*     */   public VentBlock() {
-/*  44 */     super(BlockBehaviour.Properties.m_60939_(Material.f_76279_).m_60918_(SoundType.f_56743_).m_60913_(1.0F, 12.5F).m_60999_().m_60955_()
-/*  45 */         .m_60924_((bs, br, bp) -> false));
-/*  46 */     m_49959_((BlockState)((BlockState)this.f_49792_.m_61090_()).m_61124_((Property)FACING, (Comparable)Direction.NORTH));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean m_7420_(BlockState state, BlockGetter reader, BlockPos pos) {
-/*  51 */     return true;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public int m_7753_(BlockState state, BlockGetter worldIn, BlockPos pos) {
-/*  56 */     return 0;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public VoxelShape m_5940_(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-/*  62 */     switch ((Direction)state.m_61143_((Property)FACING)) { default: case NORTH: case EAST: case WEST: break; }  return 
-/*     */ 
-/*     */ 
-/*     */       
-/*  66 */       m_49796_(0.0D, 0.0D, 0.0D, 3.0D, 16.0D, 16.0D);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   protected void m_7926_(StateDefinition.Builder<Block, BlockState> builder) {
-/*  72 */     builder.m_61104_(new Property[] { (Property)FACING });
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public BlockState m_5573_(BlockPlaceContext context) {
-/*  77 */     return (BlockState)m_49966_().m_61124_((Property)FACING, (Comparable)context.m_8125_().m_122424_());
-/*     */   }
-/*     */   
-/*     */   public BlockState m_6843_(BlockState state, Rotation rot) {
-/*  81 */     return (BlockState)state.m_61124_((Property)FACING, (Comparable)rot.m_55954_((Direction)state.m_61143_((Property)FACING)));
-/*     */   }
-/*     */   
-/*     */   public BlockState m_6943_(BlockState state, Mirror mirrorIn) {
-/*  85 */     return state.m_60717_(mirrorIn.m_54846_((Direction)state.m_61143_((Property)FACING)));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-/*  90 */     Item item = player.m_150109_().m_36056_().m_41720_(); if (item instanceof TieredItem) { TieredItem tieredItem = (TieredItem)item;
-/*  91 */       return (tieredItem.m_43314_().m_6604_() >= 1); }
-/*  92 */      return false;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public List<ItemStack> m_7381_(BlockState state, LootContext.Builder builder) {
-/*  97 */     List<ItemStack> dropsOriginal = super.m_7381_(state, builder);
-/*  98 */     if (!dropsOriginal.isEmpty())
-/*  99 */       return dropsOriginal; 
-/* 100 */     return Collections.singletonList(new ItemStack((ItemLike)this, 1));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public InteractionResult m_6227_(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
-/* 105 */     super.m_6227_(blockstate, world, pos, entity, hand, hit);
-/* 106 */     int x = pos.m_123341_();
-/* 107 */     int y = pos.m_123342_();
-/* 108 */     int z = pos.m_123343_();
-/* 109 */     double hitX = (hit.m_82450_()).f_82479_;
-/* 110 */     double hitY = (hit.m_82450_()).f_82480_;
-/* 111 */     double hitZ = (hit.m_82450_()).f_82481_;
-/* 112 */     Direction direction = hit.m_82434_();
-/*     */     
-/* 114 */     VentOnBlockRightClickedProcedure.execute((LevelAccessor)world, x, y, z);
-/* 115 */     return InteractionResult.SUCCESS;
-/*     */   }
-/*     */   
-/*     */   @OnlyIn(Dist.CLIENT)
-/*     */   public static void registerRenderLayer() {
-/* 120 */     ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.VENT.get(), renderType -> (renderType == RenderType.m_110463_()));
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.block;
 
+import java.util.Collections;
+import java.util.List;
+import net.ltxprogrammer.turned.init.LatexModBlocks;
+import net.ltxprogrammer.turned.procedures.VentOnBlockRightClickedProcedure;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\block\VentBlock.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/block/VentBlock.class */
+public class VentBlock extends Block {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+
+    public VentBlock() {
+        super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0f, 12.5f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
+            return false;
+        }));
+        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+        return true;
+    }
+
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        return 0;
+    }
+
+    /* renamed from: net.ltxprogrammer.turned.block.VentBlock$1 */
+    /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/block/VentBlock$1.class */
+    static /* synthetic */ class C00551 {
+        static final /* synthetic */ int[] $SwitchMap$net$minecraft$core$Direction = new int[Direction.values().length];
+
+        static {
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.NORTH.ordinal()] = 1;
+            } catch (NoSuchFieldError e) {
+            }
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.EAST.ordinal()] = 2;
+            } catch (NoSuchFieldError e2) {
+            }
+            try {
+                $SwitchMap$net$minecraft$core$Direction[Direction.WEST.ordinal()] = 3;
+            } catch (NoSuchFieldError e3) {
+            }
+        }
+    }
+
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        switch (C00551.$SwitchMap$net$minecraft$core$Direction[state.getValue(FACING).ordinal()]) {
+            case 1:
+                return box(0.0d, 0.0d, 0.0d, 16.0d, 16.0d, 3.0d);
+            case 2:
+                return box(13.0d, 0.0d, 0.0d, 16.0d, 16.0d, 16.0d);
+            case 3:
+                return box(0.0d, 0.0d, 0.0d, 3.0d, 16.0d, 16.0d);
+            default:
+                return box(0.0d, 0.0d, 13.0d, 16.0d, 16.0d, 16.0d);
+        }
+    }
+
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(new Property[]{FACING});
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    }
+
+    public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
+        TieredItem tieredItem = player.getInventory().getSelected().getItem();
+        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 1;
+    }
+
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> dropsOriginal = getDrops(state, builder);
+        if (!dropsOriginal.isEmpty()) {
+            return dropsOriginal;
+        }
+        return Collections.singletonList(new ItemStack(this, 1));
+    }
+
+    public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
+        use(blockstate, world, pos, entity, hand, hit);
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        double d = hit.getLocation().x;
+        double d2 = hit.getLocation().y;
+        double d3 = hit.getLocation().z;
+        hit.getDirection();
+        VentOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        return InteractionResult.SUCCESS;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static void registerRenderLayer() {
+        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.VENT.get(), renderType -> {
+            return renderType == RenderType.cutout();
+        });
+    }
+}

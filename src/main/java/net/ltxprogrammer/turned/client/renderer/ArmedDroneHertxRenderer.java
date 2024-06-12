@@ -1,33 +1,25 @@
-/*    */ package net.ltxprogrammer.turned.client.renderer;
-/*    */ import net.ltxprogrammer.turned.client.model.ModelMilitary_Drone_Hertx;
-/*    */ import net.ltxprogrammer.turned.entity.ArmedDroneHertxEntity;
-/*    */ import net.minecraft.client.renderer.RenderType;
-/*    */ import net.minecraft.client.renderer.entity.EntityRendererProvider;
-/*    */ import net.minecraft.client.renderer.entity.MobRenderer;
-/*    */ import net.minecraft.client.renderer.entity.RenderLayerParent;
-/*    */ import net.minecraft.client.renderer.entity.layers.EyesLayer;
-/*    */ import net.minecraft.resources.ResourceLocation;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ 
-/*    */ public class ArmedDroneHertxRenderer extends MobRenderer<ArmedDroneHertxEntity, ModelMilitary_Drone_Hertx<ArmedDroneHertxEntity>> {
-/*    */   public ArmedDroneHertxRenderer(EntityRendererProvider.Context context) {
-/* 14 */     super(context, (EntityModel)new ModelMilitary_Drone_Hertx(context.m_174023_(ModelMilitary_Drone_Hertx.LAYER_LOCATION)), 0.6F);
-/* 15 */     m_115326_((RenderLayer)new EyesLayer<ArmedDroneHertxEntity, ModelMilitary_Drone_Hertx<ArmedDroneHertxEntity>>((RenderLayerParent)this)
-/*    */         {
-/*    */           public RenderType m_5708_() {
-/* 18 */             return RenderType.m_110488_(new ResourceLocation("turned:textures/entities/armed_drone_hertx_texture_glow.png"));
-/*    */           }
-/*    */         });
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public ResourceLocation getTextureLocation(ArmedDroneHertxEntity entity) {
-/* 25 */     return new ResourceLocation("turned:textures/entities/armed_drone_hertx_texture.png");
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.client.renderer;
 
+import net.ltxprogrammer.turned.client.model.ModelMilitary_Drone_Hertx;
+import net.ltxprogrammer.turned.entity.ArmedDroneHertxEntity;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.EyesLayer;
+import net.minecraft.resources.ResourceLocation;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\renderer\ArmedDroneHertxRenderer.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/renderer/ArmedDroneHertxRenderer.class */
+public class ArmedDroneHertxRenderer extends MobRenderer<ArmedDroneHertxEntity, ModelMilitary_Drone_Hertx<ArmedDroneHertxEntity>> {
+    public ArmedDroneHertxRenderer(EntityRendererProvider.Context context) {
+        super(context, new ModelMilitary_Drone_Hertx(context.bakeLayer(ModelMilitary_Drone_Hertx.LAYER_LOCATION)), 0.6f);
+        addLayer(new EyesLayer<ArmedDroneHertxEntity, ModelMilitary_Drone_Hertx<ArmedDroneHertxEntity>>(this) { // from class: net.ltxprogrammer.turned.client.renderer.ArmedDroneHertxRenderer.1
+            public RenderType renderType() {
+                return RenderType.eyes(new ResourceLocation("turned:textures/entities/armed_drone_hertx_texture_glow.png"));
+            }
+        });
+    }
+
+    public ResourceLocation getTextureLocation(ArmedDroneHertxEntity entity) {
+        return new ResourceLocation("turned:textures/entities/armed_drone_hertx_texture.png");
+    }
+}

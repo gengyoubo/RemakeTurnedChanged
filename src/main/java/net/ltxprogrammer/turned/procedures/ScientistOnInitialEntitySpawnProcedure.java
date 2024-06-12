@@ -1,97 +1,78 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ import net.ltxprogrammer.turned.init.LatexModItems;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.EquipmentSlot;
-/*    */ import net.minecraft.world.entity.LivingEntity;
-/*    */ import net.minecraft.world.entity.player.Player;
-/*    */ import net.minecraft.world.item.ItemStack;
-/*    */ import net.minecraft.world.level.ItemLike;
-/*    */ 
-/*    */ public class ScientistOnInitialEntitySpawnProcedure {
-/*    */   public static void execute(Entity entity) {
-/* 12 */     if (entity == null)
-/*    */       return; 
-/* 14 */     if (Math.random() < 0.01D) {
-/*    */       
-/* 16 */       Entity _entity = entity;
-/* 17 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 18 */         (_player.m_150109_()).f_35975_.set(3, new ItemStack((ItemLike)LatexModItems.RESPIRATOR_HELMET.get()));
-/* 19 */         _player.m_150109_().m_6596_(); }
-/* 20 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 21 */         _living.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)LatexModItems.RESPIRATOR_HELMET.get())); }
-/*    */     
-/*    */     } 
-/*    */     
-/* 25 */     if (Math.random() < 0.001D) {
-/*    */       
-/* 27 */       Entity _entity = entity;
-/* 28 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 29 */         (_player.m_150109_()).f_35975_.set(0, new ItemStack((ItemLike)LatexModItems.HAZMAT_HELMET.get()));
-/* 30 */         _player.m_150109_().m_6596_(); }
-/* 31 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 32 */         _living.m_8061_(EquipmentSlot.FEET, new ItemStack((ItemLike)LatexModItems.HAZMAT_HELMET.get())); }
-/*    */ 
-/*    */ 
-/*    */       
-/* 36 */       _entity = entity;
-/* 37 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 38 */         (_player.m_150109_()).f_35975_.set(1, new ItemStack((ItemLike)LatexModItems.HAZMAT_CHESTPLATE.get()));
-/* 39 */         _player.m_150109_().m_6596_(); }
-/* 40 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 41 */         _living.m_8061_(EquipmentSlot.LEGS, new ItemStack((ItemLike)LatexModItems.HAZMAT_CHESTPLATE.get())); }
-/*    */ 
-/*    */ 
-/*    */       
-/* 45 */       _entity = entity;
-/* 46 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 47 */         (_player.m_150109_()).f_35975_.set(2, new ItemStack((ItemLike)LatexModItems.HAZMAT_LEGGINGS.get()));
-/* 48 */         _player.m_150109_().m_6596_(); }
-/* 49 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 50 */         _living.m_8061_(EquipmentSlot.CHEST, new ItemStack((ItemLike)LatexModItems.HAZMAT_LEGGINGS.get())); }
-/*    */ 
-/*    */ 
-/*    */       
-/* 54 */       _entity = entity;
-/* 55 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 56 */         (_player.m_150109_()).f_35975_.set(3, new ItemStack((ItemLike)LatexModItems.HAZMAT_BOOTS.get()));
-/* 57 */         _player.m_150109_().m_6596_(); }
-/* 58 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 59 */         _living.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)LatexModItems.HAZMAT_BOOTS.get())); }
-/*    */ 
-/*    */     
-/* 62 */     } else if (Math.random() < 0.001D) {
-/*    */       
-/* 64 */       Entity _entity = entity;
-/* 65 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 66 */         (_player.m_150109_()).f_35975_.set(1, new ItemStack((ItemLike)LatexModItems.HAZMAT_CHESTPLATE.get()));
-/* 67 */         _player.m_150109_().m_6596_(); }
-/* 68 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 69 */         _living.m_8061_(EquipmentSlot.LEGS, new ItemStack((ItemLike)LatexModItems.HAZMAT_CHESTPLATE.get())); }
-/*    */ 
-/*    */ 
-/*    */       
-/* 73 */       _entity = entity;
-/* 74 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 75 */         (_player.m_150109_()).f_35975_.set(2, new ItemStack((ItemLike)LatexModItems.HAZMAT_LEGGINGS.get()));
-/* 76 */         _player.m_150109_().m_6596_(); }
-/* 77 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 78 */         _living.m_8061_(EquipmentSlot.CHEST, new ItemStack((ItemLike)LatexModItems.HAZMAT_LEGGINGS.get())); }
-/*    */ 
-/*    */ 
-/*    */       
-/* 82 */       _entity = entity;
-/* 83 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/* 84 */         (_player.m_150109_()).f_35975_.set(3, new ItemStack((ItemLike)LatexModItems.HAZMAT_BOOTS.get()));
-/* 85 */         _player.m_150109_().m_6596_(); }
-/* 86 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/* 87 */         _living.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)LatexModItems.HAZMAT_BOOTS.get())); }
-/*    */     
-/*    */     } 
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.turned.init.LatexModItems;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\ScientistOnInitialEntitySpawnProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/ScientistOnInitialEntitySpawnProcedure.class */
+public class ScientistOnInitialEntitySpawnProcedure {
+    public static void execute(Entity entity) {
+        if (entity != null) {
+            if (Math.random() < 0.01d) {
+                if (entity instanceof Player) {
+                    Player _player = (Player) entity;
+                    _player.getInventory().armor.set(3, new ItemStack((ItemLike) LatexModItems.RESPIRATOR_HELMET.get()));
+                    _player.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.RESPIRATOR_HELMET.get()));
+                }
+            }
+            if (Math.random() < 0.001d) {
+                if (entity instanceof Player) {
+                    Player _player2 = (Player) entity;
+                    _player2.getInventory().armor.set(0, new ItemStack((ItemLike) LatexModItems.HAZMAT_HELMET.get()));
+                    _player2.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.FEET, new ItemStack((ItemLike) LatexModItems.HAZMAT_HELMET.get()));
+                }
+                if (entity instanceof Player) {
+                    Player _player3 = (Player) entity;
+                    _player3.getInventory().armor.set(1, new ItemStack((ItemLike) LatexModItems.HAZMAT_CHESTPLATE.get()));
+                    _player3.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.LEGS, new ItemStack((ItemLike) LatexModItems.HAZMAT_CHESTPLATE.get()));
+                }
+                if (entity instanceof Player) {
+                    Player _player4 = (Player) entity;
+                    _player4.getInventory().armor.set(2, new ItemStack((ItemLike) LatexModItems.HAZMAT_LEGGINGS.get()));
+                    _player4.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.CHEST, new ItemStack((ItemLike) LatexModItems.HAZMAT_LEGGINGS.get()));
+                }
+                if (entity instanceof Player) {
+                    Player _player5 = (Player) entity;
+                    _player5.getInventory().armor.set(3, new ItemStack((ItemLike) LatexModItems.HAZMAT_BOOTS.get()));
+                    _player5.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.HAZMAT_BOOTS.get()));
+                }
+            } else if (Math.random() < 0.001d) {
+                if (entity instanceof Player) {
+                    Player _player6 = (Player) entity;
+                    _player6.getInventory().armor.set(1, new ItemStack((ItemLike) LatexModItems.HAZMAT_CHESTPLATE.get()));
+                    _player6.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.LEGS, new ItemStack((ItemLike) LatexModItems.HAZMAT_CHESTPLATE.get()));
+                }
+                if (entity instanceof Player) {
+                    Player _player7 = (Player) entity;
+                    _player7.getInventory().armor.set(2, new ItemStack((ItemLike) LatexModItems.HAZMAT_LEGGINGS.get()));
+                    _player7.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.CHEST, new ItemStack((ItemLike) LatexModItems.HAZMAT_LEGGINGS.get()));
+                }
+                if (entity instanceof Player) {
+                    Player _player8 = (Player) entity;
+                    _player8.getInventory().armor.set(3, new ItemStack((ItemLike) LatexModItems.HAZMAT_BOOTS.get()));
+                    _player8.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.HAZMAT_BOOTS.get()));
+                }
+            }
+        }
+    }
+}

@@ -1,18 +1,12 @@
-/*    */ package net.ltxprogrammer.turned.item;
-/*    */ 
-/*    */ import net.ltxprogrammer.turned.init.LatexModTabs;
-/*    */ import net.minecraft.world.item.Item;
-/*    */ import net.minecraft.world.item.Rarity;
-/*    */ 
-/*    */ public class GunbarrelItem
-/*    */   extends Item {
-/*    */   public GunbarrelItem() {
-/* 10 */     super((new Item.Properties()).m_41491_(LatexModTabs.TAB_LATEXITEMS).m_41487_(64).m_41497_(Rarity.COMMON));
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.item;
 
+import net.ltxprogrammer.turned.init.LatexModTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\item\GunbarrelItem.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/GunbarrelItem.class */
+public class GunbarrelItem extends Item {
+    public GunbarrelItem() {
+        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(64).rarity(Rarity.COMMON));
+    }
+}

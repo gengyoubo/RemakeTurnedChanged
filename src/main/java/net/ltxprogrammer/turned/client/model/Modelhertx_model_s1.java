@@ -1,171 +1,81 @@
-/*     */ package net.ltxprogrammer.turned.client.model;
-/*     */ 
-/*     */ import com.mojang.blaze3d.vertex.PoseStack;
-/*     */ import com.mojang.blaze3d.vertex.VertexConsumer;
-/*     */ import net.minecraft.client.model.EntityModel;
-/*     */ import net.minecraft.client.model.geom.ModelLayerLocation;
-/*     */ import net.minecraft.client.model.geom.ModelPart;
-/*     */ import net.minecraft.client.model.geom.PartPose;
-/*     */ import net.minecraft.client.model.geom.builders.CubeDeformation;
-/*     */ import net.minecraft.client.model.geom.builders.CubeListBuilder;
-/*     */ import net.minecraft.client.model.geom.builders.LayerDefinition;
-/*     */ import net.minecraft.client.model.geom.builders.MeshDefinition;
-/*     */ import net.minecraft.client.model.geom.builders.PartDefinition;
-/*     */ import net.minecraft.resources.ResourceLocation;
-/*     */ import net.minecraft.util.Mth;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ public class Modelhertx_model_s1<T extends Entity>
-/*     */   extends EntityModel<T>
-/*     */ {
-/*  25 */   public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("turned", "modelhertx_model_s_1"), "main");
-/*     */   public final ModelPart Head;
-/*     */   public final ModelPart Body;
-/*     */   public final ModelPart Tail;
-/*     */   public final ModelPart LeftArm;
-/*     */   public final ModelPart RightArm;
-/*     */   public final ModelPart LeftLeg;
-/*     */   public final ModelPart RightLeg;
-/*     */   
-/*     */   public Modelhertx_model_s1(ModelPart root) {
-/*  35 */     this.Head = root.m_171324_("Head");
-/*  36 */     this.Body = root.m_171324_("Body");
-/*  37 */     this.Tail = root.m_171324_("Tail");
-/*  38 */     this.LeftArm = root.m_171324_("LeftArm");
-/*  39 */     this.RightArm = root.m_171324_("RightArm");
-/*  40 */     this.LeftLeg = root.m_171324_("LeftLeg");
-/*  41 */     this.RightLeg = root.m_171324_("RightLeg");
-/*     */   }
-/*     */   
-/*     */   public static LayerDefinition createBodyLayer() {
-/*  45 */     MeshDefinition meshdefinition = new MeshDefinition();
-/*  46 */     PartDefinition partdefinition = meshdefinition.m_171576_();
-/*  47 */     PartDefinition Head = partdefinition.m_171599_("Head", 
-/*  48 */         CubeListBuilder.m_171558_().m_171514_(24, 0).m_171488_(-3.0F, -3.7F, -5.0F, 6.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(56, 47)
-/*  49 */         .m_171488_(-2.0F, -4.8F, -3.0F, 4.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(18, 60)
-/*  50 */         .m_171488_(-2.0F, -8.8F, 2.0F, 4.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(42, 11)
-/*  51 */         .m_171488_(-2.0F, -4.8F, 3.0F, 4.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(14, 30)
-/*  52 */         .m_171488_(-3.0F, -4.8F, 2.0F, 6.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(24, 8)
-/*  53 */         .m_171488_(-3.0F, -2.8F, -2.9F, 6.0F, 1.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(24, 4)
-/*  54 */         .m_171488_(-1.0F, -2.55F, -3.15F, 2.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(36, 22)
-/*  55 */         .m_171488_(2.0F, -8.8F, 2.0F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(35, 30)
-/*  56 */         .m_171488_(-3.0F, -8.8F, 2.0F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(17, 22)
-/*  57 */         .m_171488_(-3.0F, -8.8F, -5.0F, 6.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(0, 53)
-/*  58 */         .m_171488_(2.0F, -7.8F, -5.0F, 1.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(25, 60)
-/*  59 */         .m_171488_(2.0F, -4.7F, -5.0F, 1.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(50, 30)
-/*  60 */         .m_171488_(-3.0F, -7.8F, -5.0F, 1.0F, 3.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(9, 60)
-/*  61 */         .m_171488_(-3.0F, -4.7F, -5.0F, 1.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(59, 28)
-/*  62 */         .m_171488_(-3.25F, -4.5125F, -4.625F, 1.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(58, 0)
-/*  63 */         .m_171488_(2.25F, -4.5125F, -4.625F, 1.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(20, 0)
-/*  64 */         .m_171488_(-2.0F, -7.8F, -5.0F, 4.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(28, 41)
-/*  65 */         .m_171488_(-2.0F, -4.7F, -5.0F, 4.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(54, 54)
-/*  66 */         .m_171488_(-1.0F, -4.5125F, -5.1875F, 2.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), 
-/*  67 */         PartPose.m_171419_(0.0F, 0.4F, -0.2F));
-/*  68 */     PartDefinition bone = Head.m_171599_("bone", CubeListBuilder.m_171558_(), 
-/*  69 */         PartPose.m_171423_(0.0F, -8.3F, -1.5F, 0.4276F, 0.0F, 0.0F));
-/*  70 */     PartDefinition cube_r1 = Head.m_171599_("cube_r1", 
-/*  71 */         CubeListBuilder.m_171558_().m_171514_(0, 33).m_171488_(-3.125F, -7.4142F, 9.2505F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
-/*  72 */         .m_171514_(67, 16).m_171488_(-3.125F, -7.4142F, 4.2505F, 1.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(0, 0)
-/*  73 */         .m_171488_(2.125F, -7.4142F, 9.2505F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 63)
-/*  74 */         .m_171488_(2.125F, -7.4142F, 4.2505F, 1.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), 
-/*  75 */         PartPose.m_171423_(0.0F, 0.0F, 1.125F, 0.4712F, 0.0F, 0.0F));
-/*  76 */     PartDefinition Body = partdefinition.m_171599_("Body", 
-/*  77 */         CubeListBuilder.m_171558_().m_171514_(0, 0).m_171488_(-4.0F, -1.8F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(0, 16)
-/*  78 */         .m_171488_(-3.0F, -0.05F, -3.0F, 6.0F, 6.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(48, 60)
-/*  79 */         .m_171488_(-4.25F, 3.2F, -3.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(34, 60)
-/*  80 */         .m_171488_(2.25F, 3.2F, -3.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(0, 28)
-/*  81 */         .m_171488_(-1.0F, 3.2F, -3.5F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(28, 39)
-/*  82 */         .m_171488_(-2.5F, 3.2F, 2.25F, 5.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(14, 33)
-/*  83 */         .m_171488_(-2.5F, 0.95F, 2.25F, 5.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(24, 8)
-/*  84 */         .m_171488_(2.8125F, 0.95F, 1.8125F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(18, 16)
-/*  85 */         .m_171488_(-3.8125F, 0.95F, 1.8125F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(18, 16)
-/*  86 */         .m_171488_(-4.5F, 4.2F, -2.5F, 9.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(53, 62)
-/*  87 */         .m_171488_(-3.5F, -2.05F, -2.5F, 1.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(41, 60)
-/*  88 */         .m_171488_(2.5F, -2.05F, -2.5F, 1.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), 
-/*  89 */         PartPose.m_171419_(0.0F, 0.0F, 0.0F));
-/*  90 */     PartDefinition Tail = partdefinition.m_171599_("Tail", CubeListBuilder.m_171558_(), PartPose.m_171419_(0.0F, 0.0F, 0.0F));
-/*  91 */     PartDefinition cube_r2 = Tail.m_171599_("cube_r2", CubeListBuilder.m_171558_(), 
-/*  92 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, -0.3927F, 0.0F, 0.0F));
-/*  93 */     PartDefinition cube_r3 = Tail.m_171599_("cube_r3", 
-/*  94 */         CubeListBuilder.m_171558_().m_171514_(0, 28).m_171488_(-1.3F, 4.2F, 7.0F, 3.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)).m_171514_(22, 30)
-/*  95 */         .m_171488_(-1.3F, 5.2F, 15.0F, 3.0F, 2.0F, 7.0F, new CubeDeformation(0.0F)), 
-/*  96 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, -0.7854F, 0.0F, 0.0F));
-/*  97 */     PartDefinition LeftArm = partdefinition.m_171599_("LeftArm", 
-/*  98 */         CubeListBuilder.m_171558_().m_171514_(0, 39).m_171488_(-3.0F, -3.8F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(54, 11)
-/*  99 */         .m_171488_(-3.0F, 4.2F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(45, 3)
-/* 100 */         .m_171488_(-3.25F, -4.05F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(16, 39)
-/* 101 */         .m_171488_(-3.0F, 10.2F, 1.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(12, 39)
-/* 102 */         .m_171488_(-3.0F, 10.2F, -2.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 39)
-/* 103 */         .m_171488_(-1.0F, 10.2F, -2.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(36, 27)
-/* 104 */         .m_171488_(-3.0F, 10.2F, -0.5F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 105 */         PartPose.m_171419_(-5.0F, 2.0F, 0.0F));
-/* 106 */     PartDefinition RightArm = partdefinition.m_171599_("RightArm", 
-/* 107 */         CubeListBuilder.m_171558_().m_171514_(41, 17).m_171488_(-0.75F, -4.05F, -2.5F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(38, 38)
-/* 108 */         .m_171488_(-1.0F, -3.8F, -2.0F, 4.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(44, 50)
-/* 109 */         .m_171488_(-1.0F, 4.2F, -2.0F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(35, 35)
-/* 110 */         .m_171488_(0.0F, 10.2F, -2.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(22, 35)
-/* 111 */         .m_171488_(2.0F, 10.2F, -2.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(25, 34)
-/* 112 */         .m_171488_(2.0F, 10.2F, -0.5F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(4, 33)
-/* 113 */         .m_171488_(2.0F, 10.2F, 1.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 114 */         PartPose.m_171419_(5.0F, 2.0F, 0.0F));
-/* 115 */     PartDefinition LeftLeg = partdefinition.m_171599_("LeftLeg", 
-/* 116 */         CubeListBuilder.m_171558_().m_171514_(66, 8).m_171488_(-2.0F, -1.8F, -2.0F, 4.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(0, 16)
-/* 117 */         .m_171488_(-1.625F, -1.8F, 1.75F, 2.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(54, 40)
-/* 118 */         .m_171488_(-2.0F, 10.0F, -2.9102F, 4.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 119 */         PartPose.m_171419_(-2.0F, 12.0F, 0.0F));
-/* 120 */     PartDefinition cube_r4 = LeftLeg.m_171599_("cube_r4", 
-/* 121 */         CubeListBuilder.m_171558_().m_171514_(67, 36).m_171488_(-2.0F, 4.3F, 3.0F, 4.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), 
-/* 122 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, -0.3927F, 0.0F, 0.0F));
-/* 123 */     PartDefinition cube_r5 = LeftLeg.m_171599_("cube_r5", 
-/* 124 */         CubeListBuilder.m_171558_().m_171514_(39, 26).m_171488_(-2.0F, 0.0F, -5.8F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), 
-/* 125 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
-/* 126 */     PartDefinition cube_r6 = LeftLeg.m_171599_("cube_r6", 
-/* 127 */         CubeListBuilder.m_171558_().m_171514_(28, 50).m_171488_(-2.0F, -0.6F, -2.2F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), 
-/* 128 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, -0.3927F, 0.0F, 0.0F));
-/* 129 */     PartDefinition RightLeg = partdefinition.m_171599_("RightLeg", 
-/* 130 */         CubeListBuilder.m_171558_().m_171514_(64, 53).m_171488_(-2.0F, -1.8F, -2.0F, 4.0F, 2.0F, 4.0F, new CubeDeformation(0.0F))
-/* 131 */         .m_171514_(54, 21).m_171488_(-2.0F, 10.0F, -2.9102F, 4.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 132 */         PartPose.m_171419_(2.0F, 12.0F, 0.0F));
-/* 133 */     PartDefinition cube_r7 = RightLeg.m_171599_("cube_r7", 
-/* 134 */         CubeListBuilder.m_171558_().m_171514_(65, 65).m_171488_(-2.0F, 4.3F, 3.0F, 4.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), 
-/* 135 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, -0.3927F, 0.0F, 0.0F));
-/* 136 */     PartDefinition cube_r8 = RightLeg.m_171599_("cube_r8", 
-/* 137 */         CubeListBuilder.m_171558_().m_171514_(16, 39).m_171488_(-2.0F, 0.0F, -5.8F, 4.0F, 7.0F, 4.0F, new CubeDeformation(0.0F)), 
-/* 138 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, 0.7854F, 0.0F, 0.0F));
-/* 139 */     PartDefinition cube_r9 = RightLeg.m_171599_("cube_r9", 
-/* 140 */         CubeListBuilder.m_171558_().m_171514_(12, 50).m_171488_(-2.0F, -0.6F, -2.2F, 4.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)), 
-/* 141 */         PartPose.m_171423_(0.0F, 0.0F, 0.0F, -0.3927F, 0.0F, 0.0F));
-/* 142 */     return LayerDefinition.m_171565_(meshdefinition, 128, 128);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void m_7695_(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-/* 148 */     this.Head.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 149 */     this.Body.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 150 */     this.Tail.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 151 */     this.LeftArm.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 152 */     this.RightArm.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 153 */     this.LeftLeg.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 154 */     this.RightLeg.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/*     */   }
-/*     */   
-/*     */   public void m_6973_(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-/* 158 */     this.RightArm.f_104203_ = Mth.m_14089_(limbSwing * 0.6662F + 3.1415927F) * limbSwingAmount;
-/* 159 */     this.LeftLeg.f_104203_ = Mth.m_14089_(limbSwing * 1.0F) * -1.0F * limbSwingAmount;
-/* 160 */     this.Head.f_104204_ = netHeadYaw / 57.295776F;
-/* 161 */     this.Head.f_104203_ = headPitch / 57.295776F;
-/* 162 */     this.LeftArm.f_104203_ = Mth.m_14089_(limbSwing * 0.6662F) * limbSwingAmount;
-/* 163 */     this.RightLeg.f_104203_ = Mth.m_14089_(limbSwing * 1.0F) * 1.0F * limbSwingAmount;
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.client.model;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.ltxprogrammer.turned.LatexMod;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\model\Modelhertx_model_s1.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/Modelhertx_model_s1.class */
+public class Modelhertx_model_s1<T extends Entity> extends EntityModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(LatexMod.MODID, "modelhertx_model_s_1"), "main");
+    public final ModelPart Head;
+    public final ModelPart Body;
+    public final ModelPart Tail;
+    public final ModelPart LeftArm;
+    public final ModelPart RightArm;
+    public final ModelPart LeftLeg;
+    public final ModelPart RightLeg;
+
+    public Modelhertx_model_s1(ModelPart root) {
+        this.Head = root.getChild("Head");
+        this.Body = root.getChild("Body");
+        this.Tail = root.getChild("Tail");
+        this.LeftArm = root.getChild("LeftArm");
+        this.RightArm = root.getChild("RightArm");
+        this.LeftLeg = root.getChild("LeftLeg");
+        this.RightLeg = root.getChild("RightLeg");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition Head = partdefinition.addOrReplaceChild("Head", CubeListBuilder.create().texOffs(24, 0).addBox(-3.0f, -3.7f, -5.0f, 6.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(56, 47).addBox(-2.0f, -4.8f, -3.0f, 4.0f, 1.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(18, 60).addBox(-2.0f, -8.8f, 2.0f, 4.0f, 4.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(42, 11).addBox(-2.0f, -4.8f, 3.0f, 4.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(14, 30).addBox(-3.0f, -4.8f, 2.0f, 6.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(24, 8).addBox(-3.0f, -2.8f, -2.9f, 6.0f, 1.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(24, 4).addBox(-1.0f, -2.55f, -3.15f, 2.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(36, 22).addBox(2.0f, -8.8f, 2.0f, 1.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(35, 30).addBox(-3.0f, -8.8f, 2.0f, 1.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(17, 22).addBox(-3.0f, -8.8f, -5.0f, 6.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(0, 53).addBox(2.0f, -7.8f, -5.0f, 1.0f, 3.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(25, 60).addBox(2.0f, -4.7f, -5.0f, 1.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(50, 30).addBox(-3.0f, -7.8f, -5.0f, 1.0f, 3.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(9, 60).addBox(-3.0f, -4.7f, -5.0f, 1.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(59, 28).addBox(-3.25f, -4.5125f, -4.625f, 1.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(58, 0).addBox(2.25f, -4.5125f, -4.625f, 1.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(20, 0).addBox(-2.0f, -7.8f, -5.0f, 4.0f, 3.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(28, 41).addBox(-2.0f, -4.7f, -5.0f, 4.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(54, 54).addBox(-1.0f, -4.5125f, -5.1875f, 2.0f, 2.0f, 6.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, 0.4f, -0.2f));
+        Head.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0f, -8.3f, -1.5f, 0.4276f, 0.0f, 0.0f));
+        Head.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(0, 33).addBox(-3.125f, -7.4142f, 9.2505f, 1.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(67, 16).addBox(-3.125f, -7.4142f, 4.2505f, 1.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(0, 0).addBox(2.125f, -7.4142f, 9.2505f, 1.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 63).addBox(2.125f, -7.4142f, 4.2505f, 1.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 1.125f, 0.4712f, 0.0f, 0.0f));
+        partdefinition.addOrReplaceChild("Body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -1.8f, -2.0f, 8.0f, 12.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(0, 16).addBox(-3.0f, -0.05f, -3.0f, 6.0f, 6.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(48, 60).addBox(-4.25f, 3.2f, -3.5f, 2.0f, 3.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(34, 60).addBox(2.25f, 3.2f, -3.5f, 2.0f, 3.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(0, 28).addBox(-1.0f, 3.2f, -3.5f, 2.0f, 3.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(28, 39).addBox(-2.5f, 3.2f, 2.25f, 5.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(14, 33).addBox(-2.5f, 0.95f, 2.25f, 5.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(24, 8).addBox(2.8125f, 0.95f, 1.8125f, 1.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(18, 16).addBox(-3.8125f, 0.95f, 1.8125f, 1.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(18, 16).addBox(-4.5f, 4.2f, -2.5f, 9.0f, 1.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(53, 62).addBox(-3.5f, -2.05f, -2.5f, 1.0f, 6.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(41, 60).addBox(2.5f, -2.05f, -2.5f, 1.0f, 6.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, 0.0f, 0.0f));
+        PartDefinition Tail = partdefinition.addOrReplaceChild("Tail", CubeListBuilder.create(), PartPose.offset(0.0f, 0.0f, 0.0f));
+        Tail.addOrReplaceChild("cube_r2", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, -0.3927f, 0.0f, 0.0f));
+        Tail.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(0, 28).addBox(-1.3f, 4.2f, 7.0f, 3.0f, 3.0f, 8.0f, new CubeDeformation(0.0f)).texOffs(22, 30).addBox(-1.3f, 5.2f, 15.0f, 3.0f, 2.0f, 7.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, -0.7854f, 0.0f, 0.0f));
+        partdefinition.addOrReplaceChild("LeftArm", CubeListBuilder.create().texOffs(0, 39).addBox(-3.0f, -3.8f, -2.0f, 4.0f, 8.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(54, 11).addBox(-3.0f, 4.2f, -2.0f, 4.0f, 6.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(45, 3).addBox(-3.25f, -4.05f, -2.5f, 4.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(16, 39).addBox(-3.0f, 10.2f, 1.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(12, 39).addBox(-3.0f, 10.2f, -2.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 39).addBox(-1.0f, 10.2f, -2.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(36, 27).addBox(-3.0f, 10.2f, -0.5f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offset(-5.0f, 2.0f, 0.0f));
+        partdefinition.addOrReplaceChild("RightArm", CubeListBuilder.create().texOffs(41, 17).addBox(-0.75f, -4.05f, -2.5f, 4.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(38, 38).addBox(-1.0f, -3.8f, -2.0f, 4.0f, 8.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(44, 50).addBox(-1.0f, 4.2f, -2.0f, 4.0f, 6.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(35, 35).addBox(0.0f, 10.2f, -2.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(22, 35).addBox(2.0f, 10.2f, -2.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(25, 34).addBox(2.0f, 10.2f, -0.5f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(4, 33).addBox(2.0f, 10.2f, 1.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offset(5.0f, 2.0f, 0.0f));
+        PartDefinition LeftLeg = partdefinition.addOrReplaceChild("LeftLeg", CubeListBuilder.create().texOffs(66, 8).addBox(-2.0f, -1.8f, -2.0f, 4.0f, 2.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(0, 16).addBox(-1.625f, -1.8f, 1.75f, 2.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(54, 40).addBox(-2.0f, 10.0f, -2.9102f, 4.0f, 2.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offset(-2.0f, 12.0f, 0.0f));
+        LeftLeg.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(67, 36).addBox(-2.0f, 4.3f, 3.0f, 4.0f, 6.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, -0.3927f, 0.0f, 0.0f));
+        LeftLeg.addOrReplaceChild("cube_r5", CubeListBuilder.create().texOffs(39, 26).addBox(-2.0f, 0.0f, -5.8f, 4.0f, 7.0f, 4.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, 0.7854f, 0.0f, 0.0f));
+        LeftLeg.addOrReplaceChild("cube_r6", CubeListBuilder.create().texOffs(28, 50).addBox(-2.0f, -0.6f, -2.2f, 4.0f, 6.0f, 4.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, -0.3927f, 0.0f, 0.0f));
+        PartDefinition RightLeg = partdefinition.addOrReplaceChild("RightLeg", CubeListBuilder.create().texOffs(64, 53).addBox(-2.0f, -1.8f, -2.0f, 4.0f, 2.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(54, 21).addBox(-2.0f, 10.0f, -2.9102f, 4.0f, 2.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offset(2.0f, 12.0f, 0.0f));
+        RightLeg.addOrReplaceChild("cube_r7", CubeListBuilder.create().texOffs(65, 65).addBox(-2.0f, 4.3f, 3.0f, 4.0f, 6.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, -0.3927f, 0.0f, 0.0f));
+        RightLeg.addOrReplaceChild("cube_r8", CubeListBuilder.create().texOffs(16, 39).addBox(-2.0f, 0.0f, -5.8f, 4.0f, 7.0f, 4.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, 0.7854f, 0.0f, 0.0f));
+        RightLeg.addOrReplaceChild("cube_r9", CubeListBuilder.create().texOffs(12, 50).addBox(-2.0f, -0.6f, -2.2f, 4.0f, 6.0f, 4.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 0.0f, -0.3927f, 0.0f, 0.0f));
+        return LayerDefinition.create(meshdefinition, 128, 128);
+    }
+
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        this.Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.Tail.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.LeftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.RightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.LeftLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.RightLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    }
+
+    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.RightArm.xRot = Mth.cos((limbSwing * 0.6662f) + 3.1415927f) * limbSwingAmount;
+        this.LeftLeg.xRot = Mth.cos(limbSwing * 1.0f) * -1.0f * limbSwingAmount;
+        this.Head.yRot = netHeadYaw / 57.295776f;
+        this.Head.xRot = headPitch / 57.295776f;
+        this.LeftArm.xRot = Mth.cos(limbSwing * 0.6662f) * limbSwingAmount;
+        this.RightLeg.xRot = Mth.cos(limbSwing * 1.0f) * 1.0f * limbSwingAmount;
+    }
+}

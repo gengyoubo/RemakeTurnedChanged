@@ -1,72 +1,43 @@
-/*    */ package net.ltxprogrammer.turned.client.model;
-/*    */ 
-/*    */ import com.mojang.blaze3d.vertex.PoseStack;
-/*    */ import com.mojang.blaze3d.vertex.VertexConsumer;
-/*    */ import net.minecraft.client.model.EntityModel;
-/*    */ import net.minecraft.client.model.geom.ModelLayerLocation;
-/*    */ import net.minecraft.client.model.geom.ModelPart;
-/*    */ import net.minecraft.client.model.geom.PartPose;
-/*    */ import net.minecraft.client.model.geom.builders.CubeDeformation;
-/*    */ import net.minecraft.client.model.geom.builders.CubeListBuilder;
-/*    */ import net.minecraft.client.model.geom.builders.LayerDefinition;
-/*    */ import net.minecraft.client.model.geom.builders.MeshDefinition;
-/*    */ import net.minecraft.client.model.geom.builders.PartDefinition;
-/*    */ import net.minecraft.resources.ResourceLocation;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ public class ModelScientific_Drop_Pod<T extends Entity>
-/*    */   extends EntityModel<T>
-/*    */ {
-/* 24 */   public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("turned", "model_scientific_drop_pod"), "main");
-/*    */   
-/*    */   public final ModelPart group;
-/*    */   
-/*    */   public ModelScientific_Drop_Pod(ModelPart root) {
-/* 29 */     this.group = root.m_171324_("group");
-/*    */   }
-/*    */   
-/*    */   public static LayerDefinition createBodyLayer() {
-/* 33 */     MeshDefinition meshdefinition = new MeshDefinition();
-/* 34 */     PartDefinition partdefinition = meshdefinition.m_171576_();
-/* 35 */     PartDefinition group = partdefinition.m_171599_("group", 
-/* 36 */         CubeListBuilder.m_171558_().m_171514_(0, 0).m_171488_(-1.0F, -22.0F, -17.0F, 18.0F, 30.0F, 18.0F, new CubeDeformation(0.0F)).m_171514_(76, 93)
-/* 37 */         .m_171488_(0.0F, -22.0F, -0.25F, 16.0F, 29.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(0, 74)
-/* 38 */         .m_171488_(-1.5F, -29.0F, -17.5F, 19.0F, 7.0F, 19.0F, new CubeDeformation(0.0F)).m_171514_(72, 0)
-/* 39 */         .m_171488_(-1.5F, 7.0F, -17.5F, 19.0F, 7.0F, 19.0F, new CubeDeformation(0.0F)), 
-/* 40 */         PartPose.m_171419_(-8.0F, 16.0F, 8.0F));
-/* 41 */     PartDefinition Parachadute = group.m_171599_("Parachadute", 
-/* 42 */         CubeListBuilder.m_171558_().m_171514_(69, 29).m_171488_(-12.5F, -45.0F, -9.5F, 25.0F, 5.0F, 19.0F, new CubeDeformation(0.0F)), 
-/* 43 */         PartPose.m_171419_(8.0F, -4.5F, -8.0F));
-/* 44 */     PartDefinition bone4 = Parachadute.m_171599_("bone4", 
-/* 45 */         CubeListBuilder.m_171558_().m_171514_(69, 69).m_171488_(9.71F, -13.9898F, -10.0F, 25.0F, 5.0F, 19.0F, new CubeDeformation(0.0F)), 
-/* 46 */         PartPose.m_171423_(-0.5F, -34.0F, 0.5F, 0.0F, 0.0F, 0.2618F));
-/* 47 */     PartDefinition bone3 = Parachadute.m_171599_("bone3", 
-/* 48 */         CubeListBuilder.m_171558_().m_171514_(0, 48).m_171488_(-34.71F, -13.9898F, -10.0F, 25.0F, 5.0F, 19.0F, new CubeDeformation(0.0F)), 
-/* 49 */         PartPose.m_171423_(0.5F, -34.0F, 0.5F, 0.0F, 0.0F, -0.2618F));
-/* 50 */     PartDefinition bone = Parachadute.m_171599_("bone", 
-/* 51 */         CubeListBuilder.m_171558_().m_171514_(12, 100).m_171488_(-10.0F, -31.0F, 4.0F, 1.0F, 25.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 52 */         PartPose.m_171423_(2.5F, -19.0F, -6.5F, 0.0F, 0.0F, -0.6545F));
-/* 53 */     PartDefinition bone2 = Parachadute.m_171599_("bone2", 
-/* 54 */         CubeListBuilder.m_171558_().m_171514_(0, 100).m_171488_(9.0F, -31.0F, 4.0F, 1.0F, 25.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 55 */         PartPose.m_171423_(-2.5F, -19.0F, -6.5F, 0.0F, 0.0F, 0.6545F));
-/* 56 */     return LayerDefinition.m_171565_(meshdefinition, 160, 160);
-/*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void m_7695_(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-/* 62 */     this.group.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/*    */   }
-/*    */   
-/*    */   public void m_6973_(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {}
-/*    */ }
+package net.ltxprogrammer.turned.client.model;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.ltxprogrammer.turned.LatexMod;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\model\ModelScientific_Drop_Pod.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/ModelScientific_Drop_Pod.class */
+public class ModelScientific_Drop_Pod<T extends Entity> extends EntityModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(LatexMod.MODID, "model_scientific_drop_pod"), "main");
+    public final ModelPart group;
+
+    public ModelScientific_Drop_Pod(ModelPart root) {
+        this.group = root.getChild("group");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition Parachadute = meshdefinition.getRoot().addOrReplaceChild("group", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0f, -22.0f, -17.0f, 18.0f, 30.0f, 18.0f, new CubeDeformation(0.0f)).texOffs(76, 93).addBox(0.0f, -22.0f, -0.25f, 16.0f, 29.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(0, 74).addBox(-1.5f, -29.0f, -17.5f, 19.0f, 7.0f, 19.0f, new CubeDeformation(0.0f)).texOffs(72, 0).addBox(-1.5f, 7.0f, -17.5f, 19.0f, 7.0f, 19.0f, new CubeDeformation(0.0f)), PartPose.offset(-8.0f, 16.0f, 8.0f)).addOrReplaceChild("Parachadute", CubeListBuilder.create().texOffs(69, 29).addBox(-12.5f, -45.0f, -9.5f, 25.0f, 5.0f, 19.0f, new CubeDeformation(0.0f)), PartPose.offset(8.0f, -4.5f, -8.0f));
+        Parachadute.addOrReplaceChild("bone4", CubeListBuilder.create().texOffs(69, 69).addBox(9.71f, -13.9898f, -10.0f, 25.0f, 5.0f, 19.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.5f, -34.0f, 0.5f, 0.0f, 0.0f, 0.2618f));
+        Parachadute.addOrReplaceChild("bone3", CubeListBuilder.create().texOffs(0, 48).addBox(-34.71f, -13.9898f, -10.0f, 25.0f, 5.0f, 19.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.5f, -34.0f, 0.5f, 0.0f, 0.0f, -0.2618f));
+        Parachadute.addOrReplaceChild("bone", CubeListBuilder.create().texOffs(12, 100).addBox(-10.0f, -31.0f, 4.0f, 1.0f, 25.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(2.5f, -19.0f, -6.5f, 0.0f, 0.0f, -0.6545f));
+        Parachadute.addOrReplaceChild("bone2", CubeListBuilder.create().texOffs(0, 100).addBox(9.0f, -31.0f, 4.0f, 1.0f, 25.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-2.5f, -19.0f, -6.5f, 0.0f, 0.0f, 0.6545f));
+        return LayerDefinition.create(meshdefinition, 160, 160);
+    }
+
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        this.group.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    }
+
+    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    }
+}

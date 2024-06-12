@@ -1,121 +1,121 @@
-/*     */ package net.ltxprogrammer.turned.procedures;
-/*     */ 
-/*     */ import net.ltxprogrammer.changed.init.ChangedBlocks;
-/*     */ import net.ltxprogrammer.changed.init.ChangedSounds;
-/*     */ import net.ltxprogrammer.turned.entity.AHVHertxEntity;
-/*     */ import net.ltxprogrammer.turned.entity.BeeHertxEntity;
-/*     */ import net.ltxprogrammer.turned.entity.HertxEntity;
-/*     */ import net.ltxprogrammer.turned.entity.HertxvarFBEntity;
-/*     */ import net.ltxprogrammer.turned.entity.HertxvarFEntity;
-/*     */ import net.ltxprogrammer.turned.entity.HertxvarSolEntity;
-/*     */ import net.ltxprogrammer.turned.entity.NXTHertxEntity;
-/*     */ import net.ltxprogrammer.turned.init.LatexModEntities;
-/*     */ import net.ltxprogrammer.turned.init.LatexModItems;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.server.level.ServerLevel;
-/*     */ import net.minecraft.sounds.SoundSource;
-/*     */ import net.minecraft.world.Container;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.Mob;
-/*     */ import net.minecraft.world.entity.MobSpawnType;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.level.ItemLike;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.ServerLevelAccessor;
-/*     */ import net.minecraft.world.level.block.Blocks;
-/*     */ 
-/*     */ public class HertxvisorRightClickedOnBlockProcedure {
-/*     */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/*  32 */     if (entity == null)
-/*     */       return; 
-/*  34 */     if (world.m_8055_(new BlockPos(x, y, z)).m_60734_() == ChangedBlocks.DARK_LATEX_BLOCK.get()) {
-/*  35 */       if (entity instanceof Player) { Player _player = (Player)entity;
-/*  36 */         ItemStack _stktoremove = new ItemStack((ItemLike)LatexModItems.HERTXVISOR.get());
-/*  37 */         _player.m_150109_().m_36022_(p -> (_stktoremove.m_41720_() == p.m_41720_()), 1, (Container)_player.f_36095_
-/*  38 */             .m_39730_()); }
-/*     */       
-/*  40 */       if (world instanceof Level) { Level _level = (Level)world;
-/*  41 */         if (!_level.m_5776_()) {
-/*  42 */           _level.m_5594_(null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0F, 1.0F);
-/*     */         } else {
-/*     */           
-/*  45 */           _level.m_7785_(x, y, z, ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0F, 1.0F, false);
-/*     */         }  }
-/*     */ 
-/*     */       
-/*  49 */       world.m_7731_(new BlockPos(x, y, z), Blocks.f_50016_.m_49966_(), 3);
-/*  50 */       if (Math.random() < 0.01D)
-/*  51 */       { if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  52 */           AHVHertxEntity aHVHertxEntity = new AHVHertxEntity((EntityType)LatexModEntities.AHV_HERTX.get(), (Level)_level);
-/*  53 */           aHVHertxEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/*  54 */           if (aHVHertxEntity instanceof Mob) { Mob _mobToSpawn = (Mob)aHVHertxEntity;
-/*  55 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(aHVHertxEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  57 */           world.m_7967_((Entity)aHVHertxEntity); }
-/*     */          }
-/*  59 */       else if (Math.random() < 0.01D)
-/*  60 */       { if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  61 */           NXTHertxEntity nXTHertxEntity = new NXTHertxEntity((EntityType)LatexModEntities.NXT_HERTX.get(), (Level)_level);
-/*  62 */           nXTHertxEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/*  63 */           if (nXTHertxEntity instanceof Mob) { Mob _mobToSpawn = (Mob)nXTHertxEntity;
-/*  64 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(nXTHertxEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  66 */           world.m_7967_((Entity)nXTHertxEntity); }
-/*     */          }
-/*  68 */       else if (Math.random() < 0.025D)
-/*  69 */       { if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  70 */           BeeHertxEntity beeHertxEntity = new BeeHertxEntity((EntityType)LatexModEntities.BEE_HERTX.get(), (Level)_level);
-/*  71 */           beeHertxEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/*  72 */           if (beeHertxEntity instanceof Mob) { Mob _mobToSpawn = (Mob)beeHertxEntity;
-/*  73 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(beeHertxEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  75 */           world.m_7967_((Entity)beeHertxEntity); }
-/*     */          }
-/*  77 */       else if (Math.random() < 0.0025D)
-/*  78 */       { if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  79 */           HertxvarSolEntity hertxvarSolEntity = new HertxvarSolEntity((EntityType)LatexModEntities.HERTXVAR_SOL.get(), (Level)_level);
-/*  80 */           hertxvarSolEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/*  81 */           if (hertxvarSolEntity instanceof Mob) { Mob _mobToSpawn = (Mob)hertxvarSolEntity;
-/*  82 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(hertxvarSolEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  84 */           world.m_7967_((Entity)hertxvarSolEntity); }
-/*     */          }
-/*  86 */       else if (Math.random() < 0.05D)
-/*  87 */       { if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  88 */           HertxvarFBEntity hertxvarFBEntity = new HertxvarFBEntity((EntityType)LatexModEntities.HERTXVAR_FB.get(), (Level)_level);
-/*  89 */           hertxvarFBEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/*  90 */           if (hertxvarFBEntity instanceof Mob) { Mob _mobToSpawn = (Mob)hertxvarFBEntity;
-/*  91 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(hertxvarFBEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  93 */           world.m_7967_((Entity)hertxvarFBEntity); }
-/*     */          }
-/*  95 */       else if (Math.random() < 0.1D)
-/*  96 */       { if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  97 */           HertxvarFEntity hertxvarFEntity = new HertxvarFEntity((EntityType)LatexModEntities.HERTXVAR_F.get(), (Level)_level);
-/*  98 */           hertxvarFEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/*  99 */           if (hertxvarFEntity instanceof Mob) { Mob _mobToSpawn = (Mob)hertxvarFEntity;
-/* 100 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(hertxvarFEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 102 */           world.m_7967_((Entity)hertxvarFEntity); }
-/*     */         
-/*     */          }
-/* 105 */       else if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 106 */         HertxEntity hertxEntity = new HertxEntity((EntityType)LatexModEntities.HERTX.get(), (Level)_level);
-/* 107 */         hertxEntity.m_7678_(x, y, z, world.m_5822_().nextFloat() * 360.0F, 0.0F);
-/* 108 */         if (hertxEntity instanceof Mob) { Mob _mobToSpawn = (Mob)hertxEntity;
-/* 109 */           _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(hertxEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */         
-/* 111 */         world.m_7967_((Entity)hertxEntity); }
-/*     */     
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.changed.init.ChangedBlocks;
+import net.ltxprogrammer.changed.init.ChangedSounds;
+import net.ltxprogrammer.turned.entity.AHVHertxEntity;
+import net.ltxprogrammer.turned.entity.BeeHertxEntity;
+import net.ltxprogrammer.turned.entity.HertxEntity;
+import net.ltxprogrammer.turned.entity.HertxvarFBEntity;
+import net.ltxprogrammer.turned.entity.HertxvarFEntity;
+import net.ltxprogrammer.turned.entity.HertxvarSolEntity;
+import net.ltxprogrammer.turned.entity.NXTHertxEntity;
+import net.ltxprogrammer.turned.init.LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\HertxvisorRightClickedOnBlockProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/HertxvisorRightClickedOnBlockProcedure.class */
+public class HertxvisorRightClickedOnBlockProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null && world.getBlockState(new BlockPos(x, y, z)).getBlock() == ChangedBlocks.DARK_LATEX_BLOCK.get()) {
+            if (entity instanceof Player) {
+                Player _player = (Player) entity;
+                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.HERTXVISOR.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> {
+                    return _stktoremove.getItem() == p.getItem();
+                }, 1, _player.inventoryMenu.getCraftSlots());
+            }
+            if (world instanceof Level) {
+                Level _level = (Level) world;
+                if (!_level.isClientSide()) {
+                    _level.playSound((Player) null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 1.0f);
+                } else {
+                    _level.playLocalSound(x, y, z, ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                }
+            }
+            world.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
+            if (Math.random() < 0.01d) {
+                if (world instanceof ServerLevel) {
+                    ServerLevel _level2 = (ServerLevel) world;
+                    Entity entityToSpawn = new AHVHertxEntity((EntityType<AHVHertxEntity>) ((EntityType) LatexModEntities.AHV_HERTX.get()), (Level) _level2);
+                    entityToSpawn.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                    if (entityToSpawn instanceof Mob) {
+                        ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                    }
+                    world.addFreshEntity(entityToSpawn);
+                }
+            } else if (Math.random() < 0.01d) {
+                if (world instanceof ServerLevel) {
+                    ServerLevel _level3 = (ServerLevel) world;
+                    Entity entityToSpawn2 = new NXTHertxEntity((EntityType<NXTHertxEntity>) ((EntityType) LatexModEntities.NXT_HERTX.get()), (Level) _level3);
+                    entityToSpawn2.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                    if (entityToSpawn2 instanceof Mob) {
+                        ((Mob) entityToSpawn2).finalizeSpawn(_level3, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                    }
+                    world.addFreshEntity(entityToSpawn2);
+                }
+            } else if (Math.random() < 0.025d) {
+                if (world instanceof ServerLevel) {
+                    ServerLevel _level4 = (ServerLevel) world;
+                    Entity entityToSpawn3 = new BeeHertxEntity((EntityType<BeeHertxEntity>) ((EntityType) LatexModEntities.BEE_HERTX.get()), (Level) _level4);
+                    entityToSpawn3.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                    if (entityToSpawn3 instanceof Mob) {
+                        ((Mob) entityToSpawn3).finalizeSpawn(_level4, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                    }
+                    world.addFreshEntity(entityToSpawn3);
+                }
+            } else if (Math.random() < 0.0025d) {
+                if (world instanceof ServerLevel) {
+                    ServerLevel _level5 = (ServerLevel) world;
+                    Entity entityToSpawn4 = new HertxvarSolEntity((EntityType<HertxvarSolEntity>) ((EntityType) LatexModEntities.HERTXVAR_SOL.get()), (Level) _level5);
+                    entityToSpawn4.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                    if (entityToSpawn4 instanceof Mob) {
+                        ((Mob) entityToSpawn4).finalizeSpawn(_level5, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                    }
+                    world.addFreshEntity(entityToSpawn4);
+                }
+            } else if (Math.random() < 0.05d) {
+                if (world instanceof ServerLevel) {
+                    ServerLevel _level6 = (ServerLevel) world;
+                    Entity entityToSpawn5 = new HertxvarFBEntity((EntityType<HertxvarFBEntity>) ((EntityType) LatexModEntities.HERTXVAR_FB.get()), (Level) _level6);
+                    entityToSpawn5.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                    if (entityToSpawn5 instanceof Mob) {
+                        ((Mob) entityToSpawn5).finalizeSpawn(_level6, world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                    }
+                    world.addFreshEntity(entityToSpawn5);
+                }
+            } else if (Math.random() < 0.1d) {
+                if (world instanceof ServerLevel) {
+                    ServerLevel _level7 = (ServerLevel) world;
+                    Entity entityToSpawn6 = new HertxvarFEntity((EntityType<HertxvarFEntity>) ((EntityType) LatexModEntities.HERTXVAR_F.get()), (Level) _level7);
+                    entityToSpawn6.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                    if (entityToSpawn6 instanceof Mob) {
+                        ((Mob) entityToSpawn6).finalizeSpawn(_level7, world.getCurrentDifficultyAt(entityToSpawn6.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                    }
+                    world.addFreshEntity(entityToSpawn6);
+                }
+            } else if (world instanceof ServerLevel) {
+                ServerLevel _level8 = (ServerLevel) world;
+                Entity entityToSpawn7 = new HertxEntity((EntityType<HertxEntity>) ((EntityType) LatexModEntities.HERTX.get()), (Level) _level8);
+                entityToSpawn7.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
+                if (entityToSpawn7 instanceof Mob) {
+                    ((Mob) entityToSpawn7).finalizeSpawn(_level8, world.getCurrentDifficultyAt(entityToSpawn7.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                }
+                world.addFreshEntity(entityToSpawn7);
+            }
+        }
+    }
+}

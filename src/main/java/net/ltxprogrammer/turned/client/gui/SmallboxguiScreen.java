@@ -1,89 +1,81 @@
-/*    */ package net.ltxprogrammer.turned.client.gui;
-/*    */ 
-/*    */ import com.mojang.blaze3d.systems.RenderSystem;
-/*    */ import com.mojang.blaze3d.vertex.PoseStack;
-/*    */ import java.util.HashMap;
-/*    */ import net.ltxprogrammer.turned.world.inventory.SmallboxguiMenu;
-/*    */ import net.minecraft.client.Minecraft;
-/*    */ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-/*    */ import net.minecraft.network.chat.Component;
-/*    */ import net.minecraft.resources.ResourceLocation;
-/*    */ import net.minecraft.world.entity.player.Inventory;
-/*    */ import net.minecraft.world.entity.player.Player;
-/*    */ import net.minecraft.world.inventory.AbstractContainerMenu;
-/*    */ import net.minecraft.world.level.Level;
-/*    */ 
-/*    */ public class SmallboxguiScreen
-/*    */   extends AbstractContainerScreen<SmallboxguiMenu>
-/*    */ {
-/* 19 */   private static final HashMap<String, Object> guistate = SmallboxguiMenu.guistate;
-/*    */   
-/*    */   private final Level world;
-/*    */   private final int x;
-/*    */   
-/*    */   public SmallboxguiScreen(SmallboxguiMenu container, Inventory inventory, Component text) {
-/* 25 */     super((AbstractContainerMenu)container, inventory, text);
-/* 26 */     this.world = container.world;
-/* 27 */     this.x = container.x;
-/* 28 */     this.y = container.y;
-/* 29 */     this.z = container.z;
-/* 30 */     this.entity = container.entity;
-/* 31 */     this.f_97726_ = 176;
-/* 32 */     this.f_97727_ = 166;
-/*    */   }
-/*    */   private final int y; private final int z; private final Player entity;
-/* 35 */   private static final ResourceLocation texture = new ResourceLocation("turned:textures/screens/smallboxgui.png");
-/*    */ 
-/*    */   
-/*    */   public void m_6305_(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
-/* 39 */     m_7333_(ms);
-/* 40 */     super.m_6305_(ms, mouseX, mouseY, partialTicks);
-/* 41 */     m_7025_(ms, mouseX, mouseY);
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   protected void m_7286_(PoseStack ms, float partialTicks, int gx, int gy) {
-/* 46 */     RenderSystem.m_157429_(1.0F, 1.0F, 1.0F, 1.0F);
-/* 47 */     RenderSystem.m_69478_();
-/* 48 */     RenderSystem.m_69453_();
-/* 49 */     RenderSystem.m_157456_(0, texture);
-/* 50 */     m_93133_(ms, this.f_97735_, this.f_97736_, 0.0F, 0.0F, this.f_97726_, this.f_97727_, this.f_97726_, this.f_97727_);
-/* 51 */     RenderSystem.m_69461_();
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public boolean m_7933_(int key, int b, int c) {
-/* 56 */     if (key == 256) {
-/* 57 */       this.f_96541_.f_91074_.m_6915_();
-/* 58 */       return true;
-/*    */     } 
-/* 60 */     return super.m_7933_(key, b, c);
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public void m_181908_() {
-/* 65 */     super.m_181908_();
-/*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   protected void m_7027_(PoseStack poseStack, int mouseX, int mouseY) {}
-/*    */ 
-/*    */   
-/*    */   public void m_7379_() {
-/* 74 */     super.m_7379_();
-/* 75 */     (Minecraft.m_91087_()).f_91068_.m_90926_(false);
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public void m_7856_() {
-/* 80 */     super.m_7856_();
-/* 81 */     this.f_96541_.f_91068_.m_90926_(true);
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.client.gui;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import java.util.HashMap;
+import net.ltxprogrammer.turned.world.inventory.SmallboxguiMenu;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\gui\SmallboxguiScreen.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/gui/SmallboxguiScreen.class */
+public class SmallboxguiScreen extends AbstractContainerScreen<SmallboxguiMenu> {
+    private final Level world;
+
+    /* renamed from: x */
+    private final int f9x;
+
+    /* renamed from: y */
+    private final int f10y;
+
+    /* renamed from: z */
+    private final int f11z;
+    private final Player entity;
+    private static final HashMap<String, Object> guistate = SmallboxguiMenu.guistate;
+    private static final ResourceLocation texture = new ResourceLocation("turned:textures/screens/smallboxgui.png");
+
+    public SmallboxguiScreen(SmallboxguiMenu container, Inventory inventory, Component text) {
+        super(container, inventory, text);
+        this.world = container.world;
+        this.f9x = container.f24x;
+        this.f10y = container.f25y;
+        this.f11z = container.f26z;
+        this.entity = container.entity;
+        this.imageWidth = 176;
+        this.imageHeight = 166;
+    }
+
+    public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(ms);
+        render(ms, mouseX, mouseY, partialTicks);
+        renderTooltip(ms, mouseX, mouseY);
+    }
+
+    protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.setShaderTexture(0, texture);
+        blit(ms, this.leftPos, this.topPos, 0.0f, 0.0f, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
+        RenderSystem.disableBlend();
+    }
+
+    public boolean keyPressed(int key, int b, int c) {
+        if (key != 256) {
+            return keyPressed(key, b, c);
+        }
+        this.minecraft.player.closeContainer();
+        return true;
+    }
+
+    public void containerTick() {
+        containerTick();
+    }
+
+    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
+    }
+
+    public void onClose() {
+        onClose();
+        Minecraft.getInstance().keyboardHandler.setSendRepeatsToGui(false);
+    }
+
+    public void init() {
+        init();
+        this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
+    }
+}

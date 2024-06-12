@@ -1,16 +1,11 @@
-/*   */ package net.ltxprogrammer.turned.procedures;
-/*   */ 
-/*   */ import net.ltxprogrammer.turned.init.LatexModGameRules;
-/*   */ import net.minecraft.world.level.LevelAccessor;
-/*   */ 
-/*   */ public class NoiseStalkerDetectGameruleProcedure {
-/*   */   public static boolean execute(LevelAccessor world) {
-/* 8 */     return world.m_6106_().m_5470_().m_46207_(LatexModGameRules.DARKLATEXBREAKBLOCKS);
-/*   */   }
-/*   */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.turned.init.LatexModGameRules;
+import net.minecraft.world.level.LevelAccessor;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\NoiseStalkerDetectGameruleProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/NoiseStalkerDetectGameruleProcedure.class */
+public class NoiseStalkerDetectGameruleProcedure {
+    public static boolean execute(LevelAccessor world) {
+        return world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXBREAKBLOCKS);
+    }
+}

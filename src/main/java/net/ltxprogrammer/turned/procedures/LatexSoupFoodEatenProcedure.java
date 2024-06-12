@@ -1,22 +1,16 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ import net.ltxprogrammer.turned.init.LatexModMobEffects;
-/*    */ import net.minecraft.world.effect.MobEffect;
-/*    */ import net.minecraft.world.effect.MobEffectInstance;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.LivingEntity;
-/*    */ 
-/*    */ public class LatexSoupFoodEatenProcedure {
-/*    */   public static void execute(Entity entity) {
-/* 10 */     if (entity == null)
-/*    */       return; 
-/* 12 */     if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/* 13 */       _entity.m_7292_(new MobEffectInstance((MobEffect)LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 120, 1)); }
-/*    */   
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.turned.init.LatexModMobEffects;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\LatexSoupFoodEatenProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/LatexSoupFoodEatenProcedure.class */
+public class LatexSoupFoodEatenProcedure {
+    public static void execute(Entity entity) {
+        if (entity != null && (entity instanceof LivingEntity)) {
+            ((LivingEntity) entity).addEffect(new MobEffectInstance((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 120, 1));
+        }
+    }
+}

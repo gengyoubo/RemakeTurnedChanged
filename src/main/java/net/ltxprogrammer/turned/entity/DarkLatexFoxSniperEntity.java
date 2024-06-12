@@ -1,180 +1,151 @@
-/*     */ package net.ltxprogrammer.turned.entity;
-/*     */ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
-/*     */ import net.ltxprogrammer.changed.init.ChangedItems;
-/*     */ import net.ltxprogrammer.changed.init.ChangedParticles;
-/*     */ import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-/*     */ import net.ltxprogrammer.turned.init.LatexModEntities;
-/*     */ import net.ltxprogrammer.turned.procedures.DarkLatexFoxThisEntityKillsAnotherOneProcedure;
-/*     */ import net.minecraft.core.BlockPos;
-/*     */ import net.minecraft.network.protocol.Packet;
-/*     */ import net.minecraft.resources.ResourceLocation;
-/*     */ import net.minecraft.sounds.SoundEvent;
-/*     */ import net.minecraft.world.Difficulty;
-/*     */ import net.minecraft.world.damagesource.DamageSource;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.LivingEntity;
-/*     */ import net.minecraft.world.entity.Mob;
-/*     */ import net.minecraft.world.entity.MobType;
-/*     */ import net.minecraft.world.entity.PathfinderMob;
-/*     */ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-/*     */ import net.minecraft.world.entity.ai.attributes.Attributes;
-/*     */ import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.FloatGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.Goal;
-/*     */ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-/*     */ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-/*     */ import net.minecraft.world.entity.animal.IronGolem;
-/*     */ import net.minecraft.world.entity.monster.Evoker;
-/*     */ import net.minecraft.world.entity.monster.Guardian;
-/*     */ import net.minecraft.world.entity.monster.Pillager;
-/*     */ import net.minecraft.world.entity.monster.RangedAttackMob;
-/*     */ import net.minecraft.world.entity.monster.Vindicator;
-/*     */ import net.minecraft.world.entity.monster.Witch;
-/*     */ import net.minecraft.world.entity.monster.Zombie;
-/*     */ import net.minecraft.world.entity.monster.ZombieVillager;
-/*     */ import net.minecraft.world.entity.monster.piglin.Piglin;
-/*     */ import net.minecraft.world.entity.monster.piglin.PiglinBrute;
-/*     */ import net.minecraft.world.entity.npc.Villager;
-/*     */ import net.minecraft.world.entity.npc.WanderingTrader;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.block.state.BlockState;
-/*     */ import net.minecraftforge.network.NetworkHooks;
-/*     */ import net.minecraftforge.network.PlayMessages;
-/*     */ import net.minecraftforge.registries.ForgeRegistries;
-/*     */ 
-/*     */ public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements RangedAttackMob {
-/*     */   public DarkLatexFoxSniperEntity(PlayMessages.SpawnEntity packet, Level world) {
-/*  55 */     this((EntityType<DarkLatexFoxSniperEntity>)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
-/*     */   }
-/*     */   
-/*     */   public DarkLatexFoxSniperEntity(EntityType<DarkLatexFoxSniperEntity> type, Level world) {
-/*  59 */     super(type, world);
-/*  60 */     this.f_21364_ = 6;
-/*  61 */     m_21557_(false);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public Packet<?> m_5654_() {
-/*  66 */     return NetworkHooks.getEntitySpawningPacket((Entity)this);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   protected void m_8099_() {
-/*  71 */     super.m_8099_();
-/*  72 */     this.f_21345_.m_25352_(1, (Goal)new MeleeAttackGoal((PathfinderMob)this, 1.1D, false)
-/*     */         {
-/*     */           protected double m_6639_(LivingEntity entity) {
-/*  75 */             return 4.0D + (entity.m_20205_() * entity.m_20205_());
-/*     */           }
-/*     */         });
-/*  78 */     this.f_21346_.m_25352_(2, (Goal)new NearestAttackableTargetGoal((Mob)this, LivingEntity.class, 10, false, true, TargetCheck.IS_SLIMELING));
-/*  79 */     this.f_21346_.m_25352_(3, (Goal)new NearestAttackableTargetGoal((Mob)this, LivingEntity.class, 10, false, true, TargetCheck.IS_GOOD));
-/*  80 */     this.f_21346_.m_25352_(4, (Goal)new NearestAttackableTargetGoal((Mob)this, LivingEntity.class, 10, false, true, TargetCheck.IS_EVIL));
-/*  81 */     this.f_21346_.m_25352_(5, (Goal)new NearestAttackableTargetGoal((Mob)this, Player.class, true, false));
-/*  82 */     this.f_21346_.m_25352_(6, (Goal)new NearestAttackableTargetGoal((Mob)this, Villager.class, true, false));
-/*  83 */     this.f_21346_.m_25352_(7, (Goal)new NearestAttackableTargetGoal((Mob)this, WanderingTrader.class, true, false));
-/*  84 */     this.f_21346_.m_25352_(8, (Goal)new NearestAttackableTargetGoal((Mob)this, IronGolem.class, true, false));
-/*  85 */     this.f_21346_.m_25352_(9, (Goal)new NearestAttackableTargetGoal((Mob)this, Witch.class, true, false));
-/*  86 */     this.f_21346_.m_25352_(10, (Goal)new NearestAttackableTargetGoal((Mob)this, Pillager.class, true, false));
-/*  87 */     this.f_21346_.m_25352_(11, (Goal)new NearestAttackableTargetGoal((Mob)this, Vindicator.class, true, false));
-/*  88 */     this.f_21346_.m_25352_(12, (Goal)new NearestAttackableTargetGoal((Mob)this, Evoker.class, true, false));
-/*  89 */     this.f_21346_.m_25352_(13, (Goal)new NearestAttackableTargetGoal((Mob)this, Guardian.class, true, false));
-/*  90 */     this.f_21346_.m_25352_(14, (Goal)new NearestAttackableTargetGoal((Mob)this, Zombie.class, true, false));
-/*  91 */     this.f_21346_.m_25352_(15, (Goal)new NearestAttackableTargetGoal((Mob)this, ZombieVillager.class, true, false));
-/*  92 */     this.f_21346_.m_25352_(16, (Goal)new NearestAttackableTargetGoal((Mob)this, Piglin.class, true, false));
-/*  93 */     this.f_21346_.m_25352_(17, (Goal)new NearestAttackableTargetGoal((Mob)this, PiglinBrute.class, true, false));
-/*  94 */     this.f_21345_.m_25352_(18, (Goal)new BreakDoorGoal((Mob)this, e -> true));
-/*  95 */     this.f_21345_.m_25352_(19, (Goal)new RandomStrollGoal((PathfinderMob)this, 0.8D));
-/*  96 */     this.f_21346_.m_25352_(20, (Goal)(new HurtByTargetGoal((PathfinderMob)this, new Class[0])).m_26044_(new Class[0]));
-/*  97 */     this.f_21345_.m_25352_(21, (Goal)new RandomLookAroundGoal((Mob)this));
-/*  98 */     this.f_21345_.m_25352_(22, (Goal)new FloatGoal((Mob)this));
-/*  99 */     this.f_21345_.m_25352_(1, (Goal)new RangedAttackGoal(this, 1.25D, 20, 10.0F)
-/*     */         {
-/*     */           public boolean m_8045_() {
-/* 102 */             return m_8036_();
-/*     */           }
-/*     */         });
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public MobType m_6336_() {
-/* 109 */     return MobType.f_21642_;
-/*     */   }
-/*     */   
-/*     */   protected void m_7472_(DamageSource source, int looting, boolean recentlyHitIn) {
-/* 113 */     super.m_7472_(source, looting, recentlyHitIn);
-/* 114 */     m_19983_(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public void m_7355_(BlockPos pos, BlockState blockIn) {
-/* 119 */     m_5496_((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public SoundEvent m_7975_(DamageSource ds) {
-/* 124 */     return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public SoundEvent m_5592_() {
-/* 129 */     return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean m_6469_(DamageSource source, float amount) {
-/* 134 */     if (source == DamageSource.f_19315_)
-/* 135 */       return false; 
-/* 136 */     if (source == DamageSource.f_19314_)
-/* 137 */       return false; 
-/* 138 */     if (source == DamageSource.f_19320_)
-/* 139 */       return false; 
-/* 140 */     if (source.m_19385_().equals("witherSkull"))
-/* 141 */       return false; 
-/* 142 */     return super.m_6469_(source, amount);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public void m_5993_(Entity entity, int score, DamageSource damageSource) {
-/* 147 */     super.m_5993_(entity, score, damageSource);
-/* 148 */     DarkLatexFoxThisEntityKillsAnotherOneProcedure.execute((LevelAccessor)this.f_19853_, m_20185_(), m_20186_(), m_20189_(), entity);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public void m_6504_(LivingEntity target, float flval) {
-/* 153 */     LatexDartRifleEntity.shoot((LivingEntity)this, target);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public static void init() {}
-/*     */   
-/*     */   public static AttributeSupplier.Builder createAttributes() {
-/* 160 */     AttributeSupplier.Builder builder = Mob.m_21552_();
-/* 161 */     builder = builder.m_22268_(Attributes.f_22279_, 0.4D);
-/* 162 */     builder = builder.m_22268_(Attributes.f_22276_, 18.0D);
-/* 163 */     builder = builder.m_22268_(Attributes.f_22284_, 0.0D);
-/* 164 */     builder = builder.m_22268_(Attributes.f_22281_, 4.0D);
-/* 165 */     builder = builder.m_22268_(Attributes.f_22277_, 16.0D);
-/* 166 */     builder = builder.m_22268_(Attributes.f_22278_, 0.3D);
-/* 167 */     return builder;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public ChangedParticles.Color3 getDripColor() {
-/* 172 */     return ChangedParticles.Color3.DARK;
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.entity;
 
+import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
+import net.ltxprogrammer.changed.init.ChangedItems;
+import net.ltxprogrammer.changed.init.ChangedParticles;
+import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.turned.init.LatexModEntities;
+import net.ltxprogrammer.turned.procedures.DarkLatexFoxThisEntityKillsAnotherOneProcedure;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.Evoker;
+import net.minecraft.world.entity.monster.Guardian;
+import net.minecraft.world.entity.monster.Pillager;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.monster.Vindicator;
+import net.minecraft.world.entity.monster.Witch;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.WanderingTrader;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
+import net.minecraftforge.registries.ForgeRegistries;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\entity\DarkLatexFoxSniperEntity.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/DarkLatexFoxSniperEntity.class */
+public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements RangedAttackMob {
+    public DarkLatexFoxSniperEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
+    }
+
+    public DarkLatexFoxSniperEntity(EntityType<DarkLatexFoxSniperEntity> type, Level world) {
+        super(type, world);
+        this.xpReward = 6;
+        setNoAi(false);
+    }
+
+    public Packet<?> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
+
+    protected void registerGoals() {
+        registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.1d, false) { // from class: net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity.1
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+            }
+        });
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, true, TargetCheck.IS_SLIMELING));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, true, TargetCheck.IS_GOOD));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, true, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Player.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Villager.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, WanderingTrader.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, IronGolem.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Witch.class, true, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Evoker.class, true, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, Guardian.class, true, false));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, Zombie.class, true, false));
+        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
+        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
+        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
+        this.goalSelector.addGoal(18, new BreakDoorGoal(this, e -> {
+            return true;
+        }));
+        this.goalSelector.addGoal(19, new RandomStrollGoal(this, 0.8d));
+        this.targetSelector.addGoal(20, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(21, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(22, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity.2
+            public boolean canContinueToUse() {
+                return canUse();
+            }
+        });
+    }
+
+    public MobType getMobType() {
+        return MobType.ARTHROPOD;
+    }
+
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+        dropCustomDeathLoot(source, looting, recentlyHitIn);
+        spawnAtLocation(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+    }
+
+    public void playStepSound(BlockPos pos, BlockState blockIn) {
+        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+    }
+
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+    }
+
+    public SoundEvent getDeathSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+    }
+
+    public boolean hurt(DamageSource source, float amount) {
+        if (source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+            return false;
+        }
+        return hurt(source, amount);
+    }
+
+    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+        awardKillScore(entity, score, damageSource);
+        DarkLatexFoxThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity);
+    }
+
+    public void performRangedAttack(LivingEntity target, float flval) {
+        LatexDartRifleEntity.shoot(this, target);
+    }
+
+    public static void init() {
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.4d).add(Attributes.MAX_HEALTH, 18.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 4.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.3d);
+    }
+
+    public ChangedParticles.Color3 getDripColor() {
+        return ChangedParticles.Color3.DARK;
+    }
+}

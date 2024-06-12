@@ -1,68 +1,76 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ import net.ltxprogrammer.turned.entity.MilitaryEntity;
-/*    */ import net.ltxprogrammer.turned.entity.ScientistEntity;
-/*    */ import net.minecraft.server.level.ServerLevel;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.EntityType;
-/*    */ import net.minecraft.world.entity.Mob;
-/*    */ import net.minecraft.world.entity.MobSpawnType;
-/*    */ import net.minecraft.world.entity.npc.Villager;
-/*    */ import net.minecraft.world.level.Level;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.ServerLevelAccessor;
-/*    */ 
-/*    */ public class OperativefacilityOnStructureInstanceGeneratedProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z) {
-/* 16 */     if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 17 */       Villager villager = new Villager(EntityType.f_20492_, (Level)_level);
-/* 18 */       villager.m_7678_(x, y + 1.0D, z, 0.0F, 0.0F);
-/* 19 */       villager.m_5618_(0.0F);
-/* 20 */       villager.m_5616_(0.0F);
-/* 21 */       if (villager instanceof Mob) { Mob _mobToSpawn = (Mob)villager;
-/* 22 */         _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(villager.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/* 23 */        world.m_7967_((Entity)villager); }
-/*    */     
-/* 25 */     if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 26 */       Villager villager = new Villager(EntityType.f_20492_, (Level)_level);
-/* 27 */       villager.m_7678_(x, y + 1.0D, z, 0.0F, 0.0F);
-/* 28 */       villager.m_5618_(0.0F);
-/* 29 */       villager.m_5616_(0.0F);
-/* 30 */       if (villager instanceof Mob) { Mob _mobToSpawn = (Mob)villager;
-/* 31 */         _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(villager.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/* 32 */        world.m_7967_((Entity)villager); }
-/*    */     
-/* 34 */     if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 35 */       ScientistEntity scientistEntity = new ScientistEntity((EntityType)LatexModEntities.SCIENTIST.get(), (Level)_level);
-/* 36 */       scientistEntity.m_7678_(x, y + 1.0D, z, 0.0F, 0.0F);
-/* 37 */       scientistEntity.m_5618_(0.0F);
-/* 38 */       scientistEntity.m_5616_(0.0F);
-/* 39 */       if (scientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)scientistEntity;
-/* 40 */         _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(scientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/* 41 */        world.m_7967_((Entity)scientistEntity); }
-/*    */     
-/* 43 */     if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 44 */       ScientistEntity scientistEntity = new ScientistEntity((EntityType)LatexModEntities.SCIENTIST.get(), (Level)_level);
-/* 45 */       scientistEntity.m_7678_(x, y + 1.0D, z, 0.0F, 0.0F);
-/* 46 */       scientistEntity.m_5618_(0.0F);
-/* 47 */       scientistEntity.m_5616_(0.0F);
-/* 48 */       if (scientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)scientistEntity;
-/* 49 */         _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(scientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/* 50 */        world.m_7967_((Entity)scientistEntity); }
-/*    */     
-/* 52 */     if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 53 */       MilitaryEntity militaryEntity = new MilitaryEntity((EntityType)LatexModEntities.MILITARY.get(), (Level)_level);
-/* 54 */       militaryEntity.m_7678_(x, y + 1.0D, z, 0.0F, 0.0F);
-/* 55 */       militaryEntity.m_5618_(0.0F);
-/* 56 */       militaryEntity.m_5616_(0.0F);
-/* 57 */       if (militaryEntity instanceof Mob) { Mob _mobToSpawn = (Mob)militaryEntity;
-/* 58 */         _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(militaryEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/* 59 */        world.m_7967_((Entity)militaryEntity); }
-/*    */   
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.turned.entity.MilitaryEntity;
+import net.ltxprogrammer.turned.entity.ScientistEntity;
+import net.ltxprogrammer.turned.init.LatexModEntities;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\OperativefacilityOnStructureInstanceGeneratedProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/OperativefacilityOnStructureInstanceGeneratedProcedure.class */
+public class OperativefacilityOnStructureInstanceGeneratedProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
+        if (world instanceof ServerLevel) {
+            ServerLevel _level = (ServerLevel) world;
+            Entity entityToSpawn = new Villager(EntityType.VILLAGER, _level);
+            entityToSpawn.moveTo(x, y + 1.0d, z, 0.0f, 0.0f);
+            entityToSpawn.setYBodyRot(0.0f);
+            entityToSpawn.setYHeadRot(0.0f);
+            if (entityToSpawn instanceof Mob) {
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+            }
+            world.addFreshEntity(entityToSpawn);
+        }
+        if (world instanceof ServerLevel) {
+            ServerLevel _level2 = (ServerLevel) world;
+            Entity entityToSpawn2 = new Villager(EntityType.VILLAGER, _level2);
+            entityToSpawn2.moveTo(x, y + 1.0d, z, 0.0f, 0.0f);
+            entityToSpawn2.setYBodyRot(0.0f);
+            entityToSpawn2.setYHeadRot(0.0f);
+            if (entityToSpawn2 instanceof Mob) {
+                ((Mob) entityToSpawn2).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+            }
+            world.addFreshEntity(entityToSpawn2);
+        }
+        if (world instanceof ServerLevel) {
+            ServerLevel _level3 = (ServerLevel) world;
+            Entity entityToSpawn3 = new ScientistEntity((EntityType<ScientistEntity>) ((EntityType) LatexModEntities.SCIENTIST.get()), (Level) _level3);
+            entityToSpawn3.moveTo(x, y + 1.0d, z, 0.0f, 0.0f);
+            entityToSpawn3.setYBodyRot(0.0f);
+            entityToSpawn3.setYHeadRot(0.0f);
+            if (entityToSpawn3 instanceof Mob) {
+                ((Mob) entityToSpawn3).finalizeSpawn(_level3, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+            }
+            world.addFreshEntity(entityToSpawn3);
+        }
+        if (world instanceof ServerLevel) {
+            ServerLevel _level4 = (ServerLevel) world;
+            Entity entityToSpawn4 = new ScientistEntity((EntityType<ScientistEntity>) ((EntityType) LatexModEntities.SCIENTIST.get()), (Level) _level4);
+            entityToSpawn4.moveTo(x, y + 1.0d, z, 0.0f, 0.0f);
+            entityToSpawn4.setYBodyRot(0.0f);
+            entityToSpawn4.setYHeadRot(0.0f);
+            if (entityToSpawn4 instanceof Mob) {
+                ((Mob) entityToSpawn4).finalizeSpawn(_level4, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+            }
+            world.addFreshEntity(entityToSpawn4);
+        }
+        if (world instanceof ServerLevel) {
+            ServerLevel _level5 = (ServerLevel) world;
+            Entity entityToSpawn5 = new MilitaryEntity((EntityType<MilitaryEntity>) ((EntityType) LatexModEntities.MILITARY.get()), (Level) _level5);
+            entityToSpawn5.moveTo(x, y + 1.0d, z, 0.0f, 0.0f);
+            entityToSpawn5.setYBodyRot(0.0f);
+            entityToSpawn5.setYHeadRot(0.0f);
+            if (entityToSpawn5 instanceof Mob) {
+                ((Mob) entityToSpawn5).finalizeSpawn(_level5, world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+            }
+            world.addFreshEntity(entityToSpawn5);
+        }
+    }
+}

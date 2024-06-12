@@ -1,19 +1,14 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ import net.minecraft.core.particles.ParticleOptions;
-/*    */ import net.minecraft.core.particles.ParticleTypes;
-/*    */ import net.minecraft.server.level.ServerLevel;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ 
-/*    */ public class FlamethowerWhileBulletFlyingTickProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z) {
-/*  9 */     if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 10 */       _level.m_8767_((ParticleOptions)ParticleTypes.f_123744_, x, y, z, 5, 1.0D, 1.0D, 1.0D, 1.0D); }
-/*    */   
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.LevelAccessor;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\FlamethowerWhileBulletFlyingTickProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/FlamethowerWhileBulletFlyingTickProcedure.class */
+public class FlamethowerWhileBulletFlyingTickProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
+        if (world instanceof ServerLevel) {
+            ((ServerLevel) world).sendParticles(ParticleTypes.FLAME, x, y, z, 5, 1.0d, 1.0d, 1.0d, 1.0d);
+        }
+    }
+}

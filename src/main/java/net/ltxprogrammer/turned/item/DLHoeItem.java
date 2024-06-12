@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.ltxprogrammer.turned.item;
 
 import net.ltxprogrammer.changed.init.ChangedBlocks;
@@ -19,19 +14,20 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DLHoeItem.class */
 public class DLHoeItem extends HoeItem {
     public DLHoeItem() {
-        super(new Tier() {
+        super(new Tier() { // from class: net.ltxprogrammer.turned.item.DLHoeItem.1
             public int getUses() {
                 return 225;
             }
 
             public float getSpeed() {
-                return 5.0F;
+                return 5.0f;
             }
 
             public float getAttackDamageBonus() {
-                return 1.5F;
+                return 1.5f;
             }
 
             public int getLevel() {
@@ -43,18 +39,18 @@ public class DLHoeItem extends HoeItem {
             }
 
             public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike)ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike)ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
+                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
             }
-        }, 0, -3.5F, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
+        }, 0, -3.5f, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
     }
 
     public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        boolean retval = super.hurtEnemy(itemstack, entity, sourceentity);
+        boolean retval = hurtEnemy(itemstack, entity, sourceentity);
         DLSwordLivingEntityIsHitWithToolProcedure.execute(entity);
         return retval;
     }
 
     public InteractionResult useOn(UseOnContext context) {
-        return super.useOn(context);
+        return useOn(context);
     }
 }

@@ -1,708 +1,772 @@
-/*     */ package net.ltxprogrammer.turned.procedures;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexFoxScientistEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexSkeletonEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexSpiderEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarklatexEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarklatexslugEntity;
-/*     */ import net.ltxprogrammer.turned.entity.NoiseStalkerEntity;
-/*     */ import net.ltxprogrammer.turned.init.LatexModEntities;
-/*     */ import net.minecraft.server.level.ServerLevel;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.Mob;
-/*     */ import net.minecraft.world.entity.MobSpawnType;
-/*     */ import net.minecraft.world.level.Level;
-/*     */ import net.minecraft.world.level.LevelAccessor;
-/*     */ import net.minecraft.world.level.ServerLevelAccessor;
-/*     */ 
-/*     */ public class LatexDropPodOnEntityTickUpdateProcedure {
-/*     */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/*  21 */     if (entity == null)
-/*     */       return; 
-/*  23 */     if (((world.m_8055_(new BlockPos(x, y - 1.0D, z)).m_60734_() == Blocks.f_50627_ || world
-/*  24 */       .m_8055_(new BlockPos(x, y - 1.0D, z)).m_60734_() == Blocks.f_50626_ || world
-/*  25 */       .m_8055_(new BlockPos(x, y - 1.0D, z)).m_60734_() == Blocks.f_50016_ || world
-/*  26 */       .m_8055_(new BlockPos(x, y - 2.0D, z)).m_60734_() == Blocks.f_50627_ || world
-/*  27 */       .m_8055_(new BlockPos(x, y - 1.0D, z)).m_60734_() == Blocks.f_50626_ || world
-/*  28 */       .m_8055_(new BlockPos(x, y - 1.0D, z)).m_60734_() == Blocks.f_50016_ || world
-/*  29 */       .m_8055_(new BlockPos(x + 1.0D, y - 1.0D, z)).m_60734_() == Blocks.f_50627_ || world
-/*  30 */       .m_8055_(new BlockPos(x + 1.0D, y - 1.0D, z)).m_60734_() == Blocks.f_50626_ || world
-/*  31 */       .m_8055_(new BlockPos(x + 1.0D, y - 1.0D, z)).m_60734_() == Blocks.f_50016_ || world
-/*  32 */       .m_8055_(new BlockPos(x - 1.0D, y - 1.0D, z)).m_60734_() == Blocks.f_50627_ || world
-/*  33 */       .m_8055_(new BlockPos(x - 1.0D, y - 1.0D, z)).m_60734_() == Blocks.f_50626_ || world
-/*  34 */       .m_8055_(new BlockPos(x - 1.0D, y - 1.0D, z)).m_60734_() == Blocks.f_50016_ || world
-/*  35 */       .m_8055_(new BlockPos(x, y - 1.0D, z + 1.0D)).m_60734_() == Blocks.f_50627_ || world
-/*  36 */       .m_8055_(new BlockPos(x, y - 1.0D, z + 1.0D)).m_60734_() == Blocks.f_50626_ || world
-/*  37 */       .m_8055_(new BlockPos(x, y - 1.0D, z + 1.0D)).m_60734_() == Blocks.f_50016_ || world
-/*  38 */       .m_8055_(new BlockPos(x, y - 1.0D, z - 1.0D)).m_60734_() == Blocks.f_50627_ || world
-/*  39 */       .m_8055_(new BlockPos(x, y - 1.0D, z - 1.0D)).m_60734_() == Blocks.f_50626_ || world
-/*  40 */       .m_8055_(new BlockPos(x, y - 1.0D, z - 1.0D)).m_60734_() == Blocks.f_50016_) ? true : false) != true) {
-/*  41 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_())
-/*  42 */           _level.m_46511_(null, x, y, z, 3.0F, Explosion.BlockInteraction.DESTROY);  }
-/*  43 */        if (Math.random() < 0.4D) {
-/*  44 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  45 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/*  46 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/*  47 */           darklatexslugEntity.m_5618_(0.0F);
-/*  48 */           darklatexslugEntity.m_5616_(0.0F);
-/*  49 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/*  50 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  52 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/*  54 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  55 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/*  56 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/*  57 */           darklatexslugEntity.m_5618_(0.0F);
-/*  58 */           darklatexslugEntity.m_5616_(0.0F);
-/*  59 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/*  60 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  62 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/*  64 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  65 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/*  66 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/*  67 */           darklatexslugEntity.m_5618_(0.0F);
-/*  68 */           darklatexslugEntity.m_5616_(0.0F);
-/*  69 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/*  70 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  72 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/*  74 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  75 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/*  76 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/*  77 */           darklatexslugEntity.m_5618_(0.0F);
-/*  78 */           darklatexslugEntity.m_5616_(0.0F);
-/*  79 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/*  80 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  82 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/*  84 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  85 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/*  86 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/*  87 */           darklatexslugEntity.m_5618_(0.0F);
-/*  88 */           darklatexslugEntity.m_5616_(0.0F);
-/*  89 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/*  90 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/*  92 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/*  94 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/*  95 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/*  96 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/*  97 */           darklatexslugEntity.m_5618_(0.0F);
-/*  98 */           darklatexslugEntity.m_5616_(0.0F);
-/*  99 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 100 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 102 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/* 104 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 105 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/* 106 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 107 */           darklatexslugEntity.m_5618_(0.0F);
-/* 108 */           darklatexslugEntity.m_5616_(0.0F);
-/* 109 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 110 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 112 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/* 114 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 115 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/* 116 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 117 */           darklatexslugEntity.m_5618_(0.0F);
-/* 118 */           darklatexslugEntity.m_5616_(0.0F);
-/* 119 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 120 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 122 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */       
-/* 124 */       } else if (Math.random() < 0.2D) {
-/* 125 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 126 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 127 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 128 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 129 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 130 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 131 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 133 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */         
-/* 135 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 136 */           DarkLatexFoxSniperEntity darkLatexFoxSniperEntity = new DarkLatexFoxSniperEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), (Level)_level);
-/* 137 */           darkLatexFoxSniperEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 138 */           darkLatexFoxSniperEntity.m_5618_(0.0F);
-/* 139 */           darkLatexFoxSniperEntity.m_5616_(0.0F);
-/* 140 */           if (darkLatexFoxSniperEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxSniperEntity;
-/* 141 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxSniperEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 143 */           world.m_7967_((Entity)darkLatexFoxSniperEntity); }
-/*     */         
-/* 145 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 146 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 147 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 148 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 149 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 150 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 151 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 153 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */         
-/* 155 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 156 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 157 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 158 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 159 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 160 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 161 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 163 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */       
-/* 165 */       } else if (Math.random() < 0.2D) {
-/* 166 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 167 */           DlsharkEntity dlsharkEntity = new DlsharkEntity((EntityType)LatexModEntities.DLSHARK.get(), (Level)_level);
-/* 168 */           dlsharkEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 169 */           dlsharkEntity.m_5618_(0.0F);
-/* 170 */           dlsharkEntity.m_5616_(0.0F);
-/* 171 */           if (dlsharkEntity instanceof Mob) { Mob _mobToSpawn = (Mob)dlsharkEntity;
-/* 172 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(dlsharkEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 174 */           world.m_7967_((Entity)dlsharkEntity); }
-/*     */         
-/* 176 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 177 */           DlsharkEntity dlsharkEntity = new DlsharkEntity((EntityType)LatexModEntities.DLSHARK.get(), (Level)_level);
-/* 178 */           dlsharkEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 179 */           dlsharkEntity.m_5618_(0.0F);
-/* 180 */           dlsharkEntity.m_5616_(0.0F);
-/* 181 */           if (dlsharkEntity instanceof Mob) { Mob _mobToSpawn = (Mob)dlsharkEntity;
-/* 182 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(dlsharkEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 184 */           world.m_7967_((Entity)dlsharkEntity); }
-/*     */         
-/* 186 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 187 */           DarkLatexMothEntity darkLatexMothEntity = new DarkLatexMothEntity((EntityType)LatexModEntities.DARK_LATEX_MOTH.get(), (Level)_level);
-/* 188 */           darkLatexMothEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 189 */           darkLatexMothEntity.m_5618_(0.0F);
-/* 190 */           darkLatexMothEntity.m_5616_(0.0F);
-/* 191 */           if (darkLatexMothEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexMothEntity;
-/* 192 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexMothEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 194 */           world.m_7967_((Entity)darkLatexMothEntity); }
-/*     */         
-/* 196 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 197 */           DarkLatexSkeletonEntity darkLatexSkeletonEntity = new DarkLatexSkeletonEntity((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), (Level)_level);
-/* 198 */           darkLatexSkeletonEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 199 */           darkLatexSkeletonEntity.m_5618_(0.0F);
-/* 200 */           darkLatexSkeletonEntity.m_5616_(0.0F);
-/* 201 */           if (darkLatexSkeletonEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSkeletonEntity;
-/* 202 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSkeletonEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 204 */           world.m_7967_((Entity)darkLatexSkeletonEntity); }
-/*     */       
-/* 206 */       } else if (Math.random() < 0.2D) {
-/* 207 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 208 */           DarkLatexSnakeEntity darkLatexSnakeEntity = new DarkLatexSnakeEntity((EntityType)LatexModEntities.DARK_LATEX_SNAKE.get(), (Level)_level);
-/* 209 */           darkLatexSnakeEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 210 */           darkLatexSnakeEntity.m_5618_(0.0F);
-/* 211 */           darkLatexSnakeEntity.m_5616_(0.0F);
-/* 212 */           if (darkLatexSnakeEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSnakeEntity;
-/* 213 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSnakeEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 215 */           world.m_7967_((Entity)darkLatexSnakeEntity); }
-/*     */         
-/* 217 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 218 */           DarkLatexSnepEntity darkLatexSnepEntity = new DarkLatexSnepEntity((EntityType)LatexModEntities.DARK_LATEX_SNEP.get(), (Level)_level);
-/* 219 */           darkLatexSnepEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 220 */           darkLatexSnepEntity.m_5618_(0.0F);
-/* 221 */           darkLatexSnepEntity.m_5616_(0.0F);
-/* 222 */           if (darkLatexSnepEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSnepEntity;
-/* 223 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSnepEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 225 */           world.m_7967_((Entity)darkLatexSnepEntity); }
-/*     */         
-/* 227 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 228 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 229 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 230 */           darklatexEntity.m_5618_(0.0F);
-/* 231 */           darklatexEntity.m_5616_(0.0F);
-/* 232 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 233 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 235 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */       
-/* 237 */       } else if (Math.random() < 0.1D) {
-/* 238 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 239 */           ScientistEntity scientistEntity = new ScientistEntity((EntityType)LatexModEntities.SCIENTIST.get(), (Level)_level);
-/* 240 */           scientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 241 */           scientistEntity.m_5618_(0.0F);
-/* 242 */           scientistEntity.m_5616_(0.0F);
-/* 243 */           if (scientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)scientistEntity;
-/* 244 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(scientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 246 */           world.m_7967_((Entity)scientistEntity); }
-/*     */         
-/* 248 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 249 */           ScientistEntity scientistEntity = new ScientistEntity((EntityType)LatexModEntities.SCIENTIST.get(), (Level)_level);
-/* 250 */           scientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 251 */           scientistEntity.m_5618_(0.0F);
-/* 252 */           scientistEntity.m_5616_(0.0F);
-/* 253 */           if (scientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)scientistEntity;
-/* 254 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(scientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 256 */           world.m_7967_((Entity)scientistEntity); }
-/*     */         
-/* 258 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 259 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 260 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 261 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 262 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 263 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 264 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 266 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */         
-/* 268 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 269 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 270 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 271 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 272 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 273 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 274 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 276 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */         
-/* 278 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 279 */           DarkLatexFoxSniperEntity darkLatexFoxSniperEntity = new DarkLatexFoxSniperEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), (Level)_level);
-/* 280 */           darkLatexFoxSniperEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 281 */           darkLatexFoxSniperEntity.m_5618_(0.0F);
-/* 282 */           darkLatexFoxSniperEntity.m_5616_(0.0F);
-/* 283 */           if (darkLatexFoxSniperEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxSniperEntity;
-/* 284 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxSniperEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 286 */           world.m_7967_((Entity)darkLatexFoxSniperEntity); }
-/*     */         
-/* 288 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 289 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 290 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 291 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 292 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 293 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 294 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 296 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */         
-/* 298 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 299 */           DarkLatexFoxScientistEntity darkLatexFoxScientistEntity = new DarkLatexFoxScientistEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), (Level)_level);
-/* 300 */           darkLatexFoxScientistEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 301 */           darkLatexFoxScientistEntity.m_5618_(0.0F);
-/* 302 */           darkLatexFoxScientistEntity.m_5616_(0.0F);
-/* 303 */           if (darkLatexFoxScientistEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxScientistEntity;
-/* 304 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxScientistEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 306 */           world.m_7967_((Entity)darkLatexFoxScientistEntity); }
-/*     */         
-/* 308 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 309 */           DarkLatexFoxSniperEntity darkLatexFoxSniperEntity = new DarkLatexFoxSniperEntity((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), (Level)_level);
-/* 310 */           darkLatexFoxSniperEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 311 */           darkLatexFoxSniperEntity.m_5618_(0.0F);
-/* 312 */           darkLatexFoxSniperEntity.m_5616_(0.0F);
-/* 313 */           if (darkLatexFoxSniperEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxSniperEntity;
-/* 314 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxSniperEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 316 */           world.m_7967_((Entity)darkLatexFoxSniperEntity); }
-/*     */       
-/* 318 */       } else if (Math.random() < 0.2D) {
-/* 319 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 320 */           NoiseStalkerEntity noiseStalkerEntity = new NoiseStalkerEntity((EntityType)LatexModEntities.NOISE_STALKER.get(), (Level)_level);
-/* 321 */           noiseStalkerEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 322 */           noiseStalkerEntity.m_5618_(0.0F);
-/* 323 */           noiseStalkerEntity.m_5616_(0.0F);
-/* 324 */           if (noiseStalkerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)noiseStalkerEntity;
-/* 325 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(noiseStalkerEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 327 */           world.m_7967_((Entity)noiseStalkerEntity); }
-/*     */         
-/* 329 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 330 */           NoiseStalkerEntity noiseStalkerEntity = new NoiseStalkerEntity((EntityType)LatexModEntities.NOISE_STALKER.get(), (Level)_level);
-/* 331 */           noiseStalkerEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 332 */           noiseStalkerEntity.m_5618_(0.0F);
-/* 333 */           noiseStalkerEntity.m_5616_(0.0F);
-/* 334 */           if (noiseStalkerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)noiseStalkerEntity;
-/* 335 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(noiseStalkerEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 337 */           world.m_7967_((Entity)noiseStalkerEntity); }
-/*     */         
-/* 339 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 340 */           NoiseStalkerEntity noiseStalkerEntity = new NoiseStalkerEntity((EntityType)LatexModEntities.NOISE_STALKER.get(), (Level)_level);
-/* 341 */           noiseStalkerEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 342 */           noiseStalkerEntity.m_5618_(0.0F);
-/* 343 */           noiseStalkerEntity.m_5616_(0.0F);
-/* 344 */           if (noiseStalkerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)noiseStalkerEntity;
-/* 345 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(noiseStalkerEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 347 */           world.m_7967_((Entity)noiseStalkerEntity); }
-/*     */         
-/* 349 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 350 */           NoiseStalkerEntity noiseStalkerEntity = new NoiseStalkerEntity((EntityType)LatexModEntities.NOISE_STALKER.get(), (Level)_level);
-/* 351 */           noiseStalkerEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 352 */           noiseStalkerEntity.m_5618_(0.0F);
-/* 353 */           noiseStalkerEntity.m_5616_(0.0F);
-/* 354 */           if (noiseStalkerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)noiseStalkerEntity;
-/* 355 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(noiseStalkerEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 357 */           world.m_7967_((Entity)noiseStalkerEntity); }
-/*     */       
-/* 359 */       } else if (Math.random() < 0.2D) {
-/* 360 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 361 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 362 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 363 */           darklatexEntity.m_5618_(0.0F);
-/* 364 */           darklatexEntity.m_5616_(0.0F);
-/* 365 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 366 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 368 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */         
-/* 370 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 371 */           DarkLatexSkeletonEntity darkLatexSkeletonEntity = new DarkLatexSkeletonEntity((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), (Level)_level);
-/* 372 */           darkLatexSkeletonEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 373 */           darkLatexSkeletonEntity.m_5618_(0.0F);
-/* 374 */           darkLatexSkeletonEntity.m_5616_(0.0F);
-/* 375 */           if (darkLatexSkeletonEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSkeletonEntity;
-/* 376 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSkeletonEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 378 */           world.m_7967_((Entity)darkLatexSkeletonEntity); }
-/*     */         
-/* 380 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 381 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 382 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 383 */           darklatexEntity.m_5618_(0.0F);
-/* 384 */           darklatexEntity.m_5616_(0.0F);
-/* 385 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 386 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 388 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */         
-/* 390 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 391 */           DarkLatexSkeletonEntity darkLatexSkeletonEntity = new DarkLatexSkeletonEntity((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), (Level)_level);
-/* 392 */           darkLatexSkeletonEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 393 */           darkLatexSkeletonEntity.m_5618_(0.0F);
-/* 394 */           darkLatexSkeletonEntity.m_5616_(0.0F);
-/* 395 */           if (darkLatexSkeletonEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSkeletonEntity;
-/* 396 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSkeletonEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 398 */           world.m_7967_((Entity)darkLatexSkeletonEntity); }
-/*     */         
-/* 400 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 401 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 402 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 403 */           darklatexEntity.m_5618_(0.0F);
-/* 404 */           darklatexEntity.m_5616_(0.0F);
-/* 405 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 406 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 408 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */       
-/* 410 */       } else if (Math.random() < 0.2D) {
-/* 411 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 412 */           DarkLatexSpiderEntity darkLatexSpiderEntity = new DarkLatexSpiderEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), (Level)_level);
-/* 413 */           darkLatexSpiderEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 414 */           darkLatexSpiderEntity.m_5618_(0.0F);
-/* 415 */           darkLatexSpiderEntity.m_5616_(0.0F);
-/* 416 */           if (darkLatexSpiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderEntity;
-/* 417 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 419 */           world.m_7967_((Entity)darkLatexSpiderEntity); }
-/*     */         
-/* 421 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 422 */           DarkLatexSpiderEntity darkLatexSpiderEntity = new DarkLatexSpiderEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), (Level)_level);
-/* 423 */           darkLatexSpiderEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 424 */           darkLatexSpiderEntity.m_5618_(0.0F);
-/* 425 */           darkLatexSpiderEntity.m_5616_(0.0F);
-/* 426 */           if (darkLatexSpiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderEntity;
-/* 427 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 429 */           world.m_7967_((Entity)darkLatexSpiderEntity); }
-/*     */         
-/* 431 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 432 */           DarkLatexSpiderEntity darkLatexSpiderEntity = new DarkLatexSpiderEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), (Level)_level);
-/* 433 */           darkLatexSpiderEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 434 */           darkLatexSpiderEntity.m_5618_(0.0F);
-/* 435 */           darkLatexSpiderEntity.m_5616_(0.0F);
-/* 436 */           if (darkLatexSpiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderEntity;
-/* 437 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 439 */           world.m_7967_((Entity)darkLatexSpiderEntity); }
-/*     */         
-/* 441 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 442 */           DarkLatexSpiderEntity darkLatexSpiderEntity = new DarkLatexSpiderEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), (Level)_level);
-/* 443 */           darkLatexSpiderEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 444 */           darkLatexSpiderEntity.m_5618_(0.0F);
-/* 445 */           darkLatexSpiderEntity.m_5616_(0.0F);
-/* 446 */           if (darkLatexSpiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderEntity;
-/* 447 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 449 */           world.m_7967_((Entity)darkLatexSpiderEntity); }
-/*     */       
-/* 451 */       } else if (Math.random() < 0.1D) {
-/* 452 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 453 */           DarkLatexSkeletonEntity darkLatexSkeletonEntity = new DarkLatexSkeletonEntity((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), (Level)_level);
-/* 454 */           darkLatexSkeletonEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 455 */           darkLatexSkeletonEntity.m_5618_(0.0F);
-/* 456 */           darkLatexSkeletonEntity.m_5616_(0.0F);
-/* 457 */           if (darkLatexSkeletonEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSkeletonEntity;
-/* 458 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSkeletonEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 460 */           world.m_7967_((Entity)darkLatexSkeletonEntity); }
-/*     */         
-/* 462 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 463 */           DarkLatexDragon darkLatexDragon = new DarkLatexDragon((EntityType)ChangedEntities.DARK_LATEX_DRAGON.get(), (Level)_level);
-/* 464 */           darkLatexDragon.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 465 */           darkLatexDragon.m_5618_(0.0F);
-/* 466 */           darkLatexDragon.m_5616_(0.0F);
-/* 467 */           if (darkLatexDragon instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexDragon;
-/* 468 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexDragon.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 470 */           world.m_7967_((Entity)darkLatexDragon); }
-/*     */         
-/* 472 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 473 */           DarkLatexYufeng darkLatexYufeng = new DarkLatexYufeng((EntityType)ChangedEntities.DARK_LATEX_YUFENG.get(), (Level)_level);
-/* 474 */           darkLatexYufeng.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 475 */           darkLatexYufeng.m_5618_(0.0F);
-/* 476 */           darkLatexYufeng.m_5616_(0.0F);
-/* 477 */           if (darkLatexYufeng instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexYufeng;
-/* 478 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexYufeng.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 480 */           world.m_7967_((Entity)darkLatexYufeng); }
-/*     */       
-/* 482 */       } else if (Math.random() < 0.1D) {
-/* 483 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 484 */           DarkLatexSpiderQueenEntity darkLatexSpiderQueenEntity = new DarkLatexSpiderQueenEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER_QUEEN.get(), (Level)_level);
-/* 485 */           darkLatexSpiderQueenEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 486 */           darkLatexSpiderQueenEntity.m_5618_(0.0F);
-/* 487 */           darkLatexSpiderQueenEntity.m_5616_(0.0F);
-/* 488 */           if (darkLatexSpiderQueenEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderQueenEntity;
-/* 489 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderQueenEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 491 */           world.m_7967_((Entity)darkLatexSpiderQueenEntity); }
-/*     */         
-/* 493 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 494 */           DarkLatexSpiderEntity darkLatexSpiderEntity = new DarkLatexSpiderEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), (Level)_level);
-/* 495 */           darkLatexSpiderEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 496 */           darkLatexSpiderEntity.m_5618_(0.0F);
-/* 497 */           darkLatexSpiderEntity.m_5616_(0.0F);
-/* 498 */           if (darkLatexSpiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderEntity;
-/* 499 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 501 */           world.m_7967_((Entity)darkLatexSpiderEntity); }
-/*     */         
-/* 503 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 504 */           DarkLatexSpiderEntity darkLatexSpiderEntity = new DarkLatexSpiderEntity((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), (Level)_level);
-/* 505 */           darkLatexSpiderEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 506 */           darkLatexSpiderEntity.m_5618_(0.0F);
-/* 507 */           darkLatexSpiderEntity.m_5616_(0.0F);
-/* 508 */           if (darkLatexSpiderEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSpiderEntity;
-/* 509 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSpiderEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 511 */           world.m_7967_((Entity)darkLatexSpiderEntity); }
-/*     */       
-/* 513 */       } else if (Math.random() < 0.1D) {
-/* 514 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 515 */           DarkLatexQueenBeeEntity darkLatexQueenBeeEntity = new DarkLatexQueenBeeEntity((EntityType)LatexModEntities.DARK_LATEX_QUEEN_BEE.get(), (Level)_level);
-/* 516 */           darkLatexQueenBeeEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 517 */           darkLatexQueenBeeEntity.m_5618_(0.0F);
-/* 518 */           darkLatexQueenBeeEntity.m_5616_(0.0F);
-/* 519 */           if (darkLatexQueenBeeEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexQueenBeeEntity;
-/* 520 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexQueenBeeEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 522 */           world.m_7967_((Entity)darkLatexQueenBeeEntity); }
-/*     */         
-/* 524 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 525 */           DLbeeEntity dLbeeEntity = new DLbeeEntity((EntityType)LatexModEntities.D_LBEE.get(), (Level)_level);
-/* 526 */           dLbeeEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 527 */           dLbeeEntity.m_5618_(0.0F);
-/* 528 */           dLbeeEntity.m_5616_(0.0F);
-/* 529 */           if (dLbeeEntity instanceof Mob) { Mob _mobToSpawn = (Mob)dLbeeEntity;
-/* 530 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(dLbeeEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 532 */           world.m_7967_((Entity)dLbeeEntity); }
-/*     */         
-/* 534 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 535 */           DLbeeEntity dLbeeEntity = new DLbeeEntity((EntityType)LatexModEntities.D_LBEE.get(), (Level)_level);
-/* 536 */           dLbeeEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 537 */           dLbeeEntity.m_5618_(0.0F);
-/* 538 */           dLbeeEntity.m_5616_(0.0F);
-/* 539 */           if (dLbeeEntity instanceof Mob) { Mob _mobToSpawn = (Mob)dLbeeEntity;
-/* 540 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(dLbeeEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 542 */           world.m_7967_((Entity)dLbeeEntity); }
-/*     */       
-/* 544 */       } else if (Math.random() < 0.25D) {
-/* 545 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 546 */           DarkLatexSnakeEntity darkLatexSnakeEntity = new DarkLatexSnakeEntity((EntityType)LatexModEntities.DARK_LATEX_SNAKE.get(), (Level)_level);
-/* 547 */           darkLatexSnakeEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 548 */           darkLatexSnakeEntity.m_5618_(0.0F);
-/* 549 */           darkLatexSnakeEntity.m_5616_(0.0F);
-/* 550 */           if (darkLatexSnakeEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSnakeEntity;
-/* 551 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSnakeEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 553 */           world.m_7967_((Entity)darkLatexSnakeEntity); }
-/*     */         
-/* 555 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 556 */           NoiseStalkerEntity noiseStalkerEntity = new NoiseStalkerEntity((EntityType)LatexModEntities.NOISE_STALKER.get(), (Level)_level);
-/* 557 */           noiseStalkerEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 558 */           noiseStalkerEntity.m_5618_(0.0F);
-/* 559 */           noiseStalkerEntity.m_5616_(0.0F);
-/* 560 */           if (noiseStalkerEntity instanceof Mob) { Mob _mobToSpawn = (Mob)noiseStalkerEntity;
-/* 561 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(noiseStalkerEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 563 */           world.m_7967_((Entity)noiseStalkerEntity); }
-/*     */         
-/* 565 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 566 */           DarkLatexSkeletonEntity darkLatexSkeletonEntity = new DarkLatexSkeletonEntity((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), (Level)_level);
-/* 567 */           darkLatexSkeletonEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 568 */           darkLatexSkeletonEntity.m_5618_(0.0F);
-/* 569 */           darkLatexSkeletonEntity.m_5616_(0.0F);
-/* 570 */           if (darkLatexSkeletonEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSkeletonEntity;
-/* 571 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSkeletonEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 573 */           world.m_7967_((Entity)darkLatexSkeletonEntity); }
-/*     */         
-/* 575 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 576 */           DarkLatexSkeletonEntity darkLatexSkeletonEntity = new DarkLatexSkeletonEntity((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), (Level)_level);
-/* 577 */           darkLatexSkeletonEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 578 */           darkLatexSkeletonEntity.m_5618_(0.0F);
-/* 579 */           darkLatexSkeletonEntity.m_5616_(0.0F);
-/* 580 */           if (darkLatexSkeletonEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexSkeletonEntity;
-/* 581 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexSkeletonEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 583 */           world.m_7967_((Entity)darkLatexSkeletonEntity); }
-/*     */       
-/* 585 */       } else if (Math.random() < 0.25D) {
-/* 586 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 587 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 588 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 589 */           darklatexEntity.m_5618_(0.0F);
-/* 590 */           darklatexEntity.m_5616_(0.0F);
-/* 591 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 592 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 594 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */         
-/* 596 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 597 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 598 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 599 */           darklatexEntity.m_5618_(0.0F);
-/* 600 */           darklatexEntity.m_5616_(0.0F);
-/* 601 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 602 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 604 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */         
-/* 606 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 607 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 608 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 609 */           darklatexEntity.m_5618_(0.0F);
-/* 610 */           darklatexEntity.m_5616_(0.0F);
-/* 611 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 612 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 614 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */         
-/* 616 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 617 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 618 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 619 */           darklatexEntity.m_5618_(0.0F);
-/* 620 */           darklatexEntity.m_5616_(0.0F);
-/* 621 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 622 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 624 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */         
-/* 626 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 627 */           DarkLatexFoxEntity darkLatexFoxEntity = new DarkLatexFoxEntity((EntityType)LatexModEntities.DARK_LATEX_FOX.get(), (Level)_level);
-/* 628 */           darkLatexFoxEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 629 */           darkLatexFoxEntity.m_5618_(0.0F);
-/* 630 */           darkLatexFoxEntity.m_5616_(0.0F);
-/* 631 */           if (darkLatexFoxEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexFoxEntity;
-/* 632 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexFoxEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 634 */           world.m_7967_((Entity)darkLatexFoxEntity); }
-/*     */         
-/* 636 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 637 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/* 638 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 639 */           darklatexslugEntity.m_5618_(0.0F);
-/* 640 */           darklatexslugEntity.m_5616_(0.0F);
-/* 641 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 642 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 644 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/* 646 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 647 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/* 648 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 649 */           darklatexslugEntity.m_5618_(0.0F);
-/* 650 */           darklatexslugEntity.m_5616_(0.0F);
-/* 651 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 652 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 654 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/* 656 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 657 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/* 658 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 659 */           darklatexslugEntity.m_5618_(0.0F);
-/* 660 */           darklatexslugEntity.m_5616_(0.0F);
-/* 661 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 662 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 664 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */         
-/* 666 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 667 */           DarklatexslugEntity darklatexslugEntity = new DarklatexslugEntity((EntityType)LatexModEntities.DARKLATEXSLUG.get(), (Level)_level);
-/* 668 */           darklatexslugEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 669 */           darklatexslugEntity.m_5618_(0.0F);
-/* 670 */           darklatexslugEntity.m_5616_(0.0F);
-/* 671 */           if (darklatexslugEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexslugEntity;
-/* 672 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexslugEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 674 */           world.m_7967_((Entity)darklatexslugEntity); }
-/*     */       
-/*     */       } else {
-/* 677 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 678 */           DarkLatexYufeng darkLatexYufeng = new DarkLatexYufeng((EntityType)ChangedEntities.DARK_LATEX_YUFENG.get(), (Level)_level);
-/* 679 */           darkLatexYufeng.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 680 */           darkLatexYufeng.m_5618_(0.0F);
-/* 681 */           darkLatexYufeng.m_5616_(0.0F);
-/* 682 */           if (darkLatexYufeng instanceof Mob) { Mob _mobToSpawn = (Mob)darkLatexYufeng;
-/* 683 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darkLatexYufeng.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 685 */           world.m_7967_((Entity)darkLatexYufeng); }
-/*     */         
-/* 687 */         if (world instanceof ServerLevel) { ServerLevel _level = (ServerLevel)world;
-/* 688 */           DarklatexEntity darklatexEntity = new DarklatexEntity((EntityType)LatexModEntities.DARKLATEX.get(), (Level)_level);
-/* 689 */           darklatexEntity.m_7678_(x, y, z, 0.0F, 0.0F);
-/* 690 */           darklatexEntity.m_5618_(0.0F);
-/* 691 */           darklatexEntity.m_5616_(0.0F);
-/* 692 */           if (darklatexEntity instanceof Mob) { Mob _mobToSpawn = (Mob)darklatexEntity;
-/* 693 */             _mobToSpawn.m_6518_((ServerLevelAccessor)_level, world.m_6436_(darklatexEntity.m_142538_()), MobSpawnType.MOB_SUMMONED, null, null); }
-/*     */           
-/* 695 */           world.m_7967_((Entity)darklatexEntity); }
-/*     */       
-/*     */       } 
-/* 698 */       if (!entity.f_19853_.m_5776_())
-/* 699 */         entity.m_146870_(); 
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.changed.entity.beast.DarkLatexDragon;
+import net.ltxprogrammer.changed.entity.beast.DarkLatexYufeng;
+import net.ltxprogrammer.changed.init.ChangedEntities;
+import net.ltxprogrammer.turned.entity.DLbeeEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexFoxEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexFoxScientistEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexMothEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexQueenBeeEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSkeletonEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSnakeEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSnepEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSpiderEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSpiderQueenEntity;
+import net.ltxprogrammer.turned.entity.DarklatexEntity;
+import net.ltxprogrammer.turned.entity.DarklatexslugEntity;
+import net.ltxprogrammer.turned.entity.DlsharkEntity;
+import net.ltxprogrammer.turned.entity.NoiseStalkerEntity;
+import net.ltxprogrammer.turned.entity.ScientistEntity;
+import net.ltxprogrammer.turned.init.LatexModEntities;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\LatexDropPodOnEntityTickUpdateProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/LatexDropPodOnEntityTickUpdateProcedure.class */
+public class LatexDropPodOnEntityTickUpdateProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 2.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x + 1.0d, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x + 1.0d, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + 1.0d, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x - 1.0d, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x - 1.0d, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x - 1.0d, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z + 1.0d)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z + 1.0d)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z + 1.0d)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z - 1.0d)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z - 1.0d)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z - 1.0d)).getBlock() == Blocks.AIR)) {
+                if (world instanceof Level) {
+                    Level _level = (Level) world;
+                    if (!_level.isClientSide()) {
+                        _level.explode((Entity) null, x, y, z, 3.0f, Explosion.BlockInteraction.DESTROY);
+                    }
+                }
+                if (Math.random() < 0.4d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level2 = (ServerLevel) world;
+                        Entity entityToSpawn = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level2);
+                        entityToSpawn.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn.setYBodyRot(0.0f);
+                        entityToSpawn.setYHeadRot(0.0f);
+                        if (entityToSpawn instanceof Mob) {
+                            ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level3 = (ServerLevel) world;
+                        Entity entityToSpawn2 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level3);
+                        entityToSpawn2.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn2.setYBodyRot(0.0f);
+                        entityToSpawn2.setYHeadRot(0.0f);
+                        if (entityToSpawn2 instanceof Mob) {
+                            ((Mob) entityToSpawn2).finalizeSpawn(_level3, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn2);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level4 = (ServerLevel) world;
+                        Entity entityToSpawn3 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level4);
+                        entityToSpawn3.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn3.setYBodyRot(0.0f);
+                        entityToSpawn3.setYHeadRot(0.0f);
+                        if (entityToSpawn3 instanceof Mob) {
+                            ((Mob) entityToSpawn3).finalizeSpawn(_level4, world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn3);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level5 = (ServerLevel) world;
+                        Entity entityToSpawn4 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level5);
+                        entityToSpawn4.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn4.setYBodyRot(0.0f);
+                        entityToSpawn4.setYHeadRot(0.0f);
+                        if (entityToSpawn4 instanceof Mob) {
+                            ((Mob) entityToSpawn4).finalizeSpawn(_level5, world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn4);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level6 = (ServerLevel) world;
+                        Entity entityToSpawn5 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level6);
+                        entityToSpawn5.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn5.setYBodyRot(0.0f);
+                        entityToSpawn5.setYHeadRot(0.0f);
+                        if (entityToSpawn5 instanceof Mob) {
+                            ((Mob) entityToSpawn5).finalizeSpawn(_level6, world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn5);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level7 = (ServerLevel) world;
+                        Entity entityToSpawn6 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level7);
+                        entityToSpawn6.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn6.setYBodyRot(0.0f);
+                        entityToSpawn6.setYHeadRot(0.0f);
+                        if (entityToSpawn6 instanceof Mob) {
+                            ((Mob) entityToSpawn6).finalizeSpawn(_level7, world.getCurrentDifficultyAt(entityToSpawn6.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn6);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level8 = (ServerLevel) world;
+                        Entity entityToSpawn7 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level8);
+                        entityToSpawn7.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn7.setYBodyRot(0.0f);
+                        entityToSpawn7.setYHeadRot(0.0f);
+                        if (entityToSpawn7 instanceof Mob) {
+                            ((Mob) entityToSpawn7).finalizeSpawn(_level8, world.getCurrentDifficultyAt(entityToSpawn7.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn7);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level9 = (ServerLevel) world;
+                        Entity entityToSpawn8 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level9);
+                        entityToSpawn8.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn8.setYBodyRot(0.0f);
+                        entityToSpawn8.setYHeadRot(0.0f);
+                        if (entityToSpawn8 instanceof Mob) {
+                            ((Mob) entityToSpawn8).finalizeSpawn(_level9, world.getCurrentDifficultyAt(entityToSpawn8.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn8);
+                    }
+                } else if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level10 = (ServerLevel) world;
+                        Entity entityToSpawn9 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level10);
+                        entityToSpawn9.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn9.setYBodyRot(0.0f);
+                        entityToSpawn9.setYHeadRot(0.0f);
+                        if (entityToSpawn9 instanceof Mob) {
+                            ((Mob) entityToSpawn9).finalizeSpawn(_level10, world.getCurrentDifficultyAt(entityToSpawn9.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn9);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level11 = (ServerLevel) world;
+                        Entity entityToSpawn10 = new DarkLatexFoxSniperEntity((EntityType<DarkLatexFoxSniperEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get()), (Level) _level11);
+                        entityToSpawn10.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn10.setYBodyRot(0.0f);
+                        entityToSpawn10.setYHeadRot(0.0f);
+                        if (entityToSpawn10 instanceof Mob) {
+                            ((Mob) entityToSpawn10).finalizeSpawn(_level11, world.getCurrentDifficultyAt(entityToSpawn10.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn10);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level12 = (ServerLevel) world;
+                        Entity entityToSpawn11 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level12);
+                        entityToSpawn11.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn11.setYBodyRot(0.0f);
+                        entityToSpawn11.setYHeadRot(0.0f);
+                        if (entityToSpawn11 instanceof Mob) {
+                            ((Mob) entityToSpawn11).finalizeSpawn(_level12, world.getCurrentDifficultyAt(entityToSpawn11.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn11);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level13 = (ServerLevel) world;
+                        Entity entityToSpawn12 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level13);
+                        entityToSpawn12.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn12.setYBodyRot(0.0f);
+                        entityToSpawn12.setYHeadRot(0.0f);
+                        if (entityToSpawn12 instanceof Mob) {
+                            ((Mob) entityToSpawn12).finalizeSpawn(_level13, world.getCurrentDifficultyAt(entityToSpawn12.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn12);
+                    }
+                } else if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level14 = (ServerLevel) world;
+                        Entity entityToSpawn13 = new DlsharkEntity((EntityType<DlsharkEntity>) ((EntityType) LatexModEntities.DLSHARK.get()), (Level) _level14);
+                        entityToSpawn13.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn13.setYBodyRot(0.0f);
+                        entityToSpawn13.setYHeadRot(0.0f);
+                        if (entityToSpawn13 instanceof Mob) {
+                            ((Mob) entityToSpawn13).finalizeSpawn(_level14, world.getCurrentDifficultyAt(entityToSpawn13.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn13);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level15 = (ServerLevel) world;
+                        Entity entityToSpawn14 = new DlsharkEntity((EntityType<DlsharkEntity>) ((EntityType) LatexModEntities.DLSHARK.get()), (Level) _level15);
+                        entityToSpawn14.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn14.setYBodyRot(0.0f);
+                        entityToSpawn14.setYHeadRot(0.0f);
+                        if (entityToSpawn14 instanceof Mob) {
+                            ((Mob) entityToSpawn14).finalizeSpawn(_level15, world.getCurrentDifficultyAt(entityToSpawn14.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn14);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level16 = (ServerLevel) world;
+                        Entity entityToSpawn15 = new DarkLatexMothEntity((EntityType<DarkLatexMothEntity>) ((EntityType) LatexModEntities.DARK_LATEX_MOTH.get()), (Level) _level16);
+                        entityToSpawn15.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn15.setYBodyRot(0.0f);
+                        entityToSpawn15.setYHeadRot(0.0f);
+                        if (entityToSpawn15 instanceof Mob) {
+                            ((Mob) entityToSpawn15).finalizeSpawn(_level16, world.getCurrentDifficultyAt(entityToSpawn15.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn15);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level17 = (ServerLevel) world;
+                        Entity entityToSpawn16 = new DarkLatexSkeletonEntity((EntityType<DarkLatexSkeletonEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get()), (Level) _level17);
+                        entityToSpawn16.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn16.setYBodyRot(0.0f);
+                        entityToSpawn16.setYHeadRot(0.0f);
+                        if (entityToSpawn16 instanceof Mob) {
+                            ((Mob) entityToSpawn16).finalizeSpawn(_level17, world.getCurrentDifficultyAt(entityToSpawn16.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn16);
+                    }
+                } else if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level18 = (ServerLevel) world;
+                        Entity entityToSpawn17 = new DarkLatexSnakeEntity((EntityType<DarkLatexSnakeEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SNAKE.get()), (Level) _level18);
+                        entityToSpawn17.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn17.setYBodyRot(0.0f);
+                        entityToSpawn17.setYHeadRot(0.0f);
+                        if (entityToSpawn17 instanceof Mob) {
+                            ((Mob) entityToSpawn17).finalizeSpawn(_level18, world.getCurrentDifficultyAt(entityToSpawn17.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn17);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level19 = (ServerLevel) world;
+                        Entity entityToSpawn18 = new DarkLatexSnepEntity((EntityType<DarkLatexSnepEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SNEP.get()), (Level) _level19);
+                        entityToSpawn18.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn18.setYBodyRot(0.0f);
+                        entityToSpawn18.setYHeadRot(0.0f);
+                        if (entityToSpawn18 instanceof Mob) {
+                            ((Mob) entityToSpawn18).finalizeSpawn(_level19, world.getCurrentDifficultyAt(entityToSpawn18.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn18);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level20 = (ServerLevel) world;
+                        Entity entityToSpawn19 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level20);
+                        entityToSpawn19.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn19.setYBodyRot(0.0f);
+                        entityToSpawn19.setYHeadRot(0.0f);
+                        if (entityToSpawn19 instanceof Mob) {
+                            ((Mob) entityToSpawn19).finalizeSpawn(_level20, world.getCurrentDifficultyAt(entityToSpawn19.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn19);
+                    }
+                } else if (Math.random() < 0.1d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level21 = (ServerLevel) world;
+                        Entity entityToSpawn20 = new ScientistEntity((EntityType<ScientistEntity>) ((EntityType) LatexModEntities.SCIENTIST.get()), (Level) _level21);
+                        entityToSpawn20.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn20.setYBodyRot(0.0f);
+                        entityToSpawn20.setYHeadRot(0.0f);
+                        if (entityToSpawn20 instanceof Mob) {
+                            ((Mob) entityToSpawn20).finalizeSpawn(_level21, world.getCurrentDifficultyAt(entityToSpawn20.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn20);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level22 = (ServerLevel) world;
+                        Entity entityToSpawn21 = new ScientistEntity((EntityType<ScientistEntity>) ((EntityType) LatexModEntities.SCIENTIST.get()), (Level) _level22);
+                        entityToSpawn21.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn21.setYBodyRot(0.0f);
+                        entityToSpawn21.setYHeadRot(0.0f);
+                        if (entityToSpawn21 instanceof Mob) {
+                            ((Mob) entityToSpawn21).finalizeSpawn(_level22, world.getCurrentDifficultyAt(entityToSpawn21.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn21);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level23 = (ServerLevel) world;
+                        Entity entityToSpawn22 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level23);
+                        entityToSpawn22.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn22.setYBodyRot(0.0f);
+                        entityToSpawn22.setYHeadRot(0.0f);
+                        if (entityToSpawn22 instanceof Mob) {
+                            ((Mob) entityToSpawn22).finalizeSpawn(_level23, world.getCurrentDifficultyAt(entityToSpawn22.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn22);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level24 = (ServerLevel) world;
+                        Entity entityToSpawn23 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level24);
+                        entityToSpawn23.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn23.setYBodyRot(0.0f);
+                        entityToSpawn23.setYHeadRot(0.0f);
+                        if (entityToSpawn23 instanceof Mob) {
+                            ((Mob) entityToSpawn23).finalizeSpawn(_level24, world.getCurrentDifficultyAt(entityToSpawn23.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn23);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level25 = (ServerLevel) world;
+                        Entity entityToSpawn24 = new DarkLatexFoxSniperEntity((EntityType<DarkLatexFoxSniperEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get()), (Level) _level25);
+                        entityToSpawn24.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn24.setYBodyRot(0.0f);
+                        entityToSpawn24.setYHeadRot(0.0f);
+                        if (entityToSpawn24 instanceof Mob) {
+                            ((Mob) entityToSpawn24).finalizeSpawn(_level25, world.getCurrentDifficultyAt(entityToSpawn24.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn24);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level26 = (ServerLevel) world;
+                        Entity entityToSpawn25 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level26);
+                        entityToSpawn25.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn25.setYBodyRot(0.0f);
+                        entityToSpawn25.setYHeadRot(0.0f);
+                        if (entityToSpawn25 instanceof Mob) {
+                            ((Mob) entityToSpawn25).finalizeSpawn(_level26, world.getCurrentDifficultyAt(entityToSpawn25.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn25);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level27 = (ServerLevel) world;
+                        Entity entityToSpawn26 = new DarkLatexFoxScientistEntity((EntityType<DarkLatexFoxScientistEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get()), (Level) _level27);
+                        entityToSpawn26.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn26.setYBodyRot(0.0f);
+                        entityToSpawn26.setYHeadRot(0.0f);
+                        if (entityToSpawn26 instanceof Mob) {
+                            ((Mob) entityToSpawn26).finalizeSpawn(_level27, world.getCurrentDifficultyAt(entityToSpawn26.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn26);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level28 = (ServerLevel) world;
+                        Entity entityToSpawn27 = new DarkLatexFoxSniperEntity((EntityType<DarkLatexFoxSniperEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get()), (Level) _level28);
+                        entityToSpawn27.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn27.setYBodyRot(0.0f);
+                        entityToSpawn27.setYHeadRot(0.0f);
+                        if (entityToSpawn27 instanceof Mob) {
+                            ((Mob) entityToSpawn27).finalizeSpawn(_level28, world.getCurrentDifficultyAt(entityToSpawn27.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn27);
+                    }
+                } else if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level29 = (ServerLevel) world;
+                        Entity entityToSpawn28 = new NoiseStalkerEntity((EntityType<NoiseStalkerEntity>) ((EntityType) LatexModEntities.NOISE_STALKER.get()), (Level) _level29);
+                        entityToSpawn28.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn28.setYBodyRot(0.0f);
+                        entityToSpawn28.setYHeadRot(0.0f);
+                        if (entityToSpawn28 instanceof Mob) {
+                            ((Mob) entityToSpawn28).finalizeSpawn(_level29, world.getCurrentDifficultyAt(entityToSpawn28.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn28);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level30 = (ServerLevel) world;
+                        Entity entityToSpawn29 = new NoiseStalkerEntity((EntityType<NoiseStalkerEntity>) ((EntityType) LatexModEntities.NOISE_STALKER.get()), (Level) _level30);
+                        entityToSpawn29.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn29.setYBodyRot(0.0f);
+                        entityToSpawn29.setYHeadRot(0.0f);
+                        if (entityToSpawn29 instanceof Mob) {
+                            ((Mob) entityToSpawn29).finalizeSpawn(_level30, world.getCurrentDifficultyAt(entityToSpawn29.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn29);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level31 = (ServerLevel) world;
+                        Entity entityToSpawn30 = new NoiseStalkerEntity((EntityType<NoiseStalkerEntity>) ((EntityType) LatexModEntities.NOISE_STALKER.get()), (Level) _level31);
+                        entityToSpawn30.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn30.setYBodyRot(0.0f);
+                        entityToSpawn30.setYHeadRot(0.0f);
+                        if (entityToSpawn30 instanceof Mob) {
+                            ((Mob) entityToSpawn30).finalizeSpawn(_level31, world.getCurrentDifficultyAt(entityToSpawn30.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn30);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level32 = (ServerLevel) world;
+                        Entity entityToSpawn31 = new NoiseStalkerEntity((EntityType<NoiseStalkerEntity>) ((EntityType) LatexModEntities.NOISE_STALKER.get()), (Level) _level32);
+                        entityToSpawn31.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn31.setYBodyRot(0.0f);
+                        entityToSpawn31.setYHeadRot(0.0f);
+                        if (entityToSpawn31 instanceof Mob) {
+                            ((Mob) entityToSpawn31).finalizeSpawn(_level32, world.getCurrentDifficultyAt(entityToSpawn31.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn31);
+                    }
+                } else if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level33 = (ServerLevel) world;
+                        Entity entityToSpawn32 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level33);
+                        entityToSpawn32.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn32.setYBodyRot(0.0f);
+                        entityToSpawn32.setYHeadRot(0.0f);
+                        if (entityToSpawn32 instanceof Mob) {
+                            ((Mob) entityToSpawn32).finalizeSpawn(_level33, world.getCurrentDifficultyAt(entityToSpawn32.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn32);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level34 = (ServerLevel) world;
+                        Entity entityToSpawn33 = new DarkLatexSkeletonEntity((EntityType<DarkLatexSkeletonEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get()), (Level) _level34);
+                        entityToSpawn33.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn33.setYBodyRot(0.0f);
+                        entityToSpawn33.setYHeadRot(0.0f);
+                        if (entityToSpawn33 instanceof Mob) {
+                            ((Mob) entityToSpawn33).finalizeSpawn(_level34, world.getCurrentDifficultyAt(entityToSpawn33.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn33);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level35 = (ServerLevel) world;
+                        Entity entityToSpawn34 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level35);
+                        entityToSpawn34.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn34.setYBodyRot(0.0f);
+                        entityToSpawn34.setYHeadRot(0.0f);
+                        if (entityToSpawn34 instanceof Mob) {
+                            ((Mob) entityToSpawn34).finalizeSpawn(_level35, world.getCurrentDifficultyAt(entityToSpawn34.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn34);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level36 = (ServerLevel) world;
+                        Entity entityToSpawn35 = new DarkLatexSkeletonEntity((EntityType<DarkLatexSkeletonEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get()), (Level) _level36);
+                        entityToSpawn35.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn35.setYBodyRot(0.0f);
+                        entityToSpawn35.setYHeadRot(0.0f);
+                        if (entityToSpawn35 instanceof Mob) {
+                            ((Mob) entityToSpawn35).finalizeSpawn(_level36, world.getCurrentDifficultyAt(entityToSpawn35.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn35);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level37 = (ServerLevel) world;
+                        Entity entityToSpawn36 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level37);
+                        entityToSpawn36.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn36.setYBodyRot(0.0f);
+                        entityToSpawn36.setYHeadRot(0.0f);
+                        if (entityToSpawn36 instanceof Mob) {
+                            ((Mob) entityToSpawn36).finalizeSpawn(_level37, world.getCurrentDifficultyAt(entityToSpawn36.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn36);
+                    }
+                } else if (Math.random() < 0.2d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level38 = (ServerLevel) world;
+                        Entity entityToSpawn37 = new DarkLatexSpiderEntity((EntityType<DarkLatexSpiderEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get()), (Level) _level38);
+                        entityToSpawn37.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn37.setYBodyRot(0.0f);
+                        entityToSpawn37.setYHeadRot(0.0f);
+                        if (entityToSpawn37 instanceof Mob) {
+                            ((Mob) entityToSpawn37).finalizeSpawn(_level38, world.getCurrentDifficultyAt(entityToSpawn37.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn37);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level39 = (ServerLevel) world;
+                        Entity entityToSpawn38 = new DarkLatexSpiderEntity((EntityType<DarkLatexSpiderEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get()), (Level) _level39);
+                        entityToSpawn38.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn38.setYBodyRot(0.0f);
+                        entityToSpawn38.setYHeadRot(0.0f);
+                        if (entityToSpawn38 instanceof Mob) {
+                            ((Mob) entityToSpawn38).finalizeSpawn(_level39, world.getCurrentDifficultyAt(entityToSpawn38.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn38);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level40 = (ServerLevel) world;
+                        Entity entityToSpawn39 = new DarkLatexSpiderEntity((EntityType<DarkLatexSpiderEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get()), (Level) _level40);
+                        entityToSpawn39.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn39.setYBodyRot(0.0f);
+                        entityToSpawn39.setYHeadRot(0.0f);
+                        if (entityToSpawn39 instanceof Mob) {
+                            ((Mob) entityToSpawn39).finalizeSpawn(_level40, world.getCurrentDifficultyAt(entityToSpawn39.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn39);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level41 = (ServerLevel) world;
+                        Entity entityToSpawn40 = new DarkLatexSpiderEntity((EntityType<DarkLatexSpiderEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get()), (Level) _level41);
+                        entityToSpawn40.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn40.setYBodyRot(0.0f);
+                        entityToSpawn40.setYHeadRot(0.0f);
+                        if (entityToSpawn40 instanceof Mob) {
+                            ((Mob) entityToSpawn40).finalizeSpawn(_level41, world.getCurrentDifficultyAt(entityToSpawn40.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn40);
+                    }
+                } else if (Math.random() < 0.1d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level42 = (ServerLevel) world;
+                        Entity entityToSpawn41 = new DarkLatexSkeletonEntity((EntityType<DarkLatexSkeletonEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get()), (Level) _level42);
+                        entityToSpawn41.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn41.setYBodyRot(0.0f);
+                        entityToSpawn41.setYHeadRot(0.0f);
+                        if (entityToSpawn41 instanceof Mob) {
+                            ((Mob) entityToSpawn41).finalizeSpawn(_level42, world.getCurrentDifficultyAt(entityToSpawn41.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn41);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level43 = (ServerLevel) world;
+                        Entity entityToSpawn42 = new DarkLatexDragon((EntityType) ChangedEntities.DARK_LATEX_DRAGON.get(), _level43);
+                        entityToSpawn42.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn42.setYBodyRot(0.0f);
+                        entityToSpawn42.setYHeadRot(0.0f);
+                        if (entityToSpawn42 instanceof Mob) {
+                            ((Mob) entityToSpawn42).finalizeSpawn(_level43, world.getCurrentDifficultyAt(entityToSpawn42.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn42);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level44 = (ServerLevel) world;
+                        Entity entityToSpawn43 = new DarkLatexYufeng((EntityType) ChangedEntities.DARK_LATEX_YUFENG.get(), _level44);
+                        entityToSpawn43.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn43.setYBodyRot(0.0f);
+                        entityToSpawn43.setYHeadRot(0.0f);
+                        if (entityToSpawn43 instanceof Mob) {
+                            ((Mob) entityToSpawn43).finalizeSpawn(_level44, world.getCurrentDifficultyAt(entityToSpawn43.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn43);
+                    }
+                } else if (Math.random() < 0.1d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level45 = (ServerLevel) world;
+                        Entity entityToSpawn44 = new DarkLatexSpiderQueenEntity((EntityType<DarkLatexSpiderQueenEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER_QUEEN.get()), (Level) _level45);
+                        entityToSpawn44.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn44.setYBodyRot(0.0f);
+                        entityToSpawn44.setYHeadRot(0.0f);
+                        if (entityToSpawn44 instanceof Mob) {
+                            ((Mob) entityToSpawn44).finalizeSpawn(_level45, world.getCurrentDifficultyAt(entityToSpawn44.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn44);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level46 = (ServerLevel) world;
+                        Entity entityToSpawn45 = new DarkLatexSpiderEntity((EntityType<DarkLatexSpiderEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get()), (Level) _level46);
+                        entityToSpawn45.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn45.setYBodyRot(0.0f);
+                        entityToSpawn45.setYHeadRot(0.0f);
+                        if (entityToSpawn45 instanceof Mob) {
+                            ((Mob) entityToSpawn45).finalizeSpawn(_level46, world.getCurrentDifficultyAt(entityToSpawn45.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn45);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level47 = (ServerLevel) world;
+                        Entity entityToSpawn46 = new DarkLatexSpiderEntity((EntityType<DarkLatexSpiderEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get()), (Level) _level47);
+                        entityToSpawn46.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn46.setYBodyRot(0.0f);
+                        entityToSpawn46.setYHeadRot(0.0f);
+                        if (entityToSpawn46 instanceof Mob) {
+                            ((Mob) entityToSpawn46).finalizeSpawn(_level47, world.getCurrentDifficultyAt(entityToSpawn46.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn46);
+                    }
+                } else if (Math.random() < 0.1d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level48 = (ServerLevel) world;
+                        Entity entityToSpawn47 = new DarkLatexQueenBeeEntity((EntityType<DarkLatexQueenBeeEntity>) ((EntityType) LatexModEntities.DARK_LATEX_QUEEN_BEE.get()), (Level) _level48);
+                        entityToSpawn47.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn47.setYBodyRot(0.0f);
+                        entityToSpawn47.setYHeadRot(0.0f);
+                        if (entityToSpawn47 instanceof Mob) {
+                            ((Mob) entityToSpawn47).finalizeSpawn(_level48, world.getCurrentDifficultyAt(entityToSpawn47.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn47);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level49 = (ServerLevel) world;
+                        Entity entityToSpawn48 = new DLbeeEntity((EntityType<DLbeeEntity>) ((EntityType) LatexModEntities.D_LBEE.get()), (Level) _level49);
+                        entityToSpawn48.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn48.setYBodyRot(0.0f);
+                        entityToSpawn48.setYHeadRot(0.0f);
+                        if (entityToSpawn48 instanceof Mob) {
+                            ((Mob) entityToSpawn48).finalizeSpawn(_level49, world.getCurrentDifficultyAt(entityToSpawn48.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn48);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level50 = (ServerLevel) world;
+                        Entity entityToSpawn49 = new DLbeeEntity((EntityType<DLbeeEntity>) ((EntityType) LatexModEntities.D_LBEE.get()), (Level) _level50);
+                        entityToSpawn49.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn49.setYBodyRot(0.0f);
+                        entityToSpawn49.setYHeadRot(0.0f);
+                        if (entityToSpawn49 instanceof Mob) {
+                            ((Mob) entityToSpawn49).finalizeSpawn(_level50, world.getCurrentDifficultyAt(entityToSpawn49.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn49);
+                    }
+                } else if (Math.random() < 0.25d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level51 = (ServerLevel) world;
+                        Entity entityToSpawn50 = new DarkLatexSnakeEntity((EntityType<DarkLatexSnakeEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SNAKE.get()), (Level) _level51);
+                        entityToSpawn50.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn50.setYBodyRot(0.0f);
+                        entityToSpawn50.setYHeadRot(0.0f);
+                        if (entityToSpawn50 instanceof Mob) {
+                            ((Mob) entityToSpawn50).finalizeSpawn(_level51, world.getCurrentDifficultyAt(entityToSpawn50.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn50);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level52 = (ServerLevel) world;
+                        Entity entityToSpawn51 = new NoiseStalkerEntity((EntityType<NoiseStalkerEntity>) ((EntityType) LatexModEntities.NOISE_STALKER.get()), (Level) _level52);
+                        entityToSpawn51.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn51.setYBodyRot(0.0f);
+                        entityToSpawn51.setYHeadRot(0.0f);
+                        if (entityToSpawn51 instanceof Mob) {
+                            ((Mob) entityToSpawn51).finalizeSpawn(_level52, world.getCurrentDifficultyAt(entityToSpawn51.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn51);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level53 = (ServerLevel) world;
+                        Entity entityToSpawn52 = new DarkLatexSkeletonEntity((EntityType<DarkLatexSkeletonEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get()), (Level) _level53);
+                        entityToSpawn52.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn52.setYBodyRot(0.0f);
+                        entityToSpawn52.setYHeadRot(0.0f);
+                        if (entityToSpawn52 instanceof Mob) {
+                            ((Mob) entityToSpawn52).finalizeSpawn(_level53, world.getCurrentDifficultyAt(entityToSpawn52.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn52);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level54 = (ServerLevel) world;
+                        Entity entityToSpawn53 = new DarkLatexSkeletonEntity((EntityType<DarkLatexSkeletonEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get()), (Level) _level54);
+                        entityToSpawn53.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn53.setYBodyRot(0.0f);
+                        entityToSpawn53.setYHeadRot(0.0f);
+                        if (entityToSpawn53 instanceof Mob) {
+                            ((Mob) entityToSpawn53).finalizeSpawn(_level54, world.getCurrentDifficultyAt(entityToSpawn53.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn53);
+                    }
+                } else if (Math.random() < 0.25d) {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level55 = (ServerLevel) world;
+                        Entity entityToSpawn54 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level55);
+                        entityToSpawn54.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn54.setYBodyRot(0.0f);
+                        entityToSpawn54.setYHeadRot(0.0f);
+                        if (entityToSpawn54 instanceof Mob) {
+                            ((Mob) entityToSpawn54).finalizeSpawn(_level55, world.getCurrentDifficultyAt(entityToSpawn54.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn54);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level56 = (ServerLevel) world;
+                        Entity entityToSpawn55 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level56);
+                        entityToSpawn55.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn55.setYBodyRot(0.0f);
+                        entityToSpawn55.setYHeadRot(0.0f);
+                        if (entityToSpawn55 instanceof Mob) {
+                            ((Mob) entityToSpawn55).finalizeSpawn(_level56, world.getCurrentDifficultyAt(entityToSpawn55.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn55);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level57 = (ServerLevel) world;
+                        Entity entityToSpawn56 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level57);
+                        entityToSpawn56.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn56.setYBodyRot(0.0f);
+                        entityToSpawn56.setYHeadRot(0.0f);
+                        if (entityToSpawn56 instanceof Mob) {
+                            ((Mob) entityToSpawn56).finalizeSpawn(_level57, world.getCurrentDifficultyAt(entityToSpawn56.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn56);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level58 = (ServerLevel) world;
+                        Entity entityToSpawn57 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level58);
+                        entityToSpawn57.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn57.setYBodyRot(0.0f);
+                        entityToSpawn57.setYHeadRot(0.0f);
+                        if (entityToSpawn57 instanceof Mob) {
+                            ((Mob) entityToSpawn57).finalizeSpawn(_level58, world.getCurrentDifficultyAt(entityToSpawn57.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn57);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level59 = (ServerLevel) world;
+                        Entity entityToSpawn58 = new DarkLatexFoxEntity((EntityType<DarkLatexFoxEntity>) ((EntityType) LatexModEntities.DARK_LATEX_FOX.get()), (Level) _level59);
+                        entityToSpawn58.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn58.setYBodyRot(0.0f);
+                        entityToSpawn58.setYHeadRot(0.0f);
+                        if (entityToSpawn58 instanceof Mob) {
+                            ((Mob) entityToSpawn58).finalizeSpawn(_level59, world.getCurrentDifficultyAt(entityToSpawn58.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn58);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level60 = (ServerLevel) world;
+                        Entity entityToSpawn59 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level60);
+                        entityToSpawn59.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn59.setYBodyRot(0.0f);
+                        entityToSpawn59.setYHeadRot(0.0f);
+                        if (entityToSpawn59 instanceof Mob) {
+                            ((Mob) entityToSpawn59).finalizeSpawn(_level60, world.getCurrentDifficultyAt(entityToSpawn59.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn59);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level61 = (ServerLevel) world;
+                        Entity entityToSpawn60 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level61);
+                        entityToSpawn60.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn60.setYBodyRot(0.0f);
+                        entityToSpawn60.setYHeadRot(0.0f);
+                        if (entityToSpawn60 instanceof Mob) {
+                            ((Mob) entityToSpawn60).finalizeSpawn(_level61, world.getCurrentDifficultyAt(entityToSpawn60.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn60);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level62 = (ServerLevel) world;
+                        Entity entityToSpawn61 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level62);
+                        entityToSpawn61.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn61.setYBodyRot(0.0f);
+                        entityToSpawn61.setYHeadRot(0.0f);
+                        if (entityToSpawn61 instanceof Mob) {
+                            ((Mob) entityToSpawn61).finalizeSpawn(_level62, world.getCurrentDifficultyAt(entityToSpawn61.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn61);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level63 = (ServerLevel) world;
+                        Entity entityToSpawn62 = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level63);
+                        entityToSpawn62.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn62.setYBodyRot(0.0f);
+                        entityToSpawn62.setYHeadRot(0.0f);
+                        if (entityToSpawn62 instanceof Mob) {
+                            ((Mob) entityToSpawn62).finalizeSpawn(_level63, world.getCurrentDifficultyAt(entityToSpawn62.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn62);
+                    }
+                } else {
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level64 = (ServerLevel) world;
+                        Entity entityToSpawn63 = new DarkLatexYufeng((EntityType) ChangedEntities.DARK_LATEX_YUFENG.get(), _level64);
+                        entityToSpawn63.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn63.setYBodyRot(0.0f);
+                        entityToSpawn63.setYHeadRot(0.0f);
+                        if (entityToSpawn63 instanceof Mob) {
+                            ((Mob) entityToSpawn63).finalizeSpawn(_level64, world.getCurrentDifficultyAt(entityToSpawn63.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn63);
+                    }
+                    if (world instanceof ServerLevel) {
+                        ServerLevel _level65 = (ServerLevel) world;
+                        Entity entityToSpawn64 = new DarklatexEntity((EntityType<DarklatexEntity>) ((EntityType) LatexModEntities.DARKLATEX.get()), (Level) _level65);
+                        entityToSpawn64.moveTo(x, y, z, 0.0f, 0.0f);
+                        entityToSpawn64.setYBodyRot(0.0f);
+                        entityToSpawn64.setYHeadRot(0.0f);
+                        if (entityToSpawn64 instanceof Mob) {
+                            ((Mob) entityToSpawn64).finalizeSpawn(_level65, world.getCurrentDifficultyAt(entityToSpawn64.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
+                        }
+                        world.addFreshEntity(entityToSpawn64);
+                    }
+                }
+                if (!entity.level.isClientSide()) {
+                    entity.discard();
+                }
+            }
+        }
+    }
+}

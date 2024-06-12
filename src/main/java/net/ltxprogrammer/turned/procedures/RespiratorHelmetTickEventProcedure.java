@@ -1,34 +1,27 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ 
-/*    */ import net.minecraft.world.effect.MobEffects;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.LivingEntity;
-/*    */ 
-/*    */ public class RespiratorHelmetTickEventProcedure {
-/*    */   public static void execute(Entity entity) {
-/*  9 */     if (entity == null)
-/*    */       return; 
-/* 11 */     if (entity instanceof LivingEntity) { LivingEntity _livEnt = (LivingEntity)entity; if (_livEnt.m_21023_(MobEffects.f_19604_))
-/*    */       
-/*    */       { 
-/*    */         
-/* 15 */         if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/* 16 */           _entity.m_21195_(MobEffects.f_19604_); }
-/* 17 */          if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/* 18 */           _entity.m_21195_(MobEffects.f_19614_); }
-/* 19 */          if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/* 20 */           _entity.m_21195_(MobEffects.f_19597_); }
-/* 21 */          if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/* 22 */           _entity.m_21195_(MobEffects.f_19613_); }  return; }  }  if (entity instanceof LivingEntity) { LivingEntity _livEnt = (LivingEntity)entity; if (_livEnt.m_21023_(MobEffects.f_19614_)) { if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19604_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19614_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19597_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19613_); }  return; }  }  if (entity instanceof LivingEntity) { LivingEntity _livEnt = (LivingEntity)entity; if (_livEnt.m_21023_(MobEffects.f_19597_)) { if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19604_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19614_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19597_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19613_); }  return; }  }  if (entity instanceof LivingEntity) { LivingEntity _livEnt = (LivingEntity)entity; if (_livEnt.m_21023_(MobEffects.f_19613_)) { if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19604_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19614_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19597_); }  if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity; livingEntity.m_21195_(MobEffects.f_19613_); }
-/*    */         
-/*    */         return; }
-/*    */        }
-/*    */   
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\RespiratorHelmetTickEventProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/RespiratorHelmetTickEventProcedure.class */
+public class RespiratorHelmetTickEventProcedure {
+    public static void execute(Entity entity) {
+        if (entity != null) {
+            if (((entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect(MobEffects.CONFUSION)) || (((entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect(MobEffects.POISON)) || (((entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) || ((entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect(MobEffects.WEAKNESS))))) {
+                if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).removeEffect(MobEffects.CONFUSION);
+                }
+                if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).removeEffect(MobEffects.POISON);
+                }
+                if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                }
+                if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).removeEffect(MobEffects.WEAKNESS);
+                }
+            }
+        }
+    }
+}

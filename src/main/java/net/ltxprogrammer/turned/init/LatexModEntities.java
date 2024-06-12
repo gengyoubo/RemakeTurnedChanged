@@ -1,563 +1,344 @@
-/*     */ package net.ltxprogrammer.turned.init;
-/*     */ import java.util.function.BiFunction;
-/*     */ import net.ltxprogrammer.turned.entity.AHVHertxSitEntity;
-/*     */ import net.ltxprogrammer.turned.entity.BeeHertxSitEntity;
-/*     */ import net.ltxprogrammer.turned.entity.CivilianMilitiaMeleeEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexCreeperEnhancedEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexFoxEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarkLatexSpiderQueenEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarklatexEntity;
-/*     */ import net.ltxprogrammer.turned.entity.DarklatexslugEntity;
-/*     */ import net.ltxprogrammer.turned.entity.HertxSitEntity;
-/*     */ import net.ltxprogrammer.turned.entity.LatexDropPodEntity;
-/*     */ import net.ltxprogrammer.turned.entity.MilitaryflameunitEntity;
-/*     */ import net.ltxprogrammer.turned.entity.NXTHertxEntity;
-/*     */ import net.ltxprogrammer.turned.entity.NXTSitEntity;
-/*     */ import net.ltxprogrammer.turned.entity.PrisionermilitiaEntity;
-/*     */ import net.ltxprogrammer.turned.entity.TSCdroneEntity;
-/*     */ import net.minecraft.world.entity.EntityType;
-/*     */ import net.minecraft.world.entity.MobCategory;
-/*     */ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-/*     */ import net.minecraftforge.registries.RegistryObject;
-/*     */ 
-/*     */ @EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-/*     */ public class LatexModEntities {
-/*  25 */   public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES, "turned");
-/*  26 */   public static final RegistryObject<EntityType<SlimelingEntity>> SLIMELING = register("slimeling", 
-/*  27 */       EntityType.Builder.m_20704_(SlimelingEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/*  28 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingEntity::new)
-/*     */       
-/*  30 */       .m_20699_(0.6F, 2.0F));
-/*  31 */   public static final RegistryObject<EntityType<DarklatexslugEntity>> DARKLATEXSLUG = register("darklatexslug", 
-/*  32 */       EntityType.Builder.m_20704_(DarklatexslugEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  33 */       .setTrackingRange(24).setUpdateInterval(3).setCustomClientFactory(DarklatexslugEntity::new)
-/*     */       
-/*  35 */       .m_20699_(0.8F, 0.4F));
-/*  36 */   public static final RegistryObject<EntityType<DarklatexEntity>> DARKLATEX = register("darklatex", 
-/*  37 */       EntityType.Builder.m_20704_(DarklatexEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  38 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(DarklatexEntity::new)
-/*     */       
-/*  40 */       .m_20699_(0.6F, 1.8F));
-/*  41 */   public static final RegistryObject<EntityType<DarkLatexCentaurEntity>> DARK_LATEX_CENTAUR = register("dark_latex_centaur", 
-/*  42 */       EntityType.Builder.m_20704_(DarkLatexCentaurEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  43 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DarkLatexCentaurEntity::new)
-/*     */       
-/*  45 */       .m_20699_(1.2F, 2.25F));
-/*  46 */   public static final RegistryObject<EntityType<DarkLatexSkeletonEntity>> DARK_LATEX_SKELETON = register("dark_latex_skeleton", 
-/*  47 */       EntityType.Builder.m_20704_(DarkLatexSkeletonEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  48 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(DarkLatexSkeletonEntity::new)
-/*     */       
-/*  50 */       .m_20699_(0.6F, 1.8F));
-/*  51 */   public static final RegistryObject<EntityType<NoiseStalkerEntity>> NOISE_STALKER = register("noise_stalker", 
-/*  52 */       EntityType.Builder.m_20704_(NoiseStalkerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  53 */       .setTrackingRange(48).setUpdateInterval(3).setCustomClientFactory(NoiseStalkerEntity::new)
-/*     */       
-/*  55 */       .m_20699_(0.8F, 2.2F));
-/*  56 */   public static final RegistryObject<EntityType<DlsharkEntity>> DLSHARK = register("dlshark", 
-/*  57 */       EntityType.Builder.m_20704_(DlsharkEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(96)
-/*  58 */       .setUpdateInterval(3).setCustomClientFactory(DlsharkEntity::new)
-/*     */       
-/*  60 */       .m_20699_(0.6F, 1.8F));
-/*  61 */   public static final RegistryObject<EntityType<DarkLatexMothEntity>> DARK_LATEX_MOTH = register("dark_latex_moth", 
-/*  62 */       EntityType.Builder.m_20704_(DarkLatexMothEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  63 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexMothEntity::new)
-/*     */       
-/*  65 */       .m_20699_(0.6F, 2.0F));
-/*  66 */   public static final RegistryObject<EntityType<DarkLatexSnepEntity>> DARK_LATEX_SNEP = register("dark_latex_snep", 
-/*  67 */       EntityType.Builder.m_20704_(DarkLatexSnepEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  68 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSnepEntity::new)
-/*     */       
-/*  70 */       .m_20699_(0.6F, 2.0F));
-/*  71 */   public static final RegistryObject<EntityType<DarkLatexFoxEntity>> DARK_LATEX_FOX = register("dark_latex_fox", 
-/*  72 */       EntityType.Builder.m_20704_(DarkLatexFoxEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  73 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexFoxEntity::new)
-/*     */       
-/*  75 */       .m_20699_(0.6F, 1.8F));
-/*  76 */   public static final RegistryObject<EntityType<DarkLatexFoxSniperEntity>> DARK_LATEX_FOX_SNIPER = register("dark_latex_fox_sniper", 
-/*  77 */       EntityType.Builder.m_20704_(DarkLatexFoxSniperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  78 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexFoxSniperEntity::new)
-/*     */       
-/*  80 */       .m_20699_(0.6F, 1.9F));
-/*  81 */   public static final RegistryObject<EntityType<DarkLatexSnakeEntity>> DARK_LATEX_SNAKE = register("dark_latex_snake", 
-/*  82 */       EntityType.Builder.m_20704_(DarkLatexSnakeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  83 */       .setTrackingRange(124).setUpdateInterval(3).setCustomClientFactory(DarkLatexSnakeEntity::new)
-/*     */       
-/*  85 */       .m_20699_(0.6F, 1.9F));
-/*  86 */   public static final RegistryObject<EntityType<DarkLatexSpiderEntity>> DARK_LATEX_SPIDER = register("dark_latex_spider", 
-/*  87 */       EntityType.Builder.m_20704_(DarkLatexSpiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  88 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSpiderEntity::new)
-/*     */       
-/*  90 */       .m_20699_(0.8F, 2.0F));
-/*  91 */   public static final RegistryObject<EntityType<DlSquidDogEntity>> DL_SQUID_DOG = register("dl_squid_dog", 
-/*  92 */       EntityType.Builder.m_20704_(DlSquidDogEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/*  93 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DlSquidDogEntity::new)
-/*     */       
-/*  95 */       .m_20699_(0.8F, 2.2F));
-/*  96 */   public static final RegistryObject<EntityType<DLbeeEntity>> D_LBEE = register("d_lbee", 
-/*  97 */       EntityType.Builder.m_20704_(DLbeeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(96)
-/*  98 */       .setUpdateInterval(3).setCustomClientFactory(DLbeeEntity::new)
-/*     */       
-/* 100 */       .m_20699_(0.6F, 1.9F));
-/* 101 */   public static final RegistryObject<EntityType<DarkLatexQueenBeeEntity>> DARK_LATEX_QUEEN_BEE = register("dark_latex_queen_bee", 
-/* 102 */       EntityType.Builder.m_20704_(DarkLatexQueenBeeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 103 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexQueenBeeEntity::new)
-/*     */       
-/* 105 */       .m_20699_(0.8F, 2.0F));
-/* 106 */   public static final RegistryObject<EntityType<DarkLatexSpiderQueenEntity>> DARK_LATEX_SPIDER_QUEEN = register("dark_latex_spider_queen", 
-/* 107 */       EntityType.Builder.m_20704_(DarkLatexSpiderQueenEntity::new, MobCategory.MONSTER)
-/* 108 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
-/* 109 */       .setCustomClientFactory(DarkLatexSpiderQueenEntity::new)
-/*     */       
-/* 111 */       .m_20699_(1.2F, 3.6F));
-/* 112 */   public static final RegistryObject<EntityType<DarklatexconeEntity>> DARKLATEXCONE = register("darklatexcone", 
-/* 113 */       EntityType.Builder.m_20704_(DarklatexconeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 114 */       .setTrackingRange(84).setUpdateInterval(3).setCustomClientFactory(DarklatexconeEntity::new)
-/*     */       
-/* 116 */       .m_20699_(0.6F, 1.8F));
-/* 117 */   public static final RegistryObject<EntityType<HertxEntity>> HERTX = register("hertx", 
-/* 118 */       EntityType.Builder.m_20704_(HertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96)
-/* 119 */       .setUpdateInterval(3).setCustomClientFactory(HertxEntity::new)
-/*     */       
-/* 121 */       .m_20699_(0.7F, 2.0F));
-/* 122 */   public static final RegistryObject<EntityType<DroneHertxEntity>> DRONE_HERTX = register("drone_hertx", 
-/* 123 */       EntityType.Builder.m_20704_(DroneHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 124 */       .setTrackingRange(108).setUpdateInterval(3).setCustomClientFactory(DroneHertxEntity::new).m_20719_().m_20699_(0.7F, 2.0F));
-/* 125 */   public static final RegistryObject<EntityType<ArmedDroneHertxEntity>> ARMED_DRONE_HERTX = register("armed_drone_hertx", 
-/* 126 */       EntityType.Builder.m_20704_(ArmedDroneHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 127 */       .setTrackingRange(116).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxEntity::new).m_20719_().m_20699_(0.7F, 2.0F));
-/* 128 */   public static final RegistryObject<EntityType<ScientistEntity>> SCIENTIST = register("scientist", 
-/* 129 */       EntityType.Builder.m_20704_(ScientistEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 130 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(ScientistEntity::new)
-/*     */       
-/* 132 */       .m_20699_(0.6F, 1.8F));
-/* 133 */   public static final RegistryObject<EntityType<MilitaryEntity>> MILITARY = register("military", 
-/* 134 */       EntityType.Builder.m_20704_(MilitaryEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 135 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryEntity::new)
-/*     */       
-/* 137 */       .m_20699_(0.6F, 1.8F));
-/* 138 */   public static final RegistryObject<EntityType<MilitaryflameunitEntity>> MILITARYFLAMEUNIT = register("militaryflameunit", 
-/* 139 */       EntityType.Builder.m_20704_(MilitaryflameunitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 140 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryflameunitEntity::new).m_20719_().m_20699_(0.6F, 1.8F));
-/* 141 */   public static final RegistryObject<EntityType<EvilScientistEntity>> EVIL_SCIENTIST = register("evil_scientist", 
-/* 142 */       EntityType.Builder.m_20704_(EvilScientistEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 143 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(EvilScientistEntity::new)
-/*     */       
-/* 145 */       .m_20699_(0.6F, 1.8F));
-/* 146 */   public static final RegistryObject<EntityType<EvilSniperEntity>> EVIL_SNIPER = register("evil_sniper", 
-/* 147 */       EntityType.Builder.m_20704_(EvilSniperEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 148 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(EvilSniperEntity::new)
-/*     */       
-/* 150 */       .m_20699_(0.6F, 1.8F));
-/* 151 */   public static final RegistryObject<EntityType<EvilMilitaryEntity>> EVIL_MILITARY = register("evil_military", 
-/* 152 */       EntityType.Builder.m_20704_(EvilMilitaryEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 153 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(EvilMilitaryEntity::new)
-/*     */       
-/* 155 */       .m_20699_(0.6F, 1.8F));
-/* 156 */   public static final RegistryObject<EntityType<TSCOutsiderEntity>> TSC_OUTSIDER = register("tsc_outsider", 
-/* 157 */       EntityType.Builder.m_20704_(TSCOutsiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 158 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCOutsiderEntity::new).m_20719_().m_20699_(0.6F, 1.8F));
-/* 159 */   public static final RegistryObject<EntityType<TSCOutsiderGunnerEntity>> TSC_OUTSIDER_GUNNER = register("tsc_outsider_gunner", 
-/* 160 */       EntityType.Builder.m_20704_(TSCOutsiderGunnerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 161 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCOutsiderGunnerEntity::new).m_20719_().m_20699_(0.6F, 1.8F));
-/* 162 */   public static final RegistryObject<EntityType<TSCdroneEntity>> TS_CDRONE = register("ts_cdrone", 
-/* 163 */       EntityType.Builder.m_20704_(TSCdroneEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 164 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCdroneEntity::new).m_20719_().m_20699_(0.6F, 1.8F));
-/* 165 */   public static final RegistryObject<EntityType<TSCHunterEntity>> TSC_HUNTER = register("tsc_hunter", 
-/* 166 */       EntityType.Builder.m_20704_(TSCHunterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 167 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCHunterEntity::new).m_20719_()
-/* 168 */       .m_20699_(0.7F, 2.5F));
-/* 169 */   public static final RegistryObject<EntityType<MilitaryRiotEntity>> MILITARY_RIOT = register("military_riot", 
-/* 170 */       EntityType.Builder.m_20704_(MilitaryRiotEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 171 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryRiotEntity::new)
-/*     */       
-/* 173 */       .m_20699_(0.6F, 1.8F));
-/* 174 */   public static final RegistryObject<EntityType<TSCBerserkEntity>> TSC_BERSERK = register("tsc_berserk", 
-/* 175 */       EntityType.Builder.m_20704_(TSCBerserkEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 176 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCBerserkEntity::new).m_20719_().m_20699_(0.7F, 2.1F));
-/* 177 */   public static final RegistryObject<EntityType<DarkLatexCreeperEntity>> DARK_LATEX_CREEPER = register("dark_latex_creeper", 
-/* 178 */       EntityType.Builder.m_20704_(DarkLatexCreeperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 179 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexCreeperEntity::new)
-/*     */       
-/* 181 */       .m_20699_(0.6F, 2.0F));
-/* 182 */   public static final RegistryObject<EntityType<DarkLatexCreeperEnhancedEntity>> DARK_LATEX_CREEPER_ENHANCED = register("dark_latex_creeper_enhanced", 
-/*     */       
-/* 184 */       EntityType.Builder.m_20704_(DarkLatexCreeperEnhancedEntity::new, MobCategory.MONSTER)
-/* 185 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
-/* 186 */       .setCustomClientFactory(DarkLatexCreeperEnhancedEntity::new)
-/*     */       
-/* 188 */       .m_20699_(0.8F, 3.0F));
-/* 189 */   public static final RegistryObject<EntityType<CivilianEntity>> CIVILIAN = register("civilian", 
-/* 190 */       EntityType.Builder.m_20704_(CivilianEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 191 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CivilianEntity::new)
-/*     */       
-/* 193 */       .m_20699_(0.6F, 1.8F));
-/* 194 */   public static final RegistryObject<EntityType<PrisionerEntity>> PRISIONER = register("prisioner", 
-/* 195 */       EntityType.Builder.m_20704_(PrisionerEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 196 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerEntity::new)
-/*     */       
-/* 198 */       .m_20699_(0.6F, 1.8F));
-/* 199 */   public static final RegistryObject<EntityType<PrisionermilitiaEntity>> PRISIONERMILITIA = register("prisionermilitia", 
-/* 200 */       EntityType.Builder.m_20704_(PrisionermilitiaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 201 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(PrisionermilitiaEntity::new)
-/*     */       
-/* 203 */       .m_20699_(0.6F, 1.8F));
-/* 204 */   public static final RegistryObject<EntityType<CivlianMilitiaEntity>> CIVLIAN_MILITIA = register("civlian_militia", 
-/* 205 */       EntityType.Builder.m_20704_(CivlianMilitiaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 206 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(CivlianMilitiaEntity::new)
-/*     */       
-/* 208 */       .m_20699_(0.6F, 1.8F));
-/* 209 */   public static final RegistryObject<EntityType<CrystalbowEntity>> CRYSTALBOW = register("projectile_crystalbow", 
-/* 210 */       EntityType.Builder.m_20704_(CrystalbowEntity::new, MobCategory.MISC).setCustomClientFactory(CrystalbowEntity::new)
-/* 211 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 212 */   public static final RegistryObject<EntityType<LatexcannonEntity>> LATEXCANNON = register("projectile_latexcannon", 
-/* 213 */       EntityType.Builder.m_20704_(LatexcannonEntity::new, MobCategory.MISC).setCustomClientFactory(LatexcannonEntity::new)
-/* 214 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 215 */   public static final RegistryObject<EntityType<RevolvingGooCannonEntity>> REVOLVING_GOO_CANNON = register("projectile_revolving_goo_cannon", 
-/* 216 */       EntityType.Builder.m_20704_(RevolvingGooCannonEntity::new, MobCategory.MISC)
-/* 217 */       .setCustomClientFactory(RevolvingGooCannonEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
-/* 218 */       .setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 219 */   public static final RegistryObject<EntityType<DartrifleEntity>> DARTRIFLE = register("projectile_dartrifle", 
-/* 220 */       EntityType.Builder.m_20704_(DartrifleEntity::new, MobCategory.MISC).setCustomClientFactory(DartrifleEntity::new)
-/* 221 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 222 */   public static final RegistryObject<EntityType<MatchlockPistolEntity>> MATCHLOCK_PISTOL = register("projectile_matchlock_pistol", 
-/* 223 */       EntityType.Builder.m_20704_(MatchlockPistolEntity::new, MobCategory.MISC)
-/* 224 */       .setCustomClientFactory(MatchlockPistolEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
-/* 225 */       .setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 226 */   public static final RegistryObject<EntityType<MatchLockMusketEntity>> MATCH_LOCK_MUSKET = register("projectile_match_lock_musket", 
-/* 227 */       EntityType.Builder.m_20704_(MatchLockMusketEntity::new, MobCategory.MISC)
-/* 228 */       .setCustomClientFactory(MatchLockMusketEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
-/* 229 */       .setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 230 */   public static final RegistryObject<EntityType<AR70AssaultRifleEntity>> AR_70_ASSAULT_RIFLE = register("projectile_ar_70_assault_rifle", 
-/* 231 */       EntityType.Builder.m_20704_(AR70AssaultRifleEntity::new, MobCategory.MISC)
-/* 232 */       .setCustomClientFactory(AR70AssaultRifleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
-/* 233 */       .setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 234 */   public static final RegistryObject<EntityType<M4AssaultRifleEntity>> M_4_ASSAULT_RIFLE = register("projectile_m_4_assault_rifle", 
-/* 235 */       EntityType.Builder.m_20704_(M4AssaultRifleEntity::new, MobCategory.MISC).setCustomClientFactory(M4AssaultRifleEntity::new)
-/* 236 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 237 */   public static final RegistryObject<EntityType<ScrapM16RifleEntity>> SCRAP_M_16_RIFLE = register("projectile_scrap_m_16_rifle", 
-/* 238 */       EntityType.Builder.m_20704_(ScrapM16RifleEntity::new, MobCategory.MISC).setCustomClientFactory(ScrapM16RifleEntity::new)
-/* 239 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 240 */   public static final RegistryObject<EntityType<TSCPistolEntity>> TSC_PISTOL = register("projectile_tsc_pistol", 
-/* 241 */       EntityType.Builder.m_20704_(TSCPistolEntity::new, MobCategory.MISC).setCustomClientFactory(TSCPistolEntity::new)
-/* 242 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 243 */   public static final RegistryObject<EntityType<OverundershotgunEntity>> OVERUNDERSHOTGUN = register("projectile_overundershotgun", 
-/* 244 */       EntityType.Builder.m_20704_(OverundershotgunEntity::new, MobCategory.MISC)
-/* 245 */       .setCustomClientFactory(OverundershotgunEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
-/* 246 */       .setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 247 */   public static final RegistryObject<EntityType<FlamethowerEntity>> FLAMETHOWER = register("projectile_flamethower", 
-/* 248 */       EntityType.Builder.m_20704_(FlamethowerEntity::new, MobCategory.MISC).setCustomClientFactory(FlamethowerEntity::new)
-/* 249 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 250 */   public static final RegistryObject<EntityType<LatexDartRifleEntity>> LATEX_DART_RIFLE = register("projectile_latex_dart_rifle", 
-/* 251 */       EntityType.Builder.m_20704_(LatexDartRifleEntity::new, MobCategory.MISC).setCustomClientFactory(LatexDartRifleEntity::new)
-/* 252 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 253 */   public static final RegistryObject<EntityType<DarkLatexFoxScientistEntity>> DARK_LATEX_FOX_SCIENTIST = register("dark_latex_fox_scientist", 
-/* 254 */       EntityType.Builder.m_20704_(DarkLatexFoxScientistEntity::new, MobCategory.MONSTER)
-/* 255 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
-/* 256 */       .setCustomClientFactory(DarkLatexFoxScientistEntity::new)
-/*     */       
-/* 258 */       .m_20699_(0.6F, 1.8F));
-/* 259 */   public static final RegistryObject<EntityType<BeeHertxEntity>> BEE_HERTX = register("bee_hertx", 
-/* 260 */       EntityType.Builder.m_20704_(BeeHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 261 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(BeeHertxEntity::new)
-/*     */       
-/* 263 */       .m_20699_(0.6F, 2.3F));
-/* 264 */   public static final RegistryObject<EntityType<AHVHertxEntity>> AHV_HERTX = register("ahv_hertx", 
-/* 265 */       EntityType.Builder.m_20704_(AHVHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 266 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AHVHertxEntity::new)
-/*     */       
-/* 268 */       .m_20699_(0.7F, 2.0F));
-/* 269 */   public static final RegistryObject<EntityType<TankCannonEntity>> TANK_CANNON = register("projectile_tank_cannon", 
-/* 270 */       EntityType.Builder.m_20704_(TankCannonEntity::new, MobCategory.MISC).setCustomClientFactory(TankCannonEntity::new)
-/* 271 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 272 */   public static final RegistryObject<EntityType<La4tankmorphrEntity>> LA_4TANKMORPHR = register("la_4tankmorphr", 
-/* 273 */       EntityType.Builder.m_20704_(La4tankmorphrEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 274 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(La4tankmorphrEntity::new).m_20719_()
-/* 275 */       .m_20699_(1.1F, 4.2F));
-/* 276 */   public static final RegistryObject<EntityType<La4tankmorphmEntity>> LA_4TANKMORPHM = register("la_4tankmorphm", 
-/* 277 */       EntityType.Builder.m_20704_(La4tankmorphmEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 278 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(La4tankmorphmEntity::new).m_20719_()
-/* 279 */       .m_20699_(1.1F, 4.2F));
-/* 280 */   public static final RegistryObject<EntityType<NXTHertxEntity>> NXT_HERTX = register("nxt_hertx", 
-/* 281 */       EntityType.Builder.m_20704_(NXTHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 282 */       .setTrackingRange(100).setUpdateInterval(3).setCustomClientFactory(NXTHertxEntity::new)
-/*     */       
-/* 284 */       .m_20699_(0.7F, 2.0F));
-/* 285 */   public static final RegistryObject<EntityType<DROPPODEntity>> DROPPOD = register("droppod", 
-/* 286 */       EntityType.Builder.m_20704_(DROPPODEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128)
-/* 287 */       .setUpdateInterval(3).setCustomClientFactory(DROPPODEntity::new).m_20719_().m_20699_(1.2F, 2.2F));
-/* 288 */   public static final RegistryObject<EntityType<SneppleEntity>> SNEPPLE = register("projectile_snepple", 
-/* 289 */       EntityType.Builder.m_20704_(SneppleEntity::new, MobCategory.MISC).setCustomClientFactory(SneppleEntity::new)
-/* 290 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 291 */   public static final RegistryObject<EntityType<AllydroppodEntity>> ALLYDROPPOD = register("allydroppod", 
-/* 292 */       EntityType.Builder.m_20704_(AllydroppodEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 293 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AllydroppodEntity::new).m_20719_().m_20699_(1.2F, 2.2F));
-/* 294 */   public static final RegistryObject<EntityType<LatexDropPodEntity>> LATEX_DROP_POD = register("latex_drop_pod", 
-/* 295 */       EntityType.Builder.m_20704_(LatexDropPodEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 296 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(LatexDropPodEntity::new).m_20719_().m_20699_(1.2F, 2.2F));
-/* 297 */   public static final RegistryObject<EntityType<HertxvarFEntity>> HERTXVAR_F = register("hertxvar_f", 
-/* 298 */       EntityType.Builder.m_20704_(HertxvarFEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 299 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxvarFEntity::new)
-/*     */       
-/* 301 */       .m_20699_(0.7F, 2.0F));
-/* 302 */   public static final RegistryObject<EntityType<HertxvarSolEntity>> HERTXVAR_SOL = register("hertxvar_sol", 
-/* 303 */       EntityType.Builder.m_20704_(HertxvarSolEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 304 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(HertxvarSolEntity::new)
-/*     */       
-/* 306 */       .m_20699_(0.7F, 2.0F));
-/* 307 */   public static final RegistryObject<EntityType<HertxvarFBEntity>> HERTXVAR_FB = register("hertxvar_fb", 
-/* 308 */       EntityType.Builder.m_20704_(HertxvarFBEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 309 */       .setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxvarFBEntity::new)
-/*     */       
-/* 311 */       .m_20699_(0.7F, 2.1F));
-/* 312 */   public static final RegistryObject<EntityType<HertxSitEntity>> HERTX_SIT = register("hertx_sit", 
-/* 313 */       EntityType.Builder.m_20704_(HertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 314 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxSitEntity::new)
-/*     */       
-/* 316 */       .m_20699_(0.8F, 1.2F));
-/* 317 */   public static final RegistryObject<EntityType<AshburyHertxEntity>> ASHBURY_HERTX = register("ashbury_hertx", 
-/* 318 */       EntityType.Builder.m_20704_(AshburyHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 319 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AshburyHertxEntity::new)
-/*     */       
-/* 321 */       .m_20699_(0.7F, 2.0F));
-/* 322 */   public static final RegistryObject<EntityType<AshburySitEntity>> ASHBURY_SIT = register("ashbury_sit", 
-/* 323 */       EntityType.Builder.m_20704_(AshburySitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 324 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(AshburySitEntity::new)
-/*     */       
-/* 326 */       .m_20699_(0.8F, 1.2F));
-/* 327 */   public static final RegistryObject<EntityType<BeeHertxSitEntity>> BEE_HERTX_SIT = register("bee_hertx_sit", 
-/* 328 */       EntityType.Builder.m_20704_(BeeHertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 329 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(BeeHertxSitEntity::new)
-/*     */       
-/* 331 */       .m_20699_(0.8F, 1.2F));
-/* 332 */   public static final RegistryObject<EntityType<AHVHertxSitEntity>> AHV_HERTX_SIT = register("ahv_hertx_sit", 
-/* 333 */       EntityType.Builder.m_20704_(AHVHertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 334 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(AHVHertxSitEntity::new)
-/*     */       
-/* 336 */       .m_20699_(0.8F, 1.2F));
-/* 337 */   public static final RegistryObject<EntityType<NXTSitEntity>> NXT_SIT = register("nxt_sit", 
-/* 338 */       EntityType.Builder.m_20704_(NXTSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32)
-/* 339 */       .setUpdateInterval(3).setCustomClientFactory(NXTSitEntity::new)
-/*     */       
-/* 341 */       .m_20699_(0.8F, 1.2F));
-/* 342 */   public static final RegistryObject<EntityType<HertxFSitEntity>> HERTX_F_SIT = register("hertx_f_sit", 
-/* 343 */       EntityType.Builder.m_20704_(HertxFSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 344 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxFSitEntity::new)
-/*     */       
-/* 346 */       .m_20699_(0.8F, 1.2F));
-/* 347 */   public static final RegistryObject<EntityType<HertxFBSitEntity>> HERTX_FB_SIT = register("hertx_fb_sit", 
-/* 348 */       EntityType.Builder.m_20704_(HertxFBSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 349 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxFBSitEntity::new)
-/*     */       
-/* 351 */       .m_20699_(0.8F, 1.5F));
-/* 352 */   public static final RegistryObject<EntityType<HertxSolWaitEntity>> HERTX_SOL_WAIT = register("hertx_sol_wait", 
-/* 353 */       EntityType.Builder.m_20704_(HertxSolWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 354 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(HertxSolWaitEntity::new)
-/*     */       
-/* 356 */       .m_20699_(0.7F, 2.0F));
-/* 357 */   public static final RegistryObject<EntityType<SlimelingTamedEntity>> SLIMELING_TAMED = register("slimeling_tamed", 
-/* 358 */       EntityType.Builder.m_20704_(SlimelingTamedEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 359 */       .setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingTamedEntity::new)
-/*     */       
-/* 361 */       .m_20699_(0.6F, 2.0F));
-/* 362 */   public static final RegistryObject<EntityType<SlimelingtamedsitEntity>> SLIMELINGTAMEDSIT = register("slimelingtamedsit", 
-/* 363 */       EntityType.Builder.m_20704_(SlimelingtamedsitEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 364 */       .setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(SlimelingtamedsitEntity::new)
-/*     */       
-/* 366 */       .m_20699_(0.8F, 1.2F));
-/* 367 */   public static final RegistryObject<EntityType<ProtectorSlimelingEntity>> PROTECTOR_SLIMELING = register("protector_slimeling", 
-/* 368 */       EntityType.Builder.m_20704_(ProtectorSlimelingEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 369 */       .setTrackingRange(72).setUpdateInterval(3).setCustomClientFactory(ProtectorSlimelingEntity::new)
-/*     */       
-/* 371 */       .m_20699_(0.6F, 2.0F));
-/* 372 */   public static final RegistryObject<EntityType<ProtectorSlimelingsitEntity>> PROTECTOR_SLIMELINGSIT = register("protector_slimelingsit", 
-/* 373 */       EntityType.Builder.m_20704_(ProtectorSlimelingsitEntity::new, MobCategory.MONSTER)
-/* 374 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3)
-/* 375 */       .setCustomClientFactory(ProtectorSlimelingsitEntity::new)
-/*     */       
-/* 377 */       .m_20699_(0.8F, 1.2F));
-/* 378 */   public static final RegistryObject<EntityType<DarkLatexCakeEntity>> DARK_LATEX_CAKE = register("dark_latex_cake", 
-/* 379 */       EntityType.Builder.m_20704_(DarkLatexCakeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true)
-/* 380 */       .setTrackingRange(72).setUpdateInterval(3).setCustomClientFactory(DarkLatexCakeEntity::new)
-/*     */       
-/* 382 */       .m_20699_(0.6F, 1.8F));
-/* 383 */   public static final RegistryObject<EntityType<DroneHertxWaitEntity>> DRONE_HERTX_WAIT = register("drone_hertx_wait", 
-/* 384 */       EntityType.Builder.m_20704_(DroneHertxWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true)
-/* 385 */       .setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DroneHertxWaitEntity::new).m_20719_().m_20699_(0.7F, 1.2F));
-/* 386 */   public static final RegistryObject<EntityType<ArmedDroneHertxWaitEntity>> ARMED_DRONE_HERTX_WAIT = register("armed_drone_hertx_wait", 
-/* 387 */       EntityType.Builder.m_20704_(ArmedDroneHertxWaitEntity::new, MobCategory.CREATURE)
-/* 388 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3)
-/* 389 */       .setCustomClientFactory(ArmedDroneHertxWaitEntity::new).m_20719_().m_20699_(0.7F, 2.0F));
-/* 390 */   public static final RegistryObject<EntityType<ExplosivegooEntity>> EXPLOSIVEGOO = register("projectile_explosivegoo", 
-/* 391 */       EntityType.Builder.m_20704_(ExplosivegooEntity::new, MobCategory.MISC).setCustomClientFactory(ExplosivegooEntity::new)
-/* 392 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).m_20699_(0.5F, 0.5F));
-/* 393 */   public static final RegistryObject<EntityType<CivilianMilitiaMeleeEntity>> CIVILIAN_MILITIA_MELEE = register("civilian_militia_melee", 
-/* 394 */       EntityType.Builder.m_20704_(CivilianMilitiaMeleeEntity::new, MobCategory.CREATURE)
-/* 395 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3)
-/* 396 */       .setCustomClientFactory(CivilianMilitiaMeleeEntity::new)
-/*     */       
-/* 398 */       .m_20699_(0.6F, 1.8F));
-/* 399 */   public static final RegistryObject<EntityType<PrisionerMilitiaMeleeEntity>> PRISIONER_MILITIA_MELEE = register("prisioner_militia_melee", 
-/* 400 */       EntityType.Builder.m_20704_(PrisionerMilitiaMeleeEntity::new, MobCategory.CREATURE)
-/* 401 */       .setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3)
-/* 402 */       .setCustomClientFactory(PrisionerMilitiaMeleeEntity::new)
-/*     */       
-/* 404 */       .m_20699_(0.6F, 1.8F));
-/*     */   
-/*     */   private static <T extends net.minecraft.world.entity.Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
-/* 407 */     return REGISTRY.register(registryname, () -> entityTypeBuilder.m_20712_(registryname));
-/*     */   }
-/*     */   
-/*     */   @SubscribeEvent
-/*     */   public static void init(FMLCommonSetupEvent event) {
-/* 412 */     event.enqueueWork(() -> {
-/*     */           SlimelingEntity.init();
-/*     */           DarklatexslugEntity.init();
-/*     */           DarklatexEntity.init();
-/*     */           DarkLatexCentaurEntity.init();
-/*     */           DarkLatexSkeletonEntity.init();
-/*     */           NoiseStalkerEntity.init();
-/*     */           DlsharkEntity.init();
-/*     */           DarkLatexMothEntity.init();
-/*     */           DarkLatexSnepEntity.init();
-/*     */           DarkLatexFoxEntity.init();
-/*     */           DarkLatexFoxSniperEntity.init();
-/*     */           DarkLatexSnakeEntity.init();
-/*     */           DarkLatexSpiderEntity.init();
-/*     */           DlSquidDogEntity.init();
-/*     */           DLbeeEntity.init();
-/*     */           DarkLatexQueenBeeEntity.init();
-/*     */           DarkLatexSpiderQueenEntity.init();
-/*     */           DarklatexconeEntity.init();
-/*     */           HertxEntity.init();
-/*     */           DroneHertxEntity.init();
-/*     */           ArmedDroneHertxEntity.init();
-/*     */           ScientistEntity.init();
-/*     */           MilitaryEntity.init();
-/*     */           MilitaryflameunitEntity.init();
-/*     */           EvilScientistEntity.init();
-/*     */           EvilSniperEntity.init();
-/*     */           EvilMilitaryEntity.init();
-/*     */           TSCOutsiderEntity.init();
-/*     */           TSCOutsiderGunnerEntity.init();
-/*     */           TSCdroneEntity.init();
-/*     */           TSCHunterEntity.init();
-/*     */           MilitaryRiotEntity.init();
-/*     */           TSCBerserkEntity.init();
-/*     */           DarkLatexCreeperEntity.init();
-/*     */           DarkLatexCreeperEnhancedEntity.init();
-/*     */           CivilianEntity.init();
-/*     */           PrisionerEntity.init();
-/*     */           PrisionermilitiaEntity.init();
-/*     */           CivlianMilitiaEntity.init();
-/*     */           DarkLatexFoxScientistEntity.init();
-/*     */           BeeHertxEntity.init();
-/*     */           AHVHertxEntity.init();
-/*     */           La4tankmorphrEntity.init();
-/*     */           La4tankmorphmEntity.init();
-/*     */           NXTHertxEntity.init();
-/*     */           DROPPODEntity.init();
-/*     */           AllydroppodEntity.init();
-/*     */           LatexDropPodEntity.init();
-/*     */           HertxvarFEntity.init();
-/*     */           HertxvarSolEntity.init();
-/*     */           HertxvarFBEntity.init();
-/*     */           HertxSitEntity.init();
-/*     */           AshburyHertxEntity.init();
-/*     */           AshburySitEntity.init();
-/*     */           BeeHertxSitEntity.init();
-/*     */           AHVHertxSitEntity.init();
-/*     */           NXTSitEntity.init();
-/*     */           HertxFSitEntity.init();
-/*     */           HertxFBSitEntity.init();
-/*     */           HertxSolWaitEntity.init();
-/*     */           SlimelingTamedEntity.init();
-/*     */           SlimelingtamedsitEntity.init();
-/*     */           ProtectorSlimelingEntity.init();
-/*     */           ProtectorSlimelingsitEntity.init();
-/*     */           DarkLatexCakeEntity.init();
-/*     */           DroneHertxWaitEntity.init();
-/*     */           ArmedDroneHertxWaitEntity.init();
-/*     */           CivilianMilitiaMeleeEntity.init();
-/*     */           PrisionerMilitiaMeleeEntity.init();
-/*     */         });
-/*     */   }
-/*     */   
-/*     */   @SubscribeEvent
-/*     */   public static void registerAttributes(EntityAttributeCreationEvent event) {
-/* 487 */     event.put((EntityType)SLIMELING.get(), SlimelingEntity.createAttributes().m_22265_());
-/* 488 */     event.put((EntityType)DARKLATEXSLUG.get(), DarklatexslugEntity.createAttributes().m_22265_());
-/* 489 */     event.put((EntityType)DARKLATEX.get(), DarklatexEntity.m_33035_().m_22265_());
-/* 490 */     event.put((EntityType)DARK_LATEX_CENTAUR.get(), DarkLatexCentaurEntity.createAttributes().m_22265_());
-/* 491 */     event.put((EntityType)DARK_LATEX_SKELETON.get(), DarkLatexSkeletonEntity.m_33035_().m_22265_());
-/* 492 */     event.put((EntityType)NOISE_STALKER.get(), NoiseStalkerEntity.createAttributes().m_22265_());
-/* 493 */     event.put((EntityType)DLSHARK.get(), LatexEntity.m_33035_().m_22265_());
-/* 494 */     event.put((EntityType)DARK_LATEX_MOTH.get(), DarkLatexMothEntity.createAttributes().m_22265_());
-/* 495 */     event.put((EntityType)DARK_LATEX_SNEP.get(), DarkLatexSnepEntity.m_33035_().m_22265_());
-/* 496 */     event.put((EntityType)DARK_LATEX_FOX.get(), DarkLatexFoxEntity.m_33035_().m_22265_());
-/* 497 */     event.put((EntityType)DARK_LATEX_FOX_SNIPER.get(), DarkLatexFoxSniperEntity.createAttributes().m_22265_());
-/* 498 */     event.put((EntityType)DARK_LATEX_SNAKE.get(), DarkLatexSnakeEntity.createAttributes().m_22265_());
-/* 499 */     event.put((EntityType)DARK_LATEX_SPIDER.get(), DarkLatexSpiderEntity.createAttributes().m_22265_());
-/* 500 */     event.put((EntityType)DL_SQUID_DOG.get(), DlSquidDogEntity.createAttributes().m_22265_());
-/* 501 */     event.put((EntityType)D_LBEE.get(), DLbeeEntity.createAttributes().m_22265_());
-/* 502 */     event.put((EntityType)DARK_LATEX_QUEEN_BEE.get(), DarkLatexQueenBeeEntity.createAttributes().m_22265_());
-/* 503 */     event.put((EntityType)DARK_LATEX_SPIDER_QUEEN.get(), DarkLatexSpiderQueenEntity.createAttributes().m_22265_());
-/* 504 */     event.put((EntityType)DARKLATEXCONE.get(), DarklatexconeEntity.m_33035_().m_22265_());
-/* 505 */     event.put((EntityType)HERTX.get(), HertxEntity.createAttributes().m_22265_());
-/* 506 */     event.put((EntityType)DRONE_HERTX.get(), DroneHertxEntity.createAttributes().m_22265_());
-/* 507 */     event.put((EntityType)ARMED_DRONE_HERTX.get(), ArmedDroneHertxEntity.createAttributes().m_22265_());
-/* 508 */     event.put((EntityType)SCIENTIST.get(), ScientistEntity.createAttributes().m_22265_());
-/* 509 */     event.put((EntityType)MILITARY.get(), MilitaryEntity.createAttributes().m_22265_());
-/* 510 */     event.put((EntityType)MILITARYFLAMEUNIT.get(), MilitaryflameunitEntity.createAttributes().m_22265_());
-/* 511 */     event.put((EntityType)EVIL_SCIENTIST.get(), EvilScientistEntity.createAttributes().m_22265_());
-/* 512 */     event.put((EntityType)EVIL_SNIPER.get(), EvilSniperEntity.createAttributes().m_22265_());
-/* 513 */     event.put((EntityType)EVIL_MILITARY.get(), EvilMilitaryEntity.createAttributes().m_22265_());
-/* 514 */     event.put((EntityType)TSC_OUTSIDER.get(), TSCOutsiderEntity.createAttributes().m_22265_());
-/* 515 */     event.put((EntityType)TSC_OUTSIDER_GUNNER.get(), TSCOutsiderGunnerEntity.createAttributes().m_22265_());
-/* 516 */     event.put((EntityType)TS_CDRONE.get(), TSCdroneEntity.createAttributes().m_22265_());
-/* 517 */     event.put((EntityType)TSC_HUNTER.get(), TSCHunterEntity.createAttributes().m_22265_());
-/* 518 */     event.put((EntityType)MILITARY_RIOT.get(), MilitaryRiotEntity.createAttributes().m_22265_());
-/* 519 */     event.put((EntityType)TSC_BERSERK.get(), TSCBerserkEntity.createAttributes().m_22265_());
-/* 520 */     event.put((EntityType)DARK_LATEX_CREEPER.get(), DarkLatexCreeperEntity.createAttributes().m_22265_());
-/* 521 */     event.put((EntityType)DARK_LATEX_CREEPER_ENHANCED.get(), DarkLatexCreeperEnhancedEntity.createAttributes().m_22265_());
-/* 522 */     event.put((EntityType)CIVILIAN.get(), CivilianEntity.createAttributes().m_22265_());
-/* 523 */     event.put((EntityType)PRISIONER.get(), PrisionerEntity.createAttributes().m_22265_());
-/* 524 */     event.put((EntityType)PRISIONERMILITIA.get(), PrisionermilitiaEntity.createAttributes().m_22265_());
-/* 525 */     event.put((EntityType)CIVLIAN_MILITIA.get(), CivlianMilitiaEntity.createAttributes().m_22265_());
-/* 526 */     event.put((EntityType)DARK_LATEX_FOX_SCIENTIST.get(), DarkLatexFoxScientistEntity.createAttributes().m_22265_());
-/* 527 */     event.put((EntityType)BEE_HERTX.get(), BeeHertxEntity.createAttributes().m_22265_());
-/* 528 */     event.put((EntityType)AHV_HERTX.get(), AHVHertxEntity.createAttributes().m_22265_());
-/* 529 */     event.put((EntityType)LA_4TANKMORPHR.get(), La4tankmorphrEntity.createAttributes().m_22265_());
-/* 530 */     event.put((EntityType)LA_4TANKMORPHM.get(), La4tankmorphmEntity.createAttributes().m_22265_());
-/* 531 */     event.put((EntityType)NXT_HERTX.get(), NXTHertxEntity.createAttributes().m_22265_());
-/* 532 */     event.put((EntityType)DROPPOD.get(), DROPPODEntity.createAttributes().m_22265_());
-/* 533 */     event.put((EntityType)ALLYDROPPOD.get(), AllydroppodEntity.createAttributes().m_22265_());
-/* 534 */     event.put((EntityType)LATEX_DROP_POD.get(), LatexDropPodEntity.createAttributes().m_22265_());
-/* 535 */     event.put((EntityType)HERTXVAR_F.get(), HertxvarFEntity.createAttributes().m_22265_());
-/* 536 */     event.put((EntityType)HERTXVAR_SOL.get(), HertxvarSolEntity.createAttributes().m_22265_());
-/* 537 */     event.put((EntityType)HERTXVAR_FB.get(), HertxvarFBEntity.createAttributes().m_22265_());
-/* 538 */     event.put((EntityType)HERTX_SIT.get(), HertxSitEntity.createAttributes().m_22265_());
-/* 539 */     event.put((EntityType)ASHBURY_HERTX.get(), AshburyHertxEntity.createAttributes().m_22265_());
-/* 540 */     event.put((EntityType)ASHBURY_SIT.get(), AshburySitEntity.createAttributes().m_22265_());
-/* 541 */     event.put((EntityType)BEE_HERTX_SIT.get(), BeeHertxSitEntity.createAttributes().m_22265_());
-/* 542 */     event.put((EntityType)AHV_HERTX_SIT.get(), AHVHertxSitEntity.createAttributes().m_22265_());
-/* 543 */     event.put((EntityType)NXT_SIT.get(), NXTSitEntity.createAttributes().m_22265_());
-/* 544 */     event.put((EntityType)HERTX_F_SIT.get(), HertxFSitEntity.createAttributes().m_22265_());
-/* 545 */     event.put((EntityType)HERTX_FB_SIT.get(), HertxFBSitEntity.createAttributes().m_22265_());
-/* 546 */     event.put((EntityType)HERTX_SOL_WAIT.get(), HertxSolWaitEntity.createAttributes().m_22265_());
-/* 547 */     event.put((EntityType)SLIMELING_TAMED.get(), SlimelingTamedEntity.createAttributes().m_22265_());
-/* 548 */     event.put((EntityType)SLIMELINGTAMEDSIT.get(), SlimelingtamedsitEntity.createAttributes().m_22265_());
-/* 549 */     event.put((EntityType)PROTECTOR_SLIMELING.get(), ProtectorSlimelingEntity.createAttributes().m_22265_());
-/* 550 */     event.put((EntityType)PROTECTOR_SLIMELINGSIT.get(), ProtectorSlimelingsitEntity.createAttributes().m_22265_());
-/* 551 */     event.put((EntityType)DARK_LATEX_CAKE.get(), DarkLatexCakeEntity.m_33035_().m_22265_());
-/* 552 */     event.put((EntityType)DRONE_HERTX_WAIT.get(), DroneHertxWaitEntity.createAttributes().m_22265_());
-/* 553 */     event.put((EntityType)ARMED_DRONE_HERTX_WAIT.get(), ArmedDroneHertxWaitEntity.createAttributes().m_22265_());
-/* 554 */     event.put((EntityType)CIVILIAN_MILITIA_MELEE.get(), CivilianMilitiaMeleeEntity.createAttributes().m_22265_());
-/* 555 */     event.put((EntityType)PRISIONER_MILITIA_MELEE.get(), PrisionerMilitiaMeleeEntity.createAttributes().m_22265_());
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.init;
 
+import net.ltxprogrammer.changed.entity.LatexEntity;
+import net.ltxprogrammer.turned.LatexMod;
+import net.ltxprogrammer.turned.entity.AHVHertxEntity;
+import net.ltxprogrammer.turned.entity.AHVHertxSitEntity;
+import net.ltxprogrammer.turned.entity.AR70AssaultRifleEntity;
+import net.ltxprogrammer.turned.entity.AllydroppodEntity;
+import net.ltxprogrammer.turned.entity.ArmedDroneHertxEntity;
+import net.ltxprogrammer.turned.entity.ArmedDroneHertxWaitEntity;
+import net.ltxprogrammer.turned.entity.AshburyHertxEntity;
+import net.ltxprogrammer.turned.entity.AshburySitEntity;
+import net.ltxprogrammer.turned.entity.BeeHertxEntity;
+import net.ltxprogrammer.turned.entity.BeeHertxSitEntity;
+import net.ltxprogrammer.turned.entity.CivilianEntity;
+import net.ltxprogrammer.turned.entity.CivilianMilitiaMeleeEntity;
+import net.ltxprogrammer.turned.entity.CivlianMilitiaEntity;
+import net.ltxprogrammer.turned.entity.CrystalbowEntity;
+import net.ltxprogrammer.turned.entity.DLbeeEntity;
+import net.ltxprogrammer.turned.entity.DROPPODEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexCakeEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexCentaurEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexCreeperEnhancedEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexCreeperEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexFoxEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexFoxScientistEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexMothEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexQueenBeeEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSkeletonEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSnakeEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSnepEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSpiderEntity;
+import net.ltxprogrammer.turned.entity.DarkLatexSpiderQueenEntity;
+import net.ltxprogrammer.turned.entity.DarklatexEntity;
+import net.ltxprogrammer.turned.entity.DarklatexconeEntity;
+import net.ltxprogrammer.turned.entity.DarklatexslugEntity;
+import net.ltxprogrammer.turned.entity.DartrifleEntity;
+import net.ltxprogrammer.turned.entity.DlSquidDogEntity;
+import net.ltxprogrammer.turned.entity.DlsharkEntity;
+import net.ltxprogrammer.turned.entity.DroneHertxEntity;
+import net.ltxprogrammer.turned.entity.DroneHertxWaitEntity;
+import net.ltxprogrammer.turned.entity.EvilMilitaryEntity;
+import net.ltxprogrammer.turned.entity.EvilScientistEntity;
+import net.ltxprogrammer.turned.entity.EvilSniperEntity;
+import net.ltxprogrammer.turned.entity.ExplosivegooEntity;
+import net.ltxprogrammer.turned.entity.FlamethowerEntity;
+import net.ltxprogrammer.turned.entity.HertxEntity;
+import net.ltxprogrammer.turned.entity.HertxFBSitEntity;
+import net.ltxprogrammer.turned.entity.HertxFSitEntity;
+import net.ltxprogrammer.turned.entity.HertxSitEntity;
+import net.ltxprogrammer.turned.entity.HertxSolWaitEntity;
+import net.ltxprogrammer.turned.entity.HertxvarFBEntity;
+import net.ltxprogrammer.turned.entity.HertxvarFEntity;
+import net.ltxprogrammer.turned.entity.HertxvarSolEntity;
+import net.ltxprogrammer.turned.entity.La4tankmorphmEntity;
+import net.ltxprogrammer.turned.entity.La4tankmorphrEntity;
+import net.ltxprogrammer.turned.entity.LatexDartRifleEntity;
+import net.ltxprogrammer.turned.entity.LatexDropPodEntity;
+import net.ltxprogrammer.turned.entity.LatexcannonEntity;
+import net.ltxprogrammer.turned.entity.M4AssaultRifleEntity;
+import net.ltxprogrammer.turned.entity.MatchLockMusketEntity;
+import net.ltxprogrammer.turned.entity.MatchlockPistolEntity;
+import net.ltxprogrammer.turned.entity.MilitaryEntity;
+import net.ltxprogrammer.turned.entity.MilitaryRiotEntity;
+import net.ltxprogrammer.turned.entity.MilitaryflameunitEntity;
+import net.ltxprogrammer.turned.entity.NXTHertxEntity;
+import net.ltxprogrammer.turned.entity.NXTSitEntity;
+import net.ltxprogrammer.turned.entity.NoiseStalkerEntity;
+import net.ltxprogrammer.turned.entity.OverundershotgunEntity;
+import net.ltxprogrammer.turned.entity.PrisionerEntity;
+import net.ltxprogrammer.turned.entity.PrisionerMilitiaMeleeEntity;
+import net.ltxprogrammer.turned.entity.PrisionermilitiaEntity;
+import net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity;
+import net.ltxprogrammer.turned.entity.ProtectorSlimelingsitEntity;
+import net.ltxprogrammer.turned.entity.RevolvingGooCannonEntity;
+import net.ltxprogrammer.turned.entity.ScientistEntity;
+import net.ltxprogrammer.turned.entity.ScrapM16RifleEntity;
+import net.ltxprogrammer.turned.entity.SlimelingEntity;
+import net.ltxprogrammer.turned.entity.SlimelingTamedEntity;
+import net.ltxprogrammer.turned.entity.SlimelingtamedsitEntity;
+import net.ltxprogrammer.turned.entity.SneppleEntity;
+import net.ltxprogrammer.turned.entity.TSCBerserkEntity;
+import net.ltxprogrammer.turned.entity.TSCHunterEntity;
+import net.ltxprogrammer.turned.entity.TSCOutsiderEntity;
+import net.ltxprogrammer.turned.entity.TSCOutsiderGunnerEntity;
+import net.ltxprogrammer.turned.entity.TSCPistolEntity;
+import net.ltxprogrammer.turned.entity.TSCdroneEntity;
+import net.ltxprogrammer.turned.entity.TankCannonEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\init\LatexModEntities.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModEntities.class */
+public class LatexModEntities {
+    public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES, LatexMod.MODID);
+    public static final RegistryObject<EntityType<SlimelingEntity>> SLIMELING = register("slimeling", EntityType.Builder.of(SlimelingEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingEntity::new).sized(0.6f, 2.0f));
+    public static final RegistryObject<EntityType<DarklatexslugEntity>> DARKLATEXSLUG = register("darklatexslug", EntityType.Builder.of(DarklatexslugEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(24).setUpdateInterval(3).setCustomClientFactory(DarklatexslugEntity::new).sized(0.8f, 0.4f));
+    public static final RegistryObject<EntityType<DarklatexEntity>> DARKLATEX = register("darklatex", EntityType.Builder.of(DarklatexEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(DarklatexEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<DarkLatexCentaurEntity>> DARK_LATEX_CENTAUR = register("dark_latex_centaur", EntityType.Builder.of(DarkLatexCentaurEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DarkLatexCentaurEntity::new).sized(1.2f, 2.25f));
+    public static final RegistryObject<EntityType<DarkLatexSkeletonEntity>> DARK_LATEX_SKELETON = register("dark_latex_skeleton", EntityType.Builder.of(DarkLatexSkeletonEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(DarkLatexSkeletonEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<NoiseStalkerEntity>> NOISE_STALKER = register("noise_stalker", EntityType.Builder.of(NoiseStalkerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(48).setUpdateInterval(3).setCustomClientFactory(NoiseStalkerEntity::new).sized(0.8f, 2.2f));
+    public static final RegistryObject<EntityType<DlsharkEntity>> DLSHARK = register("dlshark", EntityType.Builder.of(DlsharkEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(DlsharkEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<DarkLatexMothEntity>> DARK_LATEX_MOTH = register("dark_latex_moth", EntityType.Builder.of(DarkLatexMothEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexMothEntity::new).sized(0.6f, 2.0f));
+    public static final RegistryObject<EntityType<DarkLatexSnepEntity>> DARK_LATEX_SNEP = register("dark_latex_snep", EntityType.Builder.of(DarkLatexSnepEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSnepEntity::new).sized(0.6f, 2.0f));
+    public static final RegistryObject<EntityType<DarkLatexFoxEntity>> DARK_LATEX_FOX = register("dark_latex_fox", EntityType.Builder.of(DarkLatexFoxEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexFoxEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<DarkLatexFoxSniperEntity>> DARK_LATEX_FOX_SNIPER = register("dark_latex_fox_sniper", EntityType.Builder.of(DarkLatexFoxSniperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexFoxSniperEntity::new).sized(0.6f, 1.9f));
+    public static final RegistryObject<EntityType<DarkLatexSnakeEntity>> DARK_LATEX_SNAKE = register("dark_latex_snake", EntityType.Builder.of(DarkLatexSnakeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(124).setUpdateInterval(3).setCustomClientFactory(DarkLatexSnakeEntity::new).sized(0.6f, 1.9f));
+    public static final RegistryObject<EntityType<DarkLatexSpiderEntity>> DARK_LATEX_SPIDER = register("dark_latex_spider", EntityType.Builder.of(DarkLatexSpiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSpiderEntity::new).sized(0.8f, 2.0f));
+    public static final RegistryObject<EntityType<DlSquidDogEntity>> DL_SQUID_DOG = register("dl_squid_dog", EntityType.Builder.of(DlSquidDogEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DlSquidDogEntity::new).sized(0.8f, 2.2f));
+    public static final RegistryObject<EntityType<DLbeeEntity>> D_LBEE = register("d_lbee", EntityType.Builder.of(DLbeeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(DLbeeEntity::new).sized(0.6f, 1.9f));
+    public static final RegistryObject<EntityType<DarkLatexQueenBeeEntity>> DARK_LATEX_QUEEN_BEE = register("dark_latex_queen_bee", EntityType.Builder.of(DarkLatexQueenBeeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexQueenBeeEntity::new).sized(0.8f, 2.0f));
+    public static final RegistryObject<EntityType<DarkLatexSpiderQueenEntity>> DARK_LATEX_SPIDER_QUEEN = register("dark_latex_spider_queen", EntityType.Builder.of(DarkLatexSpiderQueenEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSpiderQueenEntity::new).sized(1.2f, 3.6f));
+    public static final RegistryObject<EntityType<DarklatexconeEntity>> DARKLATEXCONE = register("darklatexcone", EntityType.Builder.of(DarklatexconeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(84).setUpdateInterval(3).setCustomClientFactory(DarklatexconeEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<HertxEntity>> HERTX = register("hertx", EntityType.Builder.of(HertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<DroneHertxEntity>> DRONE_HERTX = register("drone_hertx", EntityType.Builder.of(DroneHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(108).setUpdateInterval(3).setCustomClientFactory(DroneHertxEntity::new).fireImmune().sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<ArmedDroneHertxEntity>> ARMED_DRONE_HERTX = register("armed_drone_hertx", EntityType.Builder.of(ArmedDroneHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(116).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxEntity::new).fireImmune().sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<ScientistEntity>> SCIENTIST = register("scientist", EntityType.Builder.of(ScientistEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(ScientistEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<MilitaryEntity>> MILITARY = register("military", EntityType.Builder.of(MilitaryEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<MilitaryflameunitEntity>> MILITARYFLAMEUNIT = register("militaryflameunit", EntityType.Builder.of(MilitaryflameunitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryflameunitEntity::new).fireImmune().sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<EvilScientistEntity>> EVIL_SCIENTIST = register("evil_scientist", EntityType.Builder.of(EvilScientistEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(EvilScientistEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<EvilSniperEntity>> EVIL_SNIPER = register("evil_sniper", EntityType.Builder.of(EvilSniperEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(EvilSniperEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<EvilMilitaryEntity>> EVIL_MILITARY = register("evil_military", EntityType.Builder.of(EvilMilitaryEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(EvilMilitaryEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<TSCOutsiderEntity>> TSC_OUTSIDER = register("tsc_outsider", EntityType.Builder.of(TSCOutsiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCOutsiderEntity::new).fireImmune().sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<TSCOutsiderGunnerEntity>> TSC_OUTSIDER_GUNNER = register("tsc_outsider_gunner", EntityType.Builder.of(TSCOutsiderGunnerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCOutsiderGunnerEntity::new).fireImmune().sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<TSCdroneEntity>> TS_CDRONE = register("ts_cdrone", EntityType.Builder.of(TSCdroneEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCdroneEntity::new).fireImmune().sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<TSCHunterEntity>> TSC_HUNTER = register("tsc_hunter", EntityType.Builder.of(TSCHunterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCHunterEntity::new).fireImmune().sized(0.7f, 2.5f));
+    public static final RegistryObject<EntityType<MilitaryRiotEntity>> MILITARY_RIOT = register("military_riot", EntityType.Builder.of(MilitaryRiotEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryRiotEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<TSCBerserkEntity>> TSC_BERSERK = register("tsc_berserk", EntityType.Builder.of(TSCBerserkEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(TSCBerserkEntity::new).fireImmune().sized(0.7f, 2.1f));
+    public static final RegistryObject<EntityType<DarkLatexCreeperEntity>> DARK_LATEX_CREEPER = register("dark_latex_creeper", EntityType.Builder.of(DarkLatexCreeperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexCreeperEntity::new).sized(0.6f, 2.0f));
+    public static final RegistryObject<EntityType<DarkLatexCreeperEnhancedEntity>> DARK_LATEX_CREEPER_ENHANCED = register("dark_latex_creeper_enhanced", EntityType.Builder.of(DarkLatexCreeperEnhancedEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexCreeperEnhancedEntity::new).sized(0.8f, 3.0f));
+    public static final RegistryObject<EntityType<CivilianEntity>> CIVILIAN = register("civilian", EntityType.Builder.of(CivilianEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CivilianEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<PrisionerEntity>> PRISIONER = register("prisioner", EntityType.Builder.of(PrisionerEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<PrisionermilitiaEntity>> PRISIONERMILITIA = register("prisionermilitia", EntityType.Builder.of(PrisionermilitiaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(PrisionermilitiaEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<CivlianMilitiaEntity>> CIVLIAN_MILITIA = register("civlian_militia", EntityType.Builder.of(CivlianMilitiaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(CivlianMilitiaEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<CrystalbowEntity>> CRYSTALBOW = register("projectile_crystalbow", EntityType.Builder.of(CrystalbowEntity::new, MobCategory.MISC).setCustomClientFactory(CrystalbowEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<LatexcannonEntity>> LATEXCANNON = register("projectile_latexcannon", EntityType.Builder.of(LatexcannonEntity::new, MobCategory.MISC).setCustomClientFactory(LatexcannonEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<RevolvingGooCannonEntity>> REVOLVING_GOO_CANNON = register("projectile_revolving_goo_cannon", EntityType.Builder.of(RevolvingGooCannonEntity::new, MobCategory.MISC).setCustomClientFactory(RevolvingGooCannonEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<DartrifleEntity>> DARTRIFLE = register("projectile_dartrifle", EntityType.Builder.of(DartrifleEntity::new, MobCategory.MISC).setCustomClientFactory(DartrifleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<MatchlockPistolEntity>> MATCHLOCK_PISTOL = register("projectile_matchlock_pistol", EntityType.Builder.of(MatchlockPistolEntity::new, MobCategory.MISC).setCustomClientFactory(MatchlockPistolEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<MatchLockMusketEntity>> MATCH_LOCK_MUSKET = register("projectile_match_lock_musket", EntityType.Builder.of(MatchLockMusketEntity::new, MobCategory.MISC).setCustomClientFactory(MatchLockMusketEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<AR70AssaultRifleEntity>> AR_70_ASSAULT_RIFLE = register("projectile_ar_70_assault_rifle", EntityType.Builder.of(AR70AssaultRifleEntity::new, MobCategory.MISC).setCustomClientFactory(AR70AssaultRifleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<M4AssaultRifleEntity>> M_4_ASSAULT_RIFLE = register("projectile_m_4_assault_rifle", EntityType.Builder.of(M4AssaultRifleEntity::new, MobCategory.MISC).setCustomClientFactory(M4AssaultRifleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<ScrapM16RifleEntity>> SCRAP_M_16_RIFLE = register("projectile_scrap_m_16_rifle", EntityType.Builder.of(ScrapM16RifleEntity::new, MobCategory.MISC).setCustomClientFactory(ScrapM16RifleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<TSCPistolEntity>> TSC_PISTOL = register("projectile_tsc_pistol", EntityType.Builder.of(TSCPistolEntity::new, MobCategory.MISC).setCustomClientFactory(TSCPistolEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<OverundershotgunEntity>> OVERUNDERSHOTGUN = register("projectile_overundershotgun", EntityType.Builder.of(OverundershotgunEntity::new, MobCategory.MISC).setCustomClientFactory(OverundershotgunEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<FlamethowerEntity>> FLAMETHOWER = register("projectile_flamethower", EntityType.Builder.of(FlamethowerEntity::new, MobCategory.MISC).setCustomClientFactory(FlamethowerEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<LatexDartRifleEntity>> LATEX_DART_RIFLE = register("projectile_latex_dart_rifle", EntityType.Builder.of(LatexDartRifleEntity::new, MobCategory.MISC).setCustomClientFactory(LatexDartRifleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<DarkLatexFoxScientistEntity>> DARK_LATEX_FOX_SCIENTIST = register("dark_latex_fox_scientist", EntityType.Builder.of(DarkLatexFoxScientistEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexFoxScientistEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<BeeHertxEntity>> BEE_HERTX = register("bee_hertx", EntityType.Builder.of(BeeHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(BeeHertxEntity::new).sized(0.6f, 2.3f));
+    public static final RegistryObject<EntityType<AHVHertxEntity>> AHV_HERTX = register("ahv_hertx", EntityType.Builder.of(AHVHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AHVHertxEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<TankCannonEntity>> TANK_CANNON = register("projectile_tank_cannon", EntityType.Builder.of(TankCannonEntity::new, MobCategory.MISC).setCustomClientFactory(TankCannonEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<La4tankmorphrEntity>> LA_4TANKMORPHR = register("la_4tankmorphr", EntityType.Builder.of(La4tankmorphrEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(La4tankmorphrEntity::new).fireImmune().sized(1.1f, 4.2f));
+    public static final RegistryObject<EntityType<La4tankmorphmEntity>> LA_4TANKMORPHM = register("la_4tankmorphm", EntityType.Builder.of(La4tankmorphmEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(La4tankmorphmEntity::new).fireImmune().sized(1.1f, 4.2f));
+    public static final RegistryObject<EntityType<NXTHertxEntity>> NXT_HERTX = register("nxt_hertx", EntityType.Builder.of(NXTHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(100).setUpdateInterval(3).setCustomClientFactory(NXTHertxEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<DROPPODEntity>> DROPPOD = register("droppod", EntityType.Builder.of(DROPPODEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DROPPODEntity::new).fireImmune().sized(1.2f, 2.2f));
+    public static final RegistryObject<EntityType<SneppleEntity>> SNEPPLE = register("projectile_snepple", EntityType.Builder.of(SneppleEntity::new, MobCategory.MISC).setCustomClientFactory(SneppleEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<AllydroppodEntity>> ALLYDROPPOD = register("allydroppod", EntityType.Builder.of(AllydroppodEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AllydroppodEntity::new).fireImmune().sized(1.2f, 2.2f));
+    public static final RegistryObject<EntityType<LatexDropPodEntity>> LATEX_DROP_POD = register("latex_drop_pod", EntityType.Builder.of(LatexDropPodEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(LatexDropPodEntity::new).fireImmune().sized(1.2f, 2.2f));
+    public static final RegistryObject<EntityType<HertxvarFEntity>> HERTXVAR_F = register("hertxvar_f", EntityType.Builder.of(HertxvarFEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxvarFEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<HertxvarSolEntity>> HERTXVAR_SOL = register("hertxvar_sol", EntityType.Builder.of(HertxvarSolEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(HertxvarSolEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<HertxvarFBEntity>> HERTXVAR_FB = register("hertxvar_fb", EntityType.Builder.of(HertxvarFBEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxvarFBEntity::new).sized(0.7f, 2.1f));
+    public static final RegistryObject<EntityType<HertxSitEntity>> HERTX_SIT = register("hertx_sit", EntityType.Builder.of(HertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxSitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<AshburyHertxEntity>> ASHBURY_HERTX = register("ashbury_hertx", EntityType.Builder.of(AshburyHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AshburyHertxEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<AshburySitEntity>> ASHBURY_SIT = register("ashbury_sit", EntityType.Builder.of(AshburySitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(AshburySitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<BeeHertxSitEntity>> BEE_HERTX_SIT = register("bee_hertx_sit", EntityType.Builder.of(BeeHertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(BeeHertxSitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<AHVHertxSitEntity>> AHV_HERTX_SIT = register("ahv_hertx_sit", EntityType.Builder.of(AHVHertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(AHVHertxSitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<NXTSitEntity>> NXT_SIT = register("nxt_sit", EntityType.Builder.of(NXTSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(NXTSitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<HertxFSitEntity>> HERTX_F_SIT = register("hertx_f_sit", EntityType.Builder.of(HertxFSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxFSitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<HertxFBSitEntity>> HERTX_FB_SIT = register("hertx_fb_sit", EntityType.Builder.of(HertxFBSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxFBSitEntity::new).sized(0.8f, 1.5f));
+    public static final RegistryObject<EntityType<HertxSolWaitEntity>> HERTX_SOL_WAIT = register("hertx_sol_wait", EntityType.Builder.of(HertxSolWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(HertxSolWaitEntity::new).sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<SlimelingTamedEntity>> SLIMELING_TAMED = register("slimeling_tamed", EntityType.Builder.of(SlimelingTamedEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingTamedEntity::new).sized(0.6f, 2.0f));
+    public static final RegistryObject<EntityType<SlimelingtamedsitEntity>> SLIMELINGTAMEDSIT = register("slimelingtamedsit", EntityType.Builder.of(SlimelingtamedsitEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(SlimelingtamedsitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<ProtectorSlimelingEntity>> PROTECTOR_SLIMELING = register("protector_slimeling", EntityType.Builder.of(ProtectorSlimelingEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(72).setUpdateInterval(3).setCustomClientFactory(ProtectorSlimelingEntity::new).sized(0.6f, 2.0f));
+    public static final RegistryObject<EntityType<ProtectorSlimelingsitEntity>> PROTECTOR_SLIMELINGSIT = register("protector_slimelingsit", EntityType.Builder.of(ProtectorSlimelingsitEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(ProtectorSlimelingsitEntity::new).sized(0.8f, 1.2f));
+    public static final RegistryObject<EntityType<DarkLatexCakeEntity>> DARK_LATEX_CAKE = register("dark_latex_cake", EntityType.Builder.of(DarkLatexCakeEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(72).setUpdateInterval(3).setCustomClientFactory(DarkLatexCakeEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<DroneHertxWaitEntity>> DRONE_HERTX_WAIT = register("drone_hertx_wait", EntityType.Builder.of(DroneHertxWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DroneHertxWaitEntity::new).fireImmune().sized(0.7f, 1.2f));
+    public static final RegistryObject<EntityType<ArmedDroneHertxWaitEntity>> ARMED_DRONE_HERTX_WAIT = register("armed_drone_hertx_wait", EntityType.Builder.of(ArmedDroneHertxWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxWaitEntity::new).fireImmune().sized(0.7f, 2.0f));
+    public static final RegistryObject<EntityType<ExplosivegooEntity>> EXPLOSIVEGOO = register("projectile_explosivegoo", EntityType.Builder.of(ExplosivegooEntity::new, MobCategory.MISC).setCustomClientFactory(ExplosivegooEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<CivilianMilitiaMeleeEntity>> CIVILIAN_MILITIA_MELEE = register("civilian_militia_melee", EntityType.Builder.of(CivilianMilitiaMeleeEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(CivilianMilitiaMeleeEntity::new).sized(0.6f, 1.8f));
+    public static final RegistryObject<EntityType<PrisionerMilitiaMeleeEntity>> PRISIONER_MILITIA_MELEE = register("prisioner_militia_melee", EntityType.Builder.of(PrisionerMilitiaMeleeEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(PrisionerMilitiaMeleeEntity::new).sized(0.6f, 1.8f));
+
+    private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
+        return REGISTRY.register(registryname, () -> {
+            return entityTypeBuilder.build(registryname);
+        });
+    }
+
+    @SubscribeEvent
+    public static void init(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            SlimelingEntity.init();
+            DarklatexslugEntity.init();
+            DarklatexEntity.init();
+            DarkLatexCentaurEntity.init();
+            DarkLatexSkeletonEntity.init();
+            NoiseStalkerEntity.init();
+            DlsharkEntity.init();
+            DarkLatexMothEntity.init();
+            DarkLatexSnepEntity.init();
+            DarkLatexFoxEntity.init();
+            DarkLatexFoxSniperEntity.init();
+            DarkLatexSnakeEntity.init();
+            DarkLatexSpiderEntity.init();
+            DlSquidDogEntity.init();
+            DLbeeEntity.init();
+            DarkLatexQueenBeeEntity.init();
+            DarkLatexSpiderQueenEntity.init();
+            DarklatexconeEntity.init();
+            HertxEntity.init();
+            DroneHertxEntity.init();
+            ArmedDroneHertxEntity.init();
+            ScientistEntity.init();
+            MilitaryEntity.init();
+            MilitaryflameunitEntity.init();
+            EvilScientistEntity.init();
+            EvilSniperEntity.init();
+            EvilMilitaryEntity.init();
+            TSCOutsiderEntity.init();
+            TSCOutsiderGunnerEntity.init();
+            TSCdroneEntity.init();
+            TSCHunterEntity.init();
+            MilitaryRiotEntity.init();
+            TSCBerserkEntity.init();
+            DarkLatexCreeperEntity.init();
+            DarkLatexCreeperEnhancedEntity.init();
+            CivilianEntity.init();
+            PrisionerEntity.init();
+            PrisionermilitiaEntity.init();
+            CivlianMilitiaEntity.init();
+            DarkLatexFoxScientistEntity.init();
+            BeeHertxEntity.init();
+            AHVHertxEntity.init();
+            La4tankmorphrEntity.init();
+            La4tankmorphmEntity.init();
+            NXTHertxEntity.init();
+            DROPPODEntity.init();
+            AllydroppodEntity.init();
+            LatexDropPodEntity.init();
+            HertxvarFEntity.init();
+            HertxvarSolEntity.init();
+            HertxvarFBEntity.init();
+            HertxSitEntity.init();
+            AshburyHertxEntity.init();
+            AshburySitEntity.init();
+            BeeHertxSitEntity.init();
+            AHVHertxSitEntity.init();
+            NXTSitEntity.init();
+            HertxFSitEntity.init();
+            HertxFBSitEntity.init();
+            HertxSolWaitEntity.init();
+            SlimelingTamedEntity.init();
+            SlimelingtamedsitEntity.init();
+            ProtectorSlimelingEntity.init();
+            ProtectorSlimelingsitEntity.init();
+            DarkLatexCakeEntity.init();
+            DroneHertxWaitEntity.init();
+            ArmedDroneHertxWaitEntity.init();
+            CivilianMilitiaMeleeEntity.init();
+            PrisionerMilitiaMeleeEntity.init();
+        });
+    }
+
+    @SubscribeEvent
+    public static void registerAttributes(EntityAttributeCreationEvent event) {
+        event.put((EntityType) SLIMELING.get(), SlimelingEntity.createAttributes().build());
+        event.put((EntityType) DARKLATEXSLUG.get(), DarklatexslugEntity.createAttributes().build());
+        event.put((EntityType) DARKLATEX.get(), DarklatexEntity.createMonsterAttributes().build());
+        event.put((EntityType) DARK_LATEX_CENTAUR.get(), DarkLatexCentaurEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_SKELETON.get(), DarkLatexSkeletonEntity.createMonsterAttributes().build());
+        event.put((EntityType) NOISE_STALKER.get(), NoiseStalkerEntity.createAttributes().build());
+        event.put((EntityType) DLSHARK.get(), LatexEntity.createMonsterAttributes().build());
+        event.put((EntityType) DARK_LATEX_MOTH.get(), DarkLatexMothEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_SNEP.get(), DarkLatexSnepEntity.createMonsterAttributes().build());
+        event.put((EntityType) DARK_LATEX_FOX.get(), DarkLatexFoxEntity.createMonsterAttributes().build());
+        event.put((EntityType) DARK_LATEX_FOX_SNIPER.get(), DarkLatexFoxSniperEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_SNAKE.get(), DarkLatexSnakeEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_SPIDER.get(), DarkLatexSpiderEntity.createAttributes().build());
+        event.put((EntityType) DL_SQUID_DOG.get(), DlSquidDogEntity.createAttributes().build());
+        event.put((EntityType) D_LBEE.get(), DLbeeEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_QUEEN_BEE.get(), DarkLatexQueenBeeEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_SPIDER_QUEEN.get(), DarkLatexSpiderQueenEntity.createAttributes().build());
+        event.put((EntityType) DARKLATEXCONE.get(), DarklatexconeEntity.createMonsterAttributes().build());
+        event.put((EntityType) HERTX.get(), HertxEntity.createAttributes().build());
+        event.put((EntityType) DRONE_HERTX.get(), DroneHertxEntity.createAttributes().build());
+        event.put((EntityType) ARMED_DRONE_HERTX.get(), ArmedDroneHertxEntity.createAttributes().build());
+        event.put((EntityType) SCIENTIST.get(), ScientistEntity.createAttributes().build());
+        event.put((EntityType) MILITARY.get(), MilitaryEntity.createAttributes().build());
+        event.put((EntityType) MILITARYFLAMEUNIT.get(), MilitaryflameunitEntity.createAttributes().build());
+        event.put((EntityType) EVIL_SCIENTIST.get(), EvilScientistEntity.createAttributes().build());
+        event.put((EntityType) EVIL_SNIPER.get(), EvilSniperEntity.createAttributes().build());
+        event.put((EntityType) EVIL_MILITARY.get(), EvilMilitaryEntity.createAttributes().build());
+        event.put((EntityType) TSC_OUTSIDER.get(), TSCOutsiderEntity.createAttributes().build());
+        event.put((EntityType) TSC_OUTSIDER_GUNNER.get(), TSCOutsiderGunnerEntity.createAttributes().build());
+        event.put((EntityType) TS_CDRONE.get(), TSCdroneEntity.createAttributes().build());
+        event.put((EntityType) TSC_HUNTER.get(), TSCHunterEntity.createAttributes().build());
+        event.put((EntityType) MILITARY_RIOT.get(), MilitaryRiotEntity.createAttributes().build());
+        event.put((EntityType) TSC_BERSERK.get(), TSCBerserkEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_CREEPER.get(), DarkLatexCreeperEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_CREEPER_ENHANCED.get(), DarkLatexCreeperEnhancedEntity.createAttributes().build());
+        event.put((EntityType) CIVILIAN.get(), CivilianEntity.createAttributes().build());
+        event.put((EntityType) PRISIONER.get(), PrisionerEntity.createAttributes().build());
+        event.put((EntityType) PRISIONERMILITIA.get(), PrisionermilitiaEntity.createAttributes().build());
+        event.put((EntityType) CIVLIAN_MILITIA.get(), CivlianMilitiaEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_FOX_SCIENTIST.get(), DarkLatexFoxScientistEntity.createAttributes().build());
+        event.put((EntityType) BEE_HERTX.get(), BeeHertxEntity.createAttributes().build());
+        event.put((EntityType) AHV_HERTX.get(), AHVHertxEntity.createAttributes().build());
+        event.put((EntityType) LA_4TANKMORPHR.get(), La4tankmorphrEntity.createAttributes().build());
+        event.put((EntityType) LA_4TANKMORPHM.get(), La4tankmorphmEntity.createAttributes().build());
+        event.put((EntityType) NXT_HERTX.get(), NXTHertxEntity.createAttributes().build());
+        event.put((EntityType) DROPPOD.get(), DROPPODEntity.createAttributes().build());
+        event.put((EntityType) ALLYDROPPOD.get(), AllydroppodEntity.createAttributes().build());
+        event.put((EntityType) LATEX_DROP_POD.get(), LatexDropPodEntity.createAttributes().build());
+        event.put((EntityType) HERTXVAR_F.get(), HertxvarFEntity.createAttributes().build());
+        event.put((EntityType) HERTXVAR_SOL.get(), HertxvarSolEntity.createAttributes().build());
+        event.put((EntityType) HERTXVAR_FB.get(), HertxvarFBEntity.createAttributes().build());
+        event.put((EntityType) HERTX_SIT.get(), HertxSitEntity.createAttributes().build());
+        event.put((EntityType) ASHBURY_HERTX.get(), AshburyHertxEntity.createAttributes().build());
+        event.put((EntityType) ASHBURY_SIT.get(), AshburySitEntity.createAttributes().build());
+        event.put((EntityType) BEE_HERTX_SIT.get(), BeeHertxSitEntity.createAttributes().build());
+        event.put((EntityType) AHV_HERTX_SIT.get(), AHVHertxSitEntity.createAttributes().build());
+        event.put((EntityType) NXT_SIT.get(), NXTSitEntity.createAttributes().build());
+        event.put((EntityType) HERTX_F_SIT.get(), HertxFSitEntity.createAttributes().build());
+        event.put((EntityType) HERTX_FB_SIT.get(), HertxFBSitEntity.createAttributes().build());
+        event.put((EntityType) HERTX_SOL_WAIT.get(), HertxSolWaitEntity.createAttributes().build());
+        event.put((EntityType) SLIMELING_TAMED.get(), SlimelingTamedEntity.createAttributes().build());
+        event.put((EntityType) SLIMELINGTAMEDSIT.get(), SlimelingtamedsitEntity.createAttributes().build());
+        event.put((EntityType) PROTECTOR_SLIMELING.get(), ProtectorSlimelingEntity.createAttributes().build());
+        event.put((EntityType) PROTECTOR_SLIMELINGSIT.get(), ProtectorSlimelingsitEntity.createAttributes().build());
+        event.put((EntityType) DARK_LATEX_CAKE.get(), DarkLatexCakeEntity.createMonsterAttributes().build());
+        event.put((EntityType) DRONE_HERTX_WAIT.get(), DroneHertxWaitEntity.createAttributes().build());
+        event.put((EntityType) ARMED_DRONE_HERTX_WAIT.get(), ArmedDroneHertxWaitEntity.createAttributes().build());
+        event.put((EntityType) CIVILIAN_MILITIA_MELEE.get(), CivilianMilitiaMeleeEntity.createAttributes().build());
+        event.put((EntityType) PRISIONER_MILITIA_MELEE.get(), PrisionerMilitiaMeleeEntity.createAttributes().build());
+    }
+}

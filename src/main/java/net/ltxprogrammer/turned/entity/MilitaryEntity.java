@@ -1,12 +1,7 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.ltxprogrammer.turned.entity;
 
 import javax.annotation.Nullable;
-import net.ltxprogrammer.turned.entity.ai.TargetCheck;
+import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.MilitaryOnInitialEntitySpawnProcedure;
@@ -58,17 +53,18 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/MilitaryEntity.class */
 public class MilitaryEntity extends PathfinderMob implements RangedAttackMob {
     public MilitaryEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.MILITARY.get(), world);
+        this((EntityType) LatexModEntities.MILITARY.get(), world);
     }
 
     public MilitaryEntity(EntityType<MilitaryEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        this.setNoAi(false);
-        this.setPersistenceRequired();
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)LatexModItems.M_4_ASSAULT_RIFLE.get()));
+        setNoAi(false);
+        setPersistenceRequired();
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.M_4_ASSAULT_RIFLE.get()));
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -76,10 +72,10 @@ public class MilitaryEntity extends PathfinderMob implements RangedAttackMob {
     }
 
     protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, false) {
+        registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0d, false) { // from class: net.ltxprogrammer.turned.entity.MilitaryEntity.1
             protected double getAttackReachSqr(LivingEntity entity) {
-                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, DROPPODEntity.class, true, false));
@@ -99,18 +95,18 @@ public class MilitaryEntity extends PathfinderMob implements RangedAttackMob {
         this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
         this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, Monster.class, true, false));
         this.goalSelector.addGoal(18, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(19, new TemptGoal(this, 1.0, Ingredient.of(new ItemLike[]{(ItemLike)LatexModItems.TABLET.get()}), false));
-        this.goalSelector.addGoal(20, new FollowMobGoal(this, 0.800000011920929, 12.0F, 6.0F));
-        this.goalSelector.addGoal(21, new RandomStrollGoal(this, 0.6));
-        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, LivingEntity.class, 6.0F));
-        this.goalSelector.addGoal(23, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(19, new TemptGoal(this, 1.0d, Ingredient.of(new ItemLike[]{(ItemLike) LatexModItems.TABLET.get()}), false));
+        this.goalSelector.addGoal(20, new FollowMobGoal(this, 0.800000011920929d, 12.0f, 6.0f));
+        this.goalSelector.addGoal(21, new RandomStrollGoal(this, 0.6d));
+        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, LivingEntity.class, 6.0f));
+        this.goalSelector.addGoal(23, new LookAtPlayerGoal(this, Player.class, 6.0f));
         this.goalSelector.addGoal(24, new OpenDoorGoal(this, false));
-        this.targetSelector.addGoal(25, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(25, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(26, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(27, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.MilitaryEntity.2
             public boolean canContinueToUse() {
-                return this.canUse();
+                return canUse();
             }
         });
     }
@@ -124,19 +120,22 @@ public class MilitaryEntity extends PathfinderMob implements RangedAttackMob {
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        return !(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud) ? super.hurt(source, amount) : false;
+        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud)) {
+            return false;
+        }
+        return hurt(source, amount);
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
         MilitaryOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
@@ -149,12 +148,6 @@ public class MilitaryEntity extends PathfinderMob implements RangedAttackMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        AttributeSupplier.Builder builder = Mob.createMobAttributes();
-        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
-        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
-        builder = builder.add(Attributes.ARMOR, 0.0);
-        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
-        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
-        return builder;
+        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
     }
 }

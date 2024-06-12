@@ -1,83 +1,94 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ import net.ltxprogrammer.changed.init.ChangedItems;
-/*    */ import net.minecraft.core.BlockPos;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.entity.item.ItemEntity;
-/*    */ import net.minecraft.world.item.ItemStack;
-/*    */ import net.minecraft.world.item.Items;
-/*    */ import net.minecraft.world.level.Explosion;
-/*    */ import net.minecraft.world.level.ItemLike;
-/*    */ import net.minecraft.world.level.Level;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.block.Blocks;
-/*    */ 
-/*    */ public class DarkLatexCreeperdiesProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/* 16 */     if (entity == null)
-/*    */       return; 
-/* 18 */     boolean found = false;
-/* 19 */     double sx = 0.0D;
-/* 20 */     double sy = 0.0D;
-/* 21 */     double sz = 0.0D;
-/* 22 */     if (entity.m_6060_() && Math.random() <= 0.75D) {
-/* 23 */       if (!entity.f_19853_.m_5776_())
-/* 24 */         entity.m_146870_(); 
-/* 25 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_())
-/* 26 */           _level.m_46511_(null, x, y, z, 5.0F, Explosion.BlockInteraction.BREAK);  }
-/* 27 */        sx = -3.0D;
-/* 28 */       found = false;
-/* 29 */       for (int index0 = 0; index0 < 6; index0++) {
-/* 30 */         sy = -5.0D;
-/* 31 */         for (int index1 = 0; index1 < 6; index1++) {
-/* 32 */           sz = -3.0D;
-/* 33 */           for (int index2 = 0; index2 < 6; index2++) {
-/* 34 */             if (world.m_8055_(new BlockPos(x + sx, y + sy, z + sz)).m_60734_() != Blocks.f_50627_ && world
-/* 35 */               .m_8055_(new BlockPos(x + sx, y + sy, z + sz)).m_60734_() != Blocks.f_50626_ && world
-/* 36 */               .m_8055_(new BlockPos(x + sx, y + sy, z + sz)).m_60734_() != Blocks.f_50016_) {
-/* 37 */               found = true;
-/*    */             }
-/* 39 */             sz++;
-/*    */           } 
-/* 41 */           sy++;
-/*    */         } 
-/* 43 */         sx++;
-/*    */       } 
-/*    */     } else {
-/* 46 */       if (world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_()) {
-/* 47 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
-/* 48 */           entityToSpawn.m_32010_(10);
-/* 49 */           _level.m_7967_((Entity)entityToSpawn);
-/*    */         }  }
-/* 51 */        if (world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_()) {
-/* 52 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.f_42403_));
-/* 53 */           entityToSpawn.m_32010_(10);
-/* 54 */           _level.m_7967_((Entity)entityToSpawn);
-/*    */         }  }
-/* 56 */        if (Math.random() < 0.35D) {
-/* 57 */         if (world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_()) {
-/* 58 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
-/* 59 */             entityToSpawn.m_32010_(10);
-/* 60 */             _level.m_7967_((Entity)entityToSpawn);
-/*    */           }  }
-/* 62 */          if (world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_()) {
-/* 63 */             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.f_42500_));
-/* 64 */             entityToSpawn.m_32010_(10);
-/* 65 */             _level.m_7967_((Entity)entityToSpawn);
-/*    */           }  }
-/*    */       
-/* 68 */       }  if (Math.random() < 0.1D && 
-/* 69 */         world instanceof Level) { Level _level = (Level)world; if (!_level.m_5776_()) {
-/* 70 */           ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)Items.f_42403_));
-/* 71 */           entityToSpawn.m_32010_(10);
-/* 72 */           _level.m_7967_((Entity)entityToSpawn);
-/*    */         }  }
-/*    */     
-/*    */     } 
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.ltxprogrammer.changed.init.ChangedItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\DarkLatexCreeperdiesProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/DarkLatexCreeperdiesProcedure.class */
+public class DarkLatexCreeperdiesProcedure {
+    /* JADX WARN: Type inference failed for: r0v76, types: [double] */
+    /* JADX WARN: Type inference failed for: r0v81, types: [double] */
+    /* JADX WARN: Type inference failed for: r0v86, types: [double] */
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            if (!entity.isOnFire() || Math.random() > 0.75d) {
+                if (world instanceof Level) {
+                    Level _level = (Level) world;
+                    if (!_level.isClientSide()) {
+                        ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+                        entityToSpawn.setPickUpDelay(10);
+                        _level.addFreshEntity(entityToSpawn);
+                    }
+                }
+                if (world instanceof Level) {
+                    Level _level2 = (Level) world;
+                    if (!_level2.isClientSide()) {
+                        ItemEntity entityToSpawn2 = new ItemEntity(_level2, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn2.setPickUpDelay(10);
+                        _level2.addFreshEntity(entityToSpawn2);
+                    }
+                }
+                if (Math.random() < 0.35d) {
+                    if (world instanceof Level) {
+                        Level _level3 = (Level) world;
+                        if (!_level3.isClientSide()) {
+                            ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+                            entityToSpawn3.setPickUpDelay(10);
+                            _level3.addFreshEntity(entityToSpawn3);
+                        }
+                    }
+                    if (world instanceof Level) {
+                        Level _level4 = (Level) world;
+                        if (!_level4.isClientSide()) {
+                            ItemEntity entityToSpawn4 = new ItemEntity(_level4, x, y, z, new ItemStack(Items.BONE));
+                            entityToSpawn4.setPickUpDelay(10);
+                            _level4.addFreshEntity(entityToSpawn4);
+                        }
+                    }
+                }
+                if (Math.random() < 0.1d && (world instanceof Level)) {
+                    Level _level5 = (Level) world;
+                    if (!_level5.isClientSide()) {
+                        ItemEntity entityToSpawn5 = new ItemEntity(_level5, x, y, z, new ItemStack(Items.GUNPOWDER));
+                        entityToSpawn5.setPickUpDelay(10);
+                        _level5.addFreshEntity(entityToSpawn5);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            if (!entity.level.isClientSide()) {
+                entity.discard();
+            }
+            if (world instanceof Level) {
+                Level _level6 = (Level) world;
+                if (!_level6.isClientSide()) {
+                    _level6.explode((Entity) null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
+                }
+            }
+            char c = 0;
+            for (int index0 = 0; index0 < 6; index0++) {
+                char c2 = 0;
+                for (int index1 = 0; index1 < 6; index1++) {
+                    char c3 = 0;
+                    for (int index2 = 0; index2 < 6; index2++) {
+                        if (!(world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() != Blocks.AIR)) {
+                        }
+                        c3 += 0;
+                    }
+                    c2 += 0;
+                }
+                c += 0;
+            }
+        }
+    }
+}

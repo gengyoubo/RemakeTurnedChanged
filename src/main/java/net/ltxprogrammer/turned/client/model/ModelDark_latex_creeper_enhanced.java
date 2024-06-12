@@ -1,314 +1,108 @@
-/*     */ package net.ltxprogrammer.turned.client.model;
-/*     */ 
-/*     */ import com.mojang.blaze3d.vertex.PoseStack;
-/*     */ import com.mojang.blaze3d.vertex.VertexConsumer;
-/*     */ import net.minecraft.client.model.EntityModel;
-/*     */ import net.minecraft.client.model.geom.ModelLayerLocation;
-/*     */ import net.minecraft.client.model.geom.ModelPart;
-/*     */ import net.minecraft.client.model.geom.PartPose;
-/*     */ import net.minecraft.client.model.geom.builders.CubeDeformation;
-/*     */ import net.minecraft.client.model.geom.builders.CubeListBuilder;
-/*     */ import net.minecraft.client.model.geom.builders.LayerDefinition;
-/*     */ import net.minecraft.client.model.geom.builders.MeshDefinition;
-/*     */ import net.minecraft.client.model.geom.builders.PartDefinition;
-/*     */ import net.minecraft.resources.ResourceLocation;
-/*     */ import net.minecraft.util.Mth;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ public class ModelDark_latex_creeper_enhanced<T extends Entity>
-/*     */   extends EntityModel<T>
-/*     */ {
-/*  25 */   public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("turned", "model_dark_latex_creeper_enhanced"), "main");
-/*     */   
-/*     */   public final ModelPart head;
-/*     */   public final ModelPart body;
-/*     */   public final ModelPart ArmL;
-/*     */   public final ModelPart ArmR;
-/*     */   public final ModelPart leg0;
-/*     */   public final ModelPart leg1;
-/*     */   public final ModelPart leg2;
-/*     */   public final ModelPart leg3;
-/*     */   
-/*     */   public ModelDark_latex_creeper_enhanced(ModelPart root) {
-/*  37 */     this.head = root.m_171324_("head");
-/*  38 */     this.body = root.m_171324_("body");
-/*  39 */     this.ArmL = root.m_171324_("ArmL");
-/*  40 */     this.ArmR = root.m_171324_("ArmR");
-/*  41 */     this.leg0 = root.m_171324_("leg0");
-/*  42 */     this.leg1 = root.m_171324_("leg1");
-/*  43 */     this.leg2 = root.m_171324_("leg2");
-/*  44 */     this.leg3 = root.m_171324_("leg3");
-/*     */   }
-/*     */   
-/*     */   public static LayerDefinition createBodyLayer() {
-/*  48 */     MeshDefinition meshdefinition = new MeshDefinition();
-/*  49 */     PartDefinition partdefinition = meshdefinition.m_171576_();
-/*  50 */     PartDefinition head = partdefinition.m_171599_("head", 
-/*  51 */         CubeListBuilder.m_171558_().m_171514_(43, 0).m_171488_(-4.5F, -8.7721F, -5.6047F, 9.0F, 9.0F, 9.0F, new CubeDeformation(0.0F)), 
-/*  52 */         PartPose.m_171419_(0.0F, -13.5F, -10.0F));
-/*  53 */     PartDefinition head_r1 = head.m_171599_("head_r1", 
-/*  54 */         CubeListBuilder.m_171558_().m_171514_(70, 96).m_171488_(-0.5F, -1.75F, -4.0F, 1.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(62, 18)
-/*  55 */         .m_171488_(-0.5F, -1.75F, 1.0F, 1.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(13, 0)
-/*  56 */         .m_171488_(-0.5F, -1.75F, 5.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(0, 47)
-/*  57 */         .m_171488_(-10.5F, -1.75F, 5.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(98, 101)
-/*  58 */         .m_171488_(-10.5F, -1.75F, 1.0F, 1.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(100, 74)
-/*  59 */         .m_171488_(-10.5F, -1.75F, -4.0F, 1.0F, 4.0F, 5.0F, new CubeDeformation(0.0F)), 
-/*  60 */         PartPose.m_171423_(5.0F, -5.0221F, 0.3953F, 0.2182F, 0.0F, 0.0F));
-/*  61 */     PartDefinition Crest = head.m_171599_("Crest", 
-/*  62 */         CubeListBuilder.m_171558_().m_171514_(0, 0).m_171488_(0.0F, -19.625F, -11.375F, 0.0F, 9.0F, 9.0F, new CubeDeformation(0.0F)).m_171514_(43, 15)
-/*  63 */         .m_171488_(0.0F, -20.625F, -10.375F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(61, 46)
-/*  64 */         .m_171488_(0.0F, -21.625F, -8.375F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(61, 45)
-/*  65 */         .m_171488_(0.0F, -21.625F, -4.375F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(43, 5)
-/*  66 */         .m_171488_(0.0F, -20.625F, -6.375F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), 
-/*  67 */         PartPose.m_171419_(0.0F, 10.2279F, 6.3953F));
-/*  68 */     PartDefinition head_r2 = Crest.m_171599_("head_r2", 
-/*  69 */         CubeListBuilder.m_171558_().m_171514_(61, 44).m_171488_(0.0F, -1.0F, -1.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 43)
-/*  70 */         .m_171488_(0.0F, 0.0F, -3.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(44, 61)
-/*  71 */         .m_171488_(0.0F, -1.0F, 3.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 42).m_171488_(0.0F, 0.0F, 1.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), 
-/*     */         
-/*  73 */         PartPose.m_171423_(0.0F, -15.625F, -1.375F, -1.5708F, 0.0F, 0.0F));
-/*  74 */     PartDefinition Mask = head.m_171599_("Mask", 
-/*  75 */         CubeListBuilder.m_171558_().m_171514_(57, 18).m_171488_(-3.0F, -9.75F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(14, 8)
-/*  76 */         .m_171488_(1.0F, -9.75F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(48, 41)
-/*  77 */         .m_171488_(-1.0F, -10.25F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(45, 77)
-/*  78 */         .m_171488_(3.0F, -16.0F, -12.5F, 1.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(36, 41)
-/*  79 */         .m_171488_(-3.0F, -13.0F, -12.5F, 6.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(0, 4)
-/*  80 */         .m_171488_(-1.0F, -14.0F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(49, 18)
-/*  81 */         .m_171488_(-2.0F, -15.0F, -12.5F, 4.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(36, 38)
-/*  82 */         .m_171488_(-3.0F, -17.0F, -12.5F, 6.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(0, 50)
-/*  83 */         .m_171488_(1.0F, -12.0F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(46, 29)
-/*  84 */         .m_171488_(-3.0F, -12.0F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(34, 55)
-/*  85 */         .m_171488_(-4.0F, -16.0F, -12.5F, 1.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(0, 30)
-/*  86 */         .m_171488_(-6.0F, -12.0F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(14, 18)
-/*  87 */         .m_171488_(-1.0F, -18.0F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(36, 29)
-/*  88 */         .m_171488_(4.0F, -12.0F, -12.5F, 2.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(17, 0)
-/*  89 */         .m_171488_(-5.0F, -13.0F, -12.5F, 1.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(43, 0)
-/*  90 */         .m_171488_(4.0F, -13.0F, -12.5F, 1.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)), 
-/*  91 */         PartPose.m_171419_(0.0F, 9.2279F, 6.5203F));
-/*  92 */     PartDefinition body = partdefinition.m_171599_("body", 
-/*  93 */         CubeListBuilder.m_171558_().m_171514_(0, 0).m_171488_(-6.0F, 14.5F, 2.0F, 12.0F, 7.0F, 19.0F, new CubeDeformation(0.0F)).m_171514_(66, 63)
-/*  94 */         .m_171488_(-6.0F, 14.5F, 21.0F, 12.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(0, 26)
-/*  95 */         .m_171488_(-5.0F, 21.5F, 4.0F, 10.0F, 3.0F, 16.0F, new CubeDeformation(0.0F)).m_171514_(36, 26)
-/*  96 */         .m_171488_(-4.0F, 24.5F, 5.0F, 8.0F, 1.0F, 14.0F, new CubeDeformation(0.0F)).m_171514_(54, 52)
-/*  97 */         .m_171488_(-3.0F, 25.5F, 8.0F, 6.0F, 1.0F, 10.0F, new CubeDeformation(0.0F)), 
-/*  98 */         PartPose.m_171419_(0.0F, -13.5F, -10.0F));
-/*  99 */     PartDefinition cube_r1 = body.m_171599_("cube_r1", 
-/* 100 */         CubeListBuilder.m_171558_().m_171514_(91, 48).m_171488_(-4.0F, -1.5F, -1.0F, 8.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), 
-/* 101 */         PartPose.m_171423_(0.0F, 15.375F, 22.875F, 0.3054F, 0.0F, 0.0F));
-/* 102 */     PartDefinition cube_r2 = body.m_171599_("cube_r2", 
-/* 103 */         CubeListBuilder.m_171558_().m_171514_(0, 55).m_171488_(-5.0F, -1.5F, -6.0F, 10.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), 
-/* 104 */         PartPose.m_171423_(0.0F, 15.375F, 23.625F, 0.0873F, 0.0F, 0.0F));
-/* 105 */     PartDefinition body_r1 = body.m_171599_("body_r1", 
-/* 106 */         CubeListBuilder.m_171558_().m_171514_(59, 44).m_171488_(-2.5F, -16.0F, -2.0F, 5.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(0, 45)
-/* 107 */         .m_171488_(-6.125F, -15.0F, -2.875F, 12.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(61, 86)
-/* 108 */         .m_171488_(0.375F, -14.0F, -3.0F, 5.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(88, 27)
-/* 109 */         .m_171488_(-5.5F, -14.0F, -3.0F, 5.0F, 4.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(83, 12)
-/* 110 */         .m_171488_(-4.0F, -1.0F, -1.0F, 8.0F, 6.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(0, 0)
-/* 111 */         .m_171488_(-0.5F, -3.25F, -6.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(96, 93)
-/* 112 */         .m_171488_(-3.0F, -7.0F, -5.625F, 6.0F, 6.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(20, 89)
-/* 113 */         .m_171488_(-4.0F, -10.0F, -4.0F, 8.0F, 10.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(95, 37)
-/* 114 */         .m_171488_(-3.5F, -8.5F, -5.0F, 7.0F, 8.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(13, 25)
-/* 115 */         .m_171488_(-0.125F, -11.0F, 4.0F, 0.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(52, 40)
-/* 116 */         .m_171488_(-0.125F, -11.0F, 5.0F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(61, 17)
-/* 117 */         .m_171488_(-0.125F, -11.0F, 6.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(42, 61)
-/* 118 */         .m_171488_(-0.125F, -15.0F, 6.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(26, 54)
-/* 119 */         .m_171488_(-0.125F, -15.0F, 5.0F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(36, 25)
-/* 120 */         .m_171488_(-0.125F, -15.0F, 4.0F, 0.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(16, 91)
-/* 121 */         .m_171488_(-0.125F, -15.0F, 3.0F, 0.0F, 11.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(36, 45).m_171488_(-4.5F, -11.0F, -2.0F, 9.0F, 12.0F, 5.0F, new CubeDeformation(0.0F)), 
-/*     */         
-/* 123 */         PartPose.m_171423_(0.0F, 15.5F, 2.0F, 0.1745F, 0.0F, 0.0F));
-/* 124 */     PartDefinition body_r2 = body.m_171599_("body_r2", 
-/* 125 */         CubeListBuilder.m_171558_().m_171514_(30, 48).m_171488_(1.0F, 10.125F, 4.875F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(32, 48)
-/* 126 */         .m_171488_(1.0F, 7.125F, 4.875F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(58, 41)
-/* 127 */         .m_171488_(1.0F, 7.125F, 5.875F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(34, 48)
-/* 128 */         .m_171488_(1.0F, 4.125F, 4.875F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(28, 59)
-/* 129 */         .m_171488_(1.0F, 4.125F, 5.875F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(30, 59)
-/* 130 */         .m_171488_(1.0F, 1.125F, 5.875F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(48, 37)
-/* 131 */         .m_171488_(1.0F, 1.125F, 4.875F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(90, 21)
-/* 132 */         .m_171488_(1.0F, -0.875F, 3.875F, 0.0F, 11.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(21, 77)
-/* 133 */         .m_171488_(-3.375F, -0.875F, 0.875F, 9.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), 
-/* 134 */         PartPose.m_171423_(-1.125F, 15.1403F, 5.1308F, 1.1781F, 0.0F, 0.0F));
-/* 135 */     PartDefinition body_r3 = body.m_171599_("body_r3", 
-/* 136 */         CubeListBuilder.m_171558_().m_171514_(60, 43).m_171488_(1.0F, -6.0F, 6.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(49, 3)
-/* 137 */         .m_171488_(1.0F, -6.0F, 5.0F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(11, 25)
-/* 138 */         .m_171488_(1.0F, -6.0F, 4.0F, 0.0F, 3.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(103, 0)
-/* 139 */         .m_171488_(1.0F, -7.0F, 3.0F, 0.0F, 9.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(79, 0).m_171488_(-3.375F, -7.0F, 0.0F, 9.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), 
-/*     */         
-/* 141 */         PartPose.m_171423_(-1.125F, 15.1403F, 5.1308F, 0.6109F, 0.0F, 0.0F));
-/* 142 */     PartDefinition Crest2 = body.m_171599_("Crest2", CubeListBuilder.m_171558_(), PartPose.m_171419_(0.0F, 29.5F, 10.0F));
-/* 143 */     PartDefinition ArmL = partdefinition.m_171599_("ArmL", CubeListBuilder.m_171558_(), 
-/* 144 */         PartPose.m_171423_(7.5644F, -4.8193F, -6.8098F, 0.1298F, 0.017F, -0.1298F));
-/* 145 */     PartDefinition body_r4 = ArmL.m_171599_("body_r4", 
-/* 146 */         CubeListBuilder.m_171558_().m_171514_(0, 79).m_171488_(-1.8219F, -0.5428F, -4.2825F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F))
-/* 147 */         .m_171514_(0, 0).m_171488_(-1.7683F, -3.5318F, -4.2805F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(78, 93)
-/* 148 */         .m_171488_(-1.7683F, -3.5318F, -4.2805F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 149 */         PartPose.m_171423_(0.1856F, 2.5931F, -1.3413F, -0.4765F, -0.0603F, -0.0873F));
-/* 150 */     PartDefinition body_r5 = ArmL.m_171599_("body_r5", 
-/* 151 */         CubeListBuilder.m_171558_().m_171514_(48, 26).m_171488_(-0.625F, -0.875F, 0.0F, 1.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), 
-/* 152 */         PartPose.m_171423_(-0.6733F, 7.8765F, -7.88F, -0.4784F, 0.0403F, 0.1064F));
-/* 153 */     PartDefinition body_r6 = ArmL.m_171599_("body_r6", 
-/* 154 */         CubeListBuilder.m_171558_().m_171514_(30, 45).m_171488_(-0.5F, -0.875F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 155 */         PartPose.m_171423_(-0.6733F, 7.7515F, -7.88F, -0.4784F, 0.0403F, 0.1064F));
-/* 156 */     PartDefinition body_r7 = ArmL.m_171599_("body_r7", 
-/* 157 */         CubeListBuilder.m_171558_().m_171514_(59, 45).m_171488_(1.25F, 0.0F, -0.125F, 1.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(32, 59)
-/* 158 */         .m_171488_(1.25F, 0.0F, 3.125F, 1.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), 
-/* 159 */         PartPose.m_171423_(2.1314F, 7.2426F, -7.3669F, -0.4608F, -0.1393F, -0.2437F));
-/* 160 */     PartDefinition body_r8 = ArmL.m_171599_("body_r8", 
-/* 161 */         CubeListBuilder.m_171558_().m_171514_(43, 4).m_171488_(0.125F, 0.0F, -1.125F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(43, 0)
-/* 162 */         .m_171488_(0.125F, 0.0F, 2.125F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 163 */         PartPose.m_171423_(2.1314F, 7.1176F, -7.3669F, -0.4608F, -0.1393F, -0.2437F));
-/* 164 */     PartDefinition body_r9 = ArmL.m_171599_("body_r9", 
-/* 165 */         CubeListBuilder.m_171558_().m_171514_(18, 92).m_171488_(6.1093F, -17.3441F, -2.4261F, 1.0F, 11.0F, 0.0F, new CubeDeformation(0.0F))
-/* 166 */         .m_171514_(62, 19).m_171488_(5.1093F, -15.3441F, -2.4261F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(3, 0)
-/* 167 */         .m_171488_(4.1093F, -14.3441F, -2.4261F, 1.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(88, 101)
-/* 168 */         .m_171488_(7.0387F, -13.3382F, -4.4271F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).m_171514_(56, 96)
-/* 169 */         .m_171488_(4.0387F, -13.3382F, -4.4271F, 3.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), 
-/* 170 */         PartPose.m_171423_(-5.5644F, 4.8277F, 1.8798F, 0.1745F, 0.0F, 0.0F));
-/* 171 */     PartDefinition body_r10 = ArmL.m_171599_("body_r10", 
-/* 172 */         CubeListBuilder.m_171558_().m_171514_(2, 25).m_171488_(0.2715F, -7.5348F, -0.2697F, 0.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-/* 173 */         .m_171514_(26, 58).m_171488_(0.2715F, -5.5348F, -1.2697F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 174 */         PartPose.m_171423_(0.1856F, 2.5931F, -1.3413F, -0.48F, 0.0F, -0.0873F));
-/* 175 */     PartDefinition ArmR = partdefinition.m_171599_("ArmR", CubeListBuilder.m_171558_(), 
-/* 176 */         PartPose.m_171423_(-7.5644F, -4.8193F, -6.8098F, 0.1304F, -0.0114F, 0.0866F));
-/* 177 */     PartDefinition body_r11 = ArmR.m_171599_("body_r11", 
-/* 178 */         CubeListBuilder.m_171558_().m_171514_(46, 26).m_171488_(-2.25F, 0.0F, 3.125F, 1.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(38, 45)
-/* 179 */         .m_171488_(-2.25F, 0.0F, -0.125F, 1.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), 
-/* 180 */         PartPose.m_171423_(-2.1314F, 7.2426F, -7.3669F, -0.4608F, 0.1393F, 0.2437F));
-/* 181 */     PartDefinition body_r12 = ArmR.m_171599_("body_r12", 
-/* 182 */         CubeListBuilder.m_171558_().m_171514_(38, 26).m_171488_(-0.375F, -0.875F, 0.0F, 1.0F, 3.0F, 0.0F, new CubeDeformation(0.0F)), 
-/* 183 */         PartPose.m_171423_(0.6733F, 7.8765F, -7.88F, -0.4784F, -0.0403F, -0.1064F));
-/* 184 */     PartDefinition body_r13 = ArmR.m_171599_("body_r13", 
-/* 185 */         CubeListBuilder.m_171558_().m_171514_(78, 101).m_171488_(-8.0387F, -13.3382F, -4.4271F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
-/* 186 */         .m_171514_(13, 0).m_171488_(-5.1093F, -14.3441F, -2.4261F, 1.0F, 1.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(92, 22)
-/* 187 */         .m_171488_(-7.1093F, -17.3441F, -2.4261F, 1.0F, 11.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(51, 62)
-/* 188 */         .m_171488_(-6.1093F, -15.3441F, -2.4261F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).m_171514_(36, 26)
-/* 189 */         .m_171488_(-6.9843F, -13.3441F, -4.4261F, 3.0F, 8.0F, 4.0F, new CubeDeformation(0.0F)), 
-/* 190 */         PartPose.m_171423_(5.5644F, 4.8277F, 1.8798F, 0.1745F, 0.0F, 0.0F));
-/* 191 */     PartDefinition body_r14 = ArmR.m_171599_("body_r14", 
-/* 192 */         CubeListBuilder.m_171558_().m_171514_(0, 25).m_171488_(-0.2178F, -7.5443F, -0.2747F, 0.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-/* 193 */         .m_171514_(32, 54).m_171488_(-0.2178F, -5.5443F, -1.2747F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 194 */         PartPose.m_171423_(-0.1856F, 2.5931F, -1.3413F, -0.48F, 0.0F, 0.0873F));
-/* 195 */     PartDefinition body_r15 = ArmR.m_171599_("body_r15", 
-/* 196 */         CubeListBuilder.m_171558_().m_171514_(26, 55).m_171488_(-2.125F, 0.0F, 2.125F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(17, 64)
-/* 197 */         .m_171488_(-2.125F, 0.0F, -1.125F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 198 */         PartPose.m_171423_(-2.1314F, 7.1176F, -7.3669F, -0.4608F, 0.1393F, 0.2437F));
-/* 199 */     PartDefinition body_r16 = ArmR.m_171599_("body_r16", 
-/* 200 */         CubeListBuilder.m_171558_().m_171514_(52, 41).m_171488_(-1.5F, -0.875F, -1.0F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 201 */         PartPose.m_171423_(0.6733F, 7.7515F, -7.88F, -0.4784F, -0.0403F, -0.1064F));
-/* 202 */     PartDefinition body_r17 = ArmR.m_171599_("body_r17", 
-/* 203 */         CubeListBuilder.m_171558_().m_171514_(93, 57).m_171488_(-2.1781F, -3.5428F, -4.2825F, 4.0F, 3.0F, 5.0F, new CubeDeformation(0.0F))
-/* 204 */         .m_171514_(83, 80).m_171488_(-3.1781F, -0.5428F, -4.2825F, 5.0F, 8.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 205 */         PartPose.m_171423_(-0.1856F, 2.5931F, -1.3413F, -0.4765F, 0.0603F, 0.0873F));
-/* 206 */     PartDefinition leg0 = partdefinition.m_171599_("leg0", 
-/* 207 */         CubeListBuilder.m_171558_().m_171514_(66, 18).m_171488_(-4.625F, 11.7545F, -8.1168F, 5.0F, 8.0F, 7.0F, new CubeDeformation(0.0F))
-/* 208 */         .m_171514_(51, 92).m_171488_(-1.125F, 17.7545F, -8.8668F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(94, 22)
-/* 209 */         .m_171488_(-5.125F, 17.7545F, -8.8668F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(43, 3)
-/* 210 */         .m_171488_(-4.125F, 17.7545F, -9.8668F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(30, 44)
-/* 211 */         .m_171488_(-0.125F, 17.7545F, -9.8668F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(43, 0)
-/* 212 */         .m_171488_(-4.125F, 18.7545F, -10.8668F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(36, 48)
-/* 213 */         .m_171488_(-0.125F, 18.7545F, -10.8668F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 58)
-/* 214 */         .m_171488_(-3.125F, 17.7545F, -1.1168F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 215 */         PartPose.m_171419_(-5.5F, 4.25F, -4.0F));
-/* 216 */     PartDefinition leg4_r1 = leg0.m_171599_("leg4_r1", 
-/* 217 */         CubeListBuilder.m_171558_().m_171514_(30, 101).m_171488_(-2.25F, -9.5F, -4.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(0, 92)
-/* 218 */         .m_171488_(-3.25F, -8.55F, -4.0F, 3.0F, 11.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 219 */         PartPose.m_171423_(-0.25F, 7.2057F, -3.4455F, -0.5672F, 0.0F, 0.0F));
-/* 220 */     PartDefinition leg4_r2 = leg0.m_171599_("leg4_r2", 
-/* 221 */         CubeListBuilder.m_171558_().m_171514_(0, 11).m_171488_(-2.25F, -7.5F, -4.0F, 0.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(58, 40)
-/* 222 */         .m_171488_(-2.25F, -10.5F, -4.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 1)
-/* 223 */         .m_171488_(-2.25F, -9.5F, -4.0F, 0.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(13, 1)
-/* 224 */         .m_171488_(-2.25F, -8.5F, -4.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(45, 78).m_171488_(-4.25F, -6.5F, -4.0F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), 
-/*     */         
-/* 226 */         PartPose.m_171423_(0.0F, 12.25F, -4.25F, 0.2182F, 0.0F, 0.0F));
-/* 227 */     PartDefinition leg1 = partdefinition.m_171599_("leg1", 
-/* 228 */         CubeListBuilder.m_171558_().m_171514_(49, 63).m_171488_(-0.125F, 11.7545F, -7.1168F, 5.0F, 8.0F, 7.0F, new CubeDeformation(0.0F))
-/* 229 */         .m_171514_(79, 12).m_171488_(-0.625F, 17.7545F, -7.8668F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(75, 48)
-/* 230 */         .m_171488_(3.375F, 17.7545F, -7.8668F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(36, 44)
-/* 231 */         .m_171488_(0.375F, 17.7545F, -8.8668F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 46)
-/* 232 */         .m_171488_(4.375F, 17.7545F, -8.8668F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(49, 0)
-/* 233 */         .m_171488_(0.375F, 18.7545F, -9.8668F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(4, 49)
-/* 234 */         .m_171488_(4.375F, 18.7545F, -9.8668F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(60, 41)
-/* 235 */         .m_171488_(1.5F, 17.7545F, -0.2418F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 236 */         PartPose.m_171419_(5.5F, 4.25F, -5.0F));
-/* 237 */     PartDefinition leg5_r1 = leg1.m_171599_("leg5_r1", 
-/* 238 */         CubeListBuilder.m_171558_().m_171514_(0, 1).m_171488_(2.25F, -7.5F, -4.0F, 0.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)).m_171514_(13, 0)
-/* 239 */         .m_171488_(2.25F, -8.5F, -4.0F, 0.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(0, 0)
-/* 240 */         .m_171488_(2.25F, -9.5F, -4.0F, 0.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(30, 58)
-/* 241 */         .m_171488_(2.25F, -10.5F, -4.0F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(73, 34).m_171488_(0.25F, -6.5F, -4.0F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), 
-/*     */         
-/* 243 */         PartPose.m_171423_(0.0F, 12.25F, -3.25F, 0.2182F, 0.0F, 0.0F));
-/* 244 */     PartDefinition leg5_r2 = leg1.m_171599_("leg5_r2", 
-/* 245 */         CubeListBuilder.m_171558_().m_171514_(66, 33).m_171488_(0.25F, -9.5F, -4.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(0, 26)
-/* 246 */         .m_171488_(0.25F, -8.55F, -4.0F, 3.0F, 11.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 247 */         PartPose.m_171423_(0.25F, 7.2057F, -2.4455F, -0.5672F, 0.0F, 0.0F));
-/* 248 */     PartDefinition leg2 = partdefinition.m_171599_("leg2", 
-/* 249 */         CubeListBuilder.m_171558_().m_171514_(0, 64).m_171488_(-4.625F, 10.7545F, 3.2582F, 5.0F, 8.0F, 7.0F, new CubeDeformation(0.0F))
-/* 250 */         .m_171514_(81, 74).m_171488_(-1.125F, 16.7545F, 2.5082F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(81, 70)
-/* 251 */         .m_171488_(-5.125F, 16.7545F, 2.5082F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(11, 28)
-/* 252 */         .m_171488_(-0.125F, 16.7545F, 1.5082F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(13, 28)
-/* 253 */         .m_171488_(-4.125F, 16.7545F, 1.5082F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(13, 0)
-/* 254 */         .m_171488_(-0.125F, 17.7545F, 0.5082F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(17, 0)
-/* 255 */         .m_171488_(-4.125F, 17.7545F, 0.5082F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 55)
-/* 256 */         .m_171488_(-3.125F, 16.7545F, 10.2582F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 257 */         PartPose.m_171419_(-5.5F, 5.25F, 7.0F));
-/* 258 */     PartDefinition leg5_r3 = leg2.m_171599_("leg5_r3", 
-/* 259 */         CubeListBuilder.m_171558_().m_171514_(16, 101).m_171488_(-2.25F, -8.5F, -1.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(40, 92)
-/* 260 */         .m_171488_(-3.25F, -7.55F, -1.0F, 3.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 261 */         PartPose.m_171423_(-0.25F, 6.2057F, 4.4455F, 0.7854F, 0.0F, 0.0F));
-/* 262 */     PartDefinition leg3_r1 = leg2.m_171599_("leg3_r1", 
-/* 263 */         CubeListBuilder.m_171558_().m_171514_(76, 48).m_171488_(-9.75F, -3.5F, -3.5F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), 
-/* 264 */         PartPose.m_171423_(5.5F, 8.4293F, 5.9875F, 0.2182F, 0.0F, 0.0F));
-/* 265 */     PartDefinition leg3 = partdefinition.m_171599_("leg3", 
-/* 266 */         CubeListBuilder.m_171558_().m_171514_(25, 62).m_171488_(-0.125F, 10.7545F, 2.2582F, 5.0F, 8.0F, 7.0F, new CubeDeformation(0.0F))
-/* 267 */         .m_171514_(70, 4).m_171488_(-0.625F, 16.7545F, 1.5082F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(70, 0)
-/* 268 */         .m_171488_(3.375F, 16.7545F, 1.5082F, 2.0F, 2.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(4, 46)
-/* 269 */         .m_171488_(0.375F, 16.7545F, 0.5082F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(38, 47)
-/* 270 */         .m_171488_(4.375F, 16.7545F, 0.5082F, 0.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(49, 7)
-/* 271 */         .m_171488_(0.375F, 17.7545F, -0.4918F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(28, 58)
-/* 272 */         .m_171488_(4.375F, 17.7545F, -0.4918F, 0.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)).m_171514_(0, 64)
-/* 273 */         .m_171488_(1.375F, 16.7545F, 9.1332F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), 
-/* 274 */         PartPose.m_171419_(5.5F, 5.25F, 8.0F));
-/* 275 */     PartDefinition leg6_r1 = leg3.m_171599_("leg6_r1", 
-/* 276 */         CubeListBuilder.m_171558_().m_171514_(42, 62).m_171488_(0.25F, -8.5F, -1.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)).m_171514_(89, 65)
-/* 277 */         .m_171488_(0.25F, -7.55F, -1.0F, 3.0F, 9.0F, 5.0F, new CubeDeformation(0.0F)), 
-/* 278 */         PartPose.m_171423_(0.25F, 6.2057F, 3.4455F, 0.7854F, 0.0F, 0.0F));
-/* 279 */     PartDefinition leg4_r3 = leg3.m_171599_("leg4_r3", 
-/* 280 */         CubeListBuilder.m_171558_().m_171514_(66, 71).m_171488_(5.75F, -3.5F, -3.5F, 4.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), 
-/* 281 */         PartPose.m_171423_(-5.5F, 8.4293F, 4.9875F, 0.2182F, 0.0F, 0.0F));
-/* 282 */     return LayerDefinition.m_171565_(meshdefinition, 128, 128);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void m_7695_(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-/* 288 */     this.head.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 289 */     this.body.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 290 */     this.ArmL.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 291 */     this.ArmR.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 292 */     this.leg0.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 293 */     this.leg1.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 294 */     this.leg2.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/* 295 */     this.leg3.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/*     */   }
-/*     */   
-/*     */   public void m_6973_(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-/* 299 */     this.head.f_104204_ = netHeadYaw / 57.295776F;
-/* 300 */     this.head.f_104203_ = headPitch / 57.295776F;
-/* 301 */     this.leg0.f_104203_ = Mth.m_14089_(limbSwing * 1.0F) * 1.0F * limbSwingAmount;
-/* 302 */     this.leg1.f_104203_ = Mth.m_14089_(limbSwing * 1.0F) * 1.0F * limbSwingAmount;
-/* 303 */     this.leg2.f_104203_ = Mth.m_14089_(limbSwing * 1.0F) * -1.0F * limbSwingAmount;
-/* 304 */     this.leg3.f_104203_ = Mth.m_14089_(limbSwing * 1.0F) * -1.0F * limbSwingAmount;
-/* 305 */     this.ArmR.f_104203_ = Mth.m_14089_(limbSwing * 0.6662F + 3.1415927F) * limbSwingAmount;
-/* 306 */     this.ArmL.f_104203_ = Mth.m_14089_(limbSwing * 0.6662F) * limbSwingAmount;
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.client.model;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.ltxprogrammer.turned.LatexMod;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\model\ModelDark_latex_creeper_enhanced.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/ModelDark_latex_creeper_enhanced.class */
+public class ModelDark_latex_creeper_enhanced<T extends Entity> extends EntityModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(LatexMod.MODID, "model_dark_latex_creeper_enhanced"), "main");
+    public final ModelPart head;
+    public final ModelPart body;
+    public final ModelPart ArmL;
+    public final ModelPart ArmR;
+    public final ModelPart leg0;
+    public final ModelPart leg1;
+    public final ModelPart leg2;
+    public final ModelPart leg3;
+
+    public ModelDark_latex_creeper_enhanced(ModelPart root) {
+        this.head = root.getChild("head");
+        this.body = root.getChild("body");
+        this.ArmL = root.getChild("ArmL");
+        this.ArmR = root.getChild("ArmR");
+        this.leg0 = root.getChild("leg0");
+        this.leg1 = root.getChild("leg1");
+        this.leg2 = root.getChild("leg2");
+        this.leg3 = root.getChild("leg3");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create().texOffs(43, 0).addBox(-4.5f, -8.7721f, -5.6047f, 9.0f, 9.0f, 9.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, -13.5f, -10.0f));
+        head.addOrReplaceChild("head_r1", CubeListBuilder.create().texOffs(70, 96).addBox(-0.5f, -1.75f, -4.0f, 1.0f, 4.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(62, 18).addBox(-0.5f, -1.75f, 1.0f, 1.0f, 3.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(13, 0).addBox(-0.5f, -1.75f, 5.0f, 1.0f, 1.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(0, 47).addBox(-10.5f, -1.75f, 5.0f, 1.0f, 1.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(98, 101).addBox(-10.5f, -1.75f, 1.0f, 1.0f, 3.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(100, 74).addBox(-10.5f, -1.75f, -4.0f, 1.0f, 4.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(5.0f, -5.0221f, 0.3953f, 0.2182f, 0.0f, 0.0f));
+        head.addOrReplaceChild("Crest", CubeListBuilder.create().texOffs(0, 0).addBox(0.0f, -19.625f, -11.375f, 0.0f, 9.0f, 9.0f, new CubeDeformation(0.0f)).texOffs(43, 15).addBox(0.0f, -20.625f, -10.375f, 0.0f, 1.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(61, 46).addBox(0.0f, -21.625f, -8.375f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(61, 45).addBox(0.0f, -21.625f, -4.375f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(43, 5).addBox(0.0f, -20.625f, -6.375f, 0.0f, 1.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, 10.2279f, 6.3953f)).addOrReplaceChild("head_r2", CubeListBuilder.create().texOffs(61, 44).addBox(0.0f, -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 43).addBox(0.0f, 0.0f, -3.0f, 0.0f, 1.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(44, 61).addBox(0.0f, -1.0f, 3.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 42).addBox(0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, -15.625f, -1.375f, -1.5708f, 0.0f, 0.0f));
+        head.addOrReplaceChild("Mask", CubeListBuilder.create().texOffs(57, 18).addBox(-3.0f, -9.75f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(14, 8).addBox(1.0f, -9.75f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(48, 41).addBox(-1.0f, -10.25f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(45, 77).addBox(3.0f, -16.0f, -12.5f, 1.0f, 7.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(36, 41).addBox(-3.0f, -13.0f, -12.5f, 6.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(0, 4).addBox(-1.0f, -14.0f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(49, 18).addBox(-2.0f, -15.0f, -12.5f, 4.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(36, 38).addBox(-3.0f, -17.0f, -12.5f, 6.0f, 2.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(0, 50).addBox(1.0f, -12.0f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(46, 29).addBox(-3.0f, -12.0f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(34, 55).addBox(-4.0f, -16.0f, -12.5f, 1.0f, 7.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(0, 30).addBox(-6.0f, -12.0f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(14, 18).addBox(-1.0f, -18.0f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(36, 29).addBox(4.0f, -12.0f, -12.5f, 2.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(17, 0).addBox(-5.0f, -13.0f, -12.5f, 1.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(43, 0).addBox(4.0f, -13.0f, -12.5f, 1.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, 9.2279f, 6.5203f));
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-6.0f, 14.5f, 2.0f, 12.0f, 7.0f, 19.0f, new CubeDeformation(0.0f)).texOffs(66, 63).addBox(-6.0f, 14.5f, 21.0f, 12.0f, 5.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(0, 26).addBox(-5.0f, 21.5f, 4.0f, 10.0f, 3.0f, 16.0f, new CubeDeformation(0.0f)).texOffs(36, 26).addBox(-4.0f, 24.5f, 5.0f, 8.0f, 1.0f, 14.0f, new CubeDeformation(0.0f)).texOffs(54, 52).addBox(-3.0f, 25.5f, 8.0f, 6.0f, 1.0f, 10.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, -13.5f, -10.0f));
+        body.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(91, 48).addBox(-4.0f, -1.5f, -1.0f, 8.0f, 3.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 15.375f, 22.875f, 0.3054f, 0.0f, 0.0f));
+        body.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(0, 55).addBox(-5.0f, -1.5f, -6.0f, 10.0f, 3.0f, 6.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 15.375f, 23.625f, 0.0873f, 0.0f, 0.0f));
+        body.addOrReplaceChild("body_r1", CubeListBuilder.create().texOffs(59, 44).addBox(-2.5f, -16.0f, -2.0f, 5.0f, 2.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(0, 45).addBox(-6.125f, -15.0f, -2.875f, 12.0f, 4.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(61, 86).addBox(0.375f, -14.0f, -3.0f, 5.0f, 4.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(88, 27).addBox(-5.5f, -14.0f, -3.0f, 5.0f, 4.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(83, 12).addBox(-4.0f, -1.0f, -1.0f, 8.0f, 6.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(0, 0).addBox(-0.5f, -3.25f, -6.0f, 1.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(96, 93).addBox(-3.0f, -7.0f, -5.625f, 6.0f, 6.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(20, 89).addBox(-4.0f, -10.0f, -4.0f, 8.0f, 10.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(95, 37).addBox(-3.5f, -8.5f, -5.0f, 7.0f, 8.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(13, 25).addBox(-0.125f, -11.0f, 4.0f, 0.0f, 3.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(52, 40).addBox(-0.125f, -11.0f, 5.0f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(61, 17).addBox(-0.125f, -11.0f, 6.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(42, 61).addBox(-0.125f, -15.0f, 6.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(26, 54).addBox(-0.125f, -15.0f, 5.0f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(36, 25).addBox(-0.125f, -15.0f, 4.0f, 0.0f, 3.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(16, 91).addBox(-0.125f, -15.0f, 3.0f, 0.0f, 11.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(36, 45).addBox(-4.5f, -11.0f, -2.0f, 9.0f, 12.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 15.5f, 2.0f, 0.1745f, 0.0f, 0.0f));
+        body.addOrReplaceChild("body_r2", CubeListBuilder.create().texOffs(30, 48).addBox(1.0f, 10.125f, 4.875f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(32, 48).addBox(1.0f, 7.125f, 4.875f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(58, 41).addBox(1.0f, 7.125f, 5.875f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(34, 48).addBox(1.0f, 4.125f, 4.875f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(28, 59).addBox(1.0f, 4.125f, 5.875f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(30, 59).addBox(1.0f, 1.125f, 5.875f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(48, 37).addBox(1.0f, 1.125f, 4.875f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(90, 21).addBox(1.0f, -0.875f, 3.875f, 0.0f, 11.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(21, 77).addBox(-3.375f, -0.875f, 0.875f, 9.0f, 9.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-1.125f, 15.1403f, 5.1308f, 1.1781f, 0.0f, 0.0f));
+        body.addOrReplaceChild("body_r3", CubeListBuilder.create().texOffs(60, 43).addBox(1.0f, -6.0f, 6.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(49, 3).addBox(1.0f, -6.0f, 5.0f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(11, 25).addBox(1.0f, -6.0f, 4.0f, 0.0f, 3.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(103, 0).addBox(1.0f, -7.0f, 3.0f, 0.0f, 9.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(79, 0).addBox(-3.375f, -7.0f, 0.0f, 9.0f, 9.0f, 3.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-1.125f, 15.1403f, 5.1308f, 0.6109f, 0.0f, 0.0f));
+        body.addOrReplaceChild("Crest2", CubeListBuilder.create(), PartPose.offset(0.0f, 29.5f, 10.0f));
+        PartDefinition ArmL = partdefinition.addOrReplaceChild("ArmL", CubeListBuilder.create(), PartPose.offsetAndRotation(7.5644f, -4.8193f, -6.8098f, 0.1298f, 0.017f, -0.1298f));
+        ArmL.addOrReplaceChild("body_r4", CubeListBuilder.create().texOffs(0, 79).addBox(-1.8219f, -0.5428f, -4.2825f, 5.0f, 8.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(0, 0).addBox(-1.7683f, -3.5318f, -4.2805f, 4.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(78, 93).addBox(-1.7683f, -3.5318f, -4.2805f, 4.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.1856f, 2.5931f, -1.3413f, -0.4765f, -0.0603f, -0.0873f));
+        ArmL.addOrReplaceChild("body_r5", CubeListBuilder.create().texOffs(48, 26).addBox(-0.625f, -0.875f, 0.0f, 1.0f, 3.0f, 0.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.6733f, 7.8765f, -7.88f, -0.4784f, 0.0403f, 0.1064f));
+        ArmL.addOrReplaceChild("body_r6", CubeListBuilder.create().texOffs(30, 45).addBox(-0.5f, -0.875f, -1.0f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.6733f, 7.7515f, -7.88f, -0.4784f, 0.0403f, 0.1064f));
+        ArmL.addOrReplaceChild("body_r7", CubeListBuilder.create().texOffs(59, 45).addBox(1.25f, 0.0f, -0.125f, 1.0f, 3.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(32, 59).addBox(1.25f, 0.0f, 3.125f, 1.0f, 3.0f, 0.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(2.1314f, 7.2426f, -7.3669f, -0.4608f, -0.1393f, -0.2437f));
+        ArmL.addOrReplaceChild("body_r8", CubeListBuilder.create().texOffs(43, 4).addBox(0.125f, 0.0f, -1.125f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(43, 0).addBox(0.125f, 0.0f, 2.125f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(2.1314f, 7.1176f, -7.3669f, -0.4608f, -0.1393f, -0.2437f));
+        ArmL.addOrReplaceChild("body_r9", CubeListBuilder.create().texOffs(18, 92).addBox(6.1093f, -17.3441f, -2.4261f, 1.0f, 11.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(62, 19).addBox(5.1093f, -15.3441f, -2.4261f, 1.0f, 2.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(3, 0).addBox(4.1093f, -14.3441f, -2.4261f, 1.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(88, 101).addBox(7.0387f, -13.3382f, -4.4271f, 1.0f, 4.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(56, 96).addBox(4.0387f, -13.3382f, -4.4271f, 3.0f, 8.0f, 4.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-5.5644f, 4.8277f, 1.8798f, 0.1745f, 0.0f, 0.0f));
+        ArmL.addOrReplaceChild("body_r10", CubeListBuilder.create().texOffs(2, 25).addBox(0.2715f, -7.5348f, -0.2697f, 0.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(26, 58).addBox(0.2715f, -5.5348f, -1.2697f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.1856f, 2.5931f, -1.3413f, -0.48f, 0.0f, -0.0873f));
+        PartDefinition ArmR = partdefinition.addOrReplaceChild("ArmR", CubeListBuilder.create(), PartPose.offsetAndRotation(-7.5644f, -4.8193f, -6.8098f, 0.1304f, -0.0114f, 0.0866f));
+        ArmR.addOrReplaceChild("body_r11", CubeListBuilder.create().texOffs(46, 26).addBox(-2.25f, 0.0f, 3.125f, 1.0f, 3.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(38, 45).addBox(-2.25f, 0.0f, -0.125f, 1.0f, 3.0f, 0.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-2.1314f, 7.2426f, -7.3669f, -0.4608f, 0.1393f, 0.2437f));
+        ArmR.addOrReplaceChild("body_r12", CubeListBuilder.create().texOffs(38, 26).addBox(-0.375f, -0.875f, 0.0f, 1.0f, 3.0f, 0.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.6733f, 7.8765f, -7.88f, -0.4784f, -0.0403f, -0.1064f));
+        ArmR.addOrReplaceChild("body_r13", CubeListBuilder.create().texOffs(78, 101).addBox(-8.0387f, -13.3382f, -4.4271f, 1.0f, 4.0f, 4.0f, new CubeDeformation(0.0f)).texOffs(13, 0).addBox(-5.1093f, -14.3441f, -2.4261f, 1.0f, 1.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(92, 22).addBox(-7.1093f, -17.3441f, -2.4261f, 1.0f, 11.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(51, 62).addBox(-6.1093f, -15.3441f, -2.4261f, 1.0f, 2.0f, 0.0f, new CubeDeformation(0.0f)).texOffs(36, 26).addBox(-6.9843f, -13.3441f, -4.4261f, 3.0f, 8.0f, 4.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(5.5644f, 4.8277f, 1.8798f, 0.1745f, 0.0f, 0.0f));
+        ArmR.addOrReplaceChild("body_r14", CubeListBuilder.create().texOffs(0, 25).addBox(-0.2178f, -7.5443f, -0.2747f, 0.0f, 4.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(32, 54).addBox(-0.2178f, -5.5443f, -1.2747f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.1856f, 2.5931f, -1.3413f, -0.48f, 0.0f, 0.0873f));
+        ArmR.addOrReplaceChild("body_r15", CubeListBuilder.create().texOffs(26, 55).addBox(-2.125f, 0.0f, 2.125f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(17, 64).addBox(-2.125f, 0.0f, -1.125f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-2.1314f, 7.1176f, -7.3669f, -0.4608f, 0.1393f, 0.2437f));
+        ArmR.addOrReplaceChild("body_r16", CubeListBuilder.create().texOffs(52, 41).addBox(-1.5f, -0.875f, -1.0f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.6733f, 7.7515f, -7.88f, -0.4784f, -0.0403f, -0.1064f));
+        ArmR.addOrReplaceChild("body_r17", CubeListBuilder.create().texOffs(93, 57).addBox(-2.1781f, -3.5428f, -4.2825f, 4.0f, 3.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(83, 80).addBox(-3.1781f, -0.5428f, -4.2825f, 5.0f, 8.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.1856f, 2.5931f, -1.3413f, -0.4765f, 0.0603f, 0.0873f));
+        PartDefinition leg0 = partdefinition.addOrReplaceChild("leg0", CubeListBuilder.create().texOffs(66, 18).addBox(-4.625f, 11.7545f, -8.1168f, 5.0f, 8.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(51, 92).addBox(-1.125f, 17.7545f, -8.8668f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(94, 22).addBox(-5.125f, 17.7545f, -8.8668f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(43, 3).addBox(-4.125f, 17.7545f, -9.8668f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(30, 44).addBox(-0.125f, 17.7545f, -9.8668f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(43, 0).addBox(-4.125f, 18.7545f, -10.8668f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(36, 48).addBox(-0.125f, 18.7545f, -10.8668f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 58).addBox(-3.125f, 17.7545f, -1.1168f, 2.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offset(-5.5f, 4.25f, -4.0f));
+        leg0.addOrReplaceChild("leg4_r1", CubeListBuilder.create().texOffs(30, 101).addBox(-2.25f, -9.5f, -4.0f, 2.0f, 1.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(0, 92).addBox(-3.25f, -8.55f, -4.0f, 3.0f, 11.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.25f, 7.2057f, -3.4455f, -0.5672f, 0.0f, 0.0f));
+        leg0.addOrReplaceChild("leg4_r2", CubeListBuilder.create().texOffs(0, 11).addBox(-2.25f, -7.5f, -4.0f, 0.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(58, 40).addBox(-2.25f, -10.5f, -4.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 1).addBox(-2.25f, -9.5f, -4.0f, 0.0f, 1.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(13, 1).addBox(-2.25f, -8.5f, -4.0f, 0.0f, 1.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(45, 78).addBox(-4.25f, -6.5f, -4.0f, 4.0f, 7.0f, 7.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 12.25f, -4.25f, 0.2182f, 0.0f, 0.0f));
+        PartDefinition leg1 = partdefinition.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(49, 63).addBox(-0.125f, 11.7545f, -7.1168f, 5.0f, 8.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(79, 12).addBox(-0.625f, 17.7545f, -7.8668f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(75, 48).addBox(3.375f, 17.7545f, -7.8668f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(36, 44).addBox(0.375f, 17.7545f, -8.8668f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 46).addBox(4.375f, 17.7545f, -8.8668f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(49, 0).addBox(0.375f, 18.7545f, -9.8668f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(4, 49).addBox(4.375f, 18.7545f, -9.8668f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(60, 41).addBox(1.5f, 17.7545f, -0.2418f, 2.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offset(5.5f, 4.25f, -5.0f));
+        leg1.addOrReplaceChild("leg5_r1", CubeListBuilder.create().texOffs(0, 1).addBox(2.25f, -7.5f, -4.0f, 0.0f, 1.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(13, 0).addBox(2.25f, -8.5f, -4.0f, 0.0f, 1.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(0, 0).addBox(2.25f, -9.5f, -4.0f, 0.0f, 1.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(30, 58).addBox(2.25f, -10.5f, -4.0f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(73, 34).addBox(0.25f, -6.5f, -4.0f, 4.0f, 7.0f, 7.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 12.25f, -3.25f, 0.2182f, 0.0f, 0.0f));
+        leg1.addOrReplaceChild("leg5_r2", CubeListBuilder.create().texOffs(66, 33).addBox(0.25f, -9.5f, -4.0f, 2.0f, 1.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(0, 26).addBox(0.25f, -8.55f, -4.0f, 3.0f, 11.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.25f, 7.2057f, -2.4455f, -0.5672f, 0.0f, 0.0f));
+        PartDefinition leg2 = partdefinition.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(0, 64).addBox(-4.625f, 10.7545f, 3.2582f, 5.0f, 8.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(81, 74).addBox(-1.125f, 16.7545f, 2.5082f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(81, 70).addBox(-5.125f, 16.7545f, 2.5082f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(11, 28).addBox(-0.125f, 16.7545f, 1.5082f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(13, 28).addBox(-4.125f, 16.7545f, 1.5082f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(13, 0).addBox(-0.125f, 17.7545f, 0.5082f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(17, 0).addBox(-4.125f, 17.7545f, 0.5082f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 55).addBox(-3.125f, 16.7545f, 10.2582f, 2.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offset(-5.5f, 5.25f, 7.0f));
+        leg2.addOrReplaceChild("leg5_r3", CubeListBuilder.create().texOffs(16, 101).addBox(-2.25f, -8.5f, -1.0f, 2.0f, 1.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(40, 92).addBox(-3.25f, -7.55f, -1.0f, 3.0f, 9.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-0.25f, 6.2057f, 4.4455f, 0.7854f, 0.0f, 0.0f));
+        leg2.addOrReplaceChild("leg3_r1", CubeListBuilder.create().texOffs(76, 48).addBox(-9.75f, -3.5f, -3.5f, 4.0f, 7.0f, 7.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(5.5f, 8.4293f, 5.9875f, 0.2182f, 0.0f, 0.0f));
+        PartDefinition leg3 = partdefinition.addOrReplaceChild("leg3", CubeListBuilder.create().texOffs(25, 62).addBox(-0.125f, 10.7545f, 2.2582f, 5.0f, 8.0f, 7.0f, new CubeDeformation(0.0f)).texOffs(70, 4).addBox(-0.625f, 16.7545f, 1.5082f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(70, 0).addBox(3.375f, 16.7545f, 1.5082f, 2.0f, 2.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(4, 46).addBox(0.375f, 16.7545f, 0.5082f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(38, 47).addBox(4.375f, 16.7545f, 0.5082f, 0.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(49, 7).addBox(0.375f, 17.7545f, -0.4918f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(28, 58).addBox(4.375f, 17.7545f, -0.4918f, 0.0f, 1.0f, 1.0f, new CubeDeformation(0.0f)).texOffs(0, 64).addBox(1.375f, 16.7545f, 9.1332f, 2.0f, 2.0f, 1.0f, new CubeDeformation(0.0f)), PartPose.offset(5.5f, 5.25f, 8.0f));
+        leg3.addOrReplaceChild("leg6_r1", CubeListBuilder.create().texOffs(42, 62).addBox(0.25f, -8.5f, -1.0f, 2.0f, 1.0f, 5.0f, new CubeDeformation(0.0f)).texOffs(89, 65).addBox(0.25f, -7.55f, -1.0f, 3.0f, 9.0f, 5.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.25f, 6.2057f, 3.4455f, 0.7854f, 0.0f, 0.0f));
+        leg3.addOrReplaceChild("leg4_r3", CubeListBuilder.create().texOffs(66, 71).addBox(5.75f, -3.5f, -3.5f, 4.0f, 7.0f, 7.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(-5.5f, 8.4293f, 4.9875f, 0.2182f, 0.0f, 0.0f));
+        return LayerDefinition.create(meshdefinition, 128, 128);
+    }
+
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        this.head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.ArmL.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.ArmR.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.leg0.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.leg1.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.leg2.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        this.leg3.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    }
+
+    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.head.yRot = netHeadYaw / 57.295776f;
+        this.head.xRot = headPitch / 57.295776f;
+        this.leg0.xRot = Mth.cos(limbSwing * 1.0f) * 1.0f * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(limbSwing * 1.0f) * 1.0f * limbSwingAmount;
+        this.leg2.xRot = Mth.cos(limbSwing * 1.0f) * -1.0f * limbSwingAmount;
+        this.leg3.xRot = Mth.cos(limbSwing * 1.0f) * -1.0f * limbSwingAmount;
+        this.ArmR.xRot = Mth.cos((limbSwing * 0.6662f) + 3.1415927f) * limbSwingAmount;
+        this.ArmL.xRot = Mth.cos(limbSwing * 0.6662f) * limbSwingAmount;
+    }
+}

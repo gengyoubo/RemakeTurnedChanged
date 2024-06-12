@@ -1,80 +1,43 @@
-/*    */ package net.ltxprogrammer.turned.client.model;
-/*    */ 
-/*    */ import com.mojang.blaze3d.vertex.PoseStack;
-/*    */ import com.mojang.blaze3d.vertex.VertexConsumer;
-/*    */ import net.minecraft.client.model.EntityModel;
-/*    */ import net.minecraft.client.model.geom.ModelLayerLocation;
-/*    */ import net.minecraft.client.model.geom.ModelPart;
-/*    */ import net.minecraft.client.model.geom.PartPose;
-/*    */ import net.minecraft.client.model.geom.builders.CubeDeformation;
-/*    */ import net.minecraft.client.model.geom.builders.CubeListBuilder;
-/*    */ import net.minecraft.client.model.geom.builders.LayerDefinition;
-/*    */ import net.minecraft.client.model.geom.builders.MeshDefinition;
-/*    */ import net.minecraft.client.model.geom.builders.PartDefinition;
-/*    */ import net.minecraft.resources.ResourceLocation;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ public class Modeldrop_pod<T extends Entity>
-/*    */   extends EntityModel<T>
-/*    */ {
-/* 24 */   public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("turned", "modeldrop_pod"), "main");
-/*    */   public final ModelPart Drop_pod;
-/*    */   
-/*    */   public Modeldrop_pod(ModelPart root) {
-/* 28 */     this.Drop_pod = root.m_171324_("Drop_pod");
-/*    */   }
-/*    */   
-/*    */   public static LayerDefinition createBodyLayer() {
-/* 32 */     MeshDefinition meshdefinition = new MeshDefinition();
-/* 33 */     PartDefinition partdefinition = meshdefinition.m_171576_();
-/* 34 */     PartDefinition Drop_pod = partdefinition.m_171599_("Drop_pod", 
-/* 35 */         CubeListBuilder.m_171558_().m_171514_(44, 44).m_171488_(-10.0F, -7.0F, -10.0F, 20.0F, 5.0F, 20.0F, new CubeDeformation(0.0F)).m_171514_(32, 46)
-/* 36 */         .m_171488_(-3.0F, -48.0F, -3.0F, 6.0F, 11.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(72, 0)
-/* 37 */         .m_171488_(-1.0F, -65.0F, -1.0F, 2.0F, 17.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(0, 0)
-/* 38 */         .m_171488_(-8.0F, -37.0F, -8.0F, 16.0F, 30.0F, 16.0F, new CubeDeformation(0.0F)).m_171514_(114, 57)
-/* 39 */         .m_171488_(6.0F, -38.0F, -6.0F, 3.0F, 31.0F, 12.0F, new CubeDeformation(0.0F)).m_171514_(126, 126)
-/* 40 */         .m_171488_(-6.0F, -38.0F, -9.0F, 12.0F, 31.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(96, 96)
-/* 41 */         .m_171488_(-9.0F, -38.0F, -6.0F, 3.0F, 31.0F, 12.0F, new CubeDeformation(0.0F)).m_171514_(29, 139)
-/* 42 */         .m_171488_(-6.0F, -38.0F, 6.0F, 12.0F, 31.0F, 3.0F, new CubeDeformation(0.0F)).m_171514_(64, 0)
-/* 43 */         .m_171488_(-10.0F, -2.0F, -10.0F, 20.0F, 2.0F, 20.0F, new CubeDeformation(0.0F)).m_171514_(64, 22)
-/* 44 */         .m_171488_(-6.0F, 0.0F, -6.0F, 12.0F, 2.0F, 12.0F, new CubeDeformation(0.0F)).m_171514_(48, 0)
-/* 45 */         .m_171488_(-3.0F, 2.0F, -3.0F, 6.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)).m_171514_(0, 0)
-/* 46 */         .m_171488_(-1.0F, 4.0F, -1.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(104, 45)
-/* 47 */         .m_171488_(-10.0F, -2.0F, 10.0F, 20.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(104, 22)
-/* 48 */         .m_171488_(-12.0F, -2.0F, -10.0F, 2.0F, 3.0F, 20.0F, new CubeDeformation(0.0F)).m_171514_(64, 36)
-/* 49 */         .m_171488_(-10.0F, -2.0F, -12.0F, 20.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)).m_171514_(32, 116)
-/* 50 */         .m_171488_(10.0F, -2.0F, -10.0F, 2.0F, 3.0F, 20.0F, new CubeDeformation(0.0F)), 
-/* 51 */         PartPose.m_171419_(0.0F, 24.0F, 0.0F));
-/* 52 */     PartDefinition bone3 = Drop_pod.m_171599_("bone3", 
-/* 53 */         CubeListBuilder.m_171558_().m_171514_(64, 69).m_171488_(-7.0F, -45.4809F, -13.89F, 14.0F, 45.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 54 */         PartPose.m_171423_(0.0F, 0.0F, 1.0F, -0.0873F, 0.0F, 0.0F));
-/* 55 */     PartDefinition bone4 = Drop_pod.m_171599_("bone4", 
-/* 56 */         CubeListBuilder.m_171558_().m_171514_(32, 69).m_171488_(-7.0F, -45.4809F, -13.89F, 14.0F, 45.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 57 */         PartPose.m_171423_(1.0F, 0.0F, 0.0F, -0.0873F, 1.5708F, 0.0F));
-/* 58 */     PartDefinition bone2 = Drop_pod.m_171599_("bone2", 
-/* 59 */         CubeListBuilder.m_171558_().m_171514_(0, 93).m_171488_(-7.0F, -45.4809F, 9.89F, 14.0F, 45.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 60 */         PartPose.m_171423_(0.0F, 0.0F, 1.0F, 0.0873F, 0.0F, 0.0F));
-/* 61 */     PartDefinition bone5 = Drop_pod.m_171599_("bone5", 
-/* 62 */         CubeListBuilder.m_171558_().m_171514_(0, 46).m_171488_(-6.0F, -45.3937F, 10.8862F, 14.0F, 45.0F, 2.0F, new CubeDeformation(0.0F)), 
-/* 63 */         PartPose.m_171423_(0.0F, 0.0F, 1.0F, 0.0F, 1.5708F, -0.0873F));
-/* 64 */     return LayerDefinition.m_171565_(meshdefinition, 256, 256);
-/*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void m_7695_(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-/* 70 */     this.Drop_pod.m_104306_(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-/*    */   }
-/*    */   
-/*    */   public void m_6973_(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {}
-/*    */ }
+package net.ltxprogrammer.turned.client.model;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.ltxprogrammer.turned.LatexMod;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\client\model\Modeldrop_pod.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/Modeldrop_pod.class */
+public class Modeldrop_pod<T extends Entity> extends EntityModel<T> {
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(LatexMod.MODID, "modeldrop_pod"), "main");
+    public final ModelPart Drop_pod;
+
+    public Modeldrop_pod(ModelPart root) {
+        this.Drop_pod = root.getChild("Drop_pod");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition Drop_pod = meshdefinition.getRoot().addOrReplaceChild("Drop_pod", CubeListBuilder.create().texOffs(44, 44).addBox(-10.0f, -7.0f, -10.0f, 20.0f, 5.0f, 20.0f, new CubeDeformation(0.0f)).texOffs(32, 46).addBox(-3.0f, -48.0f, -3.0f, 6.0f, 11.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(72, 0).addBox(-1.0f, -65.0f, -1.0f, 2.0f, 17.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(0, 0).addBox(-8.0f, -37.0f, -8.0f, 16.0f, 30.0f, 16.0f, new CubeDeformation(0.0f)).texOffs(114, 57).addBox(6.0f, -38.0f, -6.0f, 3.0f, 31.0f, 12.0f, new CubeDeformation(0.0f)).texOffs(126, 126).addBox(-6.0f, -38.0f, -9.0f, 12.0f, 31.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(96, 96).addBox(-9.0f, -38.0f, -6.0f, 3.0f, 31.0f, 12.0f, new CubeDeformation(0.0f)).texOffs(29, 139).addBox(-6.0f, -38.0f, 6.0f, 12.0f, 31.0f, 3.0f, new CubeDeformation(0.0f)).texOffs(64, 0).addBox(-10.0f, -2.0f, -10.0f, 20.0f, 2.0f, 20.0f, new CubeDeformation(0.0f)).texOffs(64, 22).addBox(-6.0f, 0.0f, -6.0f, 12.0f, 2.0f, 12.0f, new CubeDeformation(0.0f)).texOffs(48, 0).addBox(-3.0f, 2.0f, -3.0f, 6.0f, 2.0f, 6.0f, new CubeDeformation(0.0f)).texOffs(0, 0).addBox(-1.0f, 4.0f, -1.0f, 2.0f, 5.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(104, 45).addBox(-10.0f, -2.0f, 10.0f, 20.0f, 3.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(104, 22).addBox(-12.0f, -2.0f, -10.0f, 2.0f, 3.0f, 20.0f, new CubeDeformation(0.0f)).texOffs(64, 36).addBox(-10.0f, -2.0f, -12.0f, 20.0f, 3.0f, 2.0f, new CubeDeformation(0.0f)).texOffs(32, 116).addBox(10.0f, -2.0f, -10.0f, 2.0f, 3.0f, 20.0f, new CubeDeformation(0.0f)), PartPose.offset(0.0f, 24.0f, 0.0f));
+        Drop_pod.addOrReplaceChild("bone3", CubeListBuilder.create().texOffs(64, 69).addBox(-7.0f, -45.4809f, -13.89f, 14.0f, 45.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 1.0f, -0.0873f, 0.0f, 0.0f));
+        Drop_pod.addOrReplaceChild("bone4", CubeListBuilder.create().texOffs(32, 69).addBox(-7.0f, -45.4809f, -13.89f, 14.0f, 45.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(1.0f, 0.0f, 0.0f, -0.0873f, 1.5708f, 0.0f));
+        Drop_pod.addOrReplaceChild("bone2", CubeListBuilder.create().texOffs(0, 93).addBox(-7.0f, -45.4809f, 9.89f, 14.0f, 45.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 1.0f, 0.0873f, 0.0f, 0.0f));
+        Drop_pod.addOrReplaceChild("bone5", CubeListBuilder.create().texOffs(0, 46).addBox(-6.0f, -45.3937f, 10.8862f, 14.0f, 45.0f, 2.0f, new CubeDeformation(0.0f)), PartPose.offsetAndRotation(0.0f, 0.0f, 1.0f, 0.0f, 1.5708f, -0.0873f));
+        return LayerDefinition.create(meshdefinition, 256, 256);
+    }
+
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        this.Drop_pod.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+    }
+
+    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    }
+}

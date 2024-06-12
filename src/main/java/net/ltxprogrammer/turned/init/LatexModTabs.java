@@ -1,59 +1,47 @@
-/*    */ package net.ltxprogrammer.turned.init;
-/*    */ 
-/*    */ import net.minecraft.world.item.CreativeModeTab;
-/*    */ import net.minecraft.world.item.ItemStack;
-/*    */ import net.minecraft.world.level.ItemLike;
-/*    */ import net.minecraftforge.api.distmarker.Dist;
-/*    */ import net.minecraftforge.api.distmarker.OnlyIn;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ public class LatexModTabs
-/*    */ {
-/*    */   public static CreativeModeTab TAB_LATEX;
-/*    */   public static CreativeModeTab TAB_LATEXITEMS;
-/*    */   public static CreativeModeTab TAB_LATEXENTITIES;
-/*    */   
-/*    */   public static void load() {
-/* 19 */     TAB_LATEX = new CreativeModeTab("tablatex")
-/*    */       {
-/*    */         public ItemStack m_6976_() {
-/* 22 */           return new ItemStack((ItemLike)LatexModBlocks.BLACKLABBLOCK_1A.get());
-/*    */         }
-/*    */         
-/*    */         @OnlyIn(Dist.CLIENT)
-/*    */         public boolean hasSearchBar() {
-/* 27 */           return false;
-/*    */         }
-/*    */       };
-/* 30 */     TAB_LATEXITEMS = new CreativeModeTab("tablatexitems")
-/*    */       {
-/*    */         public ItemStack m_6976_() {
-/* 33 */           return new ItemStack((ItemLike)LatexModItems.DL_AXE.get());
-/*    */         }
-/*    */         
-/*    */         @OnlyIn(Dist.CLIENT)
-/*    */         public boolean hasSearchBar() {
-/* 38 */           return false;
-/*    */         }
-/*    */       };
-/* 41 */     TAB_LATEXENTITIES = new CreativeModeTab("tablatexentities")
-/*    */       {
-/*    */         public ItemStack m_6976_() {
-/* 44 */           return new ItemStack((ItemLike)LatexModItems.BROKENDLMASK.get());
-/*    */         }
-/*    */         
-/*    */         @OnlyIn(Dist.CLIENT)
-/*    */         public boolean hasSearchBar() {
-/* 49 */           return false;
-/*    */         }
-/*    */       };
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.init;
 
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\init\LatexModTabs.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModTabs.class */
+public class LatexModTabs {
+    public static CreativeModeTab TAB_LATEX;
+    public static CreativeModeTab TAB_LATEXITEMS;
+    public static CreativeModeTab TAB_LATEXENTITIES;
+
+    public static void load() {
+        TAB_LATEX = new CreativeModeTab("tablatex") { // from class: net.ltxprogrammer.turned.init.LatexModTabs.1
+            public ItemStack makeIcon() {
+                return new ItemStack((ItemLike) LatexModBlocks.BLACKLABBLOCK_1A.get());
+            }
+
+            @OnlyIn(Dist.CLIENT)
+            public boolean hasSearchBar() {
+                return false;
+            }
+        };
+        TAB_LATEXITEMS = new CreativeModeTab("tablatexitems") { // from class: net.ltxprogrammer.turned.init.LatexModTabs.2
+            public ItemStack makeIcon() {
+                return new ItemStack((ItemLike) LatexModItems.DL_AXE.get());
+            }
+
+            @OnlyIn(Dist.CLIENT)
+            public boolean hasSearchBar() {
+                return false;
+            }
+        };
+        TAB_LATEXENTITIES = new CreativeModeTab("tablatexentities") { // from class: net.ltxprogrammer.turned.init.LatexModTabs.3
+            public ItemStack makeIcon() {
+                return new ItemStack((ItemLike) LatexModItems.BROKENDLMASK.get());
+            }
+
+            @OnlyIn(Dist.CLIENT)
+            public boolean hasSearchBar() {
+                return false;
+            }
+        };
+    }
+}

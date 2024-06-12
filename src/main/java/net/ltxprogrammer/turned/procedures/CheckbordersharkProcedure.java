@@ -1,40 +1,12 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ 
-/*    */ import net.minecraft.core.BlockPos;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ import net.minecraft.world.level.block.Blocks;
-/*    */ 
-/*    */ public class CheckbordersharkProcedure {
-/*    */   public static boolean execute(LevelAccessor world, double x, double y, double z) {
-/*  9 */     return 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */       
-/* 32 */       ((((world.m_8055_(new BlockPos(x + 1.0D, y, z)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x + 1.0D, y, z)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x + 1.0D, y, z)).m_60734_() == Blocks.f_50628_ || world.m_8055_(new BlockPos(x + 1.0D, y, z)).m_60734_() == Blocks.f_50016_ || world.m_8055_(new BlockPos(x + 1.0D, y, z)).m_60734_() == Blocks.f_50626_ || world.m_8055_(new BlockPos(x + 1.0D, y, z)).m_60734_() == Blocks.f_50627_) && (world.m_8055_(new BlockPos(x - 1.0D, y, z)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x - 1.0D, y, z)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x - 1.0D, y, z)).m_60734_() == Blocks.f_50628_ || world.m_8055_(new BlockPos(x - 1.0D, y, z)).m_60734_() == Blocks.f_50016_ || world.m_8055_(new BlockPos(x - 1.0D, y, z)).m_60734_() == Blocks.f_50626_ || world.m_8055_(new BlockPos(x - 1.0D, y, z)).m_60734_() == Blocks.f_50627_) && (world.m_8055_(new BlockPos(x, y, z + 1.0D)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x, y, z + 1.0D)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x, y, z + 1.0D)).m_60734_() == Blocks.f_50628_ || world.m_8055_(new BlockPos(x, y, z + 1.0D)).m_60734_() == Blocks.f_50016_ || world.m_8055_(new BlockPos(x, y, z + 1.0D)).m_60734_() == Blocks.f_50626_ || world.m_8055_(new BlockPos(x, y, z + 1.0D)).m_60734_() == Blocks.f_50627_) && (world.m_8055_(new BlockPos(x, y, z - 1.0D)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x, y, z - 1.0D)).m_60734_() == Blocks.f_49990_ || world.m_8055_(new BlockPos(x, y, z - 1.0D)).m_60734_() == Blocks.f_50628_ || world.m_8055_(new BlockPos(x, y, z - 1.0D)).m_60734_() == Blocks.f_50016_ || world.m_8055_(new BlockPos(x, y, z - 1.0D)).m_60734_() == Blocks.f_50626_ || world.m_8055_(new BlockPos(x, y, z - 1.0D)).m_60734_() == Blocks.f_50627_)) ? true : false) != true);
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\CheckbordersharkProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/CheckbordersharkProcedure.class */
+public class CheckbordersharkProcedure {
+    public static boolean execute(LevelAccessor world, double x, double y, double z) {
+        return !((world.getBlockState(new BlockPos(x + 1.0d, y, z)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x + 1.0d, y, z)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x + 1.0d, y, z)).getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x + 1.0d, y, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x + 1.0d, y, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + 1.0d, y, z)).getBlock() == Blocks.CAVE_AIR) && ((world.getBlockState(new BlockPos(x - 1.0d, y, z)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x - 1.0d, y, z)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x - 1.0d, y, z)).getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x - 1.0d, y, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x - 1.0d, y, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x - 1.0d, y, z)).getBlock() == Blocks.CAVE_AIR) && ((world.getBlockState(new BlockPos(x, y, z + 1.0d)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x, y, z + 1.0d)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x, y, z + 1.0d)).getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x, y, z + 1.0d)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y, z + 1.0d)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y, z + 1.0d)).getBlock() == Blocks.CAVE_AIR) && (world.getBlockState(new BlockPos(x, y, z - 1.0d)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x, y, z - 1.0d)).getBlock() == Blocks.WATER || world.getBlockState(new BlockPos(x, y, z - 1.0d)).getBlock() == Blocks.BUBBLE_COLUMN || world.getBlockState(new BlockPos(x, y, z - 1.0d)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y, z - 1.0d)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y, z - 1.0d)).getBlock() == Blocks.CAVE_AIR))));
+    }
+}

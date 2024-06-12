@@ -1,15 +1,10 @@
-/*   */ package net.ltxprogrammer.turned.procedures;
-/*   */ 
-/*   */ import net.minecraft.world.item.ItemStack;
-/*   */ 
-/*   */ public class RevolvingGooCannonCanUseRangedItemProcedure {
-/*   */   public static boolean execute(ItemStack itemstack) {
-/* 7 */     return (itemstack.m_41784_().m_128459_("ammo") > 0.0D);
-/*   */   }
-/*   */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.minecraft.world.item.ItemStack;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\RevolvingGooCannonCanUseRangedItemProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/RevolvingGooCannonCanUseRangedItemProcedure.class */
+public class RevolvingGooCannonCanUseRangedItemProcedure {
+    public static boolean execute(ItemStack itemstack) {
+        return itemstack.getOrCreateTag().getDouble("ammo") > 0.0d;
+    }
+}

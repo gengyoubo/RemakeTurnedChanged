@@ -1,48 +1,37 @@
-/*    */ package net.ltxprogrammer.turned.item;
-/*    */ 
-/*    */ import java.util.List;
-/*    */ import net.ltxprogrammer.turned.procedures.InstafacilityRightClickedOnBlockProcedure;
-/*    */ import net.minecraft.network.chat.Component;
-/*    */ import net.minecraft.network.chat.TextComponent;
-/*    */ import net.minecraft.world.InteractionResult;
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.item.Item;
-/*    */ import net.minecraft.world.item.ItemStack;
-/*    */ import net.minecraft.world.item.Rarity;
-/*    */ import net.minecraft.world.item.TooltipFlag;
-/*    */ import net.minecraft.world.item.UseAnim;
-/*    */ import net.minecraft.world.item.context.UseOnContext;
-/*    */ import net.minecraft.world.level.Level;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ 
-/*    */ public class InstafacilityItem
-/*    */   extends Item {
-/*    */   public InstafacilityItem() {
-/* 21 */     super((new Item.Properties()).m_41491_(null).m_41487_(1).m_41497_(Rarity.UNCOMMON));
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public UseAnim m_6164_(ItemStack itemstack) {
-/* 26 */     return UseAnim.EAT;
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public void m_7373_(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-/* 31 */     super.m_7373_(itemstack, world, list, flag);
-/* 32 */     list.add(new TextComponent("Instant Facility for lazy people!"));
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public InteractionResult m_6225_(UseOnContext context) {
-/* 37 */     InteractionResult retval = super.m_6225_(context);
-/* 38 */     InstafacilityRightClickedOnBlockProcedure.execute((LevelAccessor)context.m_43725_(), context.m_8083_().m_123341_(), context.m_8083_().m_123342_(), context
-/* 39 */         .m_8083_().m_123343_(), (Entity)context.m_43723_());
-/* 40 */     return retval;
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.item;
 
+import java.util.List;
+import net.ltxprogrammer.turned.procedures.InstafacilityRightClickedOnBlockProcedure;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\item\InstafacilityItem.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/InstafacilityItem.class */
+public class InstafacilityItem extends Item {
+    public InstafacilityItem() {
+        super(new Item.Properties().tab((CreativeModeTab) null).stacksTo(1).rarity(Rarity.UNCOMMON));
+    }
+
+    public UseAnim getUseAnimation(ItemStack itemstack) {
+        return UseAnim.EAT;
+    }
+
+    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+        appendHoverText(itemstack, world, list, flag);
+        list.add(new TextComponent("Instant Facility for lazy people!"));
+    }
+
+    public InteractionResult useOn(UseOnContext context) {
+        InteractionResult retval = useOn(context);
+        InstafacilityRightClickedOnBlockProcedure.execute(context.getLevel(), (double) context.getClickedPos().getX(), (double) context.getClickedPos().getY(), (double) context.getClickedPos().getZ(), context.getPlayer());
+        return retval;
+    }
+}

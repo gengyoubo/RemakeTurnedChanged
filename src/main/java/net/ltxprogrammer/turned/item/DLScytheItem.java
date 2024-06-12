@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package net.ltxprogrammer.turned.item;
 
 import com.google.common.collect.ImmutableMultimap;
@@ -18,7 +13,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -30,19 +24,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DLScytheItem.class */
 public class DLScytheItem extends TieredItem {
     public DLScytheItem() {
-        super(new Tier() {
+        super(new Tier() { // from class: net.ltxprogrammer.turned.item.DLScytheItem.1
             public int getUses() {
                 return 225;
             }
 
             public float getSpeed() {
-                return 5.5F;
+                return 5.5f;
             }
 
             public float getAttackDamageBonus() {
-                return 5.0F;
+                return 5.0f;
             }
 
             public int getLevel() {
@@ -54,20 +49,19 @@ public class DLScytheItem extends TieredItem {
             }
 
             public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike)ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike)ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
+                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
             }
-        }, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
+        }, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
     }
 
     public boolean isCorrectToolForDrops(BlockState blockstate) {
-        int tier = 2;
-        if (tier < 3 && blockstate.is(BlockTags.NEEDS_DIAMOND_TOOL)) {
+        if (2 < 3 && blockstate.is(BlockTags.NEEDS_DIAMOND_TOOL)) {
             return false;
-        } else if (tier < 2 && blockstate.is(BlockTags.NEEDS_IRON_TOOL)) {
-            return false;
-        } else {
-            return (tier >= 1 || !blockstate.is(BlockTags.NEEDS_STONE_TOOL)) && (blockstate.is(BlockTags.MINEABLE_WITH_AXE) || blockstate.is(BlockTags.MINEABLE_WITH_HOE) || blockstate.is(BlockTags.MINEABLE_WITH_PICKAXE) || blockstate.is(BlockTags.MINEABLE_WITH_SHOVEL));
         }
+        if (2 >= 2 || !blockstate.is(BlockTags.NEEDS_IRON_TOOL)) {
+            return (2 >= 1 || !blockstate.is(BlockTags.NEEDS_STONE_TOOL)) && (blockstate.is(BlockTags.MINEABLE_WITH_AXE) || blockstate.is(BlockTags.MINEABLE_WITH_HOE) || blockstate.is(BlockTags.MINEABLE_WITH_PICKAXE) || blockstate.is(BlockTags.MINEABLE_WITH_SHOVEL));
+        }
+        return false;
     }
 
     public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
@@ -75,30 +69,29 @@ public class DLScytheItem extends TieredItem {
     }
 
     public float getDestroySpeed(ItemStack itemstack, BlockState blockstate) {
-        return 5.5F;
+        return 5.5f;
     }
 
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
-        if (equipmentSlot == EquipmentSlot.MAINHAND) {
-            ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-            builder.putAll(super.getDefaultAttributeModifiers(equipmentSlot));
-            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 5.0, Operation.ADDITION));
-            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", -3.4, Operation.ADDITION));
-            return builder.build();
-        } else {
-            return super.getDefaultAttributeModifiers(equipmentSlot);
+        if (equipmentSlot != EquipmentSlot.MAINHAND) {
+            return getDefaultAttributeModifiers(equipmentSlot);
         }
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.putAll(getDefaultAttributeModifiers(equipmentSlot));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", 5.0d, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", -3.4d, AttributeModifier.Operation.ADDITION));
+        return builder.build();
     }
 
     public boolean mineBlock(ItemStack itemstack, Level world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-        itemstack.hurtAndBreak(1, entity, (i) -> {
+        itemstack.hurtAndBreak(1, entity, i -> {
             i.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         return true;
     }
 
     public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        itemstack.hurtAndBreak(2, entity, (i) -> {
+        itemstack.hurtAndBreak(2, entity, i -> {
             i.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         DLSwordLivingEntityIsHitWithToolProcedure.execute(entity);

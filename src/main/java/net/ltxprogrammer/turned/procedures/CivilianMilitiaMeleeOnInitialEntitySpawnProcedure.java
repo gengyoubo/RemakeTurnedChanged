@@ -1,117 +1,114 @@
-/*     */ package net.ltxprogrammer.turned.procedures;
-/*     */ import net.minecraft.world.InteractionHand;
-/*     */ import net.minecraft.world.entity.Entity;
-/*     */ import net.minecraft.world.entity.EquipmentSlot;
-/*     */ import net.minecraft.world.entity.LivingEntity;
-/*     */ import net.minecraft.world.entity.player.Player;
-/*     */ import net.minecraft.world.item.ItemStack;
-/*     */ import net.minecraft.world.item.Items;
-/*     */ import net.minecraft.world.level.ItemLike;
-/*     */ 
-/*     */ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
-/*     */   public static void execute(Entity entity) {
-/*  13 */     if (entity == null)
-/*     */       return; 
-/*  15 */     if (Math.random() < 0.6D) {
-/*  16 */       if (Math.random() < 0.5D)
-/*  17 */       { if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/*  18 */           ItemStack _setstack = new ItemStack((ItemLike)Items.f_42425_);
-/*  19 */           _setstack.m_41764_(1);
-/*  20 */           _entity.m_21008_(InteractionHand.MAIN_HAND, _setstack);
-/*  21 */           if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  22 */             _player.m_150109_().m_6596_(); }
-/*     */            }
-/*     */          }
-/*  25 */       else if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/*  26 */         ItemStack _setstack = new ItemStack((ItemLike)Items.f_42428_);
-/*  27 */         _setstack.m_41764_(1);
-/*  28 */         _entity.m_21008_(InteractionHand.MAIN_HAND, _setstack);
-/*  29 */         if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  30 */           _player.m_150109_().m_6596_(); }
-/*     */         
-/*     */          }
-/*     */     
-/*  34 */     } else if (Math.random() < 0.4D) {
-/*     */       
-/*  36 */       Entity _entity = entity;
-/*  37 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  38 */         (_player.m_150109_()).f_35975_.set(3, new ItemStack((ItemLike)Items.f_42464_));
-/*  39 */         _player.m_150109_().m_6596_(); }
-/*  40 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/*  41 */         _living.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)Items.f_42464_)); }
-/*     */ 
-/*     */ 
-/*     */       
-/*  45 */       _entity = entity;
-/*  46 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  47 */         (_player.m_150109_()).f_35975_.set(2, new ItemStack((ItemLike)Items.f_42465_));
-/*  48 */         _player.m_150109_().m_6596_(); }
-/*  49 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/*  50 */         _living.m_8061_(EquipmentSlot.CHEST, new ItemStack((ItemLike)Items.f_42465_)); }
-/*     */ 
-/*     */       
-/*  53 */       if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity;
-/*  54 */         ItemStack _setstack = new ItemStack((ItemLike)Items.f_42428_);
-/*  55 */         _setstack.m_41764_(1);
-/*  56 */         livingEntity.m_21008_(InteractionHand.MAIN_HAND, _setstack);
-/*  57 */         if (livingEntity instanceof Player) { Player _player = (Player)livingEntity;
-/*  58 */           _player.m_150109_().m_6596_(); }  }
-/*     */     
-/*  60 */     } else if (Math.random() < 0.4D) {
-/*  61 */       if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/*  62 */         ItemStack _setstack = new ItemStack((ItemLike)Items.f_42740_);
-/*  63 */         _setstack.m_41764_(1);
-/*  64 */         _entity.m_21008_(InteractionHand.OFF_HAND, _setstack);
-/*  65 */         if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  66 */           _player.m_150109_().m_6596_(); }
-/*     */          }
-/*  68 */        if (entity instanceof LivingEntity) { LivingEntity _entity = (LivingEntity)entity;
-/*  69 */         ItemStack _setstack = new ItemStack((ItemLike)Items.f_42425_);
-/*  70 */         _setstack.m_41764_(1);
-/*  71 */         _entity.m_21008_(InteractionHand.MAIN_HAND, _setstack);
-/*  72 */         if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  73 */           _player.m_150109_().m_6596_(); }
-/*     */          }
-/*     */     
-/*     */     } else {
-/*  77 */       Entity _entity = entity;
-/*  78 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  79 */         (_player.m_150109_()).f_35975_.set(3, new ItemStack((ItemLike)Items.f_42464_));
-/*  80 */         _player.m_150109_().m_6596_(); }
-/*  81 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/*  82 */         _living.m_8061_(EquipmentSlot.HEAD, new ItemStack((ItemLike)Items.f_42464_)); }
-/*     */ 
-/*     */ 
-/*     */       
-/*  86 */       _entity = entity;
-/*  87 */       if (_entity instanceof Player) { Player _player = (Player)_entity;
-/*  88 */         (_player.m_150109_()).f_35975_.set(2, new ItemStack((ItemLike)Items.f_42465_));
-/*  89 */         _player.m_150109_().m_6596_(); }
-/*  90 */       else if (_entity instanceof LivingEntity) { LivingEntity _living = (LivingEntity)_entity;
-/*  91 */         _living.m_8061_(EquipmentSlot.CHEST, new ItemStack((ItemLike)Items.f_42465_)); }
-/*     */ 
-/*     */       
-/*  94 */       if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity;
-/*  95 */         ItemStack _setstack = new ItemStack((ItemLike)Items.f_42740_);
-/*  96 */         _setstack.m_41764_(1);
-/*  97 */         livingEntity.m_21008_(InteractionHand.OFF_HAND, _setstack);
-/*  98 */         if (livingEntity instanceof Player) { Player _player = (Player)livingEntity;
-/*  99 */           _player.m_150109_().m_6596_(); }
-/*     */          }
-/* 101 */        if (entity instanceof LivingEntity) { LivingEntity livingEntity = (LivingEntity)entity;
-/* 102 */         ItemStack _setstack = new ItemStack((ItemLike)Items.f_42383_);
-/* 103 */         _setstack.m_41764_(1);
-/* 104 */         livingEntity.m_21008_(InteractionHand.MAIN_HAND, _setstack);
-/* 105 */         if (livingEntity instanceof Player) { Player _player = (Player)livingEntity;
-/* 106 */           _player.m_150109_().m_6596_(); }
-/*     */          }
-/*     */     
-/*     */     } 
-/*     */   }
-/*     */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\CivilianMilitiaMeleeOnInitialEntitySpawnProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/CivilianMilitiaMeleeOnInitialEntitySpawnProcedure.class */
+public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
+    public static void execute(Entity entity) {
+        if (entity != null) {
+            if (Math.random() < 0.6d) {
+                if (Math.random() < 0.5d) {
+                    if (entity instanceof LivingEntity) {
+                        LivingEntity _entity = (LivingEntity) entity;
+                        ItemStack _setstack = new ItemStack(Items.STONE_SWORD);
+                        _setstack.setCount(1);
+                        _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+                        if (_entity instanceof Player) {
+                            ((Player) _entity).getInventory().setChanged();
+                        }
+                    }
+                } else if (entity instanceof LivingEntity) {
+                    LivingEntity _entity2 = (LivingEntity) entity;
+                    ItemStack _setstack2 = new ItemStack(Items.STONE_AXE);
+                    _setstack2.setCount(1);
+                    _entity2.setItemInHand(InteractionHand.MAIN_HAND, _setstack2);
+                    if (_entity2 instanceof Player) {
+                        ((Player) _entity2).getInventory().setChanged();
+                    }
+                }
+            } else if (Math.random() < 0.4d) {
+                if (entity instanceof Player) {
+                    Player _player = (Player) entity;
+                    _player.getInventory().armor.set(3, new ItemStack(Items.CHAINMAIL_HELMET));
+                    _player.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
+                }
+                if (entity instanceof Player) {
+                    Player _player2 = (Player) entity;
+                    _player2.getInventory().armor.set(2, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
+                    _player2.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
+                }
+                if (entity instanceof LivingEntity) {
+                    LivingEntity _entity3 = (LivingEntity) entity;
+                    ItemStack _setstack3 = new ItemStack(Items.STONE_AXE);
+                    _setstack3.setCount(1);
+                    _entity3.setItemInHand(InteractionHand.MAIN_HAND, _setstack3);
+                    if (_entity3 instanceof Player) {
+                        ((Player) _entity3).getInventory().setChanged();
+                    }
+                }
+            } else if (Math.random() < 0.4d) {
+                if (entity instanceof LivingEntity) {
+                    LivingEntity _entity4 = (LivingEntity) entity;
+                    ItemStack _setstack4 = new ItemStack(Items.SHIELD);
+                    _setstack4.setCount(1);
+                    _entity4.setItemInHand(InteractionHand.OFF_HAND, _setstack4);
+                    if (_entity4 instanceof Player) {
+                        ((Player) _entity4).getInventory().setChanged();
+                    }
+                }
+                if (entity instanceof LivingEntity) {
+                    LivingEntity _entity5 = (LivingEntity) entity;
+                    ItemStack _setstack5 = new ItemStack(Items.STONE_SWORD);
+                    _setstack5.setCount(1);
+                    _entity5.setItemInHand(InteractionHand.MAIN_HAND, _setstack5);
+                    if (_entity5 instanceof Player) {
+                        ((Player) _entity5).getInventory().setChanged();
+                    }
+                }
+            } else {
+                if (entity instanceof Player) {
+                    Player _player3 = (Player) entity;
+                    _player3.getInventory().armor.set(3, new ItemStack(Items.CHAINMAIL_HELMET));
+                    _player3.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
+                }
+                if (entity instanceof Player) {
+                    Player _player4 = (Player) entity;
+                    _player4.getInventory().armor.set(2, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
+                    _player4.getInventory().setChanged();
+                } else if (entity instanceof LivingEntity) {
+                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
+                }
+                if (entity instanceof LivingEntity) {
+                    LivingEntity _entity6 = (LivingEntity) entity;
+                    ItemStack _setstack6 = new ItemStack(Items.SHIELD);
+                    _setstack6.setCount(1);
+                    _entity6.setItemInHand(InteractionHand.OFF_HAND, _setstack6);
+                    if (_entity6 instanceof Player) {
+                        ((Player) _entity6).getInventory().setChanged();
+                    }
+                }
+                if (entity instanceof LivingEntity) {
+                    LivingEntity _entity7 = (LivingEntity) entity;
+                    ItemStack _setstack7 = new ItemStack(Items.IRON_SWORD);
+                    _setstack7.setCount(1);
+                    _entity7.setItemInHand(InteractionHand.MAIN_HAND, _setstack7);
+                    if (_entity7 instanceof Player) {
+                        ((Player) _entity7).getInventory().setChanged();
+                    }
+                }
+            }
+        }
+    }
+}

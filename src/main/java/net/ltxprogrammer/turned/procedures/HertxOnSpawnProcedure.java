@@ -1,18 +1,13 @@
-/*    */ package net.ltxprogrammer.turned.procedures;
-/*    */ 
-/*    */ import net.minecraft.world.entity.Entity;
-/*    */ import net.minecraft.world.level.LevelAccessor;
-/*    */ 
-/*    */ public class HertxOnSpawnProcedure {
-/*    */   public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
-/*  8 */     if (entity == null)
-/*    */       return; 
-/* 10 */     HertxOnInitialEntitySpawnProcedure.execute(world, x, y, z, entity);
-/*    */   }
-/*    */ }
+package net.ltxprogrammer.turned.procedures;
 
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
 
-/* Location:              C:\Users\Administrator\Desktop\TurnedPatch-m1.18.2-vPTBv5.jar!\net\ltxprogrammer\turned\procedures\HertxOnSpawnProcedure.class
- * Java compiler version: 17 (61.0)
- * JD-Core Version:       1.1.3
- */
+/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/HertxOnSpawnProcedure.class */
+public class HertxOnSpawnProcedure {
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+        if (entity != null) {
+            HertxOnInitialEntitySpawnProcedure.execute(world, x, y, z, entity);
+        }
+    }
+}
