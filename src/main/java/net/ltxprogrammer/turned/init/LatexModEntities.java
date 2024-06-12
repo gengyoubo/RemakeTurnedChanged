@@ -194,9 +194,7 @@ public class LatexModEntities {
     }
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {
-        return REGISTRY.register(registryname, () -> {
-            return entityTypeBuilder.build(registryname);
-        });
+        return REGISTRY.register(registryname, () -> entityTypeBuilder.build(registryname));
     }
 
     @SubscribeEvent
