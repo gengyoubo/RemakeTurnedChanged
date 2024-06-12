@@ -2,8 +2,8 @@ package net.ltxprogrammer.turned.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.ltxprogrammer.changed.client.renderer.animate.LatexAnimator;
 import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModel;
-import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModelController;
 import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModelInterface;
 import net.ltxprogrammer.turned.LatexMod;
 import net.ltxprogrammer.turned.entity.DLbeeEntity;
@@ -27,7 +27,7 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
     public final ModelPart RightArm;
     public final ModelPart LeftLeg;
     public final ModelPart RightLeg;
-    public final LatexHumanoidModelController controller;
+    //public final LatexHumanoidModelController controller;
 
     public ModelDark_latex_bee(ModelPart root) {
         super(root);
@@ -37,7 +37,7 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
         this.RightArm = root.getChild("RightArm");
         this.LeftLeg = root.getChild("LeftLeg");
         this.RightLeg = root.getChild("RightLeg");
-        this.controller = LatexHumanoidModelController.Builder.of(this, this.Head, this.Body, this.Body.getChild("Tail"), this.RightArm, this.LeftArm, this.RightLeg, this.LeftLeg).hipOffset(-1.0f).build();
+    //    this.controller = LatexHumanoidModelController.Builder.of(this, this.Head, this.Body, this.Body.getChild("Tail"), this.RightArm, this.LeftArm, this.RightLeg, this.LeftLeg).hipOffset(-1.0f).build();
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -72,13 +72,23 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
         this.RightLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-    public void prepareMobModel(DLbeeEntity p_102861_, float p_102862_, float p_102863_, float p_102864_) {
-        prepareMobModel(this.controller, p_102861_, p_102862_, p_102863_, p_102864_);
+    @Override
+    public ModelPart getTorso() {
+        return null;
     }
 
-    public void setupAnim(DLbeeEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float HeadPitch) {
-        this.controller.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, HeadPitch);
+    @Override
+    public void setupAnim(DLbeeEntity p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_, float p_102623_) {
+
     }
+
+    //public void prepareMobModel(DLbeeEntity p_102861_, float p_102862_, float p_102863_, float p_102864_) {
+    //    prepareMobModel(this.controller, p_102861_, p_102862_, p_102863_, p_102864_);
+    //}
+
+    //public void setupAnim(DLbeeEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float HeadPitch) {
+    //   this.controller.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, HeadPitch);
+    //}
 
     /* access modifiers changed from: package-private */
     /* renamed from: net.ltxprogrammer.turned.client.model.ModelDark_latex_bee$1 */
@@ -109,13 +119,23 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
         }
     }
 
+    @Override
     public void setupHand() {
-        this.controller.setupHand();
+
     }
 
-    public LatexHumanoidModelController getController() {
-        return this.controller;
+    @Override
+    public LatexAnimator getAnimator() {
+        return null;
     }
+
+    //public void setupHand() {
+     //   this.controller.setupHand();
+    //}
+
+    //public LatexHumanoidModelController getController() {
+     //   return this.controller;
+    //}
 
     public void translateToHand(HumanoidArm p_102108_, PoseStack p_102109_) {
         getArm(p_102108_).translateAndRotate(p_102109_);

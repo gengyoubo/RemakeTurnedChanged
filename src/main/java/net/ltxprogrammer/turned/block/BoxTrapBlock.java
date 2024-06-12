@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.block;
 
 import java.util.Collections;
@@ -15,6 +20,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.TooltipFlag;
@@ -28,9 +34,9 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.FluidState;
@@ -38,17 +44,16 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/block/BoxTrapBlock.class */
 public class BoxTrapBlock extends Block implements EntityBlock {
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final DirectionProperty FACING;
 
     public BoxTrapBlock() {
-        super(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.75f, 5.0f).requiresCorrectToolForDrops());
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        super(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.75F, 5.0F).requiresCorrectToolForDrops());
+        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
     public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
-        appendHoverText(itemstack, world, list, flag);
+        super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Wait"));
         list.add(new TextComponent("It's a trap!"));
     }
@@ -62,60 +67,65 @@ public class BoxTrapBlock extends Block implements EntityBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+        return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
     public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-        TieredItem tieredItem = player.getInventory().getSelected().getItem();
-        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 0;
+        Item var6 = player.getInventory().getSelected().getItem();
+        if (var6 instanceof TieredItem tieredItem) {
+            return tieredItem.getTier().getLevel() >= 0;
+        } else {
+            return false;
+        }
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack(this, 1));
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
 
     public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
-        boolean retval = onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-        BoxTrapOnBlockRightClickedProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        boolean retval = super.onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
+        BoxTrapOnBlockRightClickedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
         return retval;
     }
 
     public void stepOn(Level world, BlockPos pos, BlockState blockstate, Entity entity) {
-        stepOn(world, pos, blockstate, entity);
-        BoxTrapOnBlockRightClickedProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        super.stepOn(world, pos, blockstate, entity);
+        BoxTrapOnBlockRightClickedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
-        use(blockstate, world, pos, entity, hand, hit);
+        super.use(blockstate, world, pos, entity, hand, hit);
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        double d = hit.getLocation().x;
-        double d2 = hit.getLocation().y;
-        double d3 = hit.getLocation().z;
-        hit.getDirection();
-        BoxTrapOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        double hitX = hit.getLocation().x;
+        double hitY = hit.getLocation().y;
+        double hitZ = hit.getLocation().z;
+        Direction direction = hit.getDirection();
+        BoxTrapOnBlockRightClickedProcedure.execute(world, (double)x, (double)y, (double)z);
         return InteractionResult.SUCCESS;
     }
 
     public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-        if (tileEntity instanceof MenuProvider) {
-            return (MenuProvider) tileEntity;
+        MenuProvider var10000;
+        if (tileEntity instanceof MenuProvider menuProvider) {
+            var10000 = menuProvider;
+        } else {
+            var10000 = null;
         }
-        return null;
+
+        return var10000;
     }
 
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -123,7 +133,7 @@ public class BoxTrapBlock extends Block implements EntityBlock {
     }
 
     public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
-        triggerEvent(state, world, pos, eventID, eventParam);
+        super.triggerEvent(state, world, pos, eventID, eventParam);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
     }
@@ -132,11 +142,14 @@ public class BoxTrapBlock extends Block implements EntityBlock {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof BoxTrapBlockEntity) {
-                Containers.dropContents(world, pos, (BoxTrapBlockEntity) blockEntity);
+                BoxTrapBlockEntity be = (BoxTrapBlockEntity)blockEntity;
+                Containers.dropContents(world, pos, be);
                 world.updateNeighbourForOutputSignal(pos, this);
             }
-            onRemove(state, world, pos, newState, isMoving);
+
+            super.onRemove(state, world, pos, newState, isMoving);
         }
+
     }
 
     public boolean hasAnalogOutputSignal(BlockState state) {
@@ -145,9 +158,14 @@ public class BoxTrapBlock extends Block implements EntityBlock {
 
     public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
         BlockEntity tileentity = world.getBlockEntity(pos);
-        if (tileentity instanceof BoxTrapBlockEntity) {
-            return AbstractContainerMenu.getRedstoneSignalFromContainer((BoxTrapBlockEntity) tileentity);
+        if (tileentity instanceof BoxTrapBlockEntity be) {
+            return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
+        } else {
+            return 0;
         }
-        return 0;
+    }
+
+    static {
+        FACING = HorizontalDirectionalBlock.FACING;
     }
 }

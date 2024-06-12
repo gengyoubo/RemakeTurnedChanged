@@ -30,7 +30,7 @@ public class MakeshiftBeaconBlock extends Block {
 
     public MakeshiftBeaconBlock() {
         super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0f, 12.0f).requiresCorrectToolForDrops());
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
@@ -38,15 +38,15 @@ public class MakeshiftBeaconBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -69,7 +69,7 @@ public class MakeshiftBeaconBlock extends Block {
     public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
         neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
         if (world.getBestNeighborSignal(pos) > 0) {
-            MakeshiftBeaconRedstoneOnProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+            MakeshiftBeaconRedstoneOnProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         }
     }
 }

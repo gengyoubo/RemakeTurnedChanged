@@ -53,7 +53,7 @@ public class LaptopONBlock extends Block implements SimpleWaterloggedBlock {
         }).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) ((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -99,15 +99,15 @@ public class LaptopONBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING, WATERLOGGED});
+        builder.add(FACING, WATERLOGGED);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) ((BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -115,11 +115,11 @@ public class LaptopONBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     public FluidState getFluidState(BlockState state) {
-        return ((Boolean) state.getValue(WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
+        return state.getValue(WATERLOGGED).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if (((Boolean) state.getValue(WATERLOGGED)).booleanValue()) {
+        if (state.getValue(WATERLOGGED).booleanValue()) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
         return updateShape(state, facing, facingState, world, currentPos, facingPos);
@@ -135,7 +135,7 @@ public class LaptopONBlock extends Block implements SimpleWaterloggedBlock {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModBlocks.LAPTOP_CLOSED.get()));
+        return Collections.singletonList(new ItemStack(LatexModBlocks.LAPTOP_CLOSED.get()));
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -147,13 +147,13 @@ public class LaptopONBlock extends Block implements SimpleWaterloggedBlock {
         double d2 = hit.getLocation().y;
         double d3 = hit.getLocation().z;
         hit.getDirection();
-        LaptopONOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        LaptopONOnBlockRightClickedProcedure.execute(world, x, y, z);
         return InteractionResult.SUCCESS;
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.LAPTOP_ON.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.LAPTOP_ON.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

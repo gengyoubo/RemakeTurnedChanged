@@ -39,7 +39,7 @@ public class EvilBeaconBlock extends Block {
 
     public EvilBeaconBlock() {
         super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(2.0f, 20.0f).requiresCorrectToolForDrops());
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
@@ -47,15 +47,15 @@ public class EvilBeaconBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -72,41 +72,41 @@ public class EvilBeaconBlock extends Block {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModItems.RADIO_DROPPODCALLER.get()));
+        return Collections.singletonList(new ItemStack(LatexModItems.RADIO_DROPPODCALLER.get()));
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 10);
-        EvilBeaconOffUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        EvilBeaconOffUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
         neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
         if (world.getBestNeighborSignal(pos) > 0) {
-            EvilBeaconOffUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+            EvilBeaconOffUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         }
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         tick(blockstate, world, pos, random);
-        EvilBeaconOffUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        EvilBeaconOffUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         world.scheduleTick(pos, this, 10);
     }
 
     public void attack(BlockState blockstate, Level world, BlockPos pos, Player entity) {
         attack(blockstate, world, pos, entity);
-        EvilBeaconOffUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        EvilBeaconOffUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public void stepOn(Level world, BlockPos pos, BlockState blockstate, Entity entity) {
         stepOn(world, pos, blockstate, entity);
-        EvilBeaconOffUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        EvilBeaconOffUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
         setPlacedBy(world, pos, blockstate, entity, itemstack);
-        EvilBeaconOffUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        EvilBeaconOffUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -118,7 +118,7 @@ public class EvilBeaconBlock extends Block {
         double d2 = hit.getLocation().y;
         double d3 = hit.getLocation().z;
         hit.getDirection();
-        EvilBeaconOffUpdateTickProcedure.execute(world, (double) x, (double) y, (double) z);
+        EvilBeaconOffUpdateTickProcedure.execute(world, x, y, z);
         return InteractionResult.SUCCESS;
     }
 }

@@ -29,7 +29,7 @@ public class Yellowlabblock1Block extends Block {
 
     public Yellowlabblock1Block() {
         super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.2f, 12.5f));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
@@ -42,15 +42,15 @@ public class Yellowlabblock1Block extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {

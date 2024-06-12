@@ -66,7 +66,7 @@ public class LatexeaterslimeBlock extends Block implements NonLatexCoverableBloc
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         tick(blockstate, world, pos, random);
-        LatexeaterslimeUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        LatexeaterslimeUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         world.scheduleTick(pos, this, 25);
     }
 
@@ -78,7 +78,7 @@ public class LatexeaterslimeBlock extends Block implements NonLatexCoverableBloc
         int y = pos.getY();
         int z = pos.getZ();
         for (int l = 0; l < 3; l++) {
-            world.addParticle(ParticleTypes.ITEM_SLIME, (double) (((float) x) + random.nextFloat()), (double) (((float) y) + random.nextFloat()), (double) (((float) z) + random.nextFloat()), (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d);
+            world.addParticle(ParticleTypes.ITEM_SLIME, ((float) x) + random.nextFloat(), ((float) y) + random.nextFloat(), ((float) z) + random.nextFloat(), (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d);
         }
     }
 

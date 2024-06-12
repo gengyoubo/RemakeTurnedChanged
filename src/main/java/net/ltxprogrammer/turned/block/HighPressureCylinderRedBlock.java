@@ -46,7 +46,7 @@ public class HighPressureCylinderRedBlock extends Block {
         super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.2f, 7.5f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
@@ -97,15 +97,15 @@ public class HighPressureCylinderRedBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -132,18 +132,18 @@ public class HighPressureCylinderRedBlock extends Block {
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         tick(blockstate, world, pos, random);
-        HighPressureCylinderUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        HighPressureCylinderUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         world.scheduleTick(pos, this, 25);
     }
 
     public void wasExploded(Level world, BlockPos pos, Explosion e) {
         wasExploded(world, pos, e);
-        HighPressureCylinderBlockDestroyedByExplosionProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        HighPressureCylinderBlockDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.HIGH_PRESSURE_CYLINDER_RED.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.HIGH_PRESSURE_CYLINDER_RED.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

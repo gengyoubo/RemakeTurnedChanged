@@ -51,13 +51,13 @@ public class InfesteddlcobblestoneBlock extends Block {
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         tick(blockstate, world, pos, random);
-        InfesteddlcobblestoneUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        InfesteddlcobblestoneUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         world.scheduleTick(pos, this, 120);
     }
 
     public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
         boolean retval = onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-        InfesteddlcobblestoneBlockDestroyedByPlayerProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        InfesteddlcobblestoneBlockDestroyedByPlayerProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         return retval;
     }
 }

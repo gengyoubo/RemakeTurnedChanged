@@ -45,7 +45,7 @@ public class OpenGlassDoorBlock extends Block {
         super(BlockBehaviour.Properties.of(Material.GLASS).sound(SoundType.STONE).strength(0.75f, 7.5f).requiresCorrectToolForDrops().noCollission().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -91,15 +91,15 @@ public class OpenGlassDoorBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -125,7 +125,7 @@ public class OpenGlassDoorBlock extends Block {
 
     public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
         neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
-        GlassDoorUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        GlassDoorUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -137,13 +137,13 @@ public class OpenGlassDoorBlock extends Block {
         double d2 = hit.getLocation().y;
         double d3 = hit.getLocation().z;
         hit.getDirection();
-        OpenGlassDoorOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        OpenGlassDoorOnBlockRightClickedProcedure.execute(world, x, y, z);
         return InteractionResult.SUCCESS;
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.OPEN_GLASS_DOOR.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.OPEN_GLASS_DOOR.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

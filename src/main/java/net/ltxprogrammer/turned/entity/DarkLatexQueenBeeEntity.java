@@ -4,8 +4,8 @@ import java.util.EnumSet;
 import java.util.Random;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.changed.init.ChangedParticles;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.changed.util.Color3;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeeEntityDiesProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeeEntityIsHurtProcedure;
@@ -17,7 +17,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.BossEvent;
+import net.minecraft.world.BossEvent.BossBarColor;
+import net.minecraft.world.BossEvent.BossBarOverlay;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
@@ -61,20 +62,19 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/DarkLatexQueenBeeEntity.class */
 public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     private final ServerBossEvent bossInfo;
 
     public DarkLatexQueenBeeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.DARK_LATEX_QUEEN_BEE.get(), world);
+        this((EntityType)LatexModEntities.DARK_LATEX_QUEEN_BEE.get(), world);
     }
 
     public DarkLatexQueenBeeEntity(EntityType<DarkLatexQueenBeeEntity> type, Level world) {
         super(type, world);
-        this.bossInfo = new ServerBossEvent(getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS);
+        this.bossInfo = new ServerBossEvent(this.getDisplayName(), BossBarColor.YELLOW, BossBarOverlay.PROGRESS);
         this.xpReward = 15;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
@@ -87,10 +87,10 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new Goal() { // from class: net.ltxprogrammer.turned.entity.DarkLatexQueenBeeEntity.1
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new Goal() {
             {
-                setFlags(EnumSet.of(Goal.Flag.MOVE));
+                this.setFlags(EnumSet.of(Flag.MOVE));
             }
 
             public boolean canUse() {
@@ -102,24 +102,29 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
             }
 
             public void start() {
-                Vec3 vec3d = DarkLatexQueenBeeEntity.this.getTarget().getEyePosition(1.0f);
-                DarkLatexQueenBeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.5d);
+                LivingEntity livingentity = DarkLatexQueenBeeEntity.this.getTarget();
+                Vec3 vec3d = livingentity.getEyePosition(1.0F);
+                DarkLatexQueenBeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.5);
             }
 
             public void tick() {
                 LivingEntity livingentity = DarkLatexQueenBeeEntity.this.getTarget();
                 if (DarkLatexQueenBeeEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
                     DarkLatexQueenBeeEntity.this.doHurtTarget(livingentity);
-                } else if (DarkLatexQueenBeeEntity.this.distanceToSqr(livingentity) < 12.0d) {
-                    Vec3 vec3d = livingentity.getEyePosition(1.0f);
-                    DarkLatexQueenBeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.5d);
+                } else {
+                    double d0 = DarkLatexQueenBeeEntity.this.distanceToSqr(livingentity);
+                    if (d0 < 12.0) {
+                        Vec3 vec3d = livingentity.getEyePosition(1.0F);
+                        DarkLatexQueenBeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.5);
+                    }
                 }
+
             }
         });
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.1d, true) { // from class: net.ltxprogrammer.turned.entity.DarkLatexQueenBeeEntity.2
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.1, true) {
             protected double getAttackReachSqr(LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, DarkLatexSpiderQueenEntity.class, true, false));
@@ -142,10 +147,13 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
         this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
         this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.goalSelector.addGoal(24, new RandomStrollGoal(this, 1.2d, 20) { // from class: net.ltxprogrammer.turned.entity.DarkLatexQueenBeeEntity.3
+        this.goalSelector.addGoal(24, new RandomStrollGoal(this, 1.2, 20) {
             protected Vec3 getPosition() {
                 Random random = DarkLatexQueenBeeEntity.this.getRandom();
-                return new Vec3(DarkLatexQueenBeeEntity.this.getX() + ((double) (((random.nextFloat() * 2.0f) - 1.0f) * 16.0f)), DarkLatexQueenBeeEntity.this.getY() + ((double) (((random.nextFloat() * 2.0f) - 1.0f) * 16.0f)), DarkLatexQueenBeeEntity.this.getZ() + ((double) (((random.nextFloat() * 2.0f) - 1.0f) * 16.0f)));
+                double dir_x = DarkLatexQueenBeeEntity.this.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double dir_y = DarkLatexQueenBeeEntity.this.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double dir_z = DarkLatexQueenBeeEntity.this.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                return new Vec3(dir_x, dir_y, dir_z);
             }
         });
         this.goalSelector.addGoal(25, new RandomLookAroundGoal(this));
@@ -161,28 +169,28 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     }
 
     public double getPassengersRidingOffset() {
-        return getPassengersRidingOffset() + 0.2d;
+        return super.getPassengersRidingOffset() + 0.2;
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.bee.loop"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.bee.loop"));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ender_dragon.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ender_dragon.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.death"));
     }
 
     public boolean causeFallDamage(float l, float d, DamageSource source) {
@@ -190,25 +198,32 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        DarkLatexQueenBeeEntityIsHurtProcedure.execute(this.level, getX(), getY(), getZ(), this);
-        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.LIGHTNING_BOLT) {
+        DarkLatexQueenBeeEntityIsHurtProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
+        if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.FALL) {
+                return false;
+            } else if (source == DamageSource.CACTUS) {
+                return false;
+            } else {
+                return source == DamageSource.LIGHTNING_BOLT ? false : super.hurt(source, amount);
+            }
+        } else {
             return false;
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        DarkLatexQueenBeeEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
+        super.die(source);
+        DarkLatexQueenBeeEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        DarkLatexQueenBeeThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity);
+        super.awardKillScore(entity, score, damageSource);
+        DarkLatexQueenBeeThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity);
     }
 
     public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
+        super.playerTouch(sourceentity);
         DarkLatexQueenBeePlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
@@ -217,40 +232,49 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     }
 
     public void startSeenByPlayer(ServerPlayer player) {
-        startSeenByPlayer(player);
+        super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
     public void stopSeenByPlayer(ServerPlayer player) {
-        stopSeenByPlayer(player);
+        super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
 
     public void customServerAiStep() {
-        customServerAiStep();
-        this.bossInfo.setProgress(getHealth() / getMaxHealth());
+        super.customServerAiStep();
+        this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
     }
 
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
     public void setNoGravity(boolean ignored) {
-        setNoGravity(true);
+        super.setNoGravity(true);
     }
 
     public void aiStep() {
-        aiStep();
-        setNoGravity(true);
+        super.aiStep();
+        this.setNoGravity(true);
     }
 
     public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.4d).add(Attributes.MAX_HEALTH, 80.0d).add(Attributes.ARMOR, 5.0d).add(Attributes.ATTACK_DAMAGE, 7.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.2d).add(Attributes.ATTACK_KNOCKBACK, 0.1d).add(Attributes.FLYING_SPEED, 0.4d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.4);
+        builder = builder.add(Attributes.MAX_HEALTH, 80.0);
+        builder = builder.add(Attributes.ARMOR, 5.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 7.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.2);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.1);
+        builder = builder.add(Attributes.FLYING_SPEED, 0.4);
+        return builder;
     }
 
-    public ChangedParticles.Color3 getDripColor() {
-        return ChangedParticles.Color3.DARK;
+    public Color3 getDripColor() {
+        return Color3.DARK;
     }
-}
+}//here was edited

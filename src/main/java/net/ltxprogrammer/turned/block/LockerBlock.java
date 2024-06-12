@@ -55,7 +55,7 @@ public class LockerBlock extends Block implements EntityBlock {
         super(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(1.5f, 17.5f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -101,15 +101,15 @@ public class LockerBlock extends Block implements EntityBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -188,7 +188,7 @@ public class LockerBlock extends Block implements EntityBlock {
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.LOCKER.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.LOCKER.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

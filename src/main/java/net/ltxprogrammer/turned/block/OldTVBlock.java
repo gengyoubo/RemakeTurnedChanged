@@ -47,7 +47,7 @@ public class OldTVBlock extends Block implements SimpleWaterloggedBlock {
         super(BlockBehaviour.Properties.of(Material.HEAVY_METAL).sound(SoundType.METAL).strength(2.0f, 17.5f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) ((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
     public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
@@ -64,15 +64,15 @@ public class OldTVBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING, WATERLOGGED});
+        builder.add(FACING, WATERLOGGED);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) ((BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -80,11 +80,11 @@ public class OldTVBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     public FluidState getFluidState(BlockState state) {
-        return ((Boolean) state.getValue(WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
+        return state.getValue(WATERLOGGED).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if (((Boolean) state.getValue(WATERLOGGED)).booleanValue()) {
+        if (state.getValue(WATERLOGGED).booleanValue()) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
         return updateShape(state, facing, facingState, world, currentPos, facingPos);
@@ -106,13 +106,13 @@ public class OldTVBlock extends Block implements SimpleWaterloggedBlock {
     public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
         neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
         if (world.getBestNeighborSignal(pos) > 0) {
-            OldTVRedstoneOnProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+            OldTVRedstoneOnProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         }
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.OLD_TV.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.OLD_TV.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

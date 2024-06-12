@@ -1,9 +1,14 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.changed.init.ChangedParticles;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.changed.util.Color3;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModParticleTypes;
 import net.ltxprogrammer.turned.procedures.DarkLatexCreeperEnhancedEntityIsHurtProcedure;
@@ -18,6 +23,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -56,16 +62,15 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/DarkLatexCreeperEntity.class */
 public class DarkLatexCreeperEntity extends AbstractDarkLatexEntity {
     public DarkLatexCreeperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.DARK_LATEX_CREEPER.get(), world);
+        this((EntityType)LatexModEntities.DARK_LATEX_CREEPER.get(), world);
     }
 
     public DarkLatexCreeperEntity(EntityType<DarkLatexCreeperEntity> type, Level world) {
         super(type, world);
         this.xpReward = 6;
-        setNoAi(false);
+        this.setNoAi(false);
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -73,8 +78,8 @@ public class DarkLatexCreeperEntity extends AbstractDarkLatexEntity {
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        super.registerGoals();
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, false, TargetCheck.IS_SLIMELING));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_GOOD));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
@@ -93,13 +98,13 @@ public class DarkLatexCreeperEntity extends AbstractDarkLatexEntity {
         this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
         this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
         this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.goalSelector.addGoal(21, new BreakDoorGoal(this, e -> {
+        this.goalSelector.addGoal(21, new BreakDoorGoal(this, (e) -> {
             return true;
         }));
-        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, DarkLatexCreeperEnhancedEntity.class, 8.0f));
-        this.goalSelector.addGoal(23, new LeapAtTargetGoal(this, 0.5f));
-        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, LivingEntity.class, 6.0f));
-        this.goalSelector.addGoal(25, new RandomStrollGoal(this, 0.8d));
+        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, DarkLatexCreeperEnhancedEntity.class, 8.0F));
+        this.goalSelector.addGoal(23, new LeapAtTargetGoal(this, 0.5F));
+        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, LivingEntity.class, 6.0F));
+        this.goalSelector.addGoal(25, new RandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(26, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(27, new FloatGoal(this));
     }
@@ -109,68 +114,93 @@ public class DarkLatexCreeperEntity extends AbstractDarkLatexEntity {
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.creeper.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.creeper.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
         DarkLatexCreeperEnhancedEntityIsHurtProcedure.execute(this);
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else if (source == DamageSource.CACTUS) {
+            return false;
+        } else if (source == DamageSource.WITHER) {
+            return false;
+        } else {
+            return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        DarkLatexCreeperdiesProcedure.execute(this.level, getX(), getY(), getZ(), this);
+        super.die(source);
+        DarkLatexCreeperdiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
         sourceentity.getItemInHand(hand);
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-        mobInteract(sourceentity, hand);
-        DarkLatexCreeperRightClickedOnEntityProcedure.execute(this.level, getX(), getY(), getZ(), this);
+        super.mobInteract(sourceentity, hand);
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        Entity entity = this;
+        Level world = this.level;
+        DarkLatexCreeperRightClickedOnEntityProcedure.execute(world, x, y, z, entity);
         return retval;
     }
 
     public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
-        DarkLatexCreeperPlayerCollidesWithThisEntityProcedure.execute(this.level, getX(), getY(), getZ(), this, sourceentity);
+        super.playerTouch(sourceentity);
+        DarkLatexCreeperPlayerCollidesWithThisEntityProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this, sourceentity);
     }
 
     public void aiStep() {
-        aiStep();
-        double x = getX();
-        double y = getY();
-        double z = getZ();
+        super.aiStep();
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
         Level world = this.level;
-        for (int l = 0; l < 2; l++) {
-            world.addParticle((SimpleParticleType) LatexModParticleTypes.DLEFFECTPARTICLES.get(), x + ((double) this.random.nextFloat()), y + ((double) this.random.nextFloat()), z + ((double) this.random.nextFloat()), (((double) this.random.nextFloat()) - 0.5d) * 0.3999999985098839d, (((double) this.random.nextFloat()) - 0.5d) * 0.3999999985098839d, (((double) this.random.nextFloat()) - 0.5d) * 0.3999999985098839d);
+
+        for(int l = 0; l < 2; ++l) {
+            double x0 = x + (double)this.random.nextFloat();
+            double y0 = y + (double)this.random.nextFloat();
+            double z0 = z + (double)this.random.nextFloat();
+            double dx = ((double)this.random.nextFloat() - 0.5) * 0.3999999985098839;
+            double dy = ((double)this.random.nextFloat() - 0.5) * 0.3999999985098839;
+            double dz = ((double)this.random.nextFloat() - 0.5) * 0.3999999985098839;
+            world.addParticle((SimpleParticleType)LatexModParticleTypes.DLEFFECTPARTICLES.get(), x0, y0, z0, dx, dy, dz);
         }
+
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.DARK_LATEX_CREEPER.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.DARK_LATEX_CREEPER.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.2d).add(Attributes.MAX_HEALTH, 12.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 1.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.ATTACK_KNOCKBACK, 1.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.2);
+        builder = builder.add(Attributes.MAX_HEALTH, 12.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 1.0);
+        return builder;
     }
 
-    public ChangedParticles.Color3 getDripColor() {
-        return ChangedParticles.Color3.DARK;
+    public Color3 getDripColor() {
+        return Color3.DARK;
     }
 }

@@ -1,9 +1,14 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.changed.init.ChangedParticles;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.changed.util.Color3;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexFoxThisEntityKillsAnotherOneProcedure;
 import net.minecraft.core.BlockPos;
@@ -48,16 +53,15 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/DarkLatexFoxSniperEntity.class */
 public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements RangedAttackMob {
     public DarkLatexFoxSniperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
+        this((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
     }
 
     public DarkLatexFoxSniperEntity(EntityType<DarkLatexFoxSniperEntity> type, Level world) {
         super(type, world);
         this.xpReward = 6;
-        setNoAi(false);
+        this.setNoAi(false);
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -65,10 +69,10 @@ public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.1d, false) { // from class: net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity.1
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.1, false) {
             protected double getAttackReachSqr(LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, true, TargetCheck.IS_SLIMELING));
@@ -87,16 +91,16 @@ public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements
         this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
         this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
         this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.goalSelector.addGoal(18, new BreakDoorGoal(this, e -> {
+        this.goalSelector.addGoal(18, new BreakDoorGoal(this, (e) -> {
             return true;
         }));
-        this.goalSelector.addGoal(19, new RandomStrollGoal(this, 0.8d));
-        this.targetSelector.addGoal(20, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(19, new RandomStrollGoal(this, 0.8));
+        this.targetSelector.addGoal(20, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(21, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(22, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.DarkLatexFoxSniperEntity.2
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
             public boolean canContinueToUse() {
-                return canUse();
+                return this.canUse();
             }
         });
     }
@@ -106,32 +110,37 @@ public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else if (source == DamageSource.CACTUS) {
+            return false;
+        } else if (source == DamageSource.WITHER) {
+            return false;
+        } else {
+            return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        DarkLatexFoxThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity);
+        super.awardKillScore(entity, score, damageSource);
+        DarkLatexFoxThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity);
     }
 
     public void performRangedAttack(LivingEntity target, float flval) {
@@ -142,10 +151,17 @@ public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.4d).add(Attributes.MAX_HEALTH, 18.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 4.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.3d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.4);
+        builder = builder.add(Attributes.MAX_HEALTH, 18.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 4.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.3);
+        return builder;
     }
 
-    public ChangedParticles.Color3 getDripColor() {
-        return ChangedParticles.Color3.DARK;
+    public Color3 getDripColor() {
+        return Color3.DARK;
     }
 }

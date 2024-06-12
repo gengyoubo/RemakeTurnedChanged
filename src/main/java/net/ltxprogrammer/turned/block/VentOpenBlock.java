@@ -45,7 +45,7 @@ public class VentOpenBlock extends Block {
         super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(1.0f, 12.5f).requiresCorrectToolForDrops().noCollission().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -91,15 +91,15 @@ public class VentOpenBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -120,7 +120,7 @@ public class VentOpenBlock extends Block {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModBlocks.VENT.get()));
+        return Collections.singletonList(new ItemStack(LatexModBlocks.VENT.get()));
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -132,13 +132,13 @@ public class VentOpenBlock extends Block {
         double d2 = hit.getLocation().y;
         double d3 = hit.getLocation().z;
         hit.getDirection();
-        VentOpenOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        VentOpenOnBlockRightClickedProcedure.execute(world, x, y, z);
         return InteractionResult.SUCCESS;
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.VENT_OPEN.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.VENT_OPEN.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

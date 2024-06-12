@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned;
 
 import java.util.function.BiConsumer;
@@ -23,19 +28,14 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(LatexMod.MODID)
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/LatexMod.class */
+@Mod("turned")
 public class LatexMod {
     public static final Logger LOGGER = LogManager.getLogger(LatexMod.class);
     public static final String MODID = "turned";
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MODID, MODID), () -> {
-        return PROTOCOL_VERSION;
-    }, (v1) -> {
-        return r2.equals(v1);
-    }, (v1) -> {
-        return r3.equals(v1);
-    });
+    public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation("turned", "turned"), () -> {
+        return "1";
+    }, "1"::equals, "1"::equals);
     private static int messageID = 0;
 
     public LatexMod() {
@@ -53,10 +53,10 @@ public class LatexMod {
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
         PACKET_HANDLER.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
-        messageID++;
+        ++messageID;
     }
 
     public static ResourceLocation modResource(String path) {
-        return new ResourceLocation(MODID, path);
+        return new ResourceLocation("turned", path);
     }
 }

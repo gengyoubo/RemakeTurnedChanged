@@ -41,7 +41,7 @@ public class DoomDollBlock extends Block {
         super(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.75f, 7.5f).friction(0.5f).noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -87,15 +87,15 @@ public class DoomDollBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -119,13 +119,13 @@ public class DoomDollBlock extends Block {
         double d2 = hit.getLocation().y;
         double d3 = hit.getLocation().z;
         hit.getDirection();
-        DoomDollOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        DoomDollOnBlockRightClickedProcedure.execute(world, x, y, z);
         return InteractionResult.SUCCESS;
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.DOOM_DOLL.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.DOOM_DOLL.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

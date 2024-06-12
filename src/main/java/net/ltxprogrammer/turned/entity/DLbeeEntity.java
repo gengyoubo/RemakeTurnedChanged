@@ -1,16 +1,22 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import java.util.EnumSet;
 import java.util.Random;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.changed.init.ChangedParticles;
+import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.CheckforskyProcedure;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -32,16 +38,15 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/DLbeeEntity.class */
 public class DLbeeEntity extends AbstractDarkLatexEntity {
     public DLbeeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.D_LBEE.get(), world);
+        this((EntityType)LatexModEntities.D_LBEE.get(), world);
     }
 
     public DLbeeEntity(EntityType<DLbeeEntity> type, Level world) {
         super(type, world);
         this.xpReward = 6;
-        setNoAi(false);
+        this.setNoAi(false);
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
@@ -54,21 +59,22 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new Goal() { // from class: net.ltxprogrammer.turned.entity.DLbeeEntity.1
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new Goal() {
             {
-                setFlags(EnumSet.of(Goal.Flag.MOVE));
+                this.setFlags(EnumSet.of(Flag.MOVE));
             }
 
             public boolean canUse() {
-                if (DLbeeEntity.this.getTarget() == null || DLbeeEntity.this.getMoveControl().hasWanted()) {
+                if (DLbeeEntity.this.getTarget() != null && !DLbeeEntity.this.getMoveControl().hasWanted()) {
+                    double x = DLbeeEntity.this.getX();
+                    double y = DLbeeEntity.this.getY();
+                    double z = DLbeeEntity.this.getZ();
+                    Entity entity = DLbeeEntity.this;
+                    return true;
+                } else {
                     return false;
                 }
-                DLbeeEntity.this.getX();
-                DLbeeEntity.this.getY();
-                DLbeeEntity.this.getZ();
-                DLbeeEntity dLbeeEntity = DLbeeEntity.this;
-                return true;
             }
 
             public boolean canContinueToUse() {
@@ -76,38 +82,47 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
             }
 
             public void start() {
-                Vec3 vec3d = DLbeeEntity.this.getTarget().getEyePosition(1.0f);
-                DLbeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.0d);
+                LivingEntity livingentity = DLbeeEntity.this.getTarget();
+                Vec3 vec3d = livingentity.getEyePosition(1.0F);
+                DLbeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.0);
             }
 
             public void tick() {
                 LivingEntity livingentity = DLbeeEntity.this.getTarget();
                 if (DLbeeEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
                     DLbeeEntity.this.doHurtTarget(livingentity);
-                } else if (DLbeeEntity.this.distanceToSqr(livingentity) < 16.0d) {
-                    Vec3 vec3d = livingentity.getEyePosition(1.0f);
-                    DLbeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.0d);
+                } else {
+                    double d0 = DLbeeEntity.this.distanceToSqr(livingentity);
+                    if (d0 < 16.0) {
+                        Vec3 vec3d = livingentity.getEyePosition(1.0F);
+                        DLbeeEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.0);
+                    }
                 }
+
             }
         });
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0d, true) { // from class: net.ltxprogrammer.turned.entity.DLbeeEntity.2
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, true) {
             protected double getAttackReachSqr(LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.goalSelector.addGoal(24, new WaterAvoidingRandomStrollGoal(this, 0.8d));
-        this.goalSelector.addGoal(25, new RandomStrollGoal(this, 0.8d, 20) { // from class: net.ltxprogrammer.turned.entity.DLbeeEntity.3
+        this.goalSelector.addGoal(24, new WaterAvoidingRandomStrollGoal(this, 0.8));
+        this.goalSelector.addGoal(25, new RandomStrollGoal(this, 0.8, 20) {
             protected Vec3 getPosition() {
                 Random random = DLbeeEntity.this.getRandom();
-                return new Vec3(DLbeeEntity.this.getX() + ((double) (((random.nextFloat() * 2.0f) - 1.0f) * 16.0f)), DLbeeEntity.this.getY() + ((double) (((random.nextFloat() * 2.0f) - 1.0f) * 16.0f)), DLbeeEntity.this.getZ() + ((double) (((random.nextFloat() * 2.0f) - 1.0f) * 16.0f)));
+                double dir_x = DLbeeEntity.this.getX() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double dir_y = DLbeeEntity.this.getY() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                double dir_z = DLbeeEntity.this.getZ() + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
+                return new Vec3(dir_x, dir_y, dir_z);
             }
 
             public boolean canUse() {
                 double x = DLbeeEntity.this.getX();
                 double y = DLbeeEntity.this.getY();
                 double z = DLbeeEntity.this.getZ();
-                DLbeeEntity dLbeeEntity = DLbeeEntity.this;
-                return canUse() && CheckforskyProcedure.execute(DLbeeEntity.this.level, x, y, z);
+                Entity entity = DLbeeEntity.this;
+                Level world = DLbeeEntity.this.level;
+                return super.canUse() && CheckforskyProcedure.execute(world, x, y, z);
             }
         });
     }
@@ -117,31 +132,38 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.bee.loop"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.bee.loop"));
     }
 
     public void setNoGravity(boolean ignored) {
-        setNoGravity(true);
+        super.setNoGravity(true);
     }
 
     public void aiStep() {
-        aiStep();
-        setNoGravity(true);
+        super.aiStep();
+        this.setNoGravity(true);
     }
 
     public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.5d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 4.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.FLYING_SPEED, 0.5d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.5);
+        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 4.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.FLYING_SPEED, 0.5);
+        return builder;
     }
 
-    public ChangedParticles.Color3 getDripColor() {
-        return ChangedParticles.Color3.DARK;
+    public Color3 getDripColor() {
+        return Color3.DARK;
     }
 }

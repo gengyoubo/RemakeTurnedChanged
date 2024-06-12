@@ -34,7 +34,7 @@ public class ScientificCrateBlockEntity extends RandomizableContainerBlockEntity
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
     public ScientificCrateBlockEntity(BlockPos position, BlockState state) {
-        super((BlockEntityType) LatexModBlockEntities.SCIENTIFIC_CRATE.get(), position, state);
+        super(LatexModBlockEntities.SCIENTIFIC_CRATE.get(), position, state);
     }
 
     public void load(CompoundTag compound) {
@@ -111,7 +111,7 @@ public class ScientificCrateBlockEntity extends RandomizableContainerBlockEntity
     }
 
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        return (index == 0 || index == 1 || index == 2 || index == 3 || index == 4) ? false : true;
+        return index != 0 && index != 1 && index != 2 && index != 3 && index != 4;
     }
 
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {

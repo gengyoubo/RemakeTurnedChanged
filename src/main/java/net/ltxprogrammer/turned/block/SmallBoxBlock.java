@@ -61,7 +61,7 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         super(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.65f, 3.5f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
             return false;
         }));
-        registerDefaultState((BlockState) ((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -73,15 +73,15 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING, WATERLOGGED});
+        builder.add(FACING, WATERLOGGED);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) ((BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -89,11 +89,11 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
     }
 
     public FluidState getFluidState(BlockState state) {
-        return ((Boolean) state.getValue(WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
+        return state.getValue(WATERLOGGED).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if (((Boolean) state.getValue(WATERLOGGED)).booleanValue()) {
+        if (state.getValue(WATERLOGGED).booleanValue()) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
         return updateShape(state, facing, facingState, world, currentPos, facingPos);
@@ -109,7 +109,7 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModBlocks.BOX_INVENTORY.get()));
+        return Collections.singletonList(new ItemStack(LatexModBlocks.BOX_INVENTORY.get()));
     }
 
     public InteractionResult use(BlockState blockstate, Level world, final BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -171,7 +171,7 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.SMALL_BOX.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.SMALL_BOX.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }

@@ -40,7 +40,7 @@ public class EvilbeacononBlock extends Block {
 
     public EvilbeacononBlock() {
         super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(2.25f, 22.5f).requiresCorrectToolForDrops());
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
@@ -48,15 +48,15 @@ public class EvilbeacononBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -73,7 +73,7 @@ public class EvilbeacononBlock extends Block {
         if (!dropsOriginal.isEmpty()) {
             return dropsOriginal;
         }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModItems.RADIO_DROPPODCALLER.get()));
+        return Collections.singletonList(new ItemStack(LatexModItems.RADIO_DROPPODCALLER.get()));
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
@@ -83,7 +83,7 @@ public class EvilbeacononBlock extends Block {
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         tick(blockstate, world, pos, random);
-        EvilBeaconUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        EvilBeaconUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         world.scheduleTick(pos, this, 10);
     }
 
@@ -96,7 +96,7 @@ public class EvilbeacononBlock extends Block {
         int z = pos.getZ();
         if (CheckevilraidProcedure.execute(world)) {
             for (int l = 0; l < 3; l++) {
-                world.addParticle(ParticleTypes.FLAME, (double) (((float) x) + random.nextFloat()), (double) (((float) y) + random.nextFloat()), (double) (((float) z) + random.nextFloat()), (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d);
+                world.addParticle(ParticleTypes.FLAME, ((float) x) + random.nextFloat(), ((float) y) + random.nextFloat(), ((float) z) + random.nextFloat(), (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d, (((double) random.nextFloat()) - 0.5d) * 0.5d);
             }
         }
     }

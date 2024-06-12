@@ -36,7 +36,7 @@ public class DarklatexhiveBlock extends Block {
 
     public DarklatexhiveBlock() {
         super(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.SLIME_BLOCK).strength(0.75f, 5.0f).requiresCorrectToolForDrops().friction(0.3f).speedFactor(0.6f).jumpFactor(0.6f).randomTicks());
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
@@ -44,15 +44,15 @@ public class DarklatexhiveBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -74,7 +74,7 @@ public class DarklatexhiveBlock extends Block {
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
         tick(blockstate, world, pos, random);
-        DarklatexhiveUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        DarklatexhiveUpdateTickProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -85,18 +85,18 @@ public class DarklatexhiveBlock extends Block {
         int y = pos.getY();
         int z = pos.getZ();
         for (int l = 0; l < 2; l++) {
-            world.addParticle(ParticleTypes.FALLING_NECTAR, (double) (((float) x) + random.nextFloat()), (double) (((float) y) + random.nextFloat()), (double) (((float) z) + random.nextFloat()), (((double) random.nextFloat()) - 0.5d) * 0.5000000014901161d, (((double) random.nextFloat()) - 0.5d) * 0.5000000014901161d, (((double) random.nextFloat()) - 0.5d) * 0.5000000014901161d);
+            world.addParticle(ParticleTypes.FALLING_NECTAR, ((float) x) + random.nextFloat(), ((float) y) + random.nextFloat(), ((float) z) + random.nextFloat(), (((double) random.nextFloat()) - 0.5d) * 0.5000000014901161d, (((double) random.nextFloat()) - 0.5d) * 0.5000000014901161d, (((double) random.nextFloat()) - 0.5d) * 0.5000000014901161d);
         }
     }
 
     public boolean onDestroyedByPlayer(BlockState blockstate, Level world, BlockPos pos, Player entity, boolean willHarvest, FluidState fluid) {
         boolean retval = onDestroyedByPlayer(blockstate, world, pos, entity, willHarvest, fluid);
-        DarklatexhiveBlockDestroyedByExplosionProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        DarklatexhiveBlockDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         return retval;
     }
 
     public void wasExploded(Level world, BlockPos pos, Explosion e) {
         wasExploded(world, pos, e);
-        DarklatexhiveBlockDestroyedByExplosionProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        DarklatexhiveBlockDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 }

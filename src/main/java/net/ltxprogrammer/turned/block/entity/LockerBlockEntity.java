@@ -34,7 +34,7 @@ public class LockerBlockEntity extends RandomizableContainerBlockEntity implemen
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
     public LockerBlockEntity(BlockPos position, BlockState state) {
-        super((BlockEntityType) LatexModBlockEntities.LOCKER.get(), position, state);
+        super(LatexModBlockEntities.LOCKER.get(), position, state);
     }
 
     public void load(CompoundTag compound) {
@@ -111,7 +111,7 @@ public class LockerBlockEntity extends RandomizableContainerBlockEntity implemen
     }
 
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        return (index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5 || index == 6 || index == 7 || index == 8 || index == 9 || index == 10 || index == 11) ? false : true;
+        return index != 0 && index != 1 && index != 2 && index != 3 && index != 4 && index != 5 && index != 6 && index != 7 && index != 8 && index != 9 && index != 10 && index != 11;
     }
 
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {

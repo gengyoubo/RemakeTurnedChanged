@@ -37,7 +37,7 @@ public class NukeBlock extends Block {
 
     public NukeBlock() {
         super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.GRAVEL).strength(1.0f, 10.0f));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
@@ -50,15 +50,15 @@ public class NukeBlock extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(new Property[]{FACING});
+        builder.add(FACING);
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -76,13 +76,13 @@ public class NukeBlock extends Block {
     public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
         neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
         if (world.getBestNeighborSignal(pos) > 0) {
-            NukeOnBlockRightClickedProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+            NukeOnBlockRightClickedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
         }
     }
 
     public void wasExploded(Level world, BlockPos pos, Explosion e) {
         wasExploded(world, pos, e);
-        NukeBlockDestroyedByExplosionProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        NukeBlockDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -94,7 +94,7 @@ public class NukeBlock extends Block {
         double d2 = hit.getLocation().y;
         double d3 = hit.getLocation().z;
         hit.getDirection();
-        NukeOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        NukeOnBlockRightClickedProcedure.execute(world, x, y, z);
         return InteractionResult.SUCCESS;
     }
 }

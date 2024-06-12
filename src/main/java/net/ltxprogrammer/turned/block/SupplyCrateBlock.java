@@ -63,7 +63,7 @@ public class SupplyCrateBlock extends Block implements EntityBlock {
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
         onPlace(blockstate, world, pos, oldState, moving);
-        SupplyCrateBlockAddedProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        SupplyCrateBlockAddedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
     }
 
     public InteractionResult use(BlockState blockstate, Level world, final BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
@@ -125,7 +125,7 @@ public class SupplyCrateBlock extends Block implements EntityBlock {
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.SUPPLY_CRATE.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer(LatexModBlocks.SUPPLY_CRATE.get(), renderType -> {
             return renderType == RenderType.cutout();
         });
     }
