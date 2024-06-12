@@ -1,14 +1,18 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import java.util.List;
-import java.util.Objects;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.block.AbstractLatexBlock;
 import net.ltxprogrammer.changed.entity.LatexType;
 import net.ltxprogrammer.changed.init.ChangedBlocks;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.turned.entity.p000ai.RevertBlockStateGoal;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.turned.entity.ai.RevertBlockStateGoal;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
@@ -76,196 +80,266 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/ProtectorSlimelingEntity.class */
 public class ProtectorSlimelingEntity extends TamableAnimal {
     public ProtectorSlimelingEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(LatexModEntities.PROTECTOR_SLIMELING.get(), world);
+        this((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get(), world);
     }
 
     public ProtectorSlimelingEntity(EntityType<ProtectorSlimelingEntity> type, Level world) {
         super(type, world);
         this.xpReward = 6;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 0.9d, 12.0f, 2.0f, false));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new FollowOwnerGoal(this, 0.9, 12.0F, 2.0F, false));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.goalSelector.addGoal(3, new OwnerHurtByTargetGoal(this));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2d, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.1
-            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, false, false, TargetCheck.IS_LATEX));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Pillager.class, true, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.2
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Pillager.class, true, false) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Vindicator.class, true, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.3
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Vindicator.class, true, false) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Illusioner.class, true, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.4
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Illusioner.class, true, false) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Evoker.class, true, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.5
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Evoker.class, true, false) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.6
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Piglin.class, true, false) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.7
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Piglin.class, true, false) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.goalSelector.addGoal(12, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(12, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(13, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(14, new RemoveBlockGoal(ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(15, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal(LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(21, new LookAtPlayerGoal(this, Player.class, 9.0f));
-        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, ScientistEntity.class, 9.0f));
-        this.goalSelector.addGoal(23, new LookAtPlayerGoal(this, Villager.class, 9.0f));
-        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, WanderingTrader.class, 9.0f));
-        this.goalSelector.addGoal(25, new TemptGoal(this, 0.6d, Ingredient.of((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), true) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.8
+        this.goalSelector.addGoal(12, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0, 3));
+        this.goalSelector.addGoal(12, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0, 3));
+        this.goalSelector.addGoal(13, new RemoveBlockGoal((Block)ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0, 3));
+        this.goalSelector.addGoal(14, new RemoveBlockGoal((Block)ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0, 3));
+        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block)ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0, 3));
+        this.goalSelector.addGoal(21, new LookAtPlayerGoal(this, Player.class, 9.0F));
+        this.goalSelector.addGoal(22, new LookAtPlayerGoal(this, ScientistEntity.class, 9.0F));
+        this.goalSelector.addGoal(23, new LookAtPlayerGoal(this, Villager.class, 9.0F));
+        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, WanderingTrader.class, 9.0F));
+        this.goalSelector.addGoal(25, new TemptGoal(this, 0.6, Ingredient.of(new ItemLike[]{(ItemLike)ChangedItems.DARK_LATEX_GOO.get()}), true) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.goalSelector.addGoal(26, new TemptGoal(this, 0.6d, Ingredient.of(Items.SLIME_BALL), true) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.9
+        this.goalSelector.addGoal(26, new TemptGoal(this, 0.6, Ingredient.of(new ItemLike[]{Items.SLIME_BALL}), true) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.goalSelector.addGoal(27, new TemptGoal(this, 0.7d, Ingredient.of((ItemLike) LatexModItems.LATEX_SOUP.get()), true) { // from class: net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity.10
+        this.goalSelector.addGoal(27, new TemptGoal(this, 0.7, Ingredient.of(new ItemLike[]{(ItemLike)LatexModItems.LATEX_SOUP.get()}), true) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ProtectorSlimelingEntity.this.level, ProtectorSlimelingEntity.this.getX(), ProtectorSlimelingEntity.this.getY(), ProtectorSlimelingEntity.this.getZ(), ProtectorSlimelingEntity.this);
+                double x = ProtectorSlimelingEntity.this.getX();
+                double y = ProtectorSlimelingEntity.this.getY();
+                double z = ProtectorSlimelingEntity.this.getZ();
+                Entity entity = ProtectorSlimelingEntity.this;
+                Level world = ProtectorSlimelingEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.goalSelector.addGoal(28, new RandomStrollGoal(this, 1.0d));
+        this.goalSelector.addGoal(28, new RandomStrollGoal(this, 1.0));
         this.goalSelector.addGoal(29, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(30, new OpenDoorGoal(this, false));
-        this.targetSelector.addGoal(31, new HurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(31, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(32, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(33, new FloatGoal(this));
     }
 
-    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack(LatexModItems.SLIMEESSENCE.get()));
+    public MobType getMobType() {
+        return MobType.UNDEFINED;
     }
 
-    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return false;
     }
 
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)LatexModItems.SLIMEESSENCE.get()));
+    }
+
+    public void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
+    }
+
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.FALL) {
+                return false;
+            } else if (source == DamageSource.CACTUS) {
+                return false;
+            } else if (source == DamageSource.WITHER) {
+                return false;
+            } else {
+                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
+            }
+        } else {
             return false;
         }
-        return hurt(source, amount);
     }
 
-    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        SlimelingTamedOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        SlimelingTamedOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
-    public @NotNull InteractionResult mobInteract(Player sourceentity, @NotNull InteractionHand hand) {
+    public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
         ItemStack itemstack = sourceentity.getItemInHand(hand);
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
         if (itemstack.getItem() instanceof SpawnEggItem) {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
         } else if (this.level.isClientSide()) {
-            if ((!isTame() || !isOwnedBy(sourceentity)) && !isFood(itemstack)) {
-                retval = InteractionResult.PASS;
-            } else {
-                retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-            }
-        } else if (isTame()) {
-            if (isOwnedBy(sourceentity)) {
-                if (item.isEdible() && isFood(itemstack) && getHealth() < getMaxHealth()) {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal((float) Objects.requireNonNull(item.getFoodProperties()).getNutrition());
+            retval = (!this.isTame() || !this.isOwnedBy(sourceentity)) && !this.isFood(itemstack) ? InteractionResult.PASS : InteractionResult.sidedSuccess(this.level.isClientSide());
+        } else if (this.isTame()) {
+            if (this.isOwnedBy(sourceentity)) {
+                if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal((float)item.getFoodProperties().getNutrition());
                     retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-                } else if (!isFood(itemstack) || getHealth() >= getMaxHealth()) {
-                    retval = mobInteract(sourceentity, hand);
+                } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal(4.0F);
+                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
                 } else {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal(4.0f);
-                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
+                    retval = super.mobInteract(sourceentity, hand);
                 }
             }
-        } else if (isFood(itemstack)) {
-            usePlayerItem(sourceentity, hand, itemstack);
-            if (this.random.nextInt(3) != 0 || ForgeEventFactory.onAnimalTame(this, sourceentity)) {
-                this.level.broadcastEntityEvent(this, (byte) 6);
+        } else if (this.isFood(itemstack)) {
+            this.usePlayerItem(sourceentity, hand, itemstack);
+            if (this.random.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, sourceentity)) {
+                this.tame(sourceentity);
+                this.level.broadcastEntityEvent(this, (byte)7);
             } else {
-                tame(sourceentity);
-                this.level.broadcastEntityEvent(this, (byte) 7);
+                this.level.broadcastEntityEvent(this, (byte)6);
             }
-            setPersistenceRequired();
+
+            this.setPersistenceRequired();
             retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         } else {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
             if (retval == InteractionResult.SUCCESS || retval == InteractionResult.CONSUME) {
-                setPersistenceRequired();
+                this.setPersistenceRequired();
             }
         }
-        ProtectorSlimelingRightClickedOnEntityProcedure.execute(this.level, getX(), getY(), getZ(), this, sourceentity);
+
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        Entity entity = this;
+        Level world = this.level;
+        ProtectorSlimelingRightClickedOnEntityProcedure.execute(world, x, y, z, entity, sourceentity);
         return retval;
     }
 
-    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        ProtectorSlimelingThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
+    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+        super.awardKillScore(entity, score, damageSource);
+        ProtectorSlimelingThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity, this);
     }
 
-    public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
-        ProtectorSlimelingEntity retval = ((EntityType<?>) LatexModEntities.PROTECTOR_SLIMELING.get()).create(serverWorld);
-        Objects.requireNonNull(retval).finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
+    public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
+        ProtectorSlimelingEntity retval = (ProtectorSlimelingEntity)((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get()).create(serverWorld);
+        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
 
     public boolean isFood(ItemStack stack) {
-        return List.of(ChangedItems.DARK_LATEX_GOO.get(), Items.SLIME_BALL, LatexModItems.LATEX_SOUP.get()).contains(stack.getItem());
+        return List.of((Item)ChangedItems.DARK_LATEX_GOO.get(), Items.SLIME_BALL, (Item)LatexModItems.LATEX_SOUP.get()).contains(stack.getItem());
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob(LatexModEntities.PROTECTOR_SLIMELING.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.MAX_HEALTH, 32.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.1d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+        builder = builder.add(Attributes.MAX_HEALTH, 32.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.1);
+        return builder;
     }
 }
