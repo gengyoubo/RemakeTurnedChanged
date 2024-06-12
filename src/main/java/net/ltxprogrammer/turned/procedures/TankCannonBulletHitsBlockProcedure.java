@@ -10,10 +10,9 @@ public class TankCannonBulletHitsBlockProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
             entity.setSecondsOnFire(10);
-            if (world instanceof Level) {
-                Level _level = (Level) world;
+            if (world instanceof Level _level) {
                 if (!_level.isClientSide()) {
-                    _level.explode((Entity) null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
+                    _level.explode(null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
                 }
             }
         }

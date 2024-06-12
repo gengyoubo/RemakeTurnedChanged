@@ -45,11 +45,12 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/MilitaryRiotEntity.class */
 public class MilitaryRiotEntity extends PathfinderMob {
     public MilitaryRiotEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.MILITARY_RIOT.get(), world);
+        this(LatexModEntities.MILITARY_RIOT.get(), world);
     }
 
     public MilitaryRiotEntity(EntityType<MilitaryRiotEntity> type, Level world) {
@@ -57,20 +58,20 @@ public class MilitaryRiotEntity extends PathfinderMob {
         this.xpReward = 6;
         setNoAi(false);
         setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.BATON.get()));
-        setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.RIOTARMOR_HELMET.get()));
-        setItemSlot(EquipmentSlot.CHEST, new ItemStack((ItemLike) LatexModItems.RIOTARMOR_CHESTPLATE.get()));
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(LatexModItems.BATON.get()));
+        setItemSlot(EquipmentSlot.HEAD, new ItemStack(LatexModItems.RIOTARMOR_HELMET.get()));
+        setItemSlot(EquipmentSlot.CHEST, new ItemStack(LatexModItems.RIOTARMOR_CHESTPLATE.get()));
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0d, false) { // from class: net.ltxprogrammer.turned.entity.MilitaryRiotEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
@@ -81,29 +82,25 @@ public class MilitaryRiotEntity extends PathfinderMob {
         this.goalSelector.addGoal(7, new OpenDoorGoal(this, false));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(9, new FloatGoal(this));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Monster.class, true, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, SlimelingEntity.class, true, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, Illusioner.class, true, false));
-        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, Pillager.class, true, false));
-        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Ravager.class, true, false));
-        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, SpellcasterIllager.class, true, false));
-        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, Vindicator.class, true, false));
-        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
-        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, Monster.class, true, false));
-    }
-
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Monster.class, true, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, SlimelingEntity.class, true, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, Illusioner.class, true, false));
+        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, Ravager.class, true, false));
+        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, SpellcasterIllager.class, true, false));
+        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Piglin.class, true, false));
+        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true, false));
+        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal<>(this, Monster.class, true, false));
     }
 
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
     }
 
@@ -111,7 +108,7 @@ public class MilitaryRiotEntity extends PathfinderMob {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
         MilitaryRiotOnInitialEntitySpawnProcedure.execute(this);
         return retval;

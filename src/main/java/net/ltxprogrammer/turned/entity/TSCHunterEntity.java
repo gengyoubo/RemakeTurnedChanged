@@ -33,11 +33,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCHunterEntity.class */
 public class TSCHunterEntity extends AbstractTSCEntity {
     public TSCHunterEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.TSC_HUNTER.get(), world);
+        this(LatexModEntities.TSC_HUNTER.get(), world);
     }
 
     public TSCHunterEntity(EntityType<TSCHunterEntity> type, Level world) {
@@ -56,15 +57,15 @@ public class TSCHunterEntity extends AbstractTSCEntity {
     protected void registerGoals() {
         registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2d, false) { // from class: net.ltxprogrammer.turned.entity.TSCHunterEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(3, new OpenDoorGoal(this, true));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Mob.class, 10, true, false, TargetCheck.IS_GOOD));
-        this.goalSelector.addGoal(12, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, TargetCheck.IS_GOOD));
+        this.goalSelector.addGoal(12, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(15, new RemoveBlockGoal(LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
     }
 
     @Override // net.ltxprogrammer.turned.entity.AbstractTSCEntity
@@ -85,7 +86,7 @@ public class TSCHunterEntity extends AbstractTSCEntity {
 
     @Override // net.ltxprogrammer.turned.entity.AbstractTSCEntity
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
     }
 
     @Override // net.ltxprogrammer.turned.entity.AbstractTSCEntity
@@ -106,12 +107,12 @@ public class TSCHunterEntity extends AbstractTSCEntity {
         return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         TSCHunterEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
     }
 
-    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
         awardKillScore(entity, score, damageSource);
         TSCHunterThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
     }

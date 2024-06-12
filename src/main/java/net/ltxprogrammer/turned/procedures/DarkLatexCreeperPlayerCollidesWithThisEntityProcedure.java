@@ -29,21 +29,17 @@ public class DarkLatexCreeperPlayerCollidesWithThisEntityProcedure {
                 if (!entity.level.isClientSide()) {
                     entity.discard();
                 }
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
+                if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound((Player) null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.HOSTILE, 2.0f, 1.0f);
+                        _level.playSound(null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.HOSTILE, 2.0f, 1.0f);
                     } else {
                         _level.playLocalSound(x, y, z, ChangedSounds.POISON, SoundSource.HOSTILE, 2.0f, 1.0f, false);
                     }
                 }
-                if (world instanceof ServerLevel) {
-                    ServerLevel _level2 = (ServerLevel) world;
-                    Entity entityToSpawn = new DarkLatexCreeperEntity((EntityType<DarkLatexCreeperEntity>) ((EntityType) LatexModEntities.DARK_LATEX_CREEPER.get()), (Level) _level2);
+                if (world instanceof ServerLevel _level2) {
+                    Entity entityToSpawn = new DarkLatexCreeperEntity((EntityType<DarkLatexCreeperEntity>) LatexModEntities.DARK_LATEX_CREEPER.get(), _level2);
                     entityToSpawn.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
-                    if (entityToSpawn instanceof Mob) {
-                        ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                    }
+                    ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                     world.addFreshEntity(entityToSpawn);
                 }
             }

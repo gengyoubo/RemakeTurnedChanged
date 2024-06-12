@@ -32,11 +32,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCOutsiderGunnerEntity.class */
 public class TSCOutsiderGunnerEntity extends Monster implements RangedAttackMob {
     public TSCOutsiderGunnerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.TSC_OUTSIDER_GUNNER.get(), world);
+        this(LatexModEntities.TSC_OUTSIDER_GUNNER.get(), world);
     }
 
     public TSCOutsiderGunnerEntity(EntityType<TSCOutsiderGunnerEntity> type, Level world) {
@@ -46,18 +47,18 @@ public class TSCOutsiderGunnerEntity extends Monster implements RangedAttackMob 
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
-        this.goalSelector.addGoal(12, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(12, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(13, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(14, new RemoveBlockGoal((Block) ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(12, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
+        this.goalSelector.addGoal(12, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
+        this.goalSelector.addGoal(13, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(14, new RemoveBlockGoal(ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(15, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal(LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
         this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.TSCOutsiderGunnerEntity.1
             public boolean canContinueToUse() {
                 return canUse();
@@ -65,24 +66,20 @@ public class TSCOutsiderGunnerEntity extends Monster implements RangedAttackMob 
         });
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         dropCustomDeathLoot(source, looting, recentlyHitIn);
         spawnAtLocation(new ItemStack(Items.IRON_INGOT));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.hit"));
     }
 
@@ -97,12 +94,12 @@ public class TSCOutsiderGunnerEntity extends Monster implements RangedAttackMob 
         return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         TSCOutsiderGunnerEntityDiesProcedure.execute();
     }
 
-    public void performRangedAttack(LivingEntity target, float flval) {
+    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         TSCPistolEntity.shoot(this, target);
     }
 

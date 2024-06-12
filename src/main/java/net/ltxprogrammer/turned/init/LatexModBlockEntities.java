@@ -33,8 +33,6 @@ public class LatexModBlockEntities {
     public static final RegistryObject<BlockEntityType<?>> LOCKER = register("locker", LatexModBlocks.LOCKER, LockerBlockEntity::new);
 
     private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block, BlockEntityType.BlockEntitySupplier<?> supplier) {
-        return REGISTRY.register(registryname, () -> {
-            return BlockEntityType.Builder.of(supplier, new Block[]{(Block) block.get()}).build((Type) null);
-        });
+        return REGISTRY.register(registryname, () -> BlockEntityType.Builder.of(supplier, new Block[]{(Block) block.get()}).build((Type) null));
     }
 }

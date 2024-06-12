@@ -11,8 +11,8 @@ public class AssaultRifleCanUseRangedItemProcedure {
         if (entity != null && itemstack.getOrCreateTag().getDouble("ammo") > 0.0d) {
             if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() != LatexModItems.AR_70_ASSAULT_RIFLE.get()) {
                 if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() != LatexModItems.M_4_ASSAULT_RIFLE.get()) {
-                    if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.SCRAP_M_16_RIFLE.get()) {
-                    }
+                    (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem();
+                    LatexModItems.SCRAP_M_16_RIFLE.get();
                 }
             }
             return true;

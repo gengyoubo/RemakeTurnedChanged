@@ -17,27 +17,21 @@ public class FlamethowerReloadProcedure {
                 }
                 if (((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(Items.COAL))) || ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(Items.CHARCOAL)))) {
                     if (entity instanceof Player) {
-                        ((Player) entity).getCooldowns().addCooldown((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem(), 125);
+                        ((Player) entity).getCooldowns().addCooldown(((LivingEntity) entity).getMainHandItem().getItem(), 125);
                     }
                     for (int index0 = 0; index0 < 30; index0++) {
-                        if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().getDouble("ammo") < 100.0d && (((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(Items.COAL))) || ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(Items.CHARCOAL))))) {
+                        if (((LivingEntity) entity).getMainHandItem().getOrCreateTag().getDouble("ammo") < 100.0d && (entity instanceof Player && ((Player) entity).getInventory().contains(new ItemStack(Items.COAL)) || entity instanceof Player && ((Player) entity).getInventory().contains(new ItemStack(Items.CHARCOAL)))) {
                             if ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(Items.COAL))) {
-                                (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().putDouble("ammo", (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().getDouble("ammo") + 10.0d);
-                                if (entity instanceof Player) {
-                                    Player _player = (Player) entity;
+                                ((LivingEntity) entity).getMainHandItem().getOrCreateTag().putDouble("ammo", ((LivingEntity) entity).getMainHandItem().getOrCreateTag().getDouble("ammo") + 10.0d);
+                                if (entity instanceof Player _player) {
                                     ItemStack _stktoremove = new ItemStack(Items.COAL);
-                                    _player.getInventory().clearOrCountMatchingItems(p -> {
-                                        return _stktoremove.getItem() == p.getItem();
-                                    }, 1, _player.inventoryMenu.getCraftSlots());
+                                    _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
                                 }
                             } else if ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(Items.CHARCOAL))) {
-                                (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().putDouble("ammo", (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().getDouble("ammo") + 8.0d);
-                                if (entity instanceof Player) {
-                                    Player _player2 = (Player) entity;
+                                ((LivingEntity) entity).getMainHandItem().getOrCreateTag().putDouble("ammo", ((LivingEntity) entity).getMainHandItem().getOrCreateTag().getDouble("ammo") + 8.0d);
+                                if (entity instanceof Player _player2) {
                                     ItemStack _stktoremove2 = new ItemStack(Items.CHARCOAL);
-                                    _player2.getInventory().clearOrCountMatchingItems(p -> {
-                                        return _stktoremove2.getItem() == p.getItem();
-                                    }, 1, _player2.inventoryMenu.getCraftSlots());
+                                    _player2.getInventory().clearOrCountMatchingItems(p -> _stktoremove2.getItem() == p.getItem(), 1, _player2.inventoryMenu.getCraftSlots());
                                 }
                             }
                         }

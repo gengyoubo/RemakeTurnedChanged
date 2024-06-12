@@ -15,14 +15,13 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.CocoaDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/world/features/treedecorators/DarkLatexBiomeFruitDecorator.class */
 public class DarkLatexBiomeFruitDecorator extends CocoaDecorator {
     public static final DarkLatexBiomeFruitDecorator INSTANCE = new DarkLatexBiomeFruitDecorator();
-    public static Codec<DarkLatexBiomeFruitDecorator> codec = Codec.unit(() -> {
-        return INSTANCE;
-    });
-    public static TreeDecoratorType<?> tdt = new TreeDecoratorType<>(codec);
+    public static final Codec<DarkLatexBiomeFruitDecorator> codec = Codec.unit(() -> INSTANCE);
+    public static final TreeDecoratorType<?> tdt = new TreeDecoratorType<>(codec);
 
     static {
         tdt.setRegistryName("dark_latex_biome_tree_fruit_decorator");
@@ -33,24 +32,20 @@ public class DarkLatexBiomeFruitDecorator extends CocoaDecorator {
         super(0.2f);
     }
 
-    protected TreeDecoratorType<?> type() {
+    protected @NotNull TreeDecoratorType<?> type() {
         return tdt;
     }
 
-    public void place(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> biConsumer, Random random, List<BlockPos> blocks, List<BlockPos> blocks2) {
+    public void place(@NotNull LevelSimulatedReader level, @NotNull BiConsumer<BlockPos, BlockState> biConsumer, Random random, @NotNull List<BlockPos> blocks, @NotNull List<BlockPos> blocks2) {
         if (random.nextFloat() < 0.2f) {
             int i = blocks.get(0).getY();
-            blocks.stream().filter(p_69980_ -> {
-                return p_69980_.getY() - i <= 2;
-            }).forEach(p_161728_ -> {
-                Iterator it = Direction.Plane.HORIZONTAL.iterator();
-                while (it.hasNext()) {
-                    Direction direction = (Direction) it.next();
+            blocks.stream().filter(p_69980_ -> p_69980_.getY() - i <= 2).forEach(p_161728_ -> {
+                for (Direction direction : Direction.Plane.HORIZONTAL) {
                     if (random.nextFloat() <= 0.25f) {
                         Direction direction1 = direction.getOpposite();
                         BlockPos blockpos = p_161728_.offset(direction1.getStepX(), 0, direction1.getStepZ());
                         if (Feature.isAir(level, blockpos)) {
-                            biConsumer.accept(blockpos, ((Block) LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState());
+                            biConsumer.accept(blockpos, LatexModBlocks.DARKLATEXHIVE.get().defaultBlockState());
                         }
                     }
                 }

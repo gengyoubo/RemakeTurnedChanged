@@ -29,26 +29,12 @@ public class BeeHertxRightClickedOnEntityProcedure {
         if (entity != null && sourceentity != null) {
             if ((sourceentity instanceof LivingEntity ? ((LivingEntity) sourceentity).getMainHandItem() : ItemStack.EMPTY).getItem() == ChangedItems.DARK_LATEX_GOO.get()) {
                 if ((entity instanceof TamableAnimal) && ((TamableAnimal) entity).isTame()) {
-                    float health = entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f;
-                    if (entity instanceof LivingEntity) {
-                        f2 = ((LivingEntity) entity).getMaxHealth();
-                    } else {
-                        f2 = -1.0f;
-                    }
+                    float health = ((LivingEntity) entity).getHealth();
+                    f2 = ((LivingEntity) entity).getMaxHealth();
                     if (health < f2) {
-                        if (entity instanceof LivingEntity) {
-                            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
-                        }
+                        ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
                         if (world instanceof ServerLevel) {
                             ((ServerLevel) world).sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0d, 2.0d, 1.0d, 1.0d);
-                        }
-                        if (entity instanceof Player) {
-                            Player _player = (Player) entity;
-                            ItemStack _stktoremove = new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get());
-                            _player.getInventory().clearOrCountMatchingItems(p -> {
-                                return _stktoremove.getItem() == p.getItem();
-                            }, 1, _player.inventoryMenu.getCraftSlots());
-                            return;
                         }
                         return;
                     }
@@ -66,18 +52,14 @@ public class BeeHertxRightClickedOnEntityProcedure {
                 if (((entity instanceof TamableAnimal) && ((TamableAnimal) entity).isTame()) && (sourceentity instanceof LivingEntity)) {
                     ((LivingEntity) sourceentity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 1, false, false));
                 }
-            } else if (entity instanceof TamableAnimal) {
-                TamableAnimal _tamIsTamedBy = (TamableAnimal) entity;
+            } else if (entity instanceof TamableAnimal _tamIsTamedBy) {
                 if ((sourceentity instanceof LivingEntity) && _tamIsTamedBy.isOwnedBy((LivingEntity) sourceentity)) {
-                    if (world instanceof ServerLevel) {
-                        ServerLevel _level = (ServerLevel) world;
-                        Entity entityToSpawn = new BeeHertxSitEntity((EntityType<BeeHertxSitEntity>) ((EntityType) LatexModEntities.BEE_HERTX_SIT.get()), (Level) _level);
+                    if (world instanceof ServerLevel _level) {
+                        Entity entityToSpawn = new BeeHertxSitEntity((EntityType<BeeHertxSitEntity>) LatexModEntities.BEE_HERTX_SIT.get(), _level);
                         entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                         entityToSpawn.setYBodyRot(entity.getYRot());
                         entityToSpawn.setYHeadRot(entity.getYRot());
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         world.addFreshEntity(entityToSpawn);
                     }
                     if (!entity.level.isClientSide()) {

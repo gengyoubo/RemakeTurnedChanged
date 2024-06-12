@@ -40,11 +40,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/ScientistEntity.class */
 public class ScientistEntity extends PathfinderMob {
     public ScientistEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.SCIENTIST.get(), world);
+        this(LatexModEntities.SCIENTIST.get(), world);
     }
 
     public ScientistEntity(EntityType<ScientistEntity> type, Level world) {
@@ -54,19 +55,19 @@ public class ScientistEntity extends PathfinderMob {
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
         this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(3, new PanicGoal(this, 1.2d));
-        this.goalSelector.addGoal(4, new AvoidEntityGoal(this, Monster.class, 8.0f, 1.6d, 0.9d));
-        this.goalSelector.addGoal(5, new AvoidEntityGoal(this, PathfinderMob.class, 6.0f, 1.2d, 0.9d, TargetCheck.IS_GOOD));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, Monster.class, 8.0f, 1.6d, 0.9d));
+        this.goalSelector.addGoal(5, new AvoidEntityGoal<>(this, PathfinderMob.class, 6.0f, 1.2d, 0.9d, TargetCheck.IS_GOOD));
         this.goalSelector.addGoal(6, new MoveBackToVillageGoal(this, 0.6d, false));
-        this.goalSelector.addGoal(7, new TemptGoal(this, 1.0d, Ingredient.of(new ItemLike[]{(ItemLike) LatexModItems.TABLET.get()}), false));
+        this.goalSelector.addGoal(7, new TemptGoal(this, 1.0d, Ingredient.of((ItemLike) LatexModItems.TABLET.get()), false));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0f));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, PathfinderMob.class, 8.0f));
         this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Monster.class, 9.0f));
@@ -76,19 +77,15 @@ public class ScientistEntity extends PathfinderMob {
         this.goalSelector.addGoal(14, new FloatGoal(this));
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.ambient")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.ambient")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.hurt"));
     }
 
@@ -96,7 +93,7 @@ public class ScientistEntity extends PathfinderMob {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.death"));
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
         ScientistOnInitialEntitySpawnProcedure.execute(this);
         return retval;

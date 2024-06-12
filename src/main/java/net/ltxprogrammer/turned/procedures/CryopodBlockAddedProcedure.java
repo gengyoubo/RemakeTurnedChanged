@@ -11,7 +11,7 @@ public class CryopodBlockAddedProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR)) {
             BlockPos _pos = new BlockPos(x, y, z);
-            Block.dropResources(world.getBlockState(_pos), world, new BlockPos(x, y - 1.0d, z), (BlockEntity) null);
+            Block.dropResources(world.getBlockState(_pos), world, new BlockPos(x, y - 1.0d, z), null);
             world.destroyBlock(_pos, false);
         }
     }

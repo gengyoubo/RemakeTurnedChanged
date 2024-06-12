@@ -57,16 +57,13 @@ public class UndergroundevillabFeature extends Feature<NoneFeatureConfiguration>
         if (this.template == null) {
             this.template = context.level().getLevel().getStructureManager().getOrCreate(new ResourceLocation(LatexMod.MODID, "underground_evil_lab"));
         }
-        if (this.template == null) {
-            return false;
-        }
         boolean anyPlaced = false;
         if (context.random().nextInt(1000000) + 1 <= 4375) {
             int count = context.random().nextInt(1) + 1;
             for (int a = 0; a < count; a++) {
                 int i = context.origin().getX() + context.random().nextInt(16);
                 int k = context.origin().getZ() + context.random().nextInt(16);
-                BlockPos spawnTo = new BlockPos(i + 0, Mth.nextInt(context.random(), 8 + context.level().getMinBuildHeight(), Math.max(context.level().getHeight(Heightmap.Types.OCEAN_FLOOR_WG, i, k), 9 + context.level().getMinBuildHeight())) - 8, k + 0);
+                BlockPos spawnTo = new BlockPos(i, Mth.nextInt(context.random(), 8 + context.level().getMinBuildHeight(), Math.max(context.level().getHeight(Heightmap.Types.OCEAN_FLOOR_WG, i, k), 9 + context.level().getMinBuildHeight())) - 8, k);
                 WorldGenLevel world = context.level();
                 spawnTo.getX();
                 spawnTo.getY();

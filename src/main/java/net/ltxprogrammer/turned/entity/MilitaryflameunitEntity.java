@@ -45,11 +45,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/MilitaryflameunitEntity.class */
 public class MilitaryflameunitEntity extends PathfinderMob implements RangedAttackMob {
     public MilitaryflameunitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.MILITARYFLAMEUNIT.get(), world);
+        this(LatexModEntities.MILITARYFLAMEUNIT.get(), world);
     }
 
     public MilitaryflameunitEntity(EntityType<MilitaryflameunitEntity> type, Level world) {
@@ -57,41 +58,41 @@ public class MilitaryflameunitEntity extends PathfinderMob implements RangedAtta
         this.xpReward = 0;
         setNoAi(false);
         setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.FLAMETHOWER.get()));
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(LatexModItems.FLAMETHOWER.get()));
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_LATEX));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, EvilMilitaryEntity.class, true, false));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, EvilSniperEntity.class, true, false));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, PrisionermilitiaEntity.class, true, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, PrisionerMilitiaMeleeEntity.class, true, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Illusioner.class, true, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Pillager.class, true, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, SpellcasterIllager.class, true, false));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Vindicator.class, true, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, Monster.class, true, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EvilMilitaryEntity.class, true, false));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, EvilSniperEntity.class, true, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, PrisionermilitiaEntity.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, PrisionerMilitiaMeleeEntity.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Illusioner.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, SpellcasterIllager.class, true, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Piglin.class, true, false));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Monster.class, true, false));
         this.goalSelector.addGoal(14, new MeleeAttackGoal(this, 1.0d, false) { // from class: net.ltxprogrammer.turned.entity.MilitaryflameunitEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
         this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.6d));
         this.goalSelector.addGoal(16, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(17, new OpenDoorGoal(this, false));
-        this.goalSelector.addGoal(18, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(18, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(18, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block) ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
-        this.targetSelector.addGoal(21, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(18, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(18, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
+        this.goalSelector.addGoal(18, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal(ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
+        this.targetSelector.addGoal(21, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(22, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(23, new FloatGoal(this));
         this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.MilitaryflameunitEntity.2
@@ -101,15 +102,11 @@ public class MilitaryflameunitEntity extends PathfinderMob implements RangedAtta
         });
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
     }
 
@@ -124,7 +121,7 @@ public class MilitaryflameunitEntity extends PathfinderMob implements RangedAtta
         return hurt(source, amount);
     }
 
-    public void performRangedAttack(LivingEntity target, float flval) {
+    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         FlamethowerEntity.shoot(this, target);
     }
 

@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class ArmedDroneHertxPlayerCollidesWithThisEntityProcedure {
     public static void execute(Entity entity) {
         if (entity != null && Math.random() < 0.01d && (entity instanceof LivingEntity)) {
-            ((LivingEntity) entity).hurt(new DamageSource("%1$s was killed by a Military Drone Hertx's rifle buttstock.").bypassArmor(), 3.0f);
+            entity.hurt(new DamageSource("%1$s was killed by a Military Drone Hertx's rifle buttstock.").bypassArmor(), 3.0f);
         }
     }
 }

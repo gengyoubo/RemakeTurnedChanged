@@ -16,8 +16,8 @@ public class DarkLatexCreeperEnhancedEntityIsHurtProcedure {
             if (!projectileLevel.isClientSide()) {
                 Projectile _entityToSpawn = new Object() { // from class: net.ltxprogrammer.turned.procedures.DarkLatexCreeperEnhancedEntityIsHurtProcedure.1
                     public Projectile getArrow(Level level, float damage, int knockback, byte piercing) {
-                        AbstractArrow entityToSpawn = new ExplosivegooEntity((EntityType) LatexModEntities.EXPLOSIVEGOO.get(), level);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        AbstractArrow entityToSpawn = new ExplosivegooEntity(LatexModEntities.EXPLOSIVEGOO.get(), level);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         entityToSpawn.setPierceLevel(piercing);

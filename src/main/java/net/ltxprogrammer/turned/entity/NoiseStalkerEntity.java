@@ -57,11 +57,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/NoiseStalkerEntity.class */
 public class NoiseStalkerEntity extends Monster {
     public NoiseStalkerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.NOISE_STALKER.get(), world);
+        this(LatexModEntities.NOISE_STALKER.get(), world);
     }
 
     public NoiseStalkerEntity(EntityType<NoiseStalkerEntity> type, Level world) {
@@ -70,42 +71,40 @@ public class NoiseStalkerEntity extends Monster {
         setNoAi(false);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
-        this.goalSelector.addGoal(1, new BreakDoorGoal(this, e -> {
-            return true;
-        }));
+        this.goalSelector.addGoal(1, new BreakDoorGoal(this, e -> true));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2d, true) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, false, true, TargetCheck.IS_SLIMELING));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MilitaryEntity.class, false, true));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, ScientistEntity.class, false, true));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, MilitaryflameunitEntity.class, false, true));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, EvilScientistEntity.class, false, true));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, EvilSniperEntity.class, false, true));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, EvilMilitaryEntity.class, false, true));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Player.class, false, true));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Villager.class, false, true));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, WanderingTrader.class, false, true));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, IronGolem.class, false, true));
-        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, Witch.class, false, true));
-        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Pillager.class, false, true));
-        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, Vindicator.class, false, true));
-        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, Evoker.class, false, true));
-        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Zombie.class, false, true));
-        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, ZombieVillager.class, false, true));
-        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, Piglin.class, false, true));
-        this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, ZombifiedPiglin.class, false, true));
-        this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, PiglinBrute.class, false, true));
-        this.targetSelector.addGoal(24, new NearestAttackableTargetGoal(this, Zoglin.class, false, true));
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, false, true, TargetCheck.IS_SLIMELING));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MilitaryEntity.class, false, true));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, ScientistEntity.class, false, true));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, MilitaryflameunitEntity.class, false, true));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, EvilScientistEntity.class, false, true));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, EvilSniperEntity.class, false, true));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, EvilMilitaryEntity.class, false, true));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Player.class, false, true));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, Villager.class, false, true));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, WanderingTrader.class, false, true));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, true));
+        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, Witch.class, false, true));
+        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, Pillager.class, false, true));
+        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, Vindicator.class, false, true));
+        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Evoker.class, false, true));
+        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Zombie.class, false, true));
+        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, false, true));
+        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal<>(this, Piglin.class, false, true));
+        this.targetSelector.addGoal(22, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, true));
+        this.targetSelector.addGoal(23, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, true));
+        this.targetSelector.addGoal(24, new NearestAttackableTargetGoal<>(this, Zoglin.class, false, true));
         this.goalSelector.addGoal(25, new RemoveBlockGoal(Blocks.SMOOTH_STONE, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.2
             public boolean canUse() {
                 NoiseStalkerEntity.this.getX();
@@ -210,24 +209,24 @@ public class NoiseStalkerEntity extends Monster {
         this.goalSelector.addGoal(38, new FloatGoal(this));
     }
 
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+        spawnAtLocation(new ItemStack(ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public SoundEvent getAmbientSound() {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.ambient"));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.hurt"));
     }
 
@@ -235,25 +234,25 @@ public class NoiseStalkerEntity extends Monster {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         if (source == DamageSource.FALL || source == DamageSource.CACTUS) {
             return false;
         }
         return hurt(source, amount);
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
         NoiseStalkerOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
 
-    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
         awardKillScore(entity, score, damageSource);
         NoiseStalkerThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
     }
 
-    public void playerTouch(Player sourceentity) {
+    public void playerTouch(@NotNull Player sourceentity) {
         playerTouch(sourceentity);
         NightstalkertestPlayerCollidesWithThisEntityProcedure.execute(this);
     }

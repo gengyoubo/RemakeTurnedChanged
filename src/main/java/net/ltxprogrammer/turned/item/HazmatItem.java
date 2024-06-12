@@ -12,16 +12,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/HazmatItem.class */
 public abstract class HazmatItem extends ArmorItem {
     public HazmatItem(EquipmentSlot slot, Item.Properties properties) {
         super(new ArmorMaterial() { // from class: net.ltxprogrammer.turned.item.HazmatItem.1
-            public int getDurabilityForSlot(EquipmentSlot slot2) {
+            public int getDurabilityForSlot(@NotNull EquipmentSlot slot2) {
                 return new int[]{13, 15, 16, 11}[slot2.getIndex()] * 64;
             }
 
-            public int getDefenseForSlot(EquipmentSlot slot2) {
+            public int getDefenseForSlot(@NotNull EquipmentSlot slot2) {
                 return new int[]{2, 3, 4, 2}[slot2.getIndex()];
             }
 
@@ -29,15 +30,15 @@ public abstract class HazmatItem extends ArmorItem {
                 return 12;
             }
 
-            public SoundEvent getEquipSound() {
+            public @NotNull SoundEvent getEquipSound() {
                 return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:gas_mask_wear"));
             }
 
-            public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack(Items.IRON_INGOT), new ItemStack(Items.LEATHER), new ItemStack(Items.CHARCOAL), new ItemStack(Items.GOLD_INGOT)});
+            public @NotNull Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack(Items.IRON_INGOT), new ItemStack(Items.LEATHER), new ItemStack(Items.CHARCOAL), new ItemStack(Items.GOLD_INGOT));
             }
 
-            public String getName() {
+            public @NotNull String getName() {
                 return "hazmat";
             }
 

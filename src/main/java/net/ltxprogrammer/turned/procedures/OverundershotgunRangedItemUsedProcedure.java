@@ -17,9 +17,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel.isClientSide()) {
                 Projectile _entityToSpawn = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.1
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;
@@ -33,9 +33,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel2.isClientSide()) {
                 Projectile _entityToSpawn2 = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.2
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;
@@ -49,9 +49,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel3.isClientSide()) {
                 Projectile _entityToSpawn3 = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.3
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;
@@ -65,9 +65,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel4.isClientSide()) {
                 Projectile _entityToSpawn4 = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.4
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;
@@ -81,9 +81,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel5.isClientSide()) {
                 Projectile _entityToSpawn5 = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.5
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;
@@ -97,9 +97,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel6.isClientSide()) {
                 Projectile _entityToSpawn6 = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.6
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;
@@ -113,9 +113,9 @@ public class OverundershotgunRangedItemUsedProcedure {
             if (!projectileLevel7.isClientSide()) {
                 Projectile _entityToSpawn7 = new Object() { // from class: net.ltxprogrammer.turned.procedures.OverundershotgunRangedItemUsedProcedure.7
                     public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {
-                        AbstractArrow entityToSpawn = new OverundershotgunEntity((EntityType) LatexModEntities.OVERUNDERSHOTGUN.get(), level);
+                        AbstractArrow entityToSpawn = new OverundershotgunEntity(LatexModEntities.OVERUNDERSHOTGUN.get(), level);
                         entityToSpawn.setOwner(shooter);
-                        entityToSpawn.setBaseDamage((double) damage);
+                        entityToSpawn.setBaseDamage(damage);
                         entityToSpawn.setKnockback(knockback);
                         entityToSpawn.setSilent(true);
                         return entityToSpawn;

@@ -15,17 +15,17 @@ public class HertxOnInitialEntitySpawnProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
             if (!(entity instanceof TamableAnimal) || !((TamableAnimal) entity).isTame()) {
-                if (entity instanceof TamableAnimal) {
-                    TamableAnimal _toTame = (TamableAnimal) entity;
-                    Player _owner = (Entity) world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 8.0d, 8.0d, 8.0d), e -> {
+                if (entity instanceof TamableAnimal _toTame) {
+                    // from class: net.ltxprogrammer.turned.procedures.HertxOnInitialEntitySpawnProcedure.1
+                    Player _owner = world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 8.0d, 8.0d, 8.0d), e -> {
                         return true;
-                    }).stream().sorted(new Object() { // from class: net.ltxprogrammer.turned.procedures.HertxOnInitialEntitySpawnProcedure.1
+                    }).stream().min(new Object() { // from class: net.ltxprogrammer.turned.procedures.HertxOnInitialEntitySpawnProcedure.1
                         Comparator<Entity> compareDistOf(double _x, double _y, double _z) {
                             return Comparator.comparingDouble(_entcnd -> {
                                 return _entcnd.distanceToSqr(_x, _y, _z);
                             });
                         }
-                    }.compareDistOf(x, y, z)).findFirst().orElse(null);
+                    }.compareDistOf(x, y, z)).orElse(null);
                     if (_owner instanceof Player) {
                         _toTame.tame(_owner);
                     }

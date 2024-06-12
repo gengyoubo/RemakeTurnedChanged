@@ -10,7 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class CrystalbowBulletHitsPlayerProcedure {
     public static void execute(Entity entity) {
         if (entity != null && Math.random() < 0.7d && (entity instanceof LivingEntity)) {
-            ((LivingEntity) entity).addEffect(new MobEffectInstance((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 60, 1, false, false));
+            ((LivingEntity) entity).addEffect(new MobEffectInstance(LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 60, 1, false, false));
         }
     }
 }

@@ -28,11 +28,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCOutsiderEntity.class */
 public class TSCOutsiderEntity extends Monster {
     public TSCOutsiderEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.TSC_OUTSIDER.get(), world);
+        this(LatexModEntities.TSC_OUTSIDER.get(), world);
     }
 
     public TSCOutsiderEntity(EntityType<TSCOutsiderEntity> type, Level world) {
@@ -42,40 +43,36 @@ public class TSCOutsiderEntity extends Monster {
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2d, false) { // from class: net.ltxprogrammer.turned.entity.TSCOutsiderEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
         this.goalSelector.addGoal(2, new OpenDoorGoal(this, true));
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Mob.class, 10, true, false, TargetCheck.IS_GOOD));
-    }
-
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
+        this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, TargetCheck.IS_GOOD));
     }
 
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         dropCustomDeathLoot(source, looting, recentlyHitIn);
         spawnAtLocation(new ItemStack(Items.IRON_INGOT));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.hit"));
     }
 
@@ -90,7 +87,7 @@ public class TSCOutsiderEntity extends Monster {
         return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         TSCOutsiderEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
     }

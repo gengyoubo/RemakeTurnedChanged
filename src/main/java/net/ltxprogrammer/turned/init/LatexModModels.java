@@ -72,13 +72,11 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModModels.class */
 public class LatexModModels {
-    public static ModelLayerLocation HUMANOID = new ModelLayerLocation(LatexMod.modResource("humanoid"), "main");
+    public static final ModelLayerLocation HUMANOID = new ModelLayerLocation(LatexMod.modResource("humanoid"), "main");
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(HUMANOID, () -> {
-            return LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0.0f), 64, 32);
-        });
+        event.registerLayerDefinition(HUMANOID, () -> LayerDefinition.create(HumanoidModel.createMesh(CubeDeformation.NONE, 0.0f), 64, 32));
         event.registerLayerDefinition(Modeldark_latex_snek_model.LAYER_LOCATION, Modeldark_latex_snek_model::createBodyLayer);
         event.registerLayerDefinition(ModelTSC_Hunter_model.LAYER_LOCATION, ModelTSC_Hunter_model::createBodyLayer);
         event.registerLayerDefinition(Modeldrop_pod.LAYER_LOCATION, Modeldrop_pod::createBodyLayer);
@@ -136,11 +134,7 @@ public class LatexModModels {
         event.registerLayerDefinition(Modeldark_latex_noise_stalker.LAYER_LOCATION, Modeldark_latex_noise_stalker::createBodyLayer);
         event.registerLayerDefinition(Modelhertx_sit_model_f.LAYER_LOCATION, Modelhertx_sit_model_f::createBodyLayer);
         event.registerLayerDefinition(Modelnxt_hertx_model.LAYER_LOCATION, Modelnxt_hertx_model::createBodyLayer);
-        event.registerLayerDefinition(ArmorNoneModel.INNER_ARMOR, () -> {
-            return ArmorNoneModel.createArmorLayer(ArmorModel.INNER);
-        });
-        event.registerLayerDefinition(ArmorNoneModel.OUTER_ARMOR, () -> {
-            return ArmorNoneModel.createArmorLayer(ArmorModel.OUTER);
-        });
+        event.registerLayerDefinition(ArmorNoneModel.INNER_ARMOR, () -> ArmorNoneModel.createArmorLayer(ArmorModel.INNER));
+        event.registerLayerDefinition(ArmorNoneModel.OUTER_ARMOR, () -> ArmorNoneModel.createArmorLayer(ArmorModel.OUTER));
     }
 }

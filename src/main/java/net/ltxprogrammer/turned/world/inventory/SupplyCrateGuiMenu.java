@@ -20,6 +20,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/world/inventory/SupplyCrateGuiMenu.class */
 public class SupplyCrateGuiMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
@@ -35,7 +36,7 @@ public class SupplyCrateGuiMenu extends AbstractContainerMenu implements Supplie
 
     /* renamed from: z */
     public int f29z;
-    private final Map<Integer, Slot> customSlots = new HashMap();
+    private final Map<Integer, Slot> customSlots = new HashMap<>();
     private boolean bound = false;
     private IItemHandler internal = new ItemStackHandler(36);
 
@@ -58,7 +59,7 @@ public class SupplyCrateGuiMenu extends AbstractContainerMenu implements Supplie
                 } else {
                     itemstack = this.entity.getOffhandItem();
                 }
-                itemstack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (Direction) null).ifPresent(capability -> {
+                itemstack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
                     this.internal = capability;
                     this.bound = true;
                 });
@@ -66,15 +67,15 @@ public class SupplyCrateGuiMenu extends AbstractContainerMenu implements Supplie
                 extraData.readByte();
                 Entity entity = this.world.getEntity(extraData.readVarInt());
                 if (entity != null) {
-                    entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (Direction) null).ifPresent(capability -> {
+                    entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
                         this.internal = capability;
                         this.bound = true;
                     });
                 }
             } else {
-                BlockEntity ent = inv.player != null ? inv.player.level.getBlockEntity(pos) : null;
+                BlockEntity ent = inv.player.level.getBlockEntity(pos);
                 if (ent != null) {
-                    ent.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (Direction) null).ifPresent(capability -> {
+                    ent.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
                         this.internal = capability;
                         this.bound = true;
                     });
@@ -163,14 +164,14 @@ public class SupplyCrateGuiMenu extends AbstractContainerMenu implements Supplie
         }
     }
 
-    public boolean stillValid(Player player) {
+    public boolean stillValid(@NotNull Player player) {
         return true;
     }
 
-    public ItemStack quickMoveStack(Player playerIn, int index) {
+    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = (Slot) this.slots.get(index);
-        if (slot != null && slot.hasItem()) {
+        Slot slot = this.slots.get(index);
+        if (slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (index < 36) {
@@ -208,17 +209,16 @@ public class SupplyCrateGuiMenu extends AbstractContainerMenu implements Supplie
     /* JADX WARNING: Removed duplicated region for block: B:66:0x016b A[SYNTHETIC] */
     /* JADX WARNING: Removed duplicated region for block: B:70:0x0165 A[SYNTHETIC] */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    protected boolean moveItemStackTo(net.minecraft.world.item.ItemStack r5, int r6, int r7, boolean r8) {
+    protected boolean moveItemStackTo(net.minecraft.world.item.@NotNull ItemStack r5, int r6, int r7, boolean r8) {
         /*
         // Method dump skipped, instructions count: 372
         */
         throw new UnsupportedOperationException("Method not decompiled: net.ltxprogrammer.turned.world.inventory.SupplyCrateGuiMenu.moveItemStackTo(net.minecraft.world.item.ItemStack, int, int, boolean):boolean");
     }
 
-    public void removed(Player playerIn) {
+    public void removed(@NotNull Player playerIn) {
         removed(playerIn);
-        if (!this.bound && (playerIn instanceof ServerPlayer)) {
-            ServerPlayer serverPlayer = (ServerPlayer) playerIn;
+        if (!this.bound && (playerIn instanceof ServerPlayer serverPlayer)) {
             if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
                 for (int j = 0; j < this.internal.getSlots(); j++) {
                     playerIn.drop(this.internal.extractItem(j, this.internal.getStackInSlot(j).getCount(), false), false);

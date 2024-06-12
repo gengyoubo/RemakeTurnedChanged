@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DronehertxupgradekitItem.class */
 public class DronehertxupgradekitItem extends Item {
@@ -20,14 +21,14 @@ public class DronehertxupgradekitItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON));
     }
 
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Turn your drone hertx in a military one!"));
     }
 
-    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player entity, @NotNull InteractionHand hand) {
         InteractionResultHolder<ItemStack> ar = use(world, entity, hand);
-        ItemStack itemStack = (ItemStack) ar.getObject();
+        ItemStack itemStack = ar.getObject();
         DronehertxupgradekitRightclickedProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity);
         return ar;
     }

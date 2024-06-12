@@ -13,6 +13,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/BookpilerandomItem.class */
 public class BookpilerandomItem extends Item {
@@ -20,18 +21,18 @@ public class BookpilerandomItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEX).stacksTo(16).rarity(Rarity.COMMON));
     }
 
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.EAT;
     }
 
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Places a random book pile"));
     }
 
-    public InteractionResult useOn(UseOnContext context) {
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         InteractionResult retval = useOn(context);
-        BookpilerandomRightClickedOnBlockProcedure.execute(context.getLevel(), (double) context.getClickedPos().getX(), (double) context.getClickedPos().getY(), (double) context.getClickedPos().getZ(), context.getPlayer());
+        BookpilerandomRightClickedOnBlockProcedure.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getPlayer());
         return retval;
     }
 }

@@ -1,5 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
+import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.FlamethowerBulletHitsBlockProcedure;
@@ -21,12 +22,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/FlamethowerEntity.class */
 public class FlamethowerEntity extends AbstractArrow implements ItemSupplier {
     public FlamethowerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super((EntityType) LatexModEntities.FLAMETHOWER.get(), world);
+        super(LatexModEntities.FLAMETHOWER.get(), world);
     }
 
     public FlamethowerEntity(EntityType<? extends FlamethowerEntity> type, Level world) {
@@ -41,27 +43,27 @@ public class FlamethowerEntity extends AbstractArrow implements ItemSupplier {
         super(type, entity, world);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ItemStack getItem() {
+    public @NotNull ItemStack getItem() {
         return new ItemStack(Blocks.FIRE);
     }
 
-    protected ItemStack getPickupItem() {
+    protected @NotNull ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
-    protected void doPostHurtEffects(LivingEntity entity) {
+    protected void doPostHurtEffects(@NotNull LivingEntity entity) {
         doPostHurtEffects(entity);
         entity.setArrowCount(entity.getArrowCount() - 1);
     }
 
-    public void onHitBlock(BlockHitResult blockHitResult) {
+    public void onHitBlock(@NotNull BlockHitResult blockHitResult) {
         onHitBlock(blockHitResult);
-        FlamethowerBulletHitsBlockProcedure.execute(this.level, (double) blockHitResult.getBlockPos().getX(), (double) blockHitResult.getBlockPos().getY(), (double) blockHitResult.getBlockPos().getZ());
+        FlamethowerBulletHitsBlockProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
     }
 
     public void tick() {
@@ -73,7 +75,7 @@ public class FlamethowerEntity extends AbstractArrow implements ItemSupplier {
     }
 
     public static FlamethowerEntity shoot(Level world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        FlamethowerEntity entityarrow = new FlamethowerEntity((EntityType) LatexModEntities.FLAMETHOWER.get(), entity, world);
+        FlamethowerEntity entityarrow = new FlamethowerEntity(LatexModEntities.FLAMETHOWER.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1.0f).x, entity.getViewVector(1.0f).y, entity.getViewVector(1.0f).z, power * 2.0f, 0.0f);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
@@ -81,12 +83,12 @@ public class FlamethowerEntity extends AbstractArrow implements ItemSupplier {
         entityarrow.setKnockback(knockback);
         entityarrow.setSecondsOnFire(100);
         world.addFreshEntity(entityarrow);
-        world.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.blaze.shoot")), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
+        world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.blaze.shoot"))), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
         return entityarrow;
     }
 
-    public static FlamethowerEntity shoot(LivingEntity entity, LivingEntity target) {
-        FlamethowerEntity entityarrow = new FlamethowerEntity((EntityType) LatexModEntities.FLAMETHOWER.get(), entity, entity.level);
+    public static void shoot(LivingEntity entity, LivingEntity target) {
+        FlamethowerEntity entityarrow = new FlamethowerEntity(LatexModEntities.FLAMETHOWER.get(), entity, entity.level);
         double dx = target.getX() - entity.getX();
         double dy = (target.getY() + ((double) target.getEyeHeight())) - 1.1d;
         double dz = target.getZ() - entity.getZ();
@@ -97,7 +99,6 @@ public class FlamethowerEntity extends AbstractArrow implements ItemSupplier {
         entityarrow.setCritArrow(false);
         entityarrow.setSecondsOnFire(100);
         entity.level.addFreshEntity(entityarrow);
-        entity.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.blaze.shoot")), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
-        return entityarrow;
+        entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.blaze.shoot"))), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
     }
 }

@@ -10,10 +10,9 @@ public class DarkLatexCakePlayerCollidesWithThisEntityProcedure {
     public static void execute(Entity entity, Entity sourceentity) {
         if (entity != null && sourceentity != null && Math.random() < 0.4d) {
             if (sourceentity instanceof LivingEntity) {
-                ((LivingEntity) sourceentity).hurt(new DamageSource("%1$s was absorbed by Dark Latex Cake Monster").bypassArmor(), 2.0f);
+                sourceentity.hurt(new DamageSource("%1$s was absorbed by Dark Latex Cake Monster").bypassArmor(), 2.0f);
             }
-            if (entity instanceof LivingEntity) {
-                LivingEntity _entity = (LivingEntity) entity;
+            if (entity instanceof LivingEntity _entity) {
                 if (LatexVariant.getEntityVariant(_entity) == null && LatexVariant.getEntityTransfur(_entity) == null) {
                     _entity.setHealth((entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f) + 2.0f);
                 }

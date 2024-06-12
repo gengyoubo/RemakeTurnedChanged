@@ -17,7 +17,7 @@ import net.minecraftforge.network.IContainerFactory;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModMenus.class */
 public class LatexModMenus {
-    private static final List<MenuType<?>> REGISTRY = new ArrayList();
+    private static final List<MenuType<?>> REGISTRY = new ArrayList<>();
     public static final MenuType<BoxguiMenu> BOXGUI = register("boxgui", id, inv, extraData -> {
         return new BoxguiMenu(id, inv, extraData);
     });
@@ -43,6 +43,6 @@ public class LatexModMenus {
 
     @SubscribeEvent
     public static void registerContainers(RegistryEvent.Register<MenuType<?>> event) {
-        event.getRegistry().registerAll((MenuType[]) REGISTRY.toArray(new MenuType[0]));
+        event.getRegistry().registerAll(REGISTRY.toArray(new MenuType[0]));
     }
 }

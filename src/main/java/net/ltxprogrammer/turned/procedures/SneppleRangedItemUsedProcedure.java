@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/SneppleRangedItemUsedProcedure.class */
 public class SneppleRangedItemUsedProcedure {
     public static void execute(Entity entity, ItemStack itemstack) {
-        if (entity != null && (entity instanceof Player)) {
+        if ((entity instanceof Player)) {
             ((Player) entity).getCooldowns().addCooldown(itemstack.getItem(), 20);
         }
     }

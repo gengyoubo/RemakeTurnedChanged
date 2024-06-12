@@ -6,6 +6,7 @@
 package net.ltxprogrammer.turned.entity;
 
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
@@ -37,6 +38,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 public class DLbeeEntity extends AbstractDarkLatexEntity {
     public DLbeeEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -50,11 +52,11 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    protected PathNavigation createNavigation(Level world) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
         return new FlyingPathNavigation(this, world);
     }
 
@@ -89,7 +91,7 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
 
             public void tick() {
                 LivingEntity livingentity = DLbeeEntity.this.getTarget();
-                if (DLbeeEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
+                if (DLbeeEntity.this.getBoundingBox().intersects(Objects.requireNonNull(livingentity).getBoundingBox())) {
                     DLbeeEntity.this.doHurtTarget(livingentity);
                 } else {
                     double d0 = DLbeeEntity.this.distanceToSqr(livingentity);
@@ -102,7 +104,7 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
             }
         });
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, true) {
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
@@ -131,7 +133,7 @@ public class DLbeeEntity extends AbstractDarkLatexEntity {
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }

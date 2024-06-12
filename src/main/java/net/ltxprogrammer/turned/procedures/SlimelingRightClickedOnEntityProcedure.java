@@ -28,28 +28,22 @@ public class SlimelingRightClickedOnEntityProcedure {
                     return;
                 }
             }
-            if (sourceentity instanceof Player) {
-                Player _player = (Player) sourceentity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (sourceentity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(ChangedItems.DARK_LATEX_GOO.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
             if (Math.random() < 0.4d) {
                 if (Math.random() < 0.025d) {
                     if (world instanceof ServerLevel) {
                         ((ServerLevel) world).sendParticles(ParticleTypes.HEART, x, y, z, 6, 2.0d, 2.0d, 2.0d, 1.0d);
                     }
-                    if (world instanceof ServerLevel) {
-                        ServerLevel _level = (ServerLevel) world;
-                        Entity entityToSpawn = new ProtectorSlimelingEntity((EntityType<ProtectorSlimelingEntity>) ((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get()), (Level) _level);
+                    if (world instanceof ServerLevel _level) {
+                        Entity entityToSpawn = new ProtectorSlimelingEntity((EntityType<ProtectorSlimelingEntity>) LatexModEntities.PROTECTOR_SLIMELING.get(), _level);
                         entityToSpawn.moveTo(x, y, z, 0.0f, 0.0f);
                         entityToSpawn.setYBodyRot(0.0f);
                         entityToSpawn.setYHeadRot(0.0f);
                         entityToSpawn.setDeltaMovement(0.0d, 0.0d, 0.0d);
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         world.addFreshEntity(entityToSpawn);
                     }
                     if (!entity.level.isClientSide()) {
@@ -61,16 +55,13 @@ public class SlimelingRightClickedOnEntityProcedure {
                 if (world instanceof ServerLevel) {
                     ((ServerLevel) world).sendParticles(ParticleTypes.HEART, x, y, z, 6, 2.0d, 2.0d, 2.0d, 1.0d);
                 }
-                if (world instanceof ServerLevel) {
-                    ServerLevel _level2 = (ServerLevel) world;
-                    Entity entityToSpawn2 = new SlimelingTamedEntity((EntityType<SlimelingTamedEntity>) ((EntityType) LatexModEntities.SLIMELING_TAMED.get()), (Level) _level2);
+                if (world instanceof ServerLevel _level2) {
+                    Entity entityToSpawn2 = new SlimelingTamedEntity((EntityType<SlimelingTamedEntity>) LatexModEntities.SLIMELING_TAMED.get(), _level2);
                     entityToSpawn2.moveTo(x, y, z, 0.0f, 0.0f);
                     entityToSpawn2.setYBodyRot(0.0f);
                     entityToSpawn2.setYHeadRot(0.0f);
                     entityToSpawn2.setDeltaMovement(0.0d, 0.0d, 0.0d);
-                    if (entityToSpawn2 instanceof Mob) {
-                        ((Mob) entityToSpawn2).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                    }
+                    ((Mob) entityToSpawn2).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                     world.addFreshEntity(entityToSpawn2);
                 }
                 if (!entity.level.isClientSide()) {

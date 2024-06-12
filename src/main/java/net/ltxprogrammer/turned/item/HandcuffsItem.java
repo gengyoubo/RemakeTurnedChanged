@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/HandcuffsItem.class */
 public class HandcuffsItem extends Item {
@@ -18,12 +19,12 @@ public class HandcuffsItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON));
     }
 
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Hit non-combattant humans to arrest them."));
     }
 
-    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
         boolean retval = hurtEnemy(itemstack, entity, sourceentity);
         HandcuffsRightclickedProcedure.execute(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity);
         return retval;

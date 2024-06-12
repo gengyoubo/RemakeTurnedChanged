@@ -50,28 +50,27 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 public class ChesTrapBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING;
 
     public ChesTrapBlock() {
-        super(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 5.0F).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> {
-            return false;
-        }));
+        super(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(1.0F, 5.0F).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Wait"));
         list.add(new TextComponent("It's a trap!"));
     }
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return true;
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 0;
     }
 
@@ -95,11 +94,11 @@ public class ChesTrapBlock extends Block implements EntityBlock {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
@@ -112,7 +111,7 @@ public class ChesTrapBlock extends Block implements EntityBlock {
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
@@ -123,12 +122,12 @@ public class ChesTrapBlock extends Block implements EntityBlock {
         return retval;
     }
 
-    public void stepOn(Level world, BlockPos pos, BlockState blockstate, Entity entity) {
+    public void stepOn(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState blockstate, @NotNull Entity entity) {
         super.stepOn(world, pos, blockstate, entity);
         BoxTrapOnBlockRightClickedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
-    public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player entity, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(blockstate, world, pos, entity, hand, hit);
         int x = pos.getX();
         int y = pos.getY();
@@ -141,7 +140,7 @@ public class ChesTrapBlock extends Block implements EntityBlock {
         return InteractionResult.SUCCESS;
     }
 
-    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+    public MenuProvider getMenuProvider(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);
         MenuProvider var10000;
         if (tileEntity instanceof MenuProvider menuProvider) {
@@ -153,17 +152,17 @@ public class ChesTrapBlock extends Block implements EntityBlock {
         return var10000;
     }
 
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new ChesTrapBlockEntity(pos, state);
     }
 
-    public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
+    public boolean triggerEvent(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, int eventID, int eventParam) {
         super.triggerEvent(state, world, pos, eventID, eventParam);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity != null && blockEntity.triggerEvent(eventID, eventParam);
     }
 
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, @NotNull Level world, @NotNull BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof ChesTrapBlockEntity) {
@@ -177,11 +176,11 @@ public class ChesTrapBlock extends Block implements EntityBlock {
 
     }
 
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
-    public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
+    public int getAnalogOutputSignal(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos) {
         BlockEntity tileentity = world.getBlockEntity(pos);
         if (tileentity instanceof ChesTrapBlockEntity be) {
             return AbstractContainerMenu.getRedstoneSignalFromContainer(be);
@@ -192,9 +191,7 @@ public class ChesTrapBlock extends Block implements EntityBlock {
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.CHES_TRAP.get(), (renderType) -> {
-            return renderType == RenderType.cutout();
-        });
+        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.CHES_TRAP.get(), (renderType) -> renderType == RenderType.cutout());
     }
 
     static {

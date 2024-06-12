@@ -27,9 +27,8 @@ public class M16breaksProcedure {
 
     private static void execute(@Nullable Event event, Entity entity) {
         if (entity != null) {
-            if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.M_4_ASSAULT_RIFLE.get() && (entity instanceof LivingEntity)) {
-                LivingEntity _entity = (LivingEntity) entity;
-                ItemStack _setstack = new ItemStack((ItemLike) LatexModItems.BROKENM_16.get());
+            if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.M_4_ASSAULT_RIFLE.get() && (entity instanceof LivingEntity _entity)) {
+                ItemStack _setstack = new ItemStack(LatexModItems.BROKENM_16.get());
                 _setstack.setCount(1);
                 _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
                 if (_entity instanceof Player) {

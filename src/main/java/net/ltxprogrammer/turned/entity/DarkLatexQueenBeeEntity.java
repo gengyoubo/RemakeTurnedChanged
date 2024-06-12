@@ -1,6 +1,7 @@
 package net.ltxprogrammer.turned.entity;
 
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
@@ -61,6 +62,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     private final ServerBossEvent bossInfo;
@@ -78,11 +80,11 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    protected PathNavigation createNavigation(Level world) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
         return new FlyingPathNavigation(this, world);
     }
 
@@ -109,7 +111,7 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
 
             public void tick() {
                 LivingEntity livingentity = DarkLatexQueenBeeEntity.this.getTarget();
-                if (DarkLatexQueenBeeEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
+                if (DarkLatexQueenBeeEntity.this.getBoundingBox().intersects(Objects.requireNonNull(livingentity).getBoundingBox())) {
                     DarkLatexQueenBeeEntity.this.doHurtTarget(livingentity);
                 } else {
                     double d0 = DarkLatexQueenBeeEntity.this.distanceToSqr(livingentity);
@@ -123,30 +125,30 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         });
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.1, true) {
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, DarkLatexSpiderQueenEntity.class, true, false));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, DarkLatexSpiderEntity.class, true, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, CaveSpider.class, true, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Spider.class, true, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, DarkLatexQueenBeeEntity.class, true, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, true, TargetCheck.IS_SLIMELING));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_GOOD));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Player.class, true, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, Villager.class, true, false));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, WanderingTrader.class, true, false));
-        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, IronGolem.class, true, false));
-        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Witch.class, true, false));
-        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, Pillager.class, true, false));
-        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, Vindicator.class, true, false));
-        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Evoker.class, true, false));
-        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, Zombie.class, true, false));
-        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
-        this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
-        this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, DarkLatexSpiderQueenEntity.class, true, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, DarkLatexSpiderEntity.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, CaveSpider.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Spider.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, DarkLatexQueenBeeEntity.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, false, true, TargetCheck.IS_SLIMELING));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, TargetCheck.IS_GOOD));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, Player.class, true, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Villager.class, true, false));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, WanderingTrader.class, true, false));
+        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, IronGolem.class, true, false));
+        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, Witch.class, true, false));
+        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Evoker.class, true, false));
+        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, Zombie.class, true, false));
+        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, true, false));
+        this.targetSelector.addGoal(22, new NearestAttackableTargetGoal<>(this, Piglin.class, true, false));
+        this.targetSelector.addGoal(23, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true, false));
         this.goalSelector.addGoal(24, new RandomStrollGoal(this, 1.2, 20) {
             protected Vec3 getPosition() {
                 Random random = DarkLatexQueenBeeEntity.this.getRandom();
@@ -172,7 +174,7 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         return super.getPassengersRidingOffset() + 0.2;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
@@ -181,7 +183,7 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.bee.loop"));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
         this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
@@ -193,7 +195,7 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.death"));
     }
 
-    public boolean causeFallDamage(float l, float d, DamageSource source) {
+    public boolean causeFallDamage(float l, float d, @NotNull DamageSource source) {
         return false;
     }
 
@@ -217,12 +219,12 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         DarkLatexQueenBeeEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
-    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
         super.awardKillScore(entity, score, damageSource);
         DarkLatexQueenBeeThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity);
     }
 
-    public void playerTouch(Player sourceentity) {
+    public void playerTouch(@NotNull Player sourceentity) {
         super.playerTouch(sourceentity);
         DarkLatexQueenBeePlayerCollidesWithThisEntityProcedure.execute(this);
     }
@@ -231,12 +233,12 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         return false;
     }
 
-    public void startSeenByPlayer(ServerPlayer player) {
+    public void startSeenByPlayer(@NotNull ServerPlayer player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
-    public void stopSeenByPlayer(ServerPlayer player) {
+    public void stopSeenByPlayer(@NotNull ServerPlayer player) {
         super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
@@ -246,7 +248,7 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
     }
 
-    protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+    protected void checkFallDamage(double y, boolean onGroundIn, @NotNull BlockState state, @NotNull BlockPos pos) {
     }
 
     public void setNoGravity(boolean ignored) {

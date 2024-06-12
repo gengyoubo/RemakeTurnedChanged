@@ -1,5 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
+import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.turned.init.LatexModEntities;
@@ -25,12 +26,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/RevolvingGooCannonEntity.class */
 public class RevolvingGooCannonEntity extends AbstractArrow implements ItemSupplier {
     public RevolvingGooCannonEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super((EntityType) LatexModEntities.REVOLVING_GOO_CANNON.get(), world);
+        super(LatexModEntities.REVOLVING_GOO_CANNON.get(), world);
     }
 
     public RevolvingGooCannonEntity(EntityType<? extends RevolvingGooCannonEntity> type, Level world) {
@@ -45,32 +47,32 @@ public class RevolvingGooCannonEntity extends AbstractArrow implements ItemSuppl
         super(type, entity, world);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ItemStack getItem() {
-        return new ItemStack((ItemLike) LatexModItems.BULLETICON.get());
+    public @NotNull ItemStack getItem() {
+        return new ItemStack(LatexModItems.BULLETICON.get());
     }
 
-    protected ItemStack getPickupItem() {
-        return new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get());
+    protected @NotNull ItemStack getPickupItem() {
+        return new ItemStack(ChangedItems.DARK_LATEX_GOO.get());
     }
 
-    protected void doPostHurtEffects(LivingEntity entity) {
+    protected void doPostHurtEffects(@NotNull LivingEntity entity) {
         doPostHurtEffects(entity);
         entity.setArrowCount(entity.getArrowCount() - 1);
     }
 
-    public void onHitEntity(EntityHitResult entityHitResult) {
+    public void onHitEntity(@NotNull EntityHitResult entityHitResult) {
         onHitEntity(entityHitResult);
         ExplosivegooProjectileHitsPlayerProcedure.execute(this.level, getX(), getY(), getZ(), entityHitResult.getEntity());
     }
 
-    public void onHitBlock(BlockHitResult blockHitResult) {
+    public void onHitBlock(@NotNull BlockHitResult blockHitResult) {
         onHitBlock(blockHitResult);
-        ExplosivegooProjectileHitsBlockProcedure.execute(this.level, (double) blockHitResult.getBlockPos().getX(), (double) blockHitResult.getBlockPos().getY(), (double) blockHitResult.getBlockPos().getZ());
+        ExplosivegooProjectileHitsBlockProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
     }
 
     public void tick() {
@@ -82,19 +84,19 @@ public class RevolvingGooCannonEntity extends AbstractArrow implements ItemSuppl
     }
 
     public static RevolvingGooCannonEntity shoot(Level world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        RevolvingGooCannonEntity entityarrow = new RevolvingGooCannonEntity((EntityType) LatexModEntities.REVOLVING_GOO_CANNON.get(), entity, world);
+        RevolvingGooCannonEntity entityarrow = new RevolvingGooCannonEntity(LatexModEntities.REVOLVING_GOO_CANNON.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1.0f).x, entity.getViewVector(1.0f).y, entity.getViewVector(1.0f).z, power * 2.0f, 0.0f);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
         entityarrow.setBaseDamage(damage);
         entityarrow.setKnockback(knockback);
         world.addFreshEntity(entityarrow);
-        world.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.hit")), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
+        world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.hit"))), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
         return entityarrow;
     }
 
     public static RevolvingGooCannonEntity shoot(LivingEntity entity, LivingEntity target) {
-        RevolvingGooCannonEntity entityarrow = new RevolvingGooCannonEntity((EntityType) LatexModEntities.REVOLVING_GOO_CANNON.get(), entity, entity.level);
+        RevolvingGooCannonEntity entityarrow = new RevolvingGooCannonEntity(LatexModEntities.REVOLVING_GOO_CANNON.get(), entity, entity.level);
         double dx = target.getX() - entity.getX();
         double dy = (target.getY() + ((double) target.getEyeHeight())) - 1.1d;
         double dz = target.getZ() - entity.getZ();
@@ -104,7 +106,7 @@ public class RevolvingGooCannonEntity extends AbstractArrow implements ItemSuppl
         entityarrow.setKnockback(1);
         entityarrow.setCritArrow(false);
         entity.level.addFreshEntity(entityarrow);
-        entity.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.hit")), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
+        entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.slime_block.hit"))), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
         return entityarrow;
     }
 }

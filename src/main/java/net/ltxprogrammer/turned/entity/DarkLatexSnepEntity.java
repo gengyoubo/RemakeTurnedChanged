@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSnepEntity extends AbstractDarkLatexEntity {
     public DarkLatexSnepEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -31,16 +32,14 @@ public class DarkLatexSnepEntity extends AbstractDarkLatexEntity {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(19, new BreakDoorGoal(this, (e) -> {
-            return true;
-        }));
+        this.goalSelector.addGoal(19, new BreakDoorGoal(this, (e) -> true));
     }
 
     public MobType getMobType() {
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }

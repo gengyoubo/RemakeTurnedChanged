@@ -16,15 +16,12 @@ import net.minecraft.world.level.LevelAccessor;
 public class ArmedDroneHertxWaitEntityIsHurtProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                Entity entityToSpawn = new ArmedDroneHertxEntity((EntityType<ArmedDroneHertxEntity>) ((EntityType) LatexModEntities.ARMED_DRONE_HERTX.get()), (Level) _level);
+            if (world instanceof ServerLevel _level) {
+                Entity entityToSpawn = new ArmedDroneHertxEntity((EntityType<ArmedDroneHertxEntity>) LatexModEntities.ARMED_DRONE_HERTX.get(), _level);
                 entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                 entityToSpawn.setYBodyRot(entity.getYRot());
                 entityToSpawn.setYHeadRot(entity.getYRot());
-                if (entityToSpawn instanceof Mob) {
-                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                }
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                 world.addFreshEntity(entityToSpawn);
             }
             if (!entity.level.isClientSide()) {

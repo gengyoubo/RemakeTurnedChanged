@@ -32,26 +32,12 @@ public class ProtectorSlimelingRightClickedOnEntityProcedure {
         if (entity != null && sourceentity != null) {
             if ((sourceentity instanceof LivingEntity ? ((LivingEntity) sourceentity).getMainHandItem() : ItemStack.EMPTY).getItem() == ChangedItems.DARK_LATEX_GOO.get()) {
                 if ((entity instanceof TamableAnimal) && ((TamableAnimal) entity).isTame()) {
-                    float health = entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f;
-                    if (entity instanceof LivingEntity) {
-                        f3 = ((LivingEntity) entity).getMaxHealth();
-                    } else {
-                        f3 = -1.0f;
-                    }
+                    float health = ((LivingEntity) entity).getHealth();
+                    f3 = ((LivingEntity) entity).getMaxHealth();
                     if (health < f3) {
-                        if (entity instanceof LivingEntity) {
-                            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
-                        }
+                        ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
                         if (world instanceof ServerLevel) {
                             ((ServerLevel) world).sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0d, 2.0d, 1.0d, 1.0d);
-                        }
-                        if (entity instanceof Player) {
-                            Player _player = (Player) entity;
-                            ItemStack _stktoremove = new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get());
-                            _player.getInventory().clearOrCountMatchingItems(p -> {
-                                return _stktoremove.getItem() == p.getItem();
-                            }, 1, _player.inventoryMenu.getCraftSlots());
-                            return;
                         }
                         return;
                     }
@@ -61,26 +47,12 @@ public class ProtectorSlimelingRightClickedOnEntityProcedure {
             }
             if ((sourceentity instanceof LivingEntity ? ((LivingEntity) sourceentity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.LATEX_SOUP.get()) {
                 if ((entity instanceof TamableAnimal) && ((TamableAnimal) entity).isTame()) {
-                    float health2 = entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f;
-                    if (entity instanceof LivingEntity) {
-                        f2 = ((LivingEntity) entity).getMaxHealth();
-                    } else {
-                        f2 = -1.0f;
-                    }
+                    float health2 = ((LivingEntity) entity).getHealth();
+                    f2 = ((LivingEntity) entity).getMaxHealth();
                     if (health2 < f2) {
-                        if (entity instanceof LivingEntity) {
-                            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
-                        }
+                        ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
                         if (world instanceof ServerLevel) {
                             ((ServerLevel) world).sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0d, 2.0d, 1.0d, 1.0d);
-                        }
-                        if (entity instanceof Player) {
-                            Player _player2 = (Player) entity;
-                            ItemStack _stktoremove2 = new ItemStack((ItemLike) LatexModItems.LATEX_SOUP.get());
-                            _player2.getInventory().clearOrCountMatchingItems(p -> {
-                                return _stktoremove2.getItem() == p.getItem();
-                            }, 1, _player2.inventoryMenu.getCraftSlots());
-                            return;
                         }
                         return;
                     }
@@ -90,40 +62,23 @@ public class ProtectorSlimelingRightClickedOnEntityProcedure {
             }
             if ((sourceentity instanceof LivingEntity ? ((LivingEntity) sourceentity).getMainHandItem() : ItemStack.EMPTY).getItem() == Items.SLIME_BALL) {
                 if ((entity instanceof TamableAnimal) && ((TamableAnimal) entity).isTame()) {
-                    float health3 = entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f;
-                    if (entity instanceof LivingEntity) {
-                        f = ((LivingEntity) entity).getMaxHealth();
-                    } else {
-                        f = -1.0f;
-                    }
+                    float health3 = ((LivingEntity) entity).getHealth();
+                    f = ((LivingEntity) entity).getMaxHealth();
                     if (health3 < f) {
-                        if (entity instanceof LivingEntity) {
-                            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 120, 1, false, false));
-                        }
+                        ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.REGENERATION, 120, 1, false, false));
                         if (world instanceof ServerLevel) {
                             ((ServerLevel) world).sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0d, 2.0d, 1.0d, 1.0d);
                         }
-                        if (entity instanceof Player) {
-                            Player _player3 = (Player) entity;
-                            ItemStack _stktoremove3 = new ItemStack(Items.SLIME_BALL);
-                            _player3.getInventory().clearOrCountMatchingItems(p -> {
-                                return _stktoremove3.getItem() == p.getItem();
-                            }, 1, _player3.inventoryMenu.getCraftSlots());
-                        }
                     }
                 }
-            } else if (entity instanceof TamableAnimal) {
-                TamableAnimal _tamIsTamedBy = (TamableAnimal) entity;
+            } else if (entity instanceof TamableAnimal _tamIsTamedBy) {
                 if ((sourceentity instanceof LivingEntity) && _tamIsTamedBy.isOwnedBy((LivingEntity) sourceentity)) {
-                    if (world instanceof ServerLevel) {
-                        ServerLevel _level = (ServerLevel) world;
-                        Entity entityToSpawn = new ProtectorSlimelingsitEntity((EntityType<ProtectorSlimelingsitEntity>) ((EntityType) LatexModEntities.PROTECTOR_SLIMELINGSIT.get()), (Level) _level);
+                    if (world instanceof ServerLevel _level) {
+                        Entity entityToSpawn = new ProtectorSlimelingsitEntity((EntityType<ProtectorSlimelingsitEntity>) LatexModEntities.PROTECTOR_SLIMELINGSIT.get(), _level);
                         entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                         entityToSpawn.setYBodyRot(entity.getYRot());
                         entityToSpawn.setYHeadRot(entity.getYRot());
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         world.addFreshEntity(entityToSpawn);
                     }
                     if (!entity.level.isClientSide()) {

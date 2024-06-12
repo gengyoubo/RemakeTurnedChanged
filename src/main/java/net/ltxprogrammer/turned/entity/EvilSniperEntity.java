@@ -43,11 +43,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/EvilSniperEntity.class */
 public class EvilSniperEntity extends PathfinderMob implements RangedAttackMob {
     public EvilSniperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.EVIL_SNIPER.get(), world);
+        this(LatexModEntities.EVIL_SNIPER.get(), world);
     }
 
     public EvilSniperEntity(EntityType<EvilSniperEntity> type, Level world) {
@@ -55,30 +56,30 @@ public class EvilSniperEntity extends PathfinderMob implements RangedAttackMob {
         this.xpReward = 0;
         setNoAi(false);
         setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.DARTRIFLE.get()));
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(LatexModItems.DARTRIFLE.get()));
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, true, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_GOOD));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, true, false, TargetCheck.IS_SLIMELING));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MilitaryEntity.class, true, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, MilitaryflameunitEntity.class, true, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, MilitaryRiotEntity.class, true, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, CivlianMilitiaEntity.class, true, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, CivilianMilitiaMeleeEntity.class, true, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_GOOD));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, TargetCheck.IS_SLIMELING));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MilitaryEntity.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, MilitaryflameunitEntity.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, MilitaryRiotEntity.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, CivlianMilitiaEntity.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, CivilianMilitiaMeleeEntity.class, true, false));
         this.goalSelector.addGoal(10, new MeleeAttackGoal(this, 0.9d, false) { // from class: net.ltxprogrammer.turned.entity.EvilSniperEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
-        this.targetSelector.addGoal(11, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(11, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(12, new MoveBackToVillageGoal(this, 0.6d, false));
         this.goalSelector.addGoal(13, new RandomStrollGoal(this, 1.0d));
         this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, EvilScientistEntity.class, 6.0f));
@@ -97,19 +98,15 @@ public class EvilSniperEntity extends PathfinderMob implements RangedAttackMob {
         });
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
     }
 
@@ -117,13 +114,13 @@ public class EvilSniperEntity extends PathfinderMob implements RangedAttackMob {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
         ScientistOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
 
-    public void performRangedAttack(LivingEntity target, float flval) {
+    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         DartrifleEntity.shoot(this, target);
     }
 

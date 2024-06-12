@@ -14,12 +14,11 @@ public class EvilMilitaryOnInitialEntitySpawnProcedure {
         if (entity == null || Math.random() >= 0.05d) {
             return;
         }
-        if (entity instanceof Player) {
-            Player _player = (Player) entity;
-            _player.getInventory().armor.set(3, new ItemStack((ItemLike) LatexModItems.EVIL_BERET_HELMET.get()));
+        if (entity instanceof Player _player) {
+            _player.getInventory().armor.set(3, new ItemStack(LatexModItems.EVIL_BERET_HELMET.get()));
             _player.getInventory().setChanged();
         } else if (entity instanceof LivingEntity) {
-            ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.EVIL_BERET_HELMET.get()));
+            entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(LatexModItems.EVIL_BERET_HELMET.get()));
         }
     }
 }

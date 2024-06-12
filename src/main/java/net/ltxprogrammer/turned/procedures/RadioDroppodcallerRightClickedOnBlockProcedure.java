@@ -27,15 +27,11 @@ public class RadioDroppodcallerRightClickedOnBlockProcedure {
             if (entity instanceof Player) {
                 ((Player) entity).getCooldowns().addCooldown(itemstack.getItem(), 450);
             }
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.RADIO_DROPPODCALLER.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.RADIO_DROPPODCALLER.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
-            if (entity instanceof Player) {
-                Player _player2 = (Player) entity;
+            if (entity instanceof Player _player2) {
                 if (!_player2.level.isClientSide()) {
                     _player2.displayClientMessage(new TextComponent("\"ROGER THAT,EVIL DROP POD INCOMING!\""), false);
                 }
@@ -64,14 +60,11 @@ public class RadioDroppodcallerRightClickedOnBlockProcedure {
                 private void run() {
                     ServerLevel serverLevel = this.world;
                     if (serverLevel instanceof ServerLevel) {
-                        ServerLevel _level = serverLevel;
-                        Entity entityToSpawn = new DROPPODEntity((EntityType<DROPPODEntity>) ((EntityType) LatexModEntities.DROPPOD.get()), (Level) _level);
+                        Entity entityToSpawn = new DROPPODEntity((EntityType<DROPPODEntity>) LatexModEntities.DROPPOD.get(), serverLevel);
                         entityToSpawn.moveTo(x, y + 32.0d, z, 0.0f, 0.0f);
                         entityToSpawn.setYBodyRot(0.0f);
                         entityToSpawn.setYHeadRot(0.0f);
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(serverLevel, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         this.world.addFreshEntity(entityToSpawn);
                     }
                     MinecraftForge.EVENT_BUS.unregister(this);

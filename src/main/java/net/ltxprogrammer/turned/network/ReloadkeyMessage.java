@@ -14,8 +14,8 @@ import net.minecraftforge.network.NetworkEvent;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/network/ReloadkeyMessage.class */
 public class ReloadkeyMessage {
-    int type;
-    int pressedms;
+    final int type;
+    final int pressedms;
 
     public ReloadkeyMessage(int type, int pressedms) {
         this.type = type;
@@ -34,9 +34,7 @@ public class ReloadkeyMessage {
 
     public static void handler(ReloadkeyMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
-        context.enqueueWork(() -> {
-            pressAction(context.getSender(), message.type, message.pressedms);
-        });
+        context.enqueueWork(() -> pressAction(context.getSender(), message.type, message.pressedms));
         context.setPacketHandled(true);
     }
 

@@ -17,16 +17,14 @@ public class TSCHunterEntityDiesProcedure {
         if (Math.random() >= 0.1d || !world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
             if (Math.random() < 0.4d) {
                 for (int index0 = 0; index0 < 4; index0++) {
-                    if (world instanceof Level) {
-                        Level _level = (Level) world;
+                    if (world instanceof Level _level) {
                         if (!_level.isClientSide()) {
                             ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(Items.IRON_INGOT));
                             entityToSpawn.setPickUpDelay(10);
                             _level.addFreshEntity(entityToSpawn);
                         }
                     }
-                    if (Math.random() < 0.4d && (world instanceof Level)) {
-                        Level _level2 = (Level) world;
+                    if (Math.random() < 0.4d && (world instanceof Level _level2)) {
                         if (!_level2.isClientSide()) {
                             ItemEntity entityToSpawn2 = new ItemEntity(_level2, x, y, z, new ItemStack(Items.IRON_NUGGET));
                             entityToSpawn2.setPickUpDelay(10);
@@ -36,16 +34,14 @@ public class TSCHunterEntityDiesProcedure {
                 }
                 if (Math.random() < 0.2d) {
                     for (int index1 = 0; index1 < 3; index1++) {
-                        if (world instanceof Level) {
-                            Level _level3 = (Level) world;
+                        if (world instanceof Level _level3) {
                             if (!_level3.isClientSide()) {
                                 ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack(Items.IRON_INGOT));
                                 entityToSpawn3.setPickUpDelay(10);
                                 _level3.addFreshEntity(entityToSpawn3);
                             }
                         }
-                        if (Math.random() < 0.1d && (world instanceof Level)) {
-                            Level _level4 = (Level) world;
+                        if (Math.random() < 0.1d && (world instanceof Level _level4)) {
                             if (!_level4.isClientSide()) {
                                 ItemEntity entityToSpawn4 = new ItemEntity(_level4, x, y, z, new ItemStack(Items.GOLD_NUGGET));
                                 entityToSpawn4.setPickUpDelay(10);
@@ -55,8 +51,7 @@ public class TSCHunterEntityDiesProcedure {
                     }
                     if (Math.random() < 0.1d) {
                         for (int index2 = 0; index2 < 3; index2++) {
-                            if (world instanceof Level) {
-                                Level _level5 = (Level) world;
+                            if (world instanceof Level _level5) {
                                 if (!_level5.isClientSide()) {
                                     ItemEntity entityToSpawn5 = new ItemEntity(_level5, x, y, z, new ItemStack(Items.IRON_INGOT));
                                     entityToSpawn5.setPickUpDelay(10);
@@ -69,16 +64,14 @@ public class TSCHunterEntityDiesProcedure {
             }
             if (Math.random() < 0.4d) {
                 for (int index3 = 0; index3 < 5; index3++) {
-                    if (world instanceof Level) {
-                        Level _level6 = (Level) world;
+                    if (world instanceof Level _level6) {
                         if (!_level6.isClientSide()) {
                             ItemEntity entityToSpawn6 = new ItemEntity(_level6, x, y, z, new ItemStack(Items.REDSTONE));
                             entityToSpawn6.setPickUpDelay(10);
                             _level6.addFreshEntity(entityToSpawn6);
                         }
                     }
-                    if (Math.random() < 0.3d && (world instanceof Level)) {
-                        Level _level7 = (Level) world;
+                    if (Math.random() < 0.3d && (world instanceof Level _level7)) {
                         if (!_level7.isClientSide()) {
                             ItemEntity entityToSpawn7 = new ItemEntity(_level7, x, y, z, new ItemStack(Items.REDSTONE));
                             entityToSpawn7.setPickUpDelay(10);
@@ -89,10 +82,9 @@ public class TSCHunterEntityDiesProcedure {
             }
             if (Math.random() < 0.2d) {
                 for (int index4 = 0; index4 < 2; index4++) {
-                    if (world instanceof Level) {
-                        Level _level8 = (Level) world;
+                    if (world instanceof Level _level8) {
                         if (!_level8.isClientSide()) {
-                            ItemEntity entityToSpawn8 = new ItemEntity(_level8, x, y, z, new ItemStack((ItemLike) LatexModItems.BATTERY.get()));
+                            ItemEntity entityToSpawn8 = new ItemEntity(_level8, x, y, z, new ItemStack(LatexModItems.BATTERY.get()));
                             entityToSpawn8.setPickUpDelay(10);
                             _level8.addFreshEntity(entityToSpawn8);
                         }
@@ -100,16 +92,14 @@ public class TSCHunterEntityDiesProcedure {
                 }
             }
             if (Math.random() < 0.1d) {
-                if (world instanceof Level) {
-                    Level _level9 = (Level) world;
+                if (world instanceof Level _level9) {
                     if (!_level9.isClientSide()) {
                         ItemEntity entityToSpawn9 = new ItemEntity(_level9, x, y, z, new ItemStack(Items.GOLD_INGOT));
                         entityToSpawn9.setPickUpDelay(10);
                         _level9.addFreshEntity(entityToSpawn9);
                     }
                 }
-                if (Math.random() < 0.3d && (world instanceof Level)) {
-                    Level _level10 = (Level) world;
+                if (Math.random() < 0.3d && (world instanceof Level _level10)) {
                     if (!_level10.isClientSide()) {
                         ItemEntity entityToSpawn10 = new ItemEntity(_level10, x, y, z, new ItemStack(Items.GOLD_NUGGET));
                         entityToSpawn10.setPickUpDelay(10);
@@ -117,10 +107,9 @@ public class TSCHunterEntityDiesProcedure {
                     }
                 }
             }
-        } else if (world instanceof Level) {
-            Level _level11 = (Level) world;
+        } else if (world instanceof Level _level11) {
             if (!_level11.isClientSide()) {
-                _level11.explode((Entity) null, x, y, z, 1.0f, Explosion.BlockInteraction.DESTROY);
+                _level11.explode(null, x, y, z, 1.0f, Explosion.BlockInteraction.DESTROY);
             }
         }
     }

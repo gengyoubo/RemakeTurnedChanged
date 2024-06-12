@@ -15,15 +15,12 @@ public class DartrifleCanUseRangedItemProcedure {
             return false;
         }
         if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getOffhandItem() : ItemStack.EMPTY).getItem() == LatexModItems.LATEXDART.get()) {
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.DARTRIFLE.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.DARTRIFLE.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
             if (entity instanceof Player) {
-                ItemStack _setstack = new ItemStack((ItemLike) LatexModItems.LATEX_DART_RIFLE.get());
+                ItemStack _setstack = new ItemStack(LatexModItems.LATEX_DART_RIFLE.get());
                 _setstack.setCount(1);
                 ItemHandlerHelper.giveItemToPlayer((Player) entity, _setstack);
             }

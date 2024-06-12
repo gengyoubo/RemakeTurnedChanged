@@ -13,15 +13,12 @@ public class DartrifleEntitySwingsItemProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getOffhandItem() : ItemStack.EMPTY).getItem() == LatexModItems.DARTRIFLE.get()) {
-                if (entity instanceof Player) {
-                    Player _player = (Player) entity;
-                    ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.DARTRIFLE.get());
-                    _player.getInventory().clearOrCountMatchingItems(p -> {
-                        return _stktoremove.getItem() == p.getItem();
-                    }, 1, _player.inventoryMenu.getCraftSlots());
+                if (entity instanceof Player _player) {
+                    ItemStack _stktoremove = new ItemStack(LatexModItems.DARTRIFLE.get());
+                    _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
                 }
                 if (entity instanceof Player) {
-                    ItemStack _setstack = new ItemStack((ItemLike) LatexModItems.LATEX_DART_RIFLE.get());
+                    ItemStack _setstack = new ItemStack(LatexModItems.LATEX_DART_RIFLE.get());
                     _setstack.setCount(1);
                     ItemHandlerHelper.giveItemToPlayer((Player) entity, _setstack);
                     return;
@@ -29,15 +26,12 @@ public class DartrifleEntitySwingsItemProcedure {
                 return;
             }
             if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getOffhandItem() : ItemStack.EMPTY).getItem() == LatexModItems.LATEX_DART_RIFLE.get()) {
-                if (entity instanceof Player) {
-                    Player _player2 = (Player) entity;
-                    ItemStack _stktoremove2 = new ItemStack((ItemLike) LatexModItems.LATEX_DART_RIFLE.get());
-                    _player2.getInventory().clearOrCountMatchingItems(p -> {
-                        return _stktoremove2.getItem() == p.getItem();
-                    }, 1, _player2.inventoryMenu.getCraftSlots());
+                if (entity instanceof Player _player2) {
+                    ItemStack _stktoremove2 = new ItemStack(LatexModItems.LATEX_DART_RIFLE.get());
+                    _player2.getInventory().clearOrCountMatchingItems(p -> _stktoremove2.getItem() == p.getItem(), 1, _player2.inventoryMenu.getCraftSlots());
                 }
                 if (entity instanceof Player) {
-                    ItemStack _setstack2 = new ItemStack((ItemLike) LatexModItems.DARTRIFLE.get());
+                    ItemStack _setstack2 = new ItemStack(LatexModItems.DARTRIFLE.get());
                     _setstack2.setCount(1);
                     ItemHandlerHelper.giveItemToPlayer((Player) entity, _setstack2);
                 }

@@ -37,6 +37,8 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
+
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/TSCHunterThisEntityKillsAnotherOneProcedure.class */
 public class TSCHunterThisEntityKillsAnotherOneProcedure {
     public static void execute(LevelAccessor world, final double x, final double y, final double z, Entity entity, final TSCHunterEntity sourceentity) {
@@ -52,34 +54,29 @@ public class TSCHunterThisEntityKillsAnotherOneProcedure {
                         entity.discard();
                     }
                 }
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
+                if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound((Player) null, new BlockPos(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                        _level.playSound(null, new BlockPos(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                     } else {
-                        _level.playLocalSound(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                        _level.playLocalSound(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                     }
                 }
-                if (world instanceof ServerLevel) {
-                    ServerLevel _level2 = (ServerLevel) world;
+                if (world instanceof ServerLevel _level2) {
                     _level2.sendParticles(ParticleTypes.END_ROD, sourceentity.getX(), sourceentity.getY(), sourceentity.getZ(), 5, 1.0d, 2.0d, 1.0d, 1.0d);
-                    Entity entityToSpawn = new TSCdroneEntity((EntityType<TSCdroneEntity>) ((EntityType) LatexModEntities.TS_CDRONE.get()), (Level) _level2);
+                    Entity entityToSpawn = new TSCdroneEntity((EntityType<TSCdroneEntity>) LatexModEntities.TS_CDRONE.get(), _level2);
                     entityToSpawn.moveTo(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ(), 0.0f, 0.0f);
                     entityToSpawn.setYBodyRot(0.0f);
                     entityToSpawn.setYHeadRot(0.0f);
-                    if (entityToSpawn instanceof Mob) {
-                        ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                    }
+                    ((Mob) entityToSpawn).finalizeSpawn(_level2, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                     world.addFreshEntity(entityToSpawn);
                 }
             } else if (Math.random() < 0.35d) {
                 if (!entity.level.isClientSide()) {
                     entity.discard();
                 }
-                if (world instanceof Level) {
-                    Level _level3 = (Level) world;
+                if (world instanceof Level _level3) {
                     if (!_level3.isClientSide()) {
-                        _level3.playSound((Player) null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 2.0f);
+                        _level3.playSound(null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 2.0f);
                     } else {
                         _level3.playLocalSound(x, y, z, ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 2.0f, false);
                     }
@@ -110,23 +107,19 @@ public class TSCHunterThisEntityKillsAnotherOneProcedure {
                     private void run() {
                         ServerLevel serverLevel = this.world;
                         if (serverLevel instanceof ServerLevel) {
-                            ServerLevel _level4 = serverLevel;
-                            Entity entityToSpawn2 = new TSCdroneEntity((EntityType<TSCdroneEntity>) ((EntityType) LatexModEntities.TS_CDRONE.get()), (Level) _level4);
+                            Entity entityToSpawn2 = new TSCdroneEntity((EntityType<TSCdroneEntity>) LatexModEntities.TS_CDRONE.get(), serverLevel);
                             entityToSpawn2.moveTo(TSCHunterEntity.this.getX(), TSCHunterEntity.this.getY(), TSCHunterEntity.this.getZ(), 0.0f, 0.0f);
                             entityToSpawn2.setYBodyRot(0.0f);
                             entityToSpawn2.setYHeadRot(0.0f);
-                            if (entityToSpawn2 instanceof Mob) {
-                                ((Mob) entityToSpawn2).finalizeSpawn(_level4, this.world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                            }
+                            ((Mob) entityToSpawn2).finalizeSpawn(serverLevel, this.world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                             this.world.addFreshEntity(entityToSpawn2);
                         }
                         Level level = this.world;
                         if (level instanceof Level) {
-                            Level _level5 = level;
-                            if (!_level5.isClientSide()) {
-                                _level5.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                            if (!level.isClientSide()) {
+                                level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                             } else {
-                                _level5.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                                level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.repair"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                             }
                         }
                         ServerLevel _level6 = this.world;

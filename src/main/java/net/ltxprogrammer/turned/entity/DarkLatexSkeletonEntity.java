@@ -18,6 +18,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSkeletonEntity extends AbstractDarkLatexEntity {
     public DarkLatexSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -30,7 +31,7 @@ public class DarkLatexSkeletonEntity extends AbstractDarkLatexEntity {
         this.setNoAi(false);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -38,7 +39,7 @@ public class DarkLatexSkeletonEntity extends AbstractDarkLatexEntity {
         return MobType.UNDEAD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }

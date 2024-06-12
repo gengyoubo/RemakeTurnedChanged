@@ -20,7 +20,7 @@ public class DarklatexdarteffectPotionStartedappliedProcedure {
                     ((Player) entity).causeFoodExhaustion(0.25f);
                 }
             } else if (entity instanceof LivingEntity) {
-                ((LivingEntity) entity).removeEffect((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get());
+                ((LivingEntity) entity).removeEffect(LatexModMobEffects.DARKLATEXDARTEFFECT.get());
             }
         }
     }

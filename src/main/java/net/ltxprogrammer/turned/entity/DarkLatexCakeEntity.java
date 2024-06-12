@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexCakeEntity extends AbstractDarkLatexEntity {
     public DarkLatexCakeEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -35,7 +36,7 @@ public class DarkLatexCakeEntity extends AbstractDarkLatexEntity {
         return MobType.ARTHROPOD;
     }
 
-    public void playerTouch(Player sourceentity) {
+    public void playerTouch(@NotNull Player sourceentity) {
         super.playerTouch(sourceentity);
         DarkLatexCakePlayerCollidesWithThisEntityProcedure.execute(this, sourceentity);
     }

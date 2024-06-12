@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/TabletItem.class */
 public class TabletItem extends Item {
@@ -17,13 +18,13 @@ public class TabletItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1).rarity(Rarity.COMMON));
     }
 
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.EAT;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player entity, @NotNull InteractionHand hand) {
         InteractionResultHolder<ItemStack> ar = use(world, entity, hand);
-        ItemStack itemStack = (ItemStack) ar.getObject();
+        ItemStack itemStack = ar.getObject();
         entity.getX();
         entity.getY();
         entity.getZ();

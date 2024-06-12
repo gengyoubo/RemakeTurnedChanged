@@ -17,6 +17,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DarklatexconeEntity extends AbstractDarkLatexEntity {
     public DarklatexconeEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -37,7 +38,7 @@ public class DarklatexconeEntity extends AbstractDarkLatexEntity {
         return super.getPassengersRidingOffset() + 1.8;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }

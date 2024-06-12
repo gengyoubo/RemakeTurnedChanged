@@ -22,15 +22,12 @@ public class DarkLatexQueenBeeEntityDiesProcedure {
             return;
         }
         if (Math.random() < 0.8d) {
-            world.setBlock(new BlockPos(x, y + 1.0d, z), ((Block) LatexModBlocks.DARKLATEXHIVE.get()).defaultBlockState(), 3);
-            world.setBlock(new BlockPos(x, y, z), ((Block) ChangedBlocks.DARK_LATEX_BLOCK.get()).defaultBlockState(), 3);
-        } else if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel) world;
+            world.setBlock(new BlockPos(x, y + 1.0d, z), LatexModBlocks.DARKLATEXHIVE.get().defaultBlockState(), 3);
+            world.setBlock(new BlockPos(x, y, z), ChangedBlocks.DARK_LATEX_BLOCK.get().defaultBlockState(), 3);
+        } else if (world instanceof ServerLevel _level) {
             Entity entityToSpawn = new Bee(EntityType.BEE, _level);
             entityToSpawn.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
-            if (entityToSpawn instanceof Mob) {
-                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-            }
+            ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
             world.addFreshEntity(entityToSpawn);
         }
     }

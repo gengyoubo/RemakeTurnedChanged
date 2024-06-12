@@ -130,357 +130,123 @@ import net.minecraftforge.registries.RegistryObject;
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModBlocks.class */
 public class LatexModBlocks {
     public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, LatexMod.MODID);
-    public static final RegistryObject<Block> DARKLATEXHIVE = REGISTRY.register("darklatexhive", () -> {
-        return new DarklatexhiveBlock();
-    });
-    public static final RegistryObject<Block> INFESTEDDLCOBBLESTONE = REGISTRY.register("infesteddlcobblestone", () -> {
-        return new InfesteddlcobblestoneBlock();
-    });
-    public static final RegistryObject<Block> EMPTYCAPSULE = REGISTRY.register("emptycapsule", () -> {
-        return new EmptycapsuleBlock();
-    });
-    public static final RegistryObject<Block> LATEXCAPSULE = REGISTRY.register("latexcapsule", () -> {
-        return new LatexcapsuleBlock();
-    });
-    public static final RegistryObject<Block> DARKLATEXPUDDLEHARMLESS = REGISTRY.register("darklatexpuddleharmless", () -> {
-        return new DarklatexpuddleharmlessBlock();
-    });
-    public static final RegistryObject<Block> LATEXEATERSLIME = REGISTRY.register("latexeaterslime", () -> {
-        return new LatexeaterslimeBlock();
-    });
-    public static final RegistryObject<Block> BLACKLABBLOCK_1A = REGISTRY.register("blacklabblock_1a", () -> {
-        return new Blacklabblock1aBlock();
-    });
-    public static final RegistryObject<Block> BLACKLABBLOCK_2 = REGISTRY.register("blacklabblock_2", () -> {
-        return new Blacklabblock2Block();
-    });
-    public static final RegistryObject<Block> BLACKLABBLOCK_3 = REGISTRY.register("blacklabblock_3", () -> {
-        return new Blacklabblock3Block();
-    });
-    public static final RegistryObject<Block> BLACKLABSLAB = REGISTRY.register("blacklabslab", () -> {
-        return new BlacklabslabBlock();
-    });
-    public static final RegistryObject<Block> REINFORCEDCONCRETE = REGISTRY.register("reinforcedconcrete", () -> {
-        return new ReinforcedconcreteBlock();
-    });
-    public static final RegistryObject<Block> BLUELABBLOCK_1 = REGISTRY.register("bluelabblock_1", () -> {
-        return new Bluelabblock1Block();
-    });
-    public static final RegistryObject<Block> BLUELABBLOCK_2 = REGISTRY.register("bluelabblock_2", () -> {
-        return new Bluelabblock2Block();
-    });
-    public static final RegistryObject<Block> BLUELABSLABS = REGISTRY.register("bluelabslabs", () -> {
-        return new BluelabslabsBlock();
-    });
-    public static final RegistryObject<Block> REINFORCEDBLUECONCRETE = REGISTRY.register("reinforcedblueconcrete", () -> {
-        return new ReinforcedblueconcreteBlock();
-    });
-    public static final RegistryObject<Block> GREENLABBLOCK_1 = REGISTRY.register("greenlabblock_1", () -> {
-        return new Greenlabblock1Block();
-    });
-    public static final RegistryObject<Block> GREENLABBLOCK_2 = REGISTRY.register("greenlabblock_2", () -> {
-        return new Greenlabblock2Block();
-    });
-    public static final RegistryObject<Block> GREENLABSLABS = REGISTRY.register("greenlabslabs", () -> {
-        return new GreenlabslabsBlock();
-    });
-    public static final RegistryObject<Block> REINFORCEDGREENCONCRETE = REGISTRY.register("reinforcedgreenconcrete", () -> {
-        return new ReinforcedgreenconcreteBlock();
-    });
-    public static final RegistryObject<Block> PURPLELABBLOCK_1 = REGISTRY.register("purplelabblock_1", () -> {
-        return new Purplelabblock1Block();
-    });
-    public static final RegistryObject<Block> PURPLELABBLOCK_2 = REGISTRY.register("purplelabblock_2", () -> {
-        return new Purplelabblock2Block();
-    });
-    public static final RegistryObject<Block> PURPLE_LAB_SLAB = REGISTRY.register("purple_lab_slab", () -> {
-        return new PurpleLabSlabBlock();
-    });
-    public static final RegistryObject<Block> REINFORCEDPURPLECONCRETE = REGISTRY.register("reinforcedpurpleconcrete", () -> {
-        return new ReinforcedpurpleconcreteBlock();
-    });
-    public static final RegistryObject<Block> YELLOWLABBLOCK_1 = REGISTRY.register("yellowlabblock_1", () -> {
-        return new Yellowlabblock1Block();
-    });
-    public static final RegistryObject<Block> YELLOWLABBLOCK_2 = REGISTRY.register("yellowlabblock_2", () -> {
-        return new Yellowlabblock2Block();
-    });
-    public static final RegistryObject<Block> YELLOWLABSLABS = REGISTRY.register("yellowlabslabs", () -> {
-        return new YellowlabslabsBlock();
-    });
-    public static final RegistryObject<Block> REINFORCEDYELLOWCONCRETE = REGISTRY.register("reinforcedyellowconcrete", () -> {
-        return new ReinforcedyellowconcreteBlock();
-    });
-    public static final RegistryObject<Block> REDLABBLOCK_1 = REGISTRY.register("redlabblock_1", () -> {
-        return new Redlabblock1Block();
-    });
-    public static final RegistryObject<Block> RED_LAB_BLOCK_2 = REGISTRY.register("red_lab_block_2", () -> {
-        return new RedLabBlock2Block();
-    });
-    public static final RegistryObject<Block> RED_LAB_SLABS = REGISTRY.register("red_lab_slabs", () -> {
-        return new RedLabSlabsBlock();
-    });
-    public static final RegistryObject<Block> REINFORCEDREDCONCRETE = REGISTRY.register("reinforcedredconcrete", () -> {
-        return new ReinforcedredconcreteBlock();
-    });
-    public static final RegistryObject<Block> REDLAB_1 = REGISTRY.register("redlab_1", () -> {
-        return new Redlab1Block();
-    });
-    public static final RegistryObject<Block> REDLAB_2 = REGISTRY.register("redlab_2", () -> {
-        return new Redlab2Block();
-    });
-    public static final RegistryObject<Block> REDLAB_3 = REGISTRY.register("redlab_3", () -> {
-        return new Redlab3Block();
-    });
-    public static final RegistryObject<Block> REDLAB_4 = REGISTRY.register("redlab_4", () -> {
-        return new Redlab4Block();
-    });
-    public static final RegistryObject<Block> REDLAB_5 = REGISTRY.register("redlab_5", () -> {
-        return new Redlab5Block();
-    });
-    public static final RegistryObject<Block> RED_LAB_SLAB = REGISTRY.register("red_lab_slab", () -> {
-        return new RedLabSlabBlock();
-    });
-    public static final RegistryObject<Block> RED_LAB_STAIRS = REGISTRY.register("red_lab_stairs", () -> {
-        return new RedLabStairsBlock();
-    });
-    public static final RegistryObject<Block> BUNKERBLOCK = REGISTRY.register("bunkerblock", () -> {
-        return new BunkerblockBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_BLOCK_STRIPED = REGISTRY.register("bunker_block_striped", () -> {
-        return new BunkerBlockStripedBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_BLOCK_SMOOTH = REGISTRY.register("bunker_block_smooth", () -> {
-        return new BunkerBlockSmoothBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_STAIRS = REGISTRY.register("bunker_stairs", () -> {
-        return new BunkerStairsBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_SLABS = REGISTRY.register("bunker_slabs", () -> {
-        return new BunkerSlabsBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_WALL = REGISTRY.register("bunker_wall", () -> {
-        return new BunkerWallBlock();
-    });
-    public static final RegistryObject<Block> LIBRARYWALL_1 = REGISTRY.register("librarywall_1", () -> {
-        return new Librarywall1Block();
-    });
-    public static final RegistryObject<Block> LIBRARYWALL_2 = REGISTRY.register("librarywall_2", () -> {
-        return new Librarywall2Block();
-    });
-    public static final RegistryObject<Block> LIBRARYWALL_3 = REGISTRY.register("librarywall_3", () -> {
-        return new Librarywall3Block();
-    });
-    public static final RegistryObject<Block> LIBRARYWALL_4 = REGISTRY.register("librarywall_4", () -> {
-        return new Librarywall4Block();
-    });
-    public static final RegistryObject<Block> LIBRARYWALL_5 = REGISTRY.register("librarywall_5", () -> {
-        return new Librarywall5Block();
-    });
-    public static final RegistryObject<Block> SUPPLY_CRATE = REGISTRY.register("supply_crate", () -> {
-        return new SupplyCrateBlock();
-    });
-    public static final RegistryObject<Block> SMALL_BOX = REGISTRY.register("small_box", () -> {
-        return new SmallBoxBlock();
-    });
-    public static final RegistryObject<Block> BOX = REGISTRY.register("box", () -> {
-        return new BoxBlock();
-    });
-    public static final RegistryObject<Block> BOX_INVENTORY = REGISTRY.register("box_inventory", () -> {
-        return new BoxInventoryBlock();
-    });
-    public static final RegistryObject<Block> BOX_TRAP = REGISTRY.register("box_trap", () -> {
-        return new BoxTrapBlock();
-    });
-    public static final RegistryObject<Block> SCIENTIFIC_CRATE = REGISTRY.register("scientific_crate", () -> {
-        return new ScientificCrateBlock();
-    });
-    public static final RegistryObject<Block> CRATE = REGISTRY.register("crate", () -> {
-        return new CrateBlock();
-    });
-    public static final RegistryObject<Block> METAL_BOX = REGISTRY.register("metal_box", () -> {
-        return new MetalBoxBlock();
-    });
-    public static final RegistryObject<Block> CHES_TRAP = REGISTRY.register("ches_trap", () -> {
-        return new ChesTrapBlock();
-    });
-    public static final RegistryObject<Block> CONTROLPANELOFF = REGISTRY.register("controlpaneloff", () -> {
-        return new ControlpaneloffBlock();
-    });
-    public static final RegistryObject<Block> SERVERS = REGISTRY.register("servers", () -> {
-        return new ServersBlock();
-    });
-    public static final RegistryObject<Block> OLD_TV = REGISTRY.register("old_tv", () -> {
-        return new OldTVBlock();
-    });
-    public static final RegistryObject<Block> BROKEN_TV = REGISTRY.register("broken_tv", () -> {
-        return new BrokenTVBlock();
-    });
-    public static final RegistryObject<Block> COMPUTER = REGISTRY.register("computer", () -> {
-        return new ComputerBlock();
-    });
-    public static final RegistryObject<Block> LAPTOP_CLOSED = REGISTRY.register("laptop_closed", () -> {
-        return new LaptopClosedBlock();
-    });
-    public static final RegistryObject<Block> DESK = REGISTRY.register("desk", () -> {
-        return new DeskBlock();
-    });
-    public static final RegistryObject<Block> OFFICECHAIR = REGISTRY.register("officechair", () -> {
-        return new OfficechairBlock();
-    });
-    public static final RegistryObject<Block> PLANTER = REGISTRY.register("planter", () -> {
-        return new PlanterBlock();
-    });
-    public static final RegistryObject<Block> FLASKCONTAINER = REGISTRY.register("flaskcontainer", () -> {
-        return new FlaskcontainerBlock();
-    });
-    public static final RegistryObject<Block> TELEPHONE = REGISTRY.register("telephone", () -> {
-        return new TelephoneBlock();
-    });
-    public static final RegistryObject<Block> VENT = REGISTRY.register("vent", () -> {
-        return new VentBlock();
-    });
-    public static final RegistryObject<Block> BUNKERHATCH = REGISTRY.register("bunkerhatch", () -> {
-        return new BunkerhatchBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_DOOR = REGISTRY.register("bunker_door", () -> {
-        return new BunkerDoorBlock();
-    });
-    public static final RegistryObject<Block> LAB_DOOR = REGISTRY.register("lab_door", () -> {
-        return new LabDoorBlock();
-    });
-    public static final RegistryObject<Block> BLASTDOOR = REGISTRY.register("blastdoor", () -> {
-        return new BlastdoorBlock();
-    });
-    public static final RegistryObject<Block> CEILINGLIGHT = REGISTRY.register("ceilinglight", () -> {
-        return new CeilinglightBlock();
-    });
-    public static final RegistryObject<Block> CAGELIGHT = REGISTRY.register("cagelight", () -> {
-        return new CagelightBlock();
-    });
-    public static final RegistryObject<Block> SAVE_STATION = REGISTRY.register("save_station", () -> {
-        return new SaveStationBlock();
-    });
-    public static final RegistryObject<Block> OFFICETABLE = REGISTRY.register("officetable", () -> {
-        return new OfficetableBlock();
-    });
-    public static final RegistryObject<Block> LOCKER = REGISTRY.register("locker", () -> {
-        return new LockerBlock();
-    });
-    public static final RegistryObject<Block> LAB_EQUIPMENT = REGISTRY.register("lab_equipment", () -> {
-        return new LabEquipmentBlock();
-    });
-    public static final RegistryObject<Block> WALLSCREEN = REGISTRY.register("wallscreen", () -> {
-        return new WallscreenBlock();
-    });
-    public static final RegistryObject<Block> MICROSCOPE = REGISTRY.register("microscope", () -> {
-        return new MicroscopeBlock();
-    });
-    public static final RegistryObject<Block> CRYOPOD = REGISTRY.register("cryopod", () -> {
-        return new CryopodBlock();
-    });
-    public static final RegistryObject<Block> BOOKPILE_1 = REGISTRY.register("bookpile_1", () -> {
-        return new Bookpile1Block();
-    });
-    public static final RegistryObject<Block> BOOKPILE_2 = REGISTRY.register("bookpile_2", () -> {
-        return new Bookpile2Block();
-    });
-    public static final RegistryObject<Block> BOOKPILE_3 = REGISTRY.register("bookpile_3", () -> {
-        return new Bookpile3Block();
-    });
-    public static final RegistryObject<Block> BOOKPILE_4 = REGISTRY.register("bookpile_4", () -> {
-        return new Bookpile4Block();
-    });
-    public static final RegistryObject<Block> BOOKPILE_5 = REGISTRY.register("bookpile_5", () -> {
-        return new Bookpile5Block();
-    });
-    public static final RegistryObject<Block> GLASS_DOOR = REGISTRY.register("glass_door", () -> {
-        return new GlassDoorBlock();
-    });
-    public static final RegistryObject<Block> INVERTED_GLASS_DOOR = REGISTRY.register("inverted_glass_door", () -> {
-        return new InvertedGlassDoorBlock();
-    });
-    public static final RegistryObject<Block> BIGCOUCH = REGISTRY.register("bigcouch", () -> {
-        return new BigcouchBlock();
-    });
-    public static final RegistryObject<Block> HIGH_PRESSURE_CYLINDER = REGISTRY.register("high_pressure_cylinder", () -> {
-        return new HighPressureCylinderBlock();
-    });
-    public static final RegistryObject<Block> HIGH_PRESSURE_CYLINDER_RED = REGISTRY.register("high_pressure_cylinder_red", () -> {
-        return new HighPressureCylinderRedBlock();
-    });
-    public static final RegistryObject<Block> HIGH_PRESSURE_CYLINDER_GREEN = REGISTRY.register("high_pressure_cylinder_green", () -> {
-        return new HighPressureCylinderGreenBlock();
-    });
-    public static final RegistryObject<Block> CEILINGLIGHTENHANCED = REGISTRY.register("ceilinglightenhanced", () -> {
-        return new CeilinglightenhancedBlock();
-    });
-    public static final RegistryObject<Block> MAKESHIFT_BEACON = REGISTRY.register("makeshift_beacon", () -> {
-        return new MakeshiftBeaconBlock();
-    });
-    public static final RegistryObject<Block> EVIL_BEACON = REGISTRY.register("evil_beacon", () -> {
-        return new EvilBeaconBlock();
-    });
-    public static final RegistryObject<Block> TACTICALBOMB = REGISTRY.register("tacticalbomb", () -> {
-        return new TacticalbombBlock();
-    });
-    public static final RegistryObject<Block> NUKE = REGISTRY.register("nuke", () -> {
-        return new NukeBlock();
-    });
-    public static final RegistryObject<Block> COMPUTER_ON = REGISTRY.register("computer_on", () -> {
-        return new ComputerOnBlock();
-    });
-    public static final RegistryObject<Block> LAPTOP = REGISTRY.register("laptop", () -> {
-        return new LaptopBlock();
-    });
-    public static final RegistryObject<Block> LAPTOP_ON = REGISTRY.register("laptop_on", () -> {
-        return new LaptopONBlock();
-    });
-    public static final RegistryObject<Block> TELEPHONENOPHONE = REGISTRY.register("telephonenophone", () -> {
-        return new TelephonenophoneBlock();
-    });
-    public static final RegistryObject<Block> VENT_OPEN = REGISTRY.register("vent_open", () -> {
-        return new VentOpenBlock();
-    });
-    public static final RegistryObject<Block> BUNKER_HATCH_OPEN = REGISTRY.register("bunker_hatch_open", () -> {
-        return new BunkerHatchOpenBlock();
-    });
-    public static final RegistryObject<Block> BUNKERDOOROPEN = REGISTRY.register("bunkerdooropen", () -> {
-        return new BunkerdooropenBlock();
-    });
-    public static final RegistryObject<Block> LAB_DOOR_OPEN = REGISTRY.register("lab_door_open", () -> {
-        return new LabDoorOpenBlock();
-    });
-    public static final RegistryObject<Block> WALLSCREENON = REGISTRY.register("wallscreenon", () -> {
-        return new WallscreenonBlock();
-    });
-    public static final RegistryObject<Block> OPEN_GLASS_DOOR = REGISTRY.register("open_glass_door", () -> {
-        return new OpenGlassDoorBlock();
-    });
-    public static final RegistryObject<Block> INVERTED_OPEN_GLASS_DOOR = REGISTRY.register("inverted_open_glass_door", () -> {
-        return new InvertedOpenGlassDoorBlock();
-    });
-    public static final RegistryObject<Block> THECONE = REGISTRY.register("thecone", () -> {
-        return new THECONEBlock();
-    });
-    public static final RegistryObject<Block> OLD_TVON = REGISTRY.register("old_tvon", () -> {
-        return new OldTVONBlock();
-    });
-    public static final RegistryObject<Block> EVILBEACONON = REGISTRY.register("evilbeaconon", () -> {
-        return new EvilbeacononBlock();
-    });
-    public static final RegistryObject<Block> MAKESHIFT_BEACON_ON = REGISTRY.register("makeshift_beacon_on", () -> {
-        return new MakeshiftBeaconOnBlock();
-    });
-    public static final RegistryObject<Block> DOOM_DOLL = REGISTRY.register("doom_doll", () -> {
-        return new DoomDollBlock();
-    });
-    public static final RegistryObject<Block> CONTROLPANELON = REGISTRY.register("controlpanelon", () -> {
-        return new ControlpanelonBlock();
-    });
-    public static final RegistryObject<Block> BLAST_DOOR_OPEN = REGISTRY.register("blast_door_open", () -> {
-        return new BlastDoorOpenBlock();
-    });
+    public static final RegistryObject<Block> DARKLATEXHIVE = REGISTRY.register("darklatexhive", DarklatexhiveBlock::new);
+    public static final RegistryObject<Block> INFESTEDDLCOBBLESTONE = REGISTRY.register("infesteddlcobblestone", InfesteddlcobblestoneBlock::new);
+    public static final RegistryObject<Block> EMPTYCAPSULE = REGISTRY.register("emptycapsule", EmptycapsuleBlock::new);
+    public static final RegistryObject<Block> LATEXCAPSULE = REGISTRY.register("latexcapsule", LatexcapsuleBlock::new);
+    public static final RegistryObject<Block> DARKLATEXPUDDLEHARMLESS = REGISTRY.register("darklatexpuddleharmless", DarklatexpuddleharmlessBlock::new);
+    public static final RegistryObject<Block> LATEXEATERSLIME = REGISTRY.register("latexeaterslime", LatexeaterslimeBlock::new);
+    public static final RegistryObject<Block> BLACKLABBLOCK_1A = REGISTRY.register("blacklabblock_1a", Blacklabblock1aBlock::new);
+    public static final RegistryObject<Block> BLACKLABBLOCK_2 = REGISTRY.register("blacklabblock_2", Blacklabblock2Block::new);
+    public static final RegistryObject<Block> BLACKLABBLOCK_3 = REGISTRY.register("blacklabblock_3", Blacklabblock3Block::new);
+    public static final RegistryObject<Block> BLACKLABSLAB = REGISTRY.register("blacklabslab", BlacklabslabBlock::new);
+    public static final RegistryObject<Block> REINFORCEDCONCRETE = REGISTRY.register("reinforcedconcrete", ReinforcedconcreteBlock::new);
+    public static final RegistryObject<Block> BLUELABBLOCK_1 = REGISTRY.register("bluelabblock_1", Bluelabblock1Block::new);
+    public static final RegistryObject<Block> BLUELABBLOCK_2 = REGISTRY.register("bluelabblock_2", Bluelabblock2Block::new);
+    public static final RegistryObject<Block> BLUELABSLABS = REGISTRY.register("bluelabslabs", BluelabslabsBlock::new);
+    public static final RegistryObject<Block> REINFORCEDBLUECONCRETE = REGISTRY.register("reinforcedblueconcrete", ReinforcedblueconcreteBlock::new);
+    public static final RegistryObject<Block> GREENLABBLOCK_1 = REGISTRY.register("greenlabblock_1", Greenlabblock1Block::new);
+    public static final RegistryObject<Block> GREENLABBLOCK_2 = REGISTRY.register("greenlabblock_2", Greenlabblock2Block::new);
+    public static final RegistryObject<Block> GREENLABSLABS = REGISTRY.register("greenlabslabs", GreenlabslabsBlock::new);
+    public static final RegistryObject<Block> REINFORCEDGREENCONCRETE = REGISTRY.register("reinforcedgreenconcrete", ReinforcedgreenconcreteBlock::new);
+    public static final RegistryObject<Block> PURPLELABBLOCK_1 = REGISTRY.register("purplelabblock_1", Purplelabblock1Block::new);
+    public static final RegistryObject<Block> PURPLELABBLOCK_2 = REGISTRY.register("purplelabblock_2", Purplelabblock2Block::new);
+    public static final RegistryObject<Block> PURPLE_LAB_SLAB = REGISTRY.register("purple_lab_slab", PurpleLabSlabBlock::new);
+    public static final RegistryObject<Block> REINFORCEDPURPLECONCRETE = REGISTRY.register("reinforcedpurpleconcrete", ReinforcedpurpleconcreteBlock::new);
+    public static final RegistryObject<Block> YELLOWLABBLOCK_1 = REGISTRY.register("yellowlabblock_1", Yellowlabblock1Block::new);
+    public static final RegistryObject<Block> YELLOWLABBLOCK_2 = REGISTRY.register("yellowlabblock_2", Yellowlabblock2Block::new);
+    public static final RegistryObject<Block> YELLOWLABSLABS = REGISTRY.register("yellowlabslabs", YellowlabslabsBlock::new);
+    public static final RegistryObject<Block> REINFORCEDYELLOWCONCRETE = REGISTRY.register("reinforcedyellowconcrete", ReinforcedyellowconcreteBlock::new);
+    public static final RegistryObject<Block> REDLABBLOCK_1 = REGISTRY.register("redlabblock_1", Redlabblock1Block::new);
+    public static final RegistryObject<Block> RED_LAB_BLOCK_2 = REGISTRY.register("red_lab_block_2", RedLabBlock2Block::new);
+    public static final RegistryObject<Block> RED_LAB_SLABS = REGISTRY.register("red_lab_slabs", RedLabSlabsBlock::new);
+    public static final RegistryObject<Block> REINFORCEDREDCONCRETE = REGISTRY.register("reinforcedredconcrete", ReinforcedredconcreteBlock::new);
+    public static final RegistryObject<Block> REDLAB_1 = REGISTRY.register("redlab_1", Redlab1Block::new);
+    public static final RegistryObject<Block> REDLAB_2 = REGISTRY.register("redlab_2", Redlab2Block::new);
+    public static final RegistryObject<Block> REDLAB_3 = REGISTRY.register("redlab_3", Redlab3Block::new);
+    public static final RegistryObject<Block> REDLAB_4 = REGISTRY.register("redlab_4", Redlab4Block::new);
+    public static final RegistryObject<Block> REDLAB_5 = REGISTRY.register("redlab_5", Redlab5Block::new);
+    public static final RegistryObject<Block> RED_LAB_SLAB = REGISTRY.register("red_lab_slab", RedLabSlabBlock::new);
+    public static final RegistryObject<Block> RED_LAB_STAIRS = REGISTRY.register("red_lab_stairs", RedLabStairsBlock::new);
+    public static final RegistryObject<Block> BUNKERBLOCK = REGISTRY.register("bunkerblock", BunkerblockBlock::new);
+    public static final RegistryObject<Block> BUNKER_BLOCK_STRIPED = REGISTRY.register("bunker_block_striped", BunkerBlockStripedBlock::new);
+    public static final RegistryObject<Block> BUNKER_BLOCK_SMOOTH = REGISTRY.register("bunker_block_smooth", BunkerBlockSmoothBlock::new);
+    public static final RegistryObject<Block> BUNKER_STAIRS = REGISTRY.register("bunker_stairs", BunkerStairsBlock::new);
+    public static final RegistryObject<Block> BUNKER_SLABS = REGISTRY.register("bunker_slabs", BunkerSlabsBlock::new);
+    public static final RegistryObject<Block> BUNKER_WALL = REGISTRY.register("bunker_wall", BunkerWallBlock::new);
+    public static final RegistryObject<Block> LIBRARYWALL_1 = REGISTRY.register("librarywall_1", Librarywall1Block::new);
+    public static final RegistryObject<Block> LIBRARYWALL_2 = REGISTRY.register("librarywall_2", Librarywall2Block::new);
+    public static final RegistryObject<Block> LIBRARYWALL_3 = REGISTRY.register("librarywall_3", Librarywall3Block::new);
+    public static final RegistryObject<Block> LIBRARYWALL_4 = REGISTRY.register("librarywall_4", Librarywall4Block::new);
+    public static final RegistryObject<Block> LIBRARYWALL_5 = REGISTRY.register("librarywall_5", Librarywall5Block::new);
+    public static final RegistryObject<Block> SUPPLY_CRATE = REGISTRY.register("supply_crate", SupplyCrateBlock::new);
+    public static final RegistryObject<Block> SMALL_BOX = REGISTRY.register("small_box", SmallBoxBlock::new);
+    public static final RegistryObject<Block> BOX = REGISTRY.register("box", BoxBlock::new);
+    public static final RegistryObject<Block> BOX_INVENTORY = REGISTRY.register("box_inventory", BoxInventoryBlock::new);
+    public static final RegistryObject<Block> BOX_TRAP = REGISTRY.register("box_trap", BoxTrapBlock::new);
+    public static final RegistryObject<Block> SCIENTIFIC_CRATE = REGISTRY.register("scientific_crate", ScientificCrateBlock::new);
+    public static final RegistryObject<Block> CRATE = REGISTRY.register("crate", CrateBlock::new);
+    public static final RegistryObject<Block> METAL_BOX = REGISTRY.register("metal_box", MetalBoxBlock::new);
+    public static final RegistryObject<Block> CHES_TRAP = REGISTRY.register("ches_trap", ChesTrapBlock::new);
+    public static final RegistryObject<Block> CONTROLPANELOFF = REGISTRY.register("controlpaneloff", ControlpaneloffBlock::new);
+    public static final RegistryObject<Block> SERVERS = REGISTRY.register("servers", ServersBlock::new);
+    public static final RegistryObject<Block> OLD_TV = REGISTRY.register("old_tv", OldTVBlock::new);
+    public static final RegistryObject<Block> BROKEN_TV = REGISTRY.register("broken_tv", BrokenTVBlock::new);
+    public static final RegistryObject<Block> COMPUTER = REGISTRY.register("computer", ComputerBlock::new);
+    public static final RegistryObject<Block> LAPTOP_CLOSED = REGISTRY.register("laptop_closed", LaptopClosedBlock::new);
+    public static final RegistryObject<Block> DESK = REGISTRY.register("desk", DeskBlock::new);
+    public static final RegistryObject<Block> OFFICECHAIR = REGISTRY.register("officechair", OfficechairBlock::new);
+    public static final RegistryObject<Block> PLANTER = REGISTRY.register("planter", PlanterBlock::new);
+    public static final RegistryObject<Block> FLASKCONTAINER = REGISTRY.register("flaskcontainer", FlaskcontainerBlock::new);
+    public static final RegistryObject<Block> TELEPHONE = REGISTRY.register("telephone", TelephoneBlock::new);
+    public static final RegistryObject<Block> VENT = REGISTRY.register("vent", VentBlock::new);
+    public static final RegistryObject<Block> BUNKERHATCH = REGISTRY.register("bunkerhatch", BunkerhatchBlock::new);
+    public static final RegistryObject<Block> BUNKER_DOOR = REGISTRY.register("bunker_door", BunkerDoorBlock::new);
+    public static final RegistryObject<Block> LAB_DOOR = REGISTRY.register("lab_door", LabDoorBlock::new);
+    public static final RegistryObject<Block> BLASTDOOR = REGISTRY.register("blastdoor", BlastdoorBlock::new);
+    public static final RegistryObject<Block> CEILINGLIGHT = REGISTRY.register("ceilinglight", CeilinglightBlock::new);
+    public static final RegistryObject<Block> CAGELIGHT = REGISTRY.register("cagelight", CagelightBlock::new);
+    public static final RegistryObject<Block> SAVE_STATION = REGISTRY.register("save_station", SaveStationBlock::new);
+    public static final RegistryObject<Block> OFFICETABLE = REGISTRY.register("officetable", OfficetableBlock::new);
+    public static final RegistryObject<Block> LOCKER = REGISTRY.register("locker", LockerBlock::new);
+    public static final RegistryObject<Block> LAB_EQUIPMENT = REGISTRY.register("lab_equipment", LabEquipmentBlock::new);
+    public static final RegistryObject<Block> WALLSCREEN = REGISTRY.register("wallscreen", WallscreenBlock::new);
+    public static final RegistryObject<Block> MICROSCOPE = REGISTRY.register("microscope", MicroscopeBlock::new);
+    public static final RegistryObject<Block> CRYOPOD = REGISTRY.register("cryopod", CryopodBlock::new);
+    public static final RegistryObject<Block> BOOKPILE_1 = REGISTRY.register("bookpile_1", Bookpile1Block::new);
+    public static final RegistryObject<Block> BOOKPILE_2 = REGISTRY.register("bookpile_2", Bookpile2Block::new);
+    public static final RegistryObject<Block> BOOKPILE_3 = REGISTRY.register("bookpile_3", Bookpile3Block::new);
+    public static final RegistryObject<Block> BOOKPILE_4 = REGISTRY.register("bookpile_4", Bookpile4Block::new);
+    public static final RegistryObject<Block> BOOKPILE_5 = REGISTRY.register("bookpile_5", Bookpile5Block::new);
+    public static final RegistryObject<Block> GLASS_DOOR = REGISTRY.register("glass_door", GlassDoorBlock::new);
+    public static final RegistryObject<Block> INVERTED_GLASS_DOOR = REGISTRY.register("inverted_glass_door", InvertedGlassDoorBlock::new);
+    public static final RegistryObject<Block> BIGCOUCH = REGISTRY.register("bigcouch", BigcouchBlock::new);
+    public static final RegistryObject<Block> HIGH_PRESSURE_CYLINDER = REGISTRY.register("high_pressure_cylinder", HighPressureCylinderBlock::new);
+    public static final RegistryObject<Block> HIGH_PRESSURE_CYLINDER_RED = REGISTRY.register("high_pressure_cylinder_red", HighPressureCylinderRedBlock::new);
+    public static final RegistryObject<Block> HIGH_PRESSURE_CYLINDER_GREEN = REGISTRY.register("high_pressure_cylinder_green", HighPressureCylinderGreenBlock::new);
+    public static final RegistryObject<Block> CEILINGLIGHTENHANCED = REGISTRY.register("ceilinglightenhanced", CeilinglightenhancedBlock::new);
+    public static final RegistryObject<Block> MAKESHIFT_BEACON = REGISTRY.register("makeshift_beacon", MakeshiftBeaconBlock::new);
+    public static final RegistryObject<Block> EVIL_BEACON = REGISTRY.register("evil_beacon", EvilBeaconBlock::new);
+    public static final RegistryObject<Block> TACTICALBOMB = REGISTRY.register("tacticalbomb", TacticalbombBlock::new);
+    public static final RegistryObject<Block> NUKE = REGISTRY.register("nuke", NukeBlock::new);
+    public static final RegistryObject<Block> COMPUTER_ON = REGISTRY.register("computer_on", ComputerOnBlock::new);
+    public static final RegistryObject<Block> LAPTOP = REGISTRY.register("laptop", LaptopBlock::new);
+    public static final RegistryObject<Block> LAPTOP_ON = REGISTRY.register("laptop_on", LaptopONBlock::new);
+    public static final RegistryObject<Block> TELEPHONENOPHONE = REGISTRY.register("telephonenophone", TelephonenophoneBlock::new);
+    public static final RegistryObject<Block> VENT_OPEN = REGISTRY.register("vent_open", VentOpenBlock::new);
+    public static final RegistryObject<Block> BUNKER_HATCH_OPEN = REGISTRY.register("bunker_hatch_open", BunkerHatchOpenBlock::new);
+    public static final RegistryObject<Block> BUNKERDOOROPEN = REGISTRY.register("bunkerdooropen", BunkerdooropenBlock::new);
+    public static final RegistryObject<Block> LAB_DOOR_OPEN = REGISTRY.register("lab_door_open", LabDoorOpenBlock::new);
+    public static final RegistryObject<Block> WALLSCREENON = REGISTRY.register("wallscreenon", WallscreenonBlock::new);
+    public static final RegistryObject<Block> OPEN_GLASS_DOOR = REGISTRY.register("open_glass_door", OpenGlassDoorBlock::new);
+    public static final RegistryObject<Block> INVERTED_OPEN_GLASS_DOOR = REGISTRY.register("inverted_open_glass_door", InvertedOpenGlassDoorBlock::new);
+    public static final RegistryObject<Block> THECONE = REGISTRY.register("thecone", THECONEBlock::new);
+    public static final RegistryObject<Block> OLD_TVON = REGISTRY.register("old_tvon", OldTVONBlock::new);
+    public static final RegistryObject<Block> EVILBEACONON = REGISTRY.register("evilbeaconon", EvilbeacononBlock::new);
+    public static final RegistryObject<Block> MAKESHIFT_BEACON_ON = REGISTRY.register("makeshift_beacon_on", MakeshiftBeaconOnBlock::new);
+    public static final RegistryObject<Block> DOOM_DOLL = REGISTRY.register("doom_doll", DoomDollBlock::new);
+    public static final RegistryObject<Block> CONTROLPANELON = REGISTRY.register("controlpanelon", ControlpanelonBlock::new);
+    public static final RegistryObject<Block> BLAST_DOOR_OPEN = REGISTRY.register("blast_door_open", BlastDoorOpenBlock::new);
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
     /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModBlocks$ClientSideHandler.class */

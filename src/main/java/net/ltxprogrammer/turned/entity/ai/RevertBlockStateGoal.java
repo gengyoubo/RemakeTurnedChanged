@@ -35,7 +35,7 @@
 /*  35 */     this.property = property;
 /*  36 */     this.targetValue = from;
 /*  37 */     this.goalValue = to;
-/*  38 */     this.removerMob = (Mob)p_25841_;
+/*  38 */     this.removerMob = p_25841_;
 /*     */   }
 /*     */   private final Mob removerMob; private int ticksSinceReachedGoal; private static final int WAIT_AFTER_BLOCK_FOUND = 20;
 /*     */   public boolean m_8036_() {
@@ -77,7 +77,7 @@
 /*  77 */     super.m_8037_();
 /*  78 */     Level level = this.removerMob.f_19853_;
 /*  79 */     BlockPos blockpos = this.removerMob.m_142538_();
-/*  80 */     BlockPos blockpos1 = getPosWithBlock(blockpos, (BlockGetter)level);
+/*  80 */     BlockPos blockpos1 = getPosWithBlock(blockpos, level);
 /*  81 */     Random random = this.removerMob.m_21187_();
 /*  82 */     if (m_25625_() && blockpos1 != null) {
 /*  83 */       if (this.ticksSinceReachedGoal > 0) {

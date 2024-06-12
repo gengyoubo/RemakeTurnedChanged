@@ -11,7 +11,7 @@ public class DarklatexdarteffectPotionExpiresProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if (entity instanceof LivingEntity) {
-                ((LivingEntity) entity).removeEffect((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get());
+                ((LivingEntity) entity).removeEffect(LatexModMobEffects.DARKLATEXDARTEFFECT.get());
             }
             if (entity instanceof LivingEntity) {
                 ((LivingEntity) entity).removeEffect(MobEffects.MOVEMENT_SLOWDOWN);

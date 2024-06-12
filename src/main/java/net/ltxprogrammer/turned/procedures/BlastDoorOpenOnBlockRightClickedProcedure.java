@@ -1,7 +1,8 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
+import java.util.Objects;
+
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.minecraft.core.BlockPos;
@@ -23,29 +24,26 @@ public class BlastDoorOpenOnBlockRightClickedProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
             if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.KEYCARD.get()) {
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
+                if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:approve_beep")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                        _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:approve_beep"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                     } else {
-                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:approve_beep")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                        _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:approve_beep"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                     }
                 }
-                if (world instanceof Level) {
-                    Level _level2 = (Level) world;
+                if (world instanceof Level _level2) {
                     if (!_level2.isClientSide()) {
-                        _level2.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.iron_door.open")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                        _level2.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.iron_door.open"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                     } else {
-                        _level2.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.iron_door.open")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                        _level2.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.iron_door.open"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                     }
                 }
                 BlockPos _bp = new BlockPos(x, y, z);
-                BlockState _bs = ((Block) LatexModBlocks.BLASTDOOR.get()).defaultBlockState();
-                UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                    Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                    if (!(_property == null || _bs.getValue(_property) == null)) {
+                BlockState _bs = LatexModBlocks.BLASTDOOR.get().defaultBlockState();
+                for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+                    Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                    if (!(_property == null)) {
                         try {
                             _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                         } catch (Exception e) {
@@ -53,12 +51,11 @@ public class BlastDoorOpenOnBlockRightClickedProcedure {
                     }
                 }
                 world.setBlock(_bp, _bs, 3);
-            } else if (world instanceof Level) {
-                Level _level3 = (Level) world;
+            } else if (world instanceof Level _level3) {
                 if (!_level3.isClientSide()) {
-                    _level3.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                    _level3.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                 } else {
-                    _level3.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                    _level3.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                 }
             }
         }

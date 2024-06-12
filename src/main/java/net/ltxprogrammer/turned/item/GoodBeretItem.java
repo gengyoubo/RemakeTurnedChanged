@@ -11,16 +11,17 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/GoodBeretItem.class */
 public abstract class GoodBeretItem extends ArmorItem {
     public GoodBeretItem(EquipmentSlot slot, Item.Properties properties) {
         super(new ArmorMaterial() { // from class: net.ltxprogrammer.turned.item.GoodBeretItem.1
-            public int getDurabilityForSlot(EquipmentSlot slot2) {
+            public int getDurabilityForSlot(@NotNull EquipmentSlot slot2) {
                 return new int[]{13, 15, 16, 11}[slot2.getIndex()] * 20;
             }
 
-            public int getDefenseForSlot(EquipmentSlot slot2) {
+            public int getDefenseForSlot(@NotNull EquipmentSlot slot2) {
                 return new int[]{2, 5, 6, 1}[slot2.getIndex()];
             }
 
@@ -28,15 +29,15 @@ public abstract class GoodBeretItem extends ArmorItem {
                 return 9;
             }
 
-            public SoundEvent getEquipSound() {
+            public @NotNull SoundEvent getEquipSound() {
                 return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
             }
 
-            public Ingredient getRepairIngredient() {
+            public @NotNull Ingredient getRepairIngredient() {
                 return Ingredient.EMPTY;
             }
 
-            public String getName() {
+            public @NotNull String getName() {
                 return "good_beret";
             }
 

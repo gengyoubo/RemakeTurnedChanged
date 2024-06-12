@@ -1,6 +1,5 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.minecraft.core.BlockPos;
@@ -38,12 +37,11 @@ public class ControlpanelonBlockAddedProcedure {
 
             private void run() {
                 BlockPos _bp = new BlockPos(x, y, z);
-                BlockState _bs = ((Block) LatexModBlocks.CONTROLPANELOFF.get()).defaultBlockState();
-                UnmodifiableIterator it = this.world.getBlockState(_bp).getValues().entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                    Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                    if (!(_property == null || _bs.getValue(_property) == null)) {
+                BlockState _bs = LatexModBlocks.CONTROLPANELOFF.get().defaultBlockState();
+                for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : this.world.getBlockState(_bp).getValues().entrySet()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+                    Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                    if (!(_property == null)) {
                         try {
                             _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                         } catch (Exception e) {

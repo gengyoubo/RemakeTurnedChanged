@@ -13,21 +13,19 @@ public class MilitaryOnInitialEntitySpawnProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if (Math.random() < 0.05d) {
-                if (entity instanceof Player) {
-                    Player _player = (Player) entity;
-                    _player.getInventory().armor.set(3, new ItemStack((ItemLike) LatexModItems.GOOD_BERET_HELMET.get()));
+                if (entity instanceof Player _player) {
+                    _player.getInventory().armor.set(3, new ItemStack(LatexModItems.GOOD_BERET_HELMET.get()));
                     _player.getInventory().setChanged();
                 } else if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.GOOD_BERET_HELMET.get()));
+                    entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(LatexModItems.GOOD_BERET_HELMET.get()));
                 }
             } else if (Math.random() >= 0.05d) {
             } else {
-                if (entity instanceof Player) {
-                    Player _player2 = (Player) entity;
-                    _player2.getInventory().armor.set(3, new ItemStack((ItemLike) LatexModItems.RESPIRATOR_HELMET.get()));
+                if (entity instanceof Player _player2) {
+                    _player2.getInventory().armor.set(3, new ItemStack(LatexModItems.RESPIRATOR_HELMET.get()));
                     _player2.getInventory().setChanged();
                 } else if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack((ItemLike) LatexModItems.RESPIRATOR_HELMET.get()));
+                    entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(LatexModItems.RESPIRATOR_HELMET.get()));
                 }
             }
         }

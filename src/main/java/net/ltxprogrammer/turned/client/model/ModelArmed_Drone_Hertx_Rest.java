@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/ModelArmed_Drone_Hertx_Rest.class */
 public class ModelArmed_Drone_Hertx_Rest<T extends Entity> extends EntityModel<T> {
@@ -70,7 +71,7 @@ public class ModelArmed_Drone_Hertx_Rest<T extends Entity> extends EntityModel<T
         return LayerDefinition.create(meshdefinition, 80, 80);
     }
 
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Tail.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
@@ -81,7 +82,7 @@ public class ModelArmed_Drone_Hertx_Rest<T extends Entity> extends EntityModel<T
         this.bb_main.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(@NotNull T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.Head.yRot = netHeadYaw / 57.295776f;
         this.Head.xRot = headPitch / 57.295776f;
     }

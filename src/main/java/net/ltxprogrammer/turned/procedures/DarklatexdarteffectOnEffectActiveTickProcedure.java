@@ -35,7 +35,7 @@ public class DarklatexdarteffectOnEffectActiveTickProcedure {
             } else {
                 f = -1.0f;
             }
-            if (f <= (entity instanceof LivingEntity ? ((LivingEntity) entity).getMaxHealth() : -1.0f) / 10.0f && (entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get()) && !(entity instanceof Player) && world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXTRANSFUR)) {
+            if (f <= (entity instanceof LivingEntity ? ((LivingEntity) entity).getMaxHealth() : -1.0f) / 10.0f && (entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect(LatexModMobEffects.DARKLATEXDARTEFFECT.get()) && !(entity instanceof Player) && world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXTRANSFUR)) {
                 DarklatexThisEntityKillsAnotherOneProcedure.execute(world, x, y, z, entity, sourceentity);
             }
         }

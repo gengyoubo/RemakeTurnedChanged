@@ -14,7 +14,7 @@ public class DartrifleBulletHitsLivingEntityProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if (!(entity.getType().is(TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation("turned:robots"))) || entity.getType().is(TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation("turned:darklatexes")))) && (entity instanceof LivingEntity)) {
-                ((LivingEntity) entity).addEffect(new MobEffectInstance((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 82, 1, false, false));
+                ((LivingEntity) entity).addEffect(new MobEffectInstance(LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 82, 1, false, false));
             }
         }
     }

@@ -17,6 +17,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.HumanoidArm;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/ModelDark_latex_bee.class */
 public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> implements LatexHumanoidModelInterface {
@@ -63,7 +64,7 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.LeftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
@@ -109,14 +110,11 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
     }
 
     public ModelPart getArm(HumanoidArm humanoidArm) {
-        switch (C00601.$SwitchMap$net$minecraft$world$entity$HumanoidArm[humanoidArm.ordinal()]) {
-            case 1:
-                return this.LeftArm;
-            case 2:
-                return this.RightArm;
-            default:
-                throw new IncompatibleClassChangeError();
-        }
+        return switch (C00601.$SwitchMap$net$minecraft$world$entity$HumanoidArm[humanoidArm.ordinal()]) {
+            case 1 -> this.LeftArm;
+            case 2 -> this.RightArm;
+            default -> throw new IncompatibleClassChangeError();
+        };
     }
 
     @Override
@@ -141,7 +139,7 @@ public class ModelDark_latex_bee extends LatexHumanoidModel<DLbeeEntity> impleme
         getArm(p_102108_).translateAndRotate(p_102109_);
     }
 
-    public ModelPart getHead() {
+    public @NotNull ModelPart getHead() {
         return this.Head;
     }
 }

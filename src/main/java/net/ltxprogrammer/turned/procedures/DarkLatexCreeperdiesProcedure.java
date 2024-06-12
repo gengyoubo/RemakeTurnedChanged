@@ -20,16 +20,14 @@ public class DarkLatexCreeperdiesProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
             if (!entity.isOnFire() || Math.random() > 0.75d) {
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
+                if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+                        ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ChangedItems.DARK_LATEX_GOO.get()));
                         entityToSpawn.setPickUpDelay(10);
                         _level.addFreshEntity(entityToSpawn);
                     }
                 }
-                if (world instanceof Level) {
-                    Level _level2 = (Level) world;
+                if (world instanceof Level _level2) {
                     if (!_level2.isClientSide()) {
                         ItemEntity entityToSpawn2 = new ItemEntity(_level2, x, y, z, new ItemStack(Items.GUNPOWDER));
                         entityToSpawn2.setPickUpDelay(10);
@@ -37,16 +35,14 @@ public class DarkLatexCreeperdiesProcedure {
                     }
                 }
                 if (Math.random() < 0.35d) {
-                    if (world instanceof Level) {
-                        Level _level3 = (Level) world;
+                    if (world instanceof Level _level3) {
                         if (!_level3.isClientSide()) {
-                            ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+                            ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack(ChangedItems.DARK_LATEX_GOO.get()));
                             entityToSpawn3.setPickUpDelay(10);
                             _level3.addFreshEntity(entityToSpawn3);
                         }
                     }
-                    if (world instanceof Level) {
-                        Level _level4 = (Level) world;
+                    if (world instanceof Level _level4) {
                         if (!_level4.isClientSide()) {
                             ItemEntity entityToSpawn4 = new ItemEntity(_level4, x, y, z, new ItemStack(Items.BONE));
                             entityToSpawn4.setPickUpDelay(10);
@@ -54,8 +50,7 @@ public class DarkLatexCreeperdiesProcedure {
                         }
                     }
                 }
-                if (Math.random() < 0.1d && (world instanceof Level)) {
-                    Level _level5 = (Level) world;
+                if (Math.random() < 0.1d && (world instanceof Level _level5)) {
                     if (!_level5.isClientSide()) {
                         ItemEntity entityToSpawn5 = new ItemEntity(_level5, x, y, z, new ItemStack(Items.GUNPOWDER));
                         entityToSpawn5.setPickUpDelay(10);
@@ -69,10 +64,9 @@ public class DarkLatexCreeperdiesProcedure {
             if (!entity.level.isClientSide()) {
                 entity.discard();
             }
-            if (world instanceof Level) {
-                Level _level6 = (Level) world;
+            if (world instanceof Level _level6) {
                 if (!_level6.isClientSide()) {
-                    _level6.explode((Entity) null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
+                    _level6.explode(null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
                 }
             }
             char c = 0;
@@ -81,13 +75,11 @@ public class DarkLatexCreeperdiesProcedure {
                 for (int index1 = 0; index1 < 6; index1++) {
                     char c3 = 0;
                     for (int index2 = 0; index2 < 6; index2++) {
-                        if (!(world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() != Blocks.AIR)) {
+                        if (world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() != Blocks.CAVE_AIR && world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock() != Blocks.VOID_AIR) {
+                            world.getBlockState(new BlockPos(x + c, y + c2, z + c3)).getBlock();
                         }
-                        c3 += 0;
                     }
-                    c2 += 0;
                 }
-                c += 0;
             }
         }
     }

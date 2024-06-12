@@ -35,7 +35,7 @@ public class LatexbunkerFeature extends Feature<NoneFeatureConfiguration> {
     public static final Set<ResourceLocation> GENERATE_BIOMES = Set.of(new ResourceLocation("changed:dark_latex_plains"));
     private final Set<ResourceKey<Level>> generate_dimensions = Set.of(Level.OVERWORLD);
     private StructureTemplate template = null;
-    private final List<Block> base_blocks = List.of((Block) ChangedBlocks.DARK_LATEX_BLOCK.get());
+    private final List<Block> base_blocks = List.of(ChangedBlocks.DARK_LATEX_BLOCK.get());
 
     public static Feature<?> feature() {
         FEATURE = new LatexbunkerFeature();
@@ -59,9 +59,6 @@ public class LatexbunkerFeature extends Feature<NoneFeatureConfiguration> {
         if (this.template == null) {
             this.template = context.level().getLevel().getStructureManager().getOrCreate(new ResourceLocation(LatexMod.MODID, "latex_bunker"));
         }
-        if (this.template == null) {
-            return false;
-        }
         boolean anyPlaced = false;
         if (context.random().nextInt(1000000) + 1 <= 500) {
             int count = context.random().nextInt(1) + 1;
@@ -70,13 +67,13 @@ public class LatexbunkerFeature extends Feature<NoneFeatureConfiguration> {
                 int k = context.origin().getZ() + context.random().nextInt(16);
                 int j = context.level().getHeight(Heightmap.Types.OCEAN_FLOOR_WG, i, k) - 1;
                 if (this.base_blocks.contains(context.level().getBlockState(new BlockPos(i, j, k)).getBlock())) {
-                    BlockPos spawnTo = new BlockPos(i + 0, j - 5, k + 0);
+                    BlockPos spawnTo = new BlockPos(i, j - 5, k);
                     WorldGenLevel world = context.level();
                     int x = spawnTo.getX();
                     int y = spawnTo.getY();
                     int z = spawnTo.getZ();
                     if (this.template.placeInWorld(context.level(), spawnTo, spawnTo, new StructurePlaceSettings().setMirror(Mirror.values()[context.random().nextInt(2)]).setRotation(Rotation.values()[context.random().nextInt(3)]).setRandom(context.random()).addProcessor(BlockIgnoreProcessor.STRUCTURE_BLOCK).setIgnoreEntities(false), context.random(), 2)) {
-                        LatexbunkerOnStructureInstanceGeneratedProcedure.execute(world, (double) x, (double) y, (double) z);
+                        LatexbunkerOnStructureInstanceGeneratedProcedure.execute(world, x, y, z);
                         anyPlaced = true;
                     }
                 }

@@ -27,15 +27,11 @@ public class AllyradiodroppodcallerRightClickedOnBlockProcedure {
             if (entity instanceof Player) {
                 ((Player) entity).getCooldowns().addCooldown(itemstack.getItem(), 650);
             }
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.ALLYRADIODROPPODCALLER.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.ALLYRADIODROPPODCALLER.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
-            if (entity instanceof Player) {
-                Player _player2 = (Player) entity;
+            if (entity instanceof Player _player2) {
                 if (!_player2.level.isClientSide()) {
                     _player2.displayClientMessage(new TextComponent("\"Arlight, Ally Drop Pod is coming! hold still.\""), false);
                 }
@@ -64,14 +60,11 @@ public class AllyradiodroppodcallerRightClickedOnBlockProcedure {
                 private void run() {
                     ServerLevel serverLevel = this.world;
                     if (serverLevel instanceof ServerLevel) {
-                        ServerLevel _level = serverLevel;
-                        Entity entityToSpawn = new AllydroppodEntity((EntityType<AllydroppodEntity>) ((EntityType) LatexModEntities.ALLYDROPPOD.get()), (Level) _level);
+                        Entity entityToSpawn = new AllydroppodEntity((EntityType<AllydroppodEntity>) LatexModEntities.ALLYDROPPOD.get(), serverLevel);
                         entityToSpawn.moveTo(x, y + 32.0d, z, 0.0f, 0.0f);
                         entityToSpawn.setYBodyRot(0.0f);
                         entityToSpawn.setYHeadRot(0.0f);
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(serverLevel, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         this.world.addFreshEntity(entityToSpawn);
                     }
                     MinecraftForge.EVENT_BUS.unregister(this);

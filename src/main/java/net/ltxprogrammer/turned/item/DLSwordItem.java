@@ -11,6 +11,7 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DLSwordItem.class */
 public class DLSwordItem extends SwordItem {
@@ -36,13 +37,13 @@ public class DLSwordItem extends SwordItem {
                 return 25;
             }
 
-            public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
+            public @NotNull Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get()));
             }
         }, 3, -3.2f, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
     }
 
-    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
         boolean retval = hurtEnemy(itemstack, entity, sourceentity);
         DLSwordLivingEntityIsHitWithToolProcedure.execute(entity);
         return retval;

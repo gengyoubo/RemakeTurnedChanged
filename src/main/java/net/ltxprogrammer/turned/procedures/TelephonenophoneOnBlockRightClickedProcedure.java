@@ -1,7 +1,8 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
+import java.util.Objects;
+
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.minecraft.core.BlockPos;
@@ -24,28 +25,23 @@ public class TelephonenophoneOnBlockRightClickedProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
             if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.PHONE.get()) {
-                if (entity instanceof Player) {
-                    Player _player = (Player) entity;
-                    ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.PHONE.get());
-                    _player.getInventory().clearOrCountMatchingItems(p -> {
-                        return _stktoremove.getItem() == p.getItem();
-                    }, 1, _player.inventoryMenu.getCraftSlots());
+                if (entity instanceof Player _player) {
+                    ItemStack _stktoremove = new ItemStack(LatexModItems.PHONE.get());
+                    _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
                 }
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
+                if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:click_noise")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                        _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:click_noise"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                     } else {
-                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:click_noise")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                        _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:click_noise"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                     }
                 }
                 BlockPos _bp = new BlockPos(x, y, z);
-                BlockState _bs = ((Block) LatexModBlocks.TELEPHONE.get()).defaultBlockState();
-                UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                    Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                    if (!(_property == null || _bs.getValue(_property) == null)) {
+                BlockState _bs = LatexModBlocks.TELEPHONE.get().defaultBlockState();
+                for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+                    Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                    if (!(_property == null)) {
                         try {
                             _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                         } catch (Exception e) {

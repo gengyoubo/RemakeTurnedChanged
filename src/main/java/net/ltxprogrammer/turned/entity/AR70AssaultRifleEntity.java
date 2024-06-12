@@ -1,5 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
+import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
@@ -19,12 +20,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/AR70AssaultRifleEntity.class */
 public class AR70AssaultRifleEntity extends AbstractArrow implements ItemSupplier {
     public AR70AssaultRifleEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super((EntityType) LatexModEntities.AR_70_ASSAULT_RIFLE.get(), world);
+        super(LatexModEntities.AR_70_ASSAULT_RIFLE.get(), world);
     }
 
     public AR70AssaultRifleEntity(EntityType<? extends AR70AssaultRifleEntity> type, Level world) {
@@ -39,20 +41,20 @@ public class AR70AssaultRifleEntity extends AbstractArrow implements ItemSupplie
         super(type, entity, world);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ItemStack getItem() {
-        return new ItemStack((ItemLike) LatexModItems.BULLETICON.get());
+    public @NotNull ItemStack getItem() {
+        return new ItemStack(LatexModItems.BULLETICON.get());
     }
 
-    protected ItemStack getPickupItem() {
+    protected @NotNull ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
-    protected void doPostHurtEffects(LivingEntity entity) {
+    protected void doPostHurtEffects(@NotNull LivingEntity entity) {
         doPostHurtEffects(entity);
         entity.setArrowCount(entity.getArrowCount() - 1);
     }
@@ -65,19 +67,19 @@ public class AR70AssaultRifleEntity extends AbstractArrow implements ItemSupplie
     }
 
     public static AR70AssaultRifleEntity shoot(Level world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        AR70AssaultRifleEntity entityarrow = new AR70AssaultRifleEntity((EntityType) LatexModEntities.AR_70_ASSAULT_RIFLE.get(), entity, world);
+        AR70AssaultRifleEntity entityarrow = new AR70AssaultRifleEntity(LatexModEntities.AR_70_ASSAULT_RIFLE.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1.0f).x, entity.getViewVector(1.0f).y, entity.getViewVector(1.0f).z, power * 2.0f, 0.0f);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
         entityarrow.setBaseDamage(damage);
         entityarrow.setKnockback(knockback);
         world.addFreshEntity(entityarrow);
-        world.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:rifle_shot")), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
+        world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:rifle_shot"))), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
         return entityarrow;
     }
 
-    public static AR70AssaultRifleEntity shoot(LivingEntity entity, LivingEntity target) {
-        AR70AssaultRifleEntity entityarrow = new AR70AssaultRifleEntity((EntityType) LatexModEntities.AR_70_ASSAULT_RIFLE.get(), entity, entity.level);
+    public static void shoot(LivingEntity entity, LivingEntity target) {
+        AR70AssaultRifleEntity entityarrow = new AR70AssaultRifleEntity(LatexModEntities.AR_70_ASSAULT_RIFLE.get(), entity, entity.level);
         double dx = target.getX() - entity.getX();
         double dy = (target.getY() + ((double) target.getEyeHeight())) - 1.1d;
         double dz = target.getZ() - entity.getZ();
@@ -87,7 +89,6 @@ public class AR70AssaultRifleEntity extends AbstractArrow implements ItemSupplie
         entityarrow.setKnockback(0);
         entityarrow.setCritArrow(false);
         entity.level.addFreshEntity(entityarrow);
-        entity.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:rifle_shot")), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
-        return entityarrow;
+        entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:rifle_shot"))), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
     }
 }

@@ -27,40 +27,23 @@ public class DroneHertxRightClickedOnEntityProcedure {
         if (entity != null && sourceentity != null) {
             if ((sourceentity instanceof LivingEntity ? ((LivingEntity) sourceentity).getMainHandItem() : ItemStack.EMPTY).getItem() == Items.IRON_INGOT) {
                 if ((entity instanceof TamableAnimal) && ((TamableAnimal) entity).isTame()) {
-                    float health = entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f;
-                    if (entity instanceof LivingEntity) {
-                        f = ((LivingEntity) entity).getMaxHealth();
-                    } else {
-                        f = -1.0f;
-                    }
+                    float health = ((LivingEntity) entity).getHealth();
+                    f = ((LivingEntity) entity).getMaxHealth();
                     if (health < f) {
-                        if (entity instanceof LivingEntity) {
-                            ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
-                        }
+                        ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.HEAL, 1, 1, false, false));
                         if (world instanceof ServerLevel) {
                             ((ServerLevel) world).sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0d, 2.0d, 1.0d, 1.0d);
                         }
-                        if (entity instanceof Player) {
-                            Player _player = (Player) entity;
-                            ItemStack _stktoremove = new ItemStack(Items.IRON_INGOT);
-                            _player.getInventory().clearOrCountMatchingItems(p -> {
-                                return _stktoremove.getItem() == p.getItem();
-                            }, 1, _player.inventoryMenu.getCraftSlots());
-                        }
                     }
                 }
-            } else if (entity instanceof TamableAnimal) {
-                TamableAnimal _tamIsTamedBy = (TamableAnimal) entity;
+            } else if (entity instanceof TamableAnimal _tamIsTamedBy) {
                 if ((sourceentity instanceof LivingEntity) && _tamIsTamedBy.isOwnedBy((LivingEntity) sourceentity)) {
-                    if (world instanceof ServerLevel) {
-                        ServerLevel _level = (ServerLevel) world;
-                        Entity entityToSpawn = new DroneHertxWaitEntity((EntityType<DroneHertxWaitEntity>) ((EntityType) LatexModEntities.DRONE_HERTX_WAIT.get()), (Level) _level);
+                    if (world instanceof ServerLevel _level) {
+                        Entity entityToSpawn = new DroneHertxWaitEntity((EntityType<DroneHertxWaitEntity>) LatexModEntities.DRONE_HERTX_WAIT.get(), _level);
                         entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                         entityToSpawn.setYBodyRot(entity.getYRot());
                         entityToSpawn.setYHeadRot(entity.getYRot());
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         world.addFreshEntity(entityToSpawn);
                     }
                     if (!entity.level.isClientSide()) {

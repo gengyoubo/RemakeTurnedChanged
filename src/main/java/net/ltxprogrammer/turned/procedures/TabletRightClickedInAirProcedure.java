@@ -11,20 +11,17 @@ import net.minecraftforge.items.ItemHandlerHelper;
 public class TabletRightClickedInAirProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.TABLET.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.TABLET.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
             if (entity instanceof Player) {
-                ItemStack _setstack = new ItemStack((ItemLike) LatexModItems.BATTERY.get());
+                ItemStack _setstack = new ItemStack(LatexModItems.BATTERY.get());
                 _setstack.setCount(1);
                 ItemHandlerHelper.giveItemToPlayer((Player) entity, _setstack);
             }
             if (entity instanceof Player) {
-                ItemStack _setstack2 = new ItemStack((ItemLike) LatexModItems.TABLETOFF.get());
+                ItemStack _setstack2 = new ItemStack(LatexModItems.TABLETOFF.get());
                 _setstack2.setCount(1);
                 ItemHandlerHelper.giveItemToPlayer((Player) entity, _setstack2);
             }

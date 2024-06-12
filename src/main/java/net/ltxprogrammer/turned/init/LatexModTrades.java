@@ -19,9 +19,9 @@ public class LatexModTrades {
     @SubscribeEvent
     public static void registerTrades(VillagerTradesEvent event) {
         if (event.getType() == VillagerProfession.CLERIC) {
-            ((List) event.getTrades().get(2)).add(new BasicItemListing(new ItemStack((ItemLike) ChangedItems.SYRINGE.get(), 9), new ItemStack(Items.EMERALD), 10, 5, 0.05f));
-            ((List) event.getTrades().get(3)).add(new BasicItemListing(new ItemStack(Items.EMERALD, 7), Syringe.setUnpureVariant(new ItemStack((ItemLike) ChangedItems.LATEX_SYRINGE.get()), LatexVariant.DARK_LATEX_WOLF.male().getFormId()), 10, 5, 0.05f));
-            ((List) event.getTrades().get(5)).add(new BasicItemListing(new ItemStack(Items.EMERALD, 13), new ItemStack((ItemLike) LatexModItems.SLIMEESSENCE.get()), 10, 5, 0.05f));
+            event.getTrades().get(2).add(new BasicItemListing(new ItemStack(ChangedItems.SYRINGE.get(), 9), new ItemStack(Items.EMERALD), 10, 5, 0.05f));
+            event.getTrades().get(3).add(new BasicItemListing(new ItemStack(Items.EMERALD, 7), Syringe.setUnpureVariant(new ItemStack(ChangedItems.LATEX_SYRINGE.get()), LatexVariant.DARK_LATEX_WOLF.male().getFormId()), 10, 5, 0.05f));
+            event.getTrades().get(5).add(new BasicItemListing(new ItemStack(Items.EMERALD, 13), new ItemStack(LatexModItems.SLIMEESSENCE.get()), 10, 5, 0.05f));
         }
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/ModelDark_latex_creeper_enhanced.class */
 public class ModelDark_latex_creeper_enhanced<T extends Entity> extends EntityModel<T> {
@@ -84,7 +85,7 @@ public class ModelDark_latex_creeper_enhanced<T extends Entity> extends EntityMo
         return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.ArmL.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
@@ -95,13 +96,13 @@ public class ModelDark_latex_creeper_enhanced<T extends Entity> extends EntityMo
         this.leg3.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(@NotNull T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.head.yRot = netHeadYaw / 57.295776f;
         this.head.xRot = headPitch / 57.295776f;
-        this.leg0.xRot = Mth.cos(limbSwing * 1.0f) * 1.0f * limbSwingAmount;
-        this.leg1.xRot = Mth.cos(limbSwing * 1.0f) * 1.0f * limbSwingAmount;
-        this.leg2.xRot = Mth.cos(limbSwing * 1.0f) * -1.0f * limbSwingAmount;
-        this.leg3.xRot = Mth.cos(limbSwing * 1.0f) * -1.0f * limbSwingAmount;
+        this.leg0.xRot = Mth.cos(limbSwing) * 1.0f * limbSwingAmount;
+        this.leg1.xRot = Mth.cos(limbSwing) * 1.0f * limbSwingAmount;
+        this.leg2.xRot = Mth.cos(limbSwing) * -1.0f * limbSwingAmount;
+        this.leg3.xRot = Mth.cos(limbSwing) * -1.0f * limbSwingAmount;
         this.ArmR.xRot = Mth.cos((limbSwing * 0.6662f) + 3.1415927f) * limbSwingAmount;
         this.ArmL.xRot = Mth.cos(limbSwing * 0.6662f) * limbSwingAmount;
     }

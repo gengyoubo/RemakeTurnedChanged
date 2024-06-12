@@ -14,6 +14,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/MilitaryDroneHertxIconItem.class */
 public class MilitaryDroneHertxIconItem extends Item {
@@ -22,18 +23,18 @@ public class MilitaryDroneHertxIconItem extends Item {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(ItemStack itemstack) {
+    public boolean isFoil(@NotNull ItemStack itemstack) {
         return true;
     }
 
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Place down your new soldier!"));
     }
 
-    public InteractionResult useOn(UseOnContext context) {
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         InteractionResult retval = useOn(context);
-        MilitaryDroneHertxIconRightclickedOnBlockProcedure.execute(context.getLevel(), (double) context.getClickedPos().getX(), (double) context.getClickedPos().getY(), (double) context.getClickedPos().getZ(), context.getPlayer());
+        MilitaryDroneHertxIconRightclickedOnBlockProcedure.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getPlayer());
         return retval;
     }
 }

@@ -14,8 +14,7 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
         if (entity != null) {
             if (Math.random() < 0.6d) {
                 if (Math.random() < 0.5d) {
-                    if (entity instanceof LivingEntity) {
-                        LivingEntity _entity = (LivingEntity) entity;
+                    if (entity instanceof LivingEntity _entity) {
                         ItemStack _setstack = new ItemStack(Items.STONE_SWORD);
                         _setstack.setCount(1);
                         _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
@@ -23,8 +22,7 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
                             ((Player) _entity).getInventory().setChanged();
                         }
                     }
-                } else if (entity instanceof LivingEntity) {
-                    LivingEntity _entity2 = (LivingEntity) entity;
+                } else if (entity instanceof LivingEntity _entity2) {
                     ItemStack _setstack2 = new ItemStack(Items.STONE_AXE);
                     _setstack2.setCount(1);
                     _entity2.setItemInHand(InteractionHand.MAIN_HAND, _setstack2);
@@ -33,22 +31,19 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
                     }
                 }
             } else if (Math.random() < 0.4d) {
-                if (entity instanceof Player) {
-                    Player _player = (Player) entity;
+                if (entity instanceof Player _player) {
                     _player.getInventory().armor.set(3, new ItemStack(Items.CHAINMAIL_HELMET));
                     _player.getInventory().setChanged();
                 } else if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
+                    entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
                 }
-                if (entity instanceof Player) {
-                    Player _player2 = (Player) entity;
+                if (entity instanceof Player _player2) {
                     _player2.getInventory().armor.set(2, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
                     _player2.getInventory().setChanged();
                 } else if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
+                    entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
                 }
-                if (entity instanceof LivingEntity) {
-                    LivingEntity _entity3 = (LivingEntity) entity;
+                if (entity instanceof LivingEntity _entity3) {
                     ItemStack _setstack3 = new ItemStack(Items.STONE_AXE);
                     _setstack3.setCount(1);
                     _entity3.setItemInHand(InteractionHand.MAIN_HAND, _setstack3);
@@ -57,8 +52,7 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
                     }
                 }
             } else if (Math.random() < 0.4d) {
-                if (entity instanceof LivingEntity) {
-                    LivingEntity _entity4 = (LivingEntity) entity;
+                if (entity instanceof LivingEntity _entity4) {
                     ItemStack _setstack4 = new ItemStack(Items.SHIELD);
                     _setstack4.setCount(1);
                     _entity4.setItemInHand(InteractionHand.OFF_HAND, _setstack4);
@@ -66,8 +60,7 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
                         ((Player) _entity4).getInventory().setChanged();
                     }
                 }
-                if (entity instanceof LivingEntity) {
-                    LivingEntity _entity5 = (LivingEntity) entity;
+                if (entity instanceof LivingEntity _entity5) {
                     ItemStack _setstack5 = new ItemStack(Items.STONE_SWORD);
                     _setstack5.setCount(1);
                     _entity5.setItemInHand(InteractionHand.MAIN_HAND, _setstack5);
@@ -76,22 +69,19 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
                     }
                 }
             } else {
-                if (entity instanceof Player) {
-                    Player _player3 = (Player) entity;
+                if (entity instanceof Player _player3) {
                     _player3.getInventory().armor.set(3, new ItemStack(Items.CHAINMAIL_HELMET));
                     _player3.getInventory().setChanged();
                 } else if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
+                    entity.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Items.CHAINMAIL_HELMET));
                 }
-                if (entity instanceof Player) {
-                    Player _player4 = (Player) entity;
+                if (entity instanceof Player _player4) {
                     _player4.getInventory().armor.set(2, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
                     _player4.getInventory().setChanged();
                 } else if (entity instanceof LivingEntity) {
-                    ((LivingEntity) entity).setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
+                    entity.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Items.CHAINMAIL_CHESTPLATE));
                 }
-                if (entity instanceof LivingEntity) {
-                    LivingEntity _entity6 = (LivingEntity) entity;
+                if (entity instanceof LivingEntity _entity6) {
                     ItemStack _setstack6 = new ItemStack(Items.SHIELD);
                     _setstack6.setCount(1);
                     _entity6.setItemInHand(InteractionHand.OFF_HAND, _setstack6);
@@ -99,8 +89,7 @@ public class CivilianMilitiaMeleeOnInitialEntitySpawnProcedure {
                         ((Player) _entity6).getInventory().setChanged();
                     }
                 }
-                if (entity instanceof LivingEntity) {
-                    LivingEntity _entity7 = (LivingEntity) entity;
+                if (entity instanceof LivingEntity _entity7) {
                     ItemStack _setstack7 = new ItemStack(Items.IRON_SWORD);
                     _setstack7.setCount(1);
                     _entity7.setItemInHand(InteractionHand.MAIN_HAND, _setstack7);

@@ -1,6 +1,5 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.ltxprogrammer.turned.init.LatexModGameRules;
@@ -15,12 +14,11 @@ public class EvilBeaconOffUpdateTickProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DOEVILSRAID)) {
             BlockPos _bp = new BlockPos(x, y, z);
-            BlockState _bs = ((Block) LatexModBlocks.EVILBEACONON.get()).defaultBlockState();
-            UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                if (!(_property == null || _bs.getValue(_property) == null)) {
+            BlockState _bs = LatexModBlocks.EVILBEACONON.get().defaultBlockState();
+            for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+                Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                if (!(_property == null)) {
                     try {
                         _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                     } catch (Exception e) {

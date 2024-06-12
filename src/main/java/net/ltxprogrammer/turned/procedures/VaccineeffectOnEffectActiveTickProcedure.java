@@ -14,10 +14,10 @@ public class VaccineeffectOnEffectActiveTickProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if (entity.getType().is(TagKey.create(Registry.ENTITY_TYPE_REGISTRY, new ResourceLocation("turned:darklatexes"))) && (entity instanceof LivingEntity)) {
-                ((LivingEntity) entity).hurt(new DamageSource("%1$s was cleansed from the dark latex parassite.").bypassArmor(), 1.0f);
+                entity.hurt(new DamageSource("%1$s was cleansed from the dark latex parassite.").bypassArmor(), 1.0f);
             }
-            if ((entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get()) && (entity instanceof LivingEntity)) {
-                ((LivingEntity) entity).removeEffect((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get());
+            if ((entity instanceof LivingEntity) && ((LivingEntity) entity).hasEffect(LatexModMobEffects.DARKLATEXDARTEFFECT.get()) && (entity instanceof LivingEntity)) {
+                ((LivingEntity) entity).removeEffect(LatexModMobEffects.DARKLATEXDARTEFFECT.get());
             }
         }
     }

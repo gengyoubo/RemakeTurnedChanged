@@ -14,8 +14,7 @@ import net.minecraft.world.level.LevelAccessor;
 public class DroneHertxDiesProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (Math.random() >= 0.05d) {
-            if (world instanceof Level) {
-                Level _level = (Level) world;
+            if (world instanceof Level _level) {
                 if (!_level.isClientSide()) {
                     ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(Items.IRON_INGOT));
                     entityToSpawn.setPickUpDelay(20);
@@ -23,8 +22,7 @@ public class DroneHertxDiesProcedure {
                 }
             }
             if (Math.random() < 0.3d) {
-                if (world instanceof Level) {
-                    Level _level2 = (Level) world;
+                if (world instanceof Level _level2) {
                     if (!_level2.isClientSide()) {
                         ItemEntity entityToSpawn2 = new ItemEntity(_level2, x, y, z, new ItemStack(Items.IRON_INGOT));
                         entityToSpawn2.setPickUpDelay(20);
@@ -32,8 +30,7 @@ public class DroneHertxDiesProcedure {
                     }
                 }
                 if (Math.random() < 0.2d) {
-                    if (world instanceof Level) {
-                        Level _level3 = (Level) world;
+                    if (world instanceof Level _level3) {
                         if (!_level3.isClientSide()) {
                             ItemEntity entityToSpawn3 = new ItemEntity(_level3, x, y, z, new ItemStack(Items.IRON_NUGGET));
                             entityToSpawn3.setPickUpDelay(20);
@@ -41,24 +38,21 @@ public class DroneHertxDiesProcedure {
                         }
                     }
                     if (Math.random() < 0.3d) {
-                        if (world instanceof Level) {
-                            Level _level4 = (Level) world;
+                        if (world instanceof Level _level4) {
                             if (!_level4.isClientSide()) {
                                 ItemEntity entityToSpawn4 = new ItemEntity(_level4, x, y, z, new ItemStack(Items.IRON_INGOT));
                                 entityToSpawn4.setPickUpDelay(20);
                                 _level4.addFreshEntity(entityToSpawn4);
                             }
                         }
-                        if (world instanceof Level) {
-                            Level _level5 = (Level) world;
+                        if (world instanceof Level _level5) {
                             if (!_level5.isClientSide()) {
                                 ItemEntity entityToSpawn5 = new ItemEntity(_level5, x, y, z, new ItemStack(Items.IRON_NUGGET));
                                 entityToSpawn5.setPickUpDelay(20);
                                 _level5.addFreshEntity(entityToSpawn5);
                             }
                         }
-                        if (Math.random() < 0.2d && (world instanceof Level)) {
-                            Level _level6 = (Level) world;
+                        if (Math.random() < 0.2d && (world instanceof Level _level6)) {
                             if (!_level6.isClientSide()) {
                                 ItemEntity entityToSpawn6 = new ItemEntity(_level6, x, y, z, new ItemStack(Items.IRON_INGOT));
                                 entityToSpawn6.setPickUpDelay(20);
@@ -69,24 +63,21 @@ public class DroneHertxDiesProcedure {
                 }
             }
             if (Math.random() < 0.2d) {
-                if (world instanceof Level) {
-                    Level _level7 = (Level) world;
+                if (world instanceof Level _level7) {
                     if (!_level7.isClientSide()) {
                         ItemEntity entityToSpawn7 = new ItemEntity(_level7, x, y, z, new ItemStack(Items.IRON_INGOT));
                         entityToSpawn7.setPickUpDelay(20);
                         _level7.addFreshEntity(entityToSpawn7);
                     }
                 }
-                if (world instanceof Level) {
-                    Level _level8 = (Level) world;
+                if (world instanceof Level _level8) {
                     if (!_level8.isClientSide()) {
                         ItemEntity entityToSpawn8 = new ItemEntity(_level8, x, y, z, new ItemStack(Items.REDSTONE));
                         entityToSpawn8.setPickUpDelay(20);
                         _level8.addFreshEntity(entityToSpawn8);
                     }
                 }
-                if (Math.random() < 0.2d && (world instanceof Level)) {
-                    Level _level9 = (Level) world;
+                if (Math.random() < 0.2d && (world instanceof Level _level9)) {
                     if (!_level9.isClientSide()) {
                         ItemEntity entityToSpawn9 = new ItemEntity(_level9, x, y, z, new ItemStack(Items.REDSTONE));
                         entityToSpawn9.setPickUpDelay(20);
@@ -94,27 +85,24 @@ public class DroneHertxDiesProcedure {
                     }
                 }
                 if (Math.random() < 0.05d) {
-                    if (world instanceof Level) {
-                        Level _level10 = (Level) world;
+                    if (world instanceof Level _level10) {
                         if (!_level10.isClientSide()) {
-                            ItemEntity entityToSpawn10 = new ItemEntity(_level10, x, y, z, new ItemStack((ItemLike) LatexModItems.HERTXVISOR.get()));
+                            ItemEntity entityToSpawn10 = new ItemEntity(_level10, x, y, z, new ItemStack(LatexModItems.HERTXVISOR.get()));
                             entityToSpawn10.setPickUpDelay(20);
                             _level10.addFreshEntity(entityToSpawn10);
                         }
                     }
                     if (Math.random() < 0.35d) {
-                        if (world instanceof Level) {
-                            Level _level11 = (Level) world;
+                        if (world instanceof Level _level11) {
                             if (!_level11.isClientSide()) {
-                                ItemEntity entityToSpawn11 = new ItemEntity(_level11, x, y, z, new ItemStack((ItemLike) LatexModItems.HERTXENGINEER_CHESTPLATE.get()));
+                                ItemEntity entityToSpawn11 = new ItemEntity(_level11, x, y, z, new ItemStack(LatexModItems.HERTXENGINEER_CHESTPLATE.get()));
                                 entityToSpawn11.setPickUpDelay(20);
                                 _level11.addFreshEntity(entityToSpawn11);
                             }
                         }
-                        if (Math.random() < 0.4d && (world instanceof Level)) {
-                            Level _level12 = (Level) world;
+                        if (Math.random() < 0.4d && (world instanceof Level _level12)) {
                             if (!_level12.isClientSide()) {
-                                ItemEntity entityToSpawn12 = new ItemEntity(_level12, x, y, z, new ItemStack((ItemLike) LatexModItems.HERTXENGINEER_LEGGINGS.get()));
+                                ItemEntity entityToSpawn12 = new ItemEntity(_level12, x, y, z, new ItemStack(LatexModItems.HERTXENGINEER_LEGGINGS.get()));
                                 entityToSpawn12.setPickUpDelay(20);
                                 _level12.addFreshEntity(entityToSpawn12);
                             }
@@ -122,10 +110,9 @@ public class DroneHertxDiesProcedure {
                     }
                 }
             }
-        } else if (world instanceof Level) {
-            Level _level13 = (Level) world;
+        } else if (world instanceof Level _level13) {
             if (!_level13.isClientSide()) {
-                _level13.explode((Entity) null, x, y, z, 3.0f, Explosion.BlockInteraction.BREAK);
+                _level13.explode(null, x, y, z, 3.0f, Explosion.BlockInteraction.BREAK);
             }
         }
     }

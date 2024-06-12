@@ -1,8 +1,13 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.ArmedDroneHertxDiesProcedure;
 import net.ltxprogrammer.turned.procedures.ArmedDroneHertxPlayerCollidesWithThisEntityProcedure;
@@ -21,6 +26,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -56,155 +62,166 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/ArmedDroneHertxEntity.class */
 public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttackMob {
     public ArmedDroneHertxEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.ARMED_DRONE_HERTX.get(), world);
+        this((EntityType)LatexModEntities.ARMED_DRONE_HERTX.get(), world);
     }
 
     public ArmedDroneHertxEntity(EntityType<ArmedDroneHertxEntity> type, Level world) {
         super(type, world);
         this.xpReward = 14;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2d, false) { // from class: net.ltxprogrammer.turned.entity.ArmedDroneHertxEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, SlimelingEntity.class, true, true) { // from class: net.ltxprogrammer.turned.entity.ArmedDroneHertxEntity.2
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, SlimelingEntity.class, true, true) {
             public boolean canUse() {
-                return canUse() && CheckiftamedProcedure.execute(ArmedDroneHertxEntity.this.level, ArmedDroneHertxEntity.this.getX(), ArmedDroneHertxEntity.this.getY(), ArmedDroneHertxEntity.this.getZ(), ArmedDroneHertxEntity.this);
+                double x = ArmedDroneHertxEntity.this.getX();
+                double y = ArmedDroneHertxEntity.this.getY();
+                double z = ArmedDroneHertxEntity.this.getZ();
+                Entity entity = ArmedDroneHertxEntity.this;
+                Level world = ArmedDroneHertxEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
             }
         });
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Mob.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Mob.class, 10, false, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Mob.class, 10, false, false, TargetCheck.IS_LATEX));
         this.goalSelector.addGoal(5, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(6, new OwnerHurtTargetGoal(this));
-        this.goalSelector.addGoal(7, new FollowOwnerGoal(this, 0.9d, 4.0f, 36.0f, false));
+        this.goalSelector.addGoal(7, new FollowOwnerGoal(this, 0.9, 4.0F, 36.0F, false));
         this.goalSelector.addGoal(8, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, false));
-        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0f));
-        this.goalSelector.addGoal(11, new RandomStrollGoal(this, 0.7d));
-        this.targetSelector.addGoal(12, new HurtByTargetGoal(this, new Class[0]));
+        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(11, new RandomStrollGoal(this, 0.7));
+        this.targetSelector.addGoal(12, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(13, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(14, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.ArmedDroneHertxEntity.3
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
             public boolean canContinueToUse() {
-                return canUse();
+                return this.canUse();
             }
         });
-    }
-
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
-    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-        return false;
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:robot_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:robot_beep"));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.step")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.step")), 0.15F, 1.0F);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.hit"));
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.hit"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:death_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:death_beep"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.CACTUS || source == DamageSource.DROWN || source == DamageSource.DRAGON_BREATH || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.CACTUS) {
+                return false;
+            } else if (source == DamageSource.DROWN) {
+                return false;
+            } else if (source == DamageSource.DRAGON_BREATH) {
+                return false;
+            } else if (source == DamageSource.WITHER) {
+                return false;
+            } else {
+                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
+            }
+        } else {
             return false;
         }
-        return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
-        die(source);
-        ArmedDroneHertxDiesProcedure.execute(this.level, getX(), getY(), getZ());
+    public void die(@NotNull DamageSource source) {
+        super.die(source);
+        ArmedDroneHertxDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        HertxOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        HertxOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
-    public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player sourceentity, @NotNull InteractionHand hand) {
         ItemStack itemstack = sourceentity.getItemInHand(hand);
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
         if (itemstack.getItem() instanceof SpawnEggItem) {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
         } else if (this.level.isClientSide()) {
-            if ((!isTame() || !isOwnedBy(sourceentity)) && !isFood(itemstack)) {
-                retval = InteractionResult.PASS;
-            } else {
-                retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-            }
-        } else if (isTame()) {
-            if (isOwnedBy(sourceentity)) {
-                if (item.isEdible() && isFood(itemstack) && getHealth() < getMaxHealth()) {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal((float) item.getFoodProperties().getNutrition());
+            retval = (!this.isTame() || !this.isOwnedBy(sourceentity)) && !this.isFood(itemstack) ? InteractionResult.PASS : InteractionResult.sidedSuccess(this.level.isClientSide());
+        } else if (this.isTame()) {
+            if (this.isOwnedBy(sourceentity)) {
+                if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal((float)item.getFoodProperties().getNutrition());
                     retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-                } else if (!isFood(itemstack) || getHealth() >= getMaxHealth()) {
-                    retval = mobInteract(sourceentity, hand);
+                } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal(4.0F);
+                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
                 } else {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal(4.0f);
-                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
+                    retval = super.mobInteract(sourceentity, hand);
                 }
             }
-        } else if (isFood(itemstack)) {
-            usePlayerItem(sourceentity, hand, itemstack);
-            if (this.random.nextInt(3) != 0 || ForgeEventFactory.onAnimalTame(this, sourceentity)) {
-                this.level.broadcastEntityEvent(this, (byte) 6);
+        } else if (this.isFood(itemstack)) {
+            this.usePlayerItem(sourceentity, hand, itemstack);
+            if (this.random.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, sourceentity)) {
+                this.tame(sourceentity);
+                this.level.broadcastEntityEvent(this, (byte)7);
             } else {
-                tame(sourceentity);
-                this.level.broadcastEntityEvent(this, (byte) 7);
+                this.level.broadcastEntityEvent(this, (byte)6);
             }
-            setPersistenceRequired();
+
+            this.setPersistenceRequired();
             retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         } else {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
             if (retval == InteractionResult.SUCCESS || retval == InteractionResult.CONSUME) {
-                setPersistenceRequired();
+                this.setPersistenceRequired();
             }
         }
-        ArmedDronehertxrightclickProcedure.execute(this.level, getX(), getY(), getZ(), this, sourceentity);
+
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        Entity entity = this;
+        Level world = this.level;
+        ArmedDronehertxrightclickProcedure.execute(world, x, y, z, entity, sourceentity);
         return retval;
     }
 
-    public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
+    public void playerTouch(@NotNull Player sourceentity) {
+        super.playerTouch(sourceentity);
         ArmedDroneHertxPlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
-    public void performRangedAttack(LivingEntity target, float flval) {
+    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         M4AssaultRifleEntity.shoot(this, target);
     }
 
-    public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        ArmedDroneHertxEntity retval = ((EntityType) LatexModEntities.ARMED_DRONE_HERTX.get()).create(serverWorld);
-        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
+        ArmedDroneHertxEntity retval = (ArmedDroneHertxEntity)((EntityType)LatexModEntities.ARMED_DRONE_HERTX.get()).create(serverWorld);
+        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
 
@@ -216,6 +233,14 @@ public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttack
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.MAX_HEALTH, 58.0d).add(Attributes.ARMOR, 9.0d).add(Attributes.ATTACK_DAMAGE, 5.0d).add(Attributes.FOLLOW_RANGE, 24.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.6d).add(Attributes.ATTACK_KNOCKBACK, 0.2d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+        builder = builder.add(Attributes.MAX_HEALTH, 58.0);
+        builder = builder.add(Attributes.ARMOR, 9.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 24.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.6);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.2);
+        return builder;
     }
 }

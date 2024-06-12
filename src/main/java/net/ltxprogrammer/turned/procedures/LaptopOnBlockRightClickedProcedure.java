@@ -1,7 +1,8 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
+import java.util.Objects;
+
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -18,12 +19,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class LaptopOnBlockRightClickedProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         BlockPos _bp = new BlockPos(x, y, z);
-        BlockState _bs = ((Block) LatexModBlocks.LAPTOP_ON.get()).defaultBlockState();
-        UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-            Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-            if (!(_property == null || _bs.getValue(_property) == null)) {
+        BlockState _bs = LatexModBlocks.LAPTOP_ON.get().defaultBlockState();
+        for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+            Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+            Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+            if (!(_property == null)) {
                 try {
                     _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                 } catch (Exception e) {
@@ -31,12 +31,11 @@ public class LaptopOnBlockRightClickedProcedure {
             }
         }
         world.setBlock(_bp, _bs, 3);
-        if (world instanceof Level) {
-            Level _level = (Level) world;
+        if (world instanceof Level _level) {
             if (!_level.isClientSide()) {
-                _level.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:computer_on")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:computer_on"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
             } else {
-                _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:computer_on")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:computer_on"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
             }
         }
     }

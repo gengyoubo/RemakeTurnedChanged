@@ -15,15 +15,16 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.Objects;
+
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/TacticalbombOnBlockRightClickedProcedure.class */
 public class TacticalbombOnBlockRightClickedProcedure {
     public static void execute(LevelAccessor world, final double x, final double y, final double z) {
-        if (world instanceof Level) {
-            Level _level = (Level) world;
+        if (world instanceof Level _level) {
             if (!_level.isClientSide()) {
-                _level.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.lever.click")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                _level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.lever.click"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
             } else {
-                _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.lever.click")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                _level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.lever.click"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
             }
         }
         new Object() { // from class: net.ltxprogrammer.turned.procedures.TacticalbombOnBlockRightClickedProcedure.1
@@ -56,9 +57,8 @@ public class TacticalbombOnBlockRightClickedProcedure {
                 }
                 Level level = this.world;
                 if (level instanceof Level) {
-                    Level _level3 = level;
-                    if (!_level3.isClientSide()) {
-                        _level3.explode((Entity) null, x, y, z, 5.0f, Explosion.BlockInteraction.DESTROY);
+                    if (!level.isClientSide()) {
+                        level.explode(null, x, y, z, 5.0f, Explosion.BlockInteraction.DESTROY);
                     }
                 }
                 MinecraftForge.EVENT_BUS.unregister(this);

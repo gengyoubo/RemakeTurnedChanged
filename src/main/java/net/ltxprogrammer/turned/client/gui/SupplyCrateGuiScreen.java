@@ -3,6 +3,8 @@ package net.ltxprogrammer.turned.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.HashMap;
+import java.util.Objects;
+
 import net.ltxprogrammer.turned.world.inventory.SupplyCrateGuiMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -11,41 +13,35 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/gui/SupplyCrateGuiScreen.class */
 public class SupplyCrateGuiScreen extends AbstractContainerScreen<SupplyCrateGuiMenu> {
-    private final Level world;
 
-    /* renamed from: x */
-    private final int f12x;
-
-    /* renamed from: y */
-    private final int f13y;
-
-    /* renamed from: z */
-    private final int f14z;
-    private final Player entity;
     private static final HashMap<String, Object> guistate = SupplyCrateGuiMenu.guistate;
     private static final ResourceLocation texture = new ResourceLocation("turned:textures/screens/supply_crate_gui.png");
 
     public SupplyCrateGuiScreen(SupplyCrateGuiMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
-        this.world = container.world;
-        this.f12x = container.f27x;
-        this.f13y = container.f28y;
-        this.f14z = container.f29z;
-        this.entity = container.entity;
+        Level world = container.world;
+        /* renamed from: x */
+        int f12x = container.f27x;
+        /* renamed from: y */
+        int f13y = container.f28y;
+        /* renamed from: z */
+        int f14z = container.f29z;
+        Player entity = container.entity;
         this.imageWidth = 176;
         this.imageHeight = 166;
     }
 
-    public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+    public void render(@NotNull PoseStack ms, int mouseX, int mouseY, float partialTicks) {
         renderBackground(ms);
         render(ms, mouseX, mouseY, partialTicks);
         renderTooltip(ms, mouseX, mouseY);
     }
 
-    protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
+    protected void renderBg(@NotNull PoseStack ms, float partialTicks, int gx, int gy) {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -58,7 +54,7 @@ public class SupplyCrateGuiScreen extends AbstractContainerScreen<SupplyCrateGui
         if (key != 256) {
             return keyPressed(key, b, c);
         }
-        this.minecraft.player.closeContainer();
+        Objects.requireNonNull(this.minecraft.player).closeContainer();
         return true;
     }
 
@@ -66,7 +62,7 @@ public class SupplyCrateGuiScreen extends AbstractContainerScreen<SupplyCrateGui
         containerTick();
     }
 
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
+    protected void renderLabels(@NotNull PoseStack poseStack, int mouseX, int mouseY) {
     }
 
     public void onClose() {
@@ -76,6 +72,6 @@ public class SupplyCrateGuiScreen extends AbstractContainerScreen<SupplyCrateGui
 
     public void init() {
         init();
-        this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
+        Objects.requireNonNull(this.minecraft).keyboardHandler.setSendRepeatsToGui(true);
     }
 }

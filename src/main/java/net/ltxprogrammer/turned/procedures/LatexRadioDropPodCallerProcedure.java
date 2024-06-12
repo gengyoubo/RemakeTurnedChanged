@@ -26,12 +26,9 @@ public class LatexRadioDropPodCallerProcedure {
             if (entity instanceof Player) {
                 ((Player) entity).getCooldowns().addCooldown(itemstack.getItem(), 400);
             }
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.LATEX_RADIO_CALLER.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.LATEX_RADIO_CALLER.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
             new Object() { // from class: net.ltxprogrammer.turned.procedures.LatexRadioDropPodCallerProcedure.1
                 private int ticks = 0;
@@ -57,14 +54,11 @@ public class LatexRadioDropPodCallerProcedure {
                 private void run() {
                     ServerLevel serverLevel = this.world;
                     if (serverLevel instanceof ServerLevel) {
-                        ServerLevel _level = serverLevel;
-                        Entity entityToSpawn = new LatexDropPodEntity((EntityType<LatexDropPodEntity>) ((EntityType) LatexModEntities.LATEX_DROP_POD.get()), (Level) _level);
+                        Entity entityToSpawn = new LatexDropPodEntity((EntityType<LatexDropPodEntity>) LatexModEntities.LATEX_DROP_POD.get(), serverLevel);
                         entityToSpawn.moveTo(x, y + 32.0d, z, 0.0f, 0.0f);
                         entityToSpawn.setYBodyRot(0.0f);
                         entityToSpawn.setYHeadRot(0.0f);
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(serverLevel, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         this.world.addFreshEntity(entityToSpawn);
                     }
                     MinecraftForge.EVENT_BUS.unregister(this);

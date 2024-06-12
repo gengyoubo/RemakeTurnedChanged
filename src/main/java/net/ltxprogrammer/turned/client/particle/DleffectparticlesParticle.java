@@ -9,13 +9,13 @@ import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/particle/DleffectparticlesParticle.class */
 public class DleffectparticlesParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
     private float angularVelocity = 0.0f;
-    private final float angularAcceleration = 1.2f;
 
     public static DleffectparticlesParticleProvider provider(SpriteSet spriteSet) {
         return new DleffectparticlesParticleProvider(spriteSet);
@@ -29,7 +29,7 @@ public class DleffectparticlesParticle extends TextureSheetParticle {
             this.spriteSet = spriteSet;
         }
 
-        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new DleffectparticlesParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
         }
     }
@@ -48,7 +48,7 @@ public class DleffectparticlesParticle extends TextureSheetParticle {
         setSpriteFromAge(spriteSet);
     }
 
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
@@ -56,7 +56,8 @@ public class DleffectparticlesParticle extends TextureSheetParticle {
         tick();
         this.oRoll = this.roll;
         this.roll += this.angularVelocity;
-        this.angularVelocity += this.angularAcceleration;
+        float angularAcceleration = 1.2f;
+        this.angularVelocity += angularAcceleration;
         if (!this.removed) {
             setSprite(this.spriteSet.get(((this.age / 15) % 5) + 1, 5));
         }

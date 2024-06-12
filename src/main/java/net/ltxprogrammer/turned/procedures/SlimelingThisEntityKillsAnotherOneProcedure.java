@@ -42,10 +42,9 @@ public class SlimelingThisEntityKillsAnotherOneProcedure {
                 if (world instanceof ServerLevel) {
                     ((ServerLevel) world).sendParticles(ParticleTypes.HEART, x, y, z, 3, 3.0d, 3.0d, 3.0d, 1.0d);
                 }
-                if (world instanceof Level) {
-                    Level _level = (Level) world;
+                if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound((Player) null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 2.0f);
+                        _level.playSound(null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 2.0f);
                     } else {
                         _level.playLocalSound(x, y, z, ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 2.0f, false);
                     }
@@ -55,10 +54,9 @@ public class SlimelingThisEntityKillsAnotherOneProcedure {
                 }
             } else if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXTRANSFUR) && Math.random() < 0.6d) {
                 if ((entity instanceof Pillager) || (entity instanceof Player) || (entity instanceof DarklatexEntity) || (entity instanceof ZombifiedPiglin) || (entity instanceof PiglinBrute) || (entity instanceof ZombieVillager) || (entity instanceof Vindicator) || (entity instanceof Villager) || (entity instanceof WanderingTrader) || (entity instanceof Husk) || (entity instanceof Evoker) || (entity instanceof Illusioner) || (entity instanceof Drowned)) {
-                    if (world instanceof Level) {
-                        Level _level2 = (Level) world;
+                    if (world instanceof Level _level2) {
                         if (!_level2.isClientSide()) {
-                            _level2.playSound((Player) null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 1.0f);
+                            _level2.playSound(null, new BlockPos(x, y, z), ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 1.0f);
                         } else {
                             _level2.playLocalSound(x, y, z, ChangedSounds.POISON, SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                         }
@@ -66,13 +64,10 @@ public class SlimelingThisEntityKillsAnotherOneProcedure {
                     if (world instanceof ServerLevel) {
                         ((ServerLevel) world).sendParticles(ParticleTypes.ITEM_SLIME, x, y, z, 5, 3.0d, 3.0d, 3.0d, 1.0d);
                     }
-                    if (world instanceof ServerLevel) {
-                        ServerLevel _level3 = (ServerLevel) world;
-                        Entity entityToSpawn = new SlimelingEntity((EntityType<SlimelingEntity>) ((EntityType) LatexModEntities.SLIMELING.get()), (Level) _level3);
+                    if (world instanceof ServerLevel _level3) {
+                        Entity entityToSpawn = new SlimelingEntity((EntityType<SlimelingEntity>) LatexModEntities.SLIMELING.get(), _level3);
                         entityToSpawn.moveTo(x, y, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
-                        if (entityToSpawn instanceof Mob) {
-                            ((Mob) entityToSpawn).finalizeSpawn(_level3, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                        }
+                        ((Mob) entityToSpawn).finalizeSpawn(_level3, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                         world.addFreshEntity(entityToSpawn);
                     }
                 }

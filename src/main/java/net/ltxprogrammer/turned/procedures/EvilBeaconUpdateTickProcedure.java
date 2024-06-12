@@ -1,7 +1,8 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
+import java.util.Objects;
+
 import net.ltxprogrammer.turned.entity.DROPPODEntity;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.ltxprogrammer.turned.init.LatexModEntities;
@@ -57,11 +58,10 @@ public class EvilBeaconUpdateTickProcedure {
                 private void run() {
                     Level level = this.world;
                     if (level instanceof Level) {
-                        Level _level = level;
-                        if (!_level.isClientSide()) {
-                            _level.playSound((Player) null, new BlockPos(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep")), SoundSource.NEUTRAL, 1.0f, 1.0f);
+                        if (!level.isClientSide()) {
+                            level.playSound(null, new BlockPos(x, y, z), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"))), SoundSource.NEUTRAL, 1.0f, 1.0f);
                         } else {
-                            _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep")), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
+                            level.playLocalSound(x, y, z, Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"))), SoundSource.NEUTRAL, 1.0f, 1.0f, false);
                         }
                     }
                     MinecraftForge.EVENT_BUS.unregister(this);
@@ -124,53 +124,38 @@ public class EvilBeaconUpdateTickProcedure {
                                 if (Math.random() < 0.1d) {
                                     ServerLevel serverLevel = this.world;
                                     if (serverLevel instanceof ServerLevel) {
-                                        ServerLevel _level3 = serverLevel;
-                                        Entity entityToSpawn = new DROPPODEntity((EntityType<DROPPODEntity>) ((EntityType) LatexModEntities.DROPPOD.get()), (Level) _level3);
+                                        Entity entityToSpawn = new DROPPODEntity((EntityType<DROPPODEntity>) LatexModEntities.DROPPOD.get(), serverLevel);
                                         entityToSpawn.moveTo(x, y + 36.0d, z + 8.0d, this.world.getRandom().nextFloat() * 360.0f, 0.0f);
-                                        if (entityToSpawn instanceof Mob) {
-                                            ((Mob) entityToSpawn).finalizeSpawn(_level3, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                                        }
+                                        ((Mob) entityToSpawn).finalizeSpawn(serverLevel, this.world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                                         this.world.addFreshEntity(entityToSpawn);
                                     }
                                     ServerLevel serverLevel2 = this.world;
                                     if (serverLevel2 instanceof ServerLevel) {
-                                        ServerLevel _level4 = serverLevel2;
-                                        Entity entityToSpawn2 = new DROPPODEntity((EntityType<DROPPODEntity>) ((EntityType) LatexModEntities.DROPPOD.get()), (Level) _level4);
+                                        Entity entityToSpawn2 = new DROPPODEntity((EntityType<DROPPODEntity>) LatexModEntities.DROPPOD.get(), serverLevel2);
                                         entityToSpawn2.moveTo(x, y + 36.0d, z - 8.0d, this.world.getRandom().nextFloat() * 360.0f, 0.0f);
-                                        if (entityToSpawn2 instanceof Mob) {
-                                            ((Mob) entityToSpawn2).finalizeSpawn(_level4, this.world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                                        }
+                                        ((Mob) entityToSpawn2).finalizeSpawn(serverLevel2, this.world.getCurrentDifficultyAt(entityToSpawn2.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                                         this.world.addFreshEntity(entityToSpawn2);
                                     }
                                     ServerLevel serverLevel3 = this.world;
                                     if (serverLevel3 instanceof ServerLevel) {
-                                        ServerLevel _level5 = serverLevel3;
-                                        Entity entityToSpawn3 = new DROPPODEntity((EntityType<DROPPODEntity>) ((EntityType) LatexModEntities.DROPPOD.get()), (Level) _level5);
+                                        Entity entityToSpawn3 = new DROPPODEntity((EntityType<DROPPODEntity>) LatexModEntities.DROPPOD.get(), serverLevel3);
                                         entityToSpawn3.moveTo(x + 8.0d, y + 36.0d, z, this.world.getRandom().nextFloat() * 360.0f, 0.0f);
-                                        if (entityToSpawn3 instanceof Mob) {
-                                            ((Mob) entityToSpawn3).finalizeSpawn(_level5, this.world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                                        }
+                                        ((Mob) entityToSpawn3).finalizeSpawn(serverLevel3, this.world.getCurrentDifficultyAt(entityToSpawn3.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                                         this.world.addFreshEntity(entityToSpawn3);
                                     }
                                     ServerLevel serverLevel4 = this.world;
                                     if (serverLevel4 instanceof ServerLevel) {
-                                        ServerLevel _level6 = serverLevel4;
-                                        Entity entityToSpawn4 = new DROPPODEntity((EntityType<DROPPODEntity>) ((EntityType) LatexModEntities.DROPPOD.get()), (Level) _level6);
+                                        Entity entityToSpawn4 = new DROPPODEntity((EntityType<DROPPODEntity>) LatexModEntities.DROPPOD.get(), serverLevel4);
                                         entityToSpawn4.moveTo(x - 8.0d, y + 36.0d, z, this.world.getRandom().nextFloat() * 360.0f, 0.0f);
-                                        if (entityToSpawn4 instanceof Mob) {
-                                            ((Mob) entityToSpawn4).finalizeSpawn(_level6, this.world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                                        }
+                                        ((Mob) entityToSpawn4).finalizeSpawn(serverLevel4, this.world.getCurrentDifficultyAt(entityToSpawn4.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                                         this.world.addFreshEntity(entityToSpawn4);
                                     }
                                 } else {
                                     ServerLevel serverLevel5 = this.world;
                                     if (serverLevel5 instanceof ServerLevel) {
-                                        ServerLevel _level7 = serverLevel5;
-                                        Entity entityToSpawn5 = new DROPPODEntity((EntityType<DROPPODEntity>) ((EntityType) LatexModEntities.DROPPOD.get()), (Level) _level7);
+                                        Entity entityToSpawn5 = new DROPPODEntity((EntityType<DROPPODEntity>) LatexModEntities.DROPPOD.get(), serverLevel5);
                                         entityToSpawn5.moveTo(x, y + 48.0d, z, this.world.getRandom().nextFloat() * 360.0f, 0.0f);
-                                        if (entityToSpawn5 instanceof Mob) {
-                                            ((Mob) entityToSpawn5).finalizeSpawn(_level7, this.world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                                        }
+                                        ((Mob) entityToSpawn5).finalizeSpawn(serverLevel5, this.world.getCurrentDifficultyAt(entityToSpawn5.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                                         this.world.addFreshEntity(entityToSpawn5);
                                     }
                                 }
@@ -184,12 +169,11 @@ public class EvilBeaconUpdateTickProcedure {
             return;
         }
         BlockPos _bp = new BlockPos(x, y, z);
-        BlockState _bs = ((Block) LatexModBlocks.EVIL_BEACON.get()).defaultBlockState();
-        UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-            Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-            if (!(_property == null || _bs.getValue(_property) == null)) {
+        BlockState _bs = LatexModBlocks.EVIL_BEACON.get().defaultBlockState();
+        for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+            Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+            Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+            if (!(_property == null)) {
                 try {
                     _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                 } catch (Exception e) {

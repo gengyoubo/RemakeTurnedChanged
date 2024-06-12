@@ -23,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DLScytheItem.class */
 public class DLScytheItem extends TieredItem {
@@ -48,18 +49,18 @@ public class DLScytheItem extends TieredItem {
                 return 25;
             }
 
-            public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
+            public @NotNull Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get()));
             }
         }, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
     }
 
-    public boolean isCorrectToolForDrops(BlockState blockstate) {
-        if (2 < 3 && blockstate.is(BlockTags.NEEDS_DIAMOND_TOOL)) {
+    public boolean isCorrectToolForDrops(@NotNull BlockState blockstate) {
+        if (blockstate.is(BlockTags.NEEDS_DIAMOND_TOOL)) {
             return false;
         }
-        if (2 >= 2 || !blockstate.is(BlockTags.NEEDS_IRON_TOOL)) {
-            return (2 >= 1 || !blockstate.is(BlockTags.NEEDS_STONE_TOOL)) && (blockstate.is(BlockTags.MINEABLE_WITH_AXE) || blockstate.is(BlockTags.MINEABLE_WITH_HOE) || blockstate.is(BlockTags.MINEABLE_WITH_PICKAXE) || blockstate.is(BlockTags.MINEABLE_WITH_SHOVEL));
+        if (true) {
+            return (blockstate.is(BlockTags.MINEABLE_WITH_AXE) || blockstate.is(BlockTags.MINEABLE_WITH_HOE) || blockstate.is(BlockTags.MINEABLE_WITH_PICKAXE) || blockstate.is(BlockTags.MINEABLE_WITH_SHOVEL));
         }
         return false;
     }
@@ -68,11 +69,11 @@ public class DLScytheItem extends TieredItem {
         return ToolActions.DEFAULT_AXE_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_HOE_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_SHOVEL_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_PICKAXE_ACTIONS.contains(toolAction) || ToolActions.DEFAULT_SWORD_ACTIONS.contains(toolAction);
     }
 
-    public float getDestroySpeed(ItemStack itemstack, BlockState blockstate) {
+    public float getDestroySpeed(@NotNull ItemStack itemstack, @NotNull BlockState blockstate) {
         return 5.5f;
     }
 
-    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot equipmentSlot) {
+    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot equipmentSlot) {
         if (equipmentSlot != EquipmentSlot.MAINHAND) {
             return getDefaultAttributeModifiers(equipmentSlot);
         }
@@ -83,17 +84,13 @@ public class DLScytheItem extends TieredItem {
         return builder.build();
     }
 
-    public boolean mineBlock(ItemStack itemstack, Level world, BlockState blockstate, BlockPos pos, LivingEntity entity) {
-        itemstack.hurtAndBreak(1, entity, i -> {
-            i.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+    public boolean mineBlock(ItemStack itemstack, @NotNull Level world, @NotNull BlockState blockstate, @NotNull BlockPos pos, @NotNull LivingEntity entity) {
+        itemstack.hurtAndBreak(1, entity, i -> i.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         return true;
     }
 
-    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
-        itemstack.hurtAndBreak(2, entity, i -> {
-            i.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-        });
+    public boolean hurtEnemy(ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
+        itemstack.hurtAndBreak(2, entity, i -> i.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         DLSwordLivingEntityIsHitWithToolProcedure.execute(entity);
         return true;
     }

@@ -1,6 +1,5 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.minecraft.core.BlockPos;
@@ -19,12 +18,11 @@ public class BunkerDoorBlockAddedProcedure {
         if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == LatexModBlocks.BUNKER_DOOR.get() || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.BARRIER || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR)) {
             world.destroyBlock(new BlockPos(x, y, z), false);
             BlockPos _bp = new BlockPos(x, y + 1.0d, z);
-            BlockState _bs = ((Block) LatexModBlocks.BUNKER_DOOR.get()).defaultBlockState();
-            UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                if (!(_property == null || _bs.getValue(_property) == null)) {
+            BlockState _bs = LatexModBlocks.BUNKER_DOOR.get().defaultBlockState();
+            for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+                Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                if (!(_property == null)) {
                     try {
                         _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                     } catch (Exception e) {
@@ -77,18 +75,16 @@ public class BunkerDoorBlockAddedProcedure {
                 BlockPos _pos = new BlockPos(x, y, z);
                 BlockState _bs2 = world.getBlockState(_pos);
                 Property<?> _property2 = _bs2.getBlock().getStateDefinition().getProperty("facing");
-                if (_property2 instanceof DirectionProperty) {
-                    DirectionProperty _dp = (DirectionProperty) _property2;
+                if (_property2 instanceof DirectionProperty _dp) {
                     if (_dp.getPossibleValues().contains(_dir)) {
-                        world.setBlock(_pos, (BlockState) _bs2.setValue(_dp, _dir), 3);
+                        world.setBlock(_pos, _bs2.setValue(_dp, _dir), 3);
                         return;
                     }
                 }
                 Property<?> _property3 = _bs2.getBlock().getStateDefinition().getProperty("axis");
-                if (_property3 instanceof EnumProperty) {
-                    EnumProperty _ap = (EnumProperty) _property3;
+                if (_property3 instanceof EnumProperty _ap) {
                     if (_ap.getPossibleValues().contains(_dir.getAxis())) {
-                        world.setBlock(_pos, (BlockState) _bs2.setValue(_ap, _dir.getAxis()), 3);
+                        world.setBlock(_pos, _bs2.setValue(_ap, _dir.getAxis()), 3);
                     }
                 }
             }

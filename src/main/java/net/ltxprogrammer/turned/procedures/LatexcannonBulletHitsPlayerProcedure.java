@@ -21,7 +21,7 @@ public class LatexcannonBulletHitsPlayerProcedure {
                 ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 1, false, false));
             }
             if (entity instanceof LivingEntity) {
-                ((LivingEntity) entity).addEffect(new MobEffectInstance((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 80, 1, false, false));
+                ((LivingEntity) entity).addEffect(new MobEffectInstance(LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 80, 1, false, false));
             }
         }
     }

@@ -33,9 +33,7 @@ public class LatexMod {
     public static final Logger LOGGER = LogManager.getLogger(LatexMod.class);
     public static final String MODID = "turned";
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation("turned", "turned"), () -> {
-        return "1";
-    }, "1"::equals, "1"::equals);
+    public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation("turned", "turned"), () -> "1", "1"::equals, "1"::equals);
     private static int messageID = 0;
 
     public LatexMod() {

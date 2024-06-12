@@ -15,6 +15,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/Modeldl_slug_model.class */
 public class Modeldl_slug_model<T extends Entity> extends EntityModel<T> {
@@ -41,14 +42,14 @@ public class Modeldl_slug_model<T extends Entity> extends EntityModel<T> {
         return LayerDefinition.create(meshdefinition, 32, 32);
     }
 
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.leftarm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Rightarm.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(@NotNull T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.Rightarm.xRot = Mth.cos((limbSwing * 0.6662f) + 3.1415927f) * limbSwingAmount;
         this.Head.yRot = netHeadYaw / 57.295776f;
         this.Head.xRot = headPitch / 57.295776f;

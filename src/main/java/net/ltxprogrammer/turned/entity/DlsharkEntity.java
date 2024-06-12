@@ -17,10 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DlsharkEntity extends AbstractAquaticEntity implements DarkLatexEntity {
     public DlsharkEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DLSHARK.get(), world);
+        this(LatexModEntities.DLSHARK.get(), world);
     }
 
     public DlsharkEntity(EntityType<DlsharkEntity> type, Level world) {
@@ -33,9 +34,9 @@ public class DlsharkEntity extends AbstractAquaticEntity implements DarkLatexEnt
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-        this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
+        this.spawnAtLocation(new ItemStack(ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public static void init() {

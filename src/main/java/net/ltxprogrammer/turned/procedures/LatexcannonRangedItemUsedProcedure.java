@@ -16,25 +16,19 @@ public class LatexcannonRangedItemUsedProcedure {
             if (((double) itemstack.getDamageValue()) > 0.1d) {
                 return;
             }
-            if ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()))) {
-                if (entity instanceof Player) {
-                    Player _player = (Player) entity;
-                    ItemStack _stktoremove = new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get());
-                    _player.getInventory().clearOrCountMatchingItems(p -> {
-                        return _stktoremove.getItem() == p.getItem();
-                    }, 1, _player.inventoryMenu.getCraftSlots());
+            if ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(ChangedBlocks.DARK_LATEX_BLOCK.get()))) {
+                if (entity instanceof Player _player) {
+                    ItemStack _stktoremove = new ItemStack(ChangedBlocks.DARK_LATEX_BLOCK.get());
+                    _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
                 }
                 itemstack.setDamageValue(0);
                 if (entity instanceof Player) {
                     ((Player) entity).getCooldowns().addCooldown(itemstack.getItem(), 120);
                 }
-            } else if ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()))) {
-                if (entity instanceof Player) {
-                    Player _player2 = (Player) entity;
-                    ItemStack _stktoremove2 = new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get());
-                    _player2.getInventory().clearOrCountMatchingItems(p -> {
-                        return _stktoremove2.getItem() == p.getItem();
-                    }, 1, _player2.inventoryMenu.getCraftSlots());
+            } else if ((entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(ChangedBlocks.DARK_LATEX_BLOCK.get()))) {
+                if (entity instanceof Player _player2) {
+                    ItemStack _stktoremove2 = new ItemStack(ChangedBlocks.DARK_LATEX_BLOCK.get());
+                    _player2.getInventory().clearOrCountMatchingItems(p -> _stktoremove2.getItem() == p.getItem(), 1, _player2.inventoryMenu.getCraftSlots());
                 }
                 itemstack.setDamageValue(0);
                 if (entity instanceof Player) {

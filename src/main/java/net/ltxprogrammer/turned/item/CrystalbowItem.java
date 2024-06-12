@@ -21,6 +21,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/CrystalbowItem.class */
 public class CrystalbowItem extends Item {
@@ -28,39 +29,36 @@ public class CrystalbowItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).durability(120));
     }
 
-    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, Player entity, @NotNull InteractionHand hand) {
         entity.startUsingItem(hand);
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, entity.getItemInHand(hand));
     }
 
-    public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("help how to make bow animations"));
     }
 
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.BOW;
     }
 
-    public int getUseDuration(ItemStack itemstack) {
+    public int getUseDuration(@NotNull ItemStack itemstack) {
         return 72000;
     }
 
-    public void releaseUsing(ItemStack itemstack, Level world, LivingEntity entityLiving, int timeLeft) {
-        if (!world.isClientSide() && (entityLiving instanceof ServerPlayer)) {
-            ServerPlayer entity = (ServerPlayer) entityLiving;
+    public void releaseUsing(@NotNull ItemStack itemstack, Level world, @NotNull LivingEntity entityLiving, int timeLeft) {
+        if (!world.isClientSide() && (entityLiving instanceof ServerPlayer entity)) {
             entity.getX();
             entity.getY();
             entity.getZ();
-            ItemStack stack = ProjectileWeaponItem.getHeldProjectile(entity, e -> {
-                return e.getItem() == LatexModItems.CRYSTALARROW.get();
-            });
+            ItemStack stack = ProjectileWeaponItem.getHeldProjectile(entity, e -> e.getItem() == LatexModItems.CRYSTALARROW.get());
             if (stack == ItemStack.EMPTY) {
                 int i = 0;
                 while (true) {
                     if (i < entity.getInventory().items.size()) {
-                        ItemStack teststack = (ItemStack) entity.getInventory().items.get(i);
-                        if (teststack != null && teststack.getItem() == LatexModItems.CRYSTALARROW.get()) {
+                        ItemStack teststack = entity.getInventory().items.get(i);
+                        if (teststack.getItem() == LatexModItems.CRYSTALARROW.get()) {
                             stack = teststack;
                             break;
                         }
@@ -72,12 +70,10 @@ public class CrystalbowItem extends Item {
             }
             if (entity.getAbilities().instabuild || stack != ItemStack.EMPTY) {
                 CrystalbowEntity entityarrow = CrystalbowEntity.shoot(world, entity, world.getRandom(), 1.5f, 1.5d, 0);
-                itemstack.hurtAndBreak(1, entity, e -> {
-                    e.broadcastBreakEvent(entity.getUsedItemHand());
-                });
+                itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
                 if (entity.getAbilities().instabuild) {
                     entityarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-                } else if (!new ItemStack((ItemLike) LatexModItems.CRYSTALARROW.get()).isDamageableItem()) {
+                } else if (!new ItemStack(LatexModItems.CRYSTALARROW.get()).isDamageableItem()) {
                     stack.shrink(1);
                     if (stack.isEmpty()) {
                         entity.getInventory().removeItem(stack);

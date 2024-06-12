@@ -20,21 +20,15 @@ import net.minecraft.world.level.LevelAccessor;
 public class MilitaryDroneHertxIconRightclickedOnBlockProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                Entity entityToSpawn = new ArmedDroneHertxEntity((EntityType<ArmedDroneHertxEntity>) ((EntityType) LatexModEntities.ARMED_DRONE_HERTX.get()), (Level) _level);
+            if (world instanceof ServerLevel _level) {
+                Entity entityToSpawn = new ArmedDroneHertxEntity((EntityType<ArmedDroneHertxEntity>) LatexModEntities.ARMED_DRONE_HERTX.get(), _level);
                 entityToSpawn.moveTo(x, y + 1.0d, z, world.getRandom().nextFloat() * 360.0f, 0.0f);
-                if (entityToSpawn instanceof Mob) {
-                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                }
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                 world.addFreshEntity(entityToSpawn);
             }
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.MILITARY_DRONE_HERTX_ICON.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.MILITARY_DRONE_HERTX_ICON.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
         }
     }

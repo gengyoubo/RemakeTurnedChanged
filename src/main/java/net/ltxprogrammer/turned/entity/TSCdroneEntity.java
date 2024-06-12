@@ -26,11 +26,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCdroneEntity.class */
 public class TSCdroneEntity extends Monster {
     public TSCdroneEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.TS_CDRONE.get(), world);
+        this(LatexModEntities.TS_CDRONE.get(), world);
     }
 
     public TSCdroneEntity(EntityType<TSCdroneEntity> type, Level world) {
@@ -40,36 +41,32 @@ public class TSCdroneEntity extends Monster {
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
-        this.goalSelector.addGoal(13, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(14, new RemoveBlockGoal((Block) ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
-    }
-
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
+        this.goalSelector.addGoal(13, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(14, new RemoveBlockGoal(ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(15, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal(LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
     }
 
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         dropCustomDeathLoot(source, looting, recentlyHitIn);
         spawnAtLocation(new ItemStack(Items.IRON_INGOT));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.step")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.step")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
     }
 
@@ -84,7 +81,7 @@ public class TSCdroneEntity extends Monster {
         return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         TSCdroneEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
     }

@@ -19,19 +19,13 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 public class Instafacility2RightClickedOnBlockProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _serverworld = (ServerLevel) world;
+            if (world instanceof ServerLevel _serverworld) {
                 StructureTemplate template = _serverworld.getStructureManager().getOrCreate(new ResourceLocation(LatexMod.MODID, "operative_facility_2"));
-                if (template != null) {
-                    template.placeInWorld(_serverworld, new BlockPos(x, y, z), new BlockPos(x, y, z), new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false), _serverworld.random, 3);
-                }
+                template.placeInWorld(_serverworld, new BlockPos(x, y, z), new BlockPos(x, y, z), new StructurePlaceSettings().setRotation(Rotation.NONE).setMirror(Mirror.NONE).setIgnoreEntities(false), _serverworld.random, 3);
             }
-            if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.INSTAFACILITY_2.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.INSTAFACILITY_2.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
         }
     }

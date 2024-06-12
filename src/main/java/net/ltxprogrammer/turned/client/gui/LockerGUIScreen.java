@@ -3,6 +3,8 @@ package net.ltxprogrammer.turned.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import java.util.HashMap;
+import java.util.Objects;
+
 import net.ltxprogrammer.turned.world.inventory.LockerGUIMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -11,41 +13,35 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/gui/LockerGUIScreen.class */
 public class LockerGUIScreen extends AbstractContainerScreen<LockerGUIMenu> {
-    private final Level world;
 
-    /* renamed from: x */
-    private final int f6x;
-
-    /* renamed from: y */
-    private final int f7y;
-
-    /* renamed from: z */
-    private final int f8z;
-    private final Player entity;
     private static final HashMap<String, Object> guistate = LockerGUIMenu.guistate;
     private static final ResourceLocation texture = new ResourceLocation("turned:textures/screens/locker_gui.png");
 
     public LockerGUIScreen(LockerGUIMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
-        this.world = container.world;
-        this.f6x = container.f21x;
-        this.f7y = container.f22y;
-        this.f8z = container.f23z;
-        this.entity = container.entity;
+        Level world = container.world;
+        /* renamed from: x */
+        int f6x = container.f21x;
+        /* renamed from: y */
+        int f7y = container.f22y;
+        /* renamed from: z */
+        int f8z = container.f23z;
+        Player entity = container.entity;
         this.imageWidth = 176;
         this.imageHeight = 186;
     }
 
-    public void render(PoseStack ms, int mouseX, int mouseY, float partialTicks) {
+    public void render(@NotNull PoseStack ms, int mouseX, int mouseY, float partialTicks) {
         renderBackground(ms);
         render(ms, mouseX, mouseY, partialTicks);
         renderTooltip(ms, mouseX, mouseY);
     }
 
-    protected void renderBg(PoseStack ms, float partialTicks, int gx, int gy) {
+    protected void renderBg(@NotNull PoseStack ms, float partialTicks, int gx, int gy) {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -58,7 +54,7 @@ public class LockerGUIScreen extends AbstractContainerScreen<LockerGUIMenu> {
         if (key != 256) {
             return keyPressed(key, b, c);
         }
-        this.minecraft.player.closeContainer();
+        Objects.requireNonNull(this.minecraft.player).closeContainer();
         return true;
     }
 
@@ -66,7 +62,7 @@ public class LockerGUIScreen extends AbstractContainerScreen<LockerGUIMenu> {
         containerTick();
     }
 
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
+    protected void renderLabels(@NotNull PoseStack poseStack, int mouseX, int mouseY) {
     }
 
     public void onClose() {
@@ -76,6 +72,6 @@ public class LockerGUIScreen extends AbstractContainerScreen<LockerGUIMenu> {
 
     public void init() {
         init();
-        this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
+        Objects.requireNonNull(this.minecraft).keyboardHandler.setSendRepeatsToGui(true);
     }
 }

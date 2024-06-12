@@ -11,7 +11,7 @@ public class LatexcannonBulletHitsBlockProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR)) {
             if (world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y, z)).getBlock() == ChangedBlocks.DARK_LATEX_BLOCK.get() || world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.VOID_AIR || world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.CAVE_AIR) {
-                world.setBlock(new BlockPos(x, y, z), ((Block) ChangedBlocks.DARK_LATEX_BLOCK.get()).defaultBlockState(), 3);
+                world.setBlock(new BlockPos(x, y, z), ChangedBlocks.DARK_LATEX_BLOCK.get().defaultBlockState(), 3);
             }
         }
     }

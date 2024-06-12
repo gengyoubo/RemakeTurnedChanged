@@ -34,7 +34,7 @@ public class DarkLatexGooFluidFeature extends LakeFeature {
 
     public static Feature<?> feature() {
         FEATURE = new DarkLatexGooFluidFeature();
-        CONFIGURED_FEATURE = FeatureUtils.register("turned:dark_latex_goo_fluid", FEATURE, new LakeFeature.Configuration(BlockStateProvider.simple((Block) ChangedBlocks.DARK_LATEX_FLUID.get()), BlockStateProvider.simple(Blocks.AIR)));
+        CONFIGURED_FEATURE = FeatureUtils.register("turned:dark_latex_goo_fluid", FEATURE, new LakeFeature.Configuration(BlockStateProvider.simple(ChangedBlocks.DARK_LATEX_FLUID.get()), BlockStateProvider.simple(Blocks.AIR)));
         PLACED_FEATURE = PlacementUtils.register("turned:dark_latex_goo_fluid", CONFIGURED_FEATURE, List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.not(BlockPredicate.ONLY_IN_AIR_PREDICATE), 32), BiomeFilter.biome()));
         return FEATURE;
     }

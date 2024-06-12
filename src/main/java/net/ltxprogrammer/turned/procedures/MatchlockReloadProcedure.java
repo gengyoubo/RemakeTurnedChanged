@@ -12,17 +12,14 @@ public class MatchlockReloadProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.MATCH_LOCK_MUSKET.get()) {
-                if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().getDouble("ammo") < 1.0d && (entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack((ItemLike) LatexModItems.MUSKETBALL.get()))) {
+                if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().getDouble("ammo") < 1.0d && (entity instanceof Player) && ((Player) entity).getInventory().contains(new ItemStack(LatexModItems.MUSKETBALL.get()))) {
                     if (entity instanceof Player) {
-                        ((Player) entity).getCooldowns().addCooldown((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem(), 185);
+                        ((Player) entity).getCooldowns().addCooldown(((LivingEntity) entity).getMainHandItem().getItem(), 185);
                     }
-                    (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().putDouble("ammo", (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getOrCreateTag().getDouble("ammo") + 1.0d);
-                    if (entity instanceof Player) {
-                        Player _player = (Player) entity;
-                        ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.MUSKETBALL.get());
-                        _player.getInventory().clearOrCountMatchingItems(p -> {
-                            return _stktoremove.getItem() == p.getItem();
-                        }, 1, _player.inventoryMenu.getCraftSlots());
+                    ((LivingEntity) entity).getMainHandItem().getOrCreateTag().putDouble("ammo", ((LivingEntity) entity).getMainHandItem().getOrCreateTag().getDouble("ammo") + 1.0d);
+                    if (entity instanceof Player _player) {
+                        ItemStack _stktoremove = new ItemStack(LatexModItems.MUSKETBALL.get());
+                        _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
                     }
                 }
             }

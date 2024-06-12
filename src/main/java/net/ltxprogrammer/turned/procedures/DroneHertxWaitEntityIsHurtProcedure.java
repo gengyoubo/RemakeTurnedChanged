@@ -16,15 +16,12 @@ import net.minecraft.world.level.LevelAccessor;
 public class DroneHertxWaitEntityIsHurtProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                Entity entityToSpawn = new DroneHertxEntity((EntityType<DroneHertxEntity>) ((EntityType) LatexModEntities.DRONE_HERTX.get()), (Level) _level);
+            if (world instanceof ServerLevel _level) {
+                Entity entityToSpawn = new DroneHertxEntity((EntityType<DroneHertxEntity>) LatexModEntities.DRONE_HERTX.get(), _level);
                 entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                 entityToSpawn.setYBodyRot(entity.getYRot());
                 entityToSpawn.setYHeadRot(entity.getYRot());
-                if (entityToSpawn instanceof Mob) {
-                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                }
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                 world.addFreshEntity(entityToSpawn);
             }
             if (!entity.level.isClientSide()) {

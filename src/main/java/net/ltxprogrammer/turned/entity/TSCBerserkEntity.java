@@ -9,11 +9,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCBerserkEntity.class */
 public class TSCBerserkEntity extends AbstractTSCEntity {
     public TSCBerserkEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.TSC_BERSERK.get(), world);
+        this(LatexModEntities.TSC_BERSERK.get(), world);
     }
 
     public TSCBerserkEntity(EntityType<TSCBerserkEntity> type, Level world) {
@@ -23,7 +24,7 @@ public class TSCBerserkEntity extends AbstractTSCEntity {
         setPersistenceRequired();
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         TSCOutsiderEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
     }

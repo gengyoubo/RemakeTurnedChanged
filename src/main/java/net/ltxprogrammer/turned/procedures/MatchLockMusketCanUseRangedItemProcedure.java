@@ -9,9 +9,7 @@ import net.minecraft.world.item.ItemStack;
 public class MatchLockMusketCanUseRangedItemProcedure {
     public static boolean execute(Entity entity, ItemStack itemstack) {
         if (entity != null && itemstack.getOrCreateTag().getDouble("ammo") > 0.0d) {
-            if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.MATCH_LOCK_MUSKET.get()) {
-                return true;
-            }
+            return (entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() == LatexModItems.MATCH_LOCK_MUSKET.get();
         }
         return false;
     }

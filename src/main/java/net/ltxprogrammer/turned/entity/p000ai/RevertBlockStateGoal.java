@@ -59,7 +59,7 @@ public class RevertBlockStateGoal<T extends Comparable<T>> extends MoveToBlockGo
     }
 
     private boolean tryFindBlock() {
-        if (this.blockPos == null || !isValidTarget(this.mob.level, this.blockPos)) {
+        if (!isValidTarget(this.mob.level, this.blockPos)) {
             return findNearestBlock();
         }
         return true;
@@ -102,10 +102,10 @@ public class RevertBlockStateGoal<T extends Comparable<T>> extends MoveToBlockGo
                 }
             }
             if (this.ticksSinceReachedGoal > 60) {
-                level.setBlockAndUpdate(blockpos1, (BlockState) level.getBlockState(blockpos1).setValue(this.property, this.goalValue));
+                level.setBlockAndUpdate(blockpos1, level.getBlockState(blockpos1).setValue(this.property, this.goalValue));
                 if (!level.isClientSide) {
                     for (int i = 0; i < WAIT_AFTER_BLOCK_FOUND; i++) {
-                        ((ServerLevel) level).sendParticles(ParticleTypes.POOF, ((double) blockpos1.getX()) + 0.5d, (double) blockpos1.getY(), ((double) blockpos1.getZ()) + 0.5d, 1, random.nextGaussian() * 0.02d, random.nextGaussian() * 0.02d, random.nextGaussian() * 0.02d, 0.15000000596046448d);
+                        ((ServerLevel) level).sendParticles(ParticleTypes.POOF, ((double) blockpos1.getX()) + 0.5d, blockpos1.getY(), ((double) blockpos1.getZ()) + 0.5d, 1, random.nextGaussian() * 0.02d, random.nextGaussian() * 0.02d, random.nextGaussian() * 0.02d, 0.15000000596046448d);
                     }
                     playBreakSound(level, blockpos1);
                 }

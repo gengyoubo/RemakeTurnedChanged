@@ -17,18 +17,14 @@ import net.minecraft.world.level.LevelAccessor;
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/ProtectorSlimelingsitRightClickedOnEntityProcedure.class */
 public class ProtectorSlimelingsitRightClickedOnEntityProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Entity sourceentity) {
-        if (entity != null && sourceentity != null && (entity instanceof TamableAnimal)) {
-            TamableAnimal _tamIsTamedBy = (TamableAnimal) entity;
+        if (sourceentity != null && (entity instanceof TamableAnimal _tamIsTamedBy)) {
             if ((sourceentity instanceof LivingEntity) && _tamIsTamedBy.isOwnedBy((LivingEntity) sourceentity)) {
-                if (world instanceof ServerLevel) {
-                    ServerLevel _level = (ServerLevel) world;
-                    Entity entityToSpawn = new ProtectorSlimelingEntity((EntityType<ProtectorSlimelingEntity>) ((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get()), (Level) _level);
+                if (world instanceof ServerLevel _level) {
+                    Entity entityToSpawn = new ProtectorSlimelingEntity((EntityType<ProtectorSlimelingEntity>) LatexModEntities.PROTECTOR_SLIMELING.get(), _level);
                     entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                     entityToSpawn.setYBodyRot(entity.getYRot());
                     entityToSpawn.setYHeadRot(entity.getYRot());
-                    if (entityToSpawn instanceof Mob) {
-                        ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                    }
+                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                     world.addFreshEntity(entityToSpawn);
                 }
                 if (!entity.level.isClientSide()) {

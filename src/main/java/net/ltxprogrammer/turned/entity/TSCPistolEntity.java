@@ -1,5 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
+import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
@@ -20,12 +21,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCPistolEntity.class */
 public class TSCPistolEntity extends AbstractArrow implements ItemSupplier {
     public TSCPistolEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super((EntityType) LatexModEntities.TSC_PISTOL.get(), world);
+        super(LatexModEntities.TSC_PISTOL.get(), world);
     }
 
     public TSCPistolEntity(EntityType<? extends TSCPistolEntity> type, Level world) {
@@ -40,20 +42,20 @@ public class TSCPistolEntity extends AbstractArrow implements ItemSupplier {
         super(type, entity, world);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public ItemStack getItem() {
-        return new ItemStack((ItemLike) LatexModItems.BULLETICON.get());
+    public @NotNull ItemStack getItem() {
+        return new ItemStack(LatexModItems.BULLETICON.get());
     }
 
-    protected ItemStack getPickupItem() {
+    protected @NotNull ItemStack getPickupItem() {
         return ItemStack.EMPTY;
     }
 
-    protected void doPostHurtEffects(LivingEntity entity) {
+    protected void doPostHurtEffects(@NotNull LivingEntity entity) {
         doPostHurtEffects(entity);
         entity.setArrowCount(entity.getArrowCount() - 1);
     }
@@ -67,19 +69,19 @@ public class TSCPistolEntity extends AbstractArrow implements ItemSupplier {
     }
 
     public static TSCPistolEntity shoot(Level world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        TSCPistolEntity entityarrow = new TSCPistolEntity((EntityType) LatexModEntities.TSC_PISTOL.get(), entity, world);
+        TSCPistolEntity entityarrow = new TSCPistolEntity(LatexModEntities.TSC_PISTOL.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1.0f).x, entity.getViewVector(1.0f).y, entity.getViewVector(1.0f).z, power * 2.0f, 0.0f);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
         entityarrow.setBaseDamage(damage);
         entityarrow.setKnockback(knockback);
         world.addFreshEntity(entityarrow);
-        world.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:gunshot")), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
+        world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:gunshot"))), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
         return entityarrow;
     }
 
-    public static TSCPistolEntity shoot(LivingEntity entity, LivingEntity target) {
-        TSCPistolEntity entityarrow = new TSCPistolEntity((EntityType) LatexModEntities.TSC_PISTOL.get(), entity, entity.level);
+    public static void shoot(LivingEntity entity, LivingEntity target) {
+        TSCPistolEntity entityarrow = new TSCPistolEntity(LatexModEntities.TSC_PISTOL.get(), entity, entity.level);
         double dx = target.getX() - entity.getX();
         double dy = (target.getY() + ((double) target.getEyeHeight())) - 1.1d;
         double dz = target.getZ() - entity.getZ();
@@ -89,7 +91,6 @@ public class TSCPistolEntity extends AbstractArrow implements ItemSupplier {
         entityarrow.setKnockback(1);
         entityarrow.setCritArrow(false);
         entity.level.addFreshEntity(entityarrow);
-        entity.level.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:gunshot")), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
-        return entityarrow;
+        entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:gunshot"))), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
     }
 }

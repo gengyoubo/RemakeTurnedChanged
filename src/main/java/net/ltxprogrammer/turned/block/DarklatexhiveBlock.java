@@ -34,6 +34,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 public class DarklatexhiveBlock extends Block {
     public static final DirectionProperty FACING;
@@ -43,7 +44,7 @@ public class DarklatexhiveBlock extends Block {
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 15;
     }
 
@@ -55,11 +56,11 @@ public class DarklatexhiveBlock extends Block {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
@@ -80,7 +81,7 @@ public class DarklatexhiveBlock extends Block {
         }
     }
 
-    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+    public void tick(@NotNull BlockState blockstate, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
         super.tick(blockstate, world, pos, random);
         int x = pos.getX();
         int y = pos.getY();
@@ -89,7 +90,7 @@ public class DarklatexhiveBlock extends Block {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState blockstate, Level world, BlockPos pos, Random random) {
+    public void animateTick(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Random random) {
         super.animateTick(blockstate, world, pos, random);
         Player entity = Minecraft.getInstance().player;
         int x = pos.getX();
@@ -114,7 +115,7 @@ public class DarklatexhiveBlock extends Block {
         return retval;
     }
 
-    public void wasExploded(Level world, BlockPos pos, Explosion e) {
+    public void wasExploded(@NotNull Level world, @NotNull BlockPos pos, @NotNull Explosion e) {
         super.wasExploded(world, pos, e);
         DarklatexhiveBlockDestroyedByExplosionProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }

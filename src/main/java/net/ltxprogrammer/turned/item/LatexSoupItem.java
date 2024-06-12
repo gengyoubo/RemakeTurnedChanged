@@ -12,6 +12,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/LatexSoupItem.class */
 public class LatexSoupItem extends Item {
@@ -19,19 +20,19 @@ public class LatexSoupItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.5f).build()));
     }
 
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.DRINK;
     }
 
-    public int getUseDuration(ItemStack itemstack) {
+    public int getUseDuration(@NotNull ItemStack itemstack) {
         return 42;
     }
 
-    public float getDestroySpeed(ItemStack par1ItemStack, BlockState par2Block) {
+    public float getDestroySpeed(@NotNull ItemStack par1ItemStack, @NotNull BlockState par2Block) {
         return 0.0f;
     }
 
-    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.BOWL);
         finishUsingItem(itemstack, world, entity);
         entity.getX();
@@ -41,8 +42,7 @@ public class LatexSoupItem extends Item {
         if (itemstack.isEmpty()) {
             return retval;
         }
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
+        if (entity instanceof Player player) {
             if (!player.getAbilities().instabuild && !player.getInventory().add(retval)) {
                 player.drop(retval, false);
             }

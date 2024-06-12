@@ -1,6 +1,5 @@
 package net.ltxprogrammer.turned.procedures;
 
-import com.google.common.collect.UnmodifiableIterator;
 import java.util.Map;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
 import net.minecraft.core.BlockPos;
@@ -20,12 +19,11 @@ public class DarklatexslugOnEntityTickUpdateProcedure {
                     entity.discard();
                 }
                 BlockPos _bp = new BlockPos(x, y - 1.0d, z);
-                BlockState _bs = ((Block) LatexModBlocks.CHES_TRAP.get()).defaultBlockState();
-                UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-                while (it.hasNext()) {
-                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                    Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                    if (!(_property == null || _bs.getValue(_property) == null)) {
+                BlockState _bs = LatexModBlocks.CHES_TRAP.get().defaultBlockState();
+                for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp).getValues().entrySet()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) propertyComparableEntry;
+                    Property<?> _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
+                    if (!(_property == null)) {
                         try {
                             _bs = (BlockState) _bs.setValue(_property, entry.getValue());
                         } catch (Exception e) {
@@ -38,12 +36,11 @@ public class DarklatexslugOnEntityTickUpdateProcedure {
                     entity.discard();
                 }
                 BlockPos _bp2 = new BlockPos(x, y - 1.0d, z);
-                BlockState _bs2 = ((Block) LatexModBlocks.BOX_TRAP.get()).defaultBlockState();
-                UnmodifiableIterator it2 = world.getBlockState(_bp2).getValues().entrySet().iterator();
-                while (it2.hasNext()) {
-                    Map.Entry<Property<?>, Comparable<?>> entry2 = (Map.Entry) it2.next();
-                    Property _property2 = _bs2.getBlock().getStateDefinition().getProperty(entry2.getKey().getName());
-                    if (!(_property2 == null || _bs2.getValue(_property2) == null)) {
+                BlockState _bs2 = LatexModBlocks.BOX_TRAP.get().defaultBlockState();
+                for (Map.Entry<Property<?>, Comparable<?>> propertyComparableEntry : world.getBlockState(_bp2).getValues().entrySet()) {
+                    Map.Entry<Property<?>, Comparable<?>> entry2 = (Map.Entry) propertyComparableEntry;
+                    Property<?> _property2 = _bs2.getBlock().getStateDefinition().getProperty(entry2.getKey().getName());
+                    if (!(_property2 == null)) {
                         try {
                             _bs2 = (BlockState) _bs2.setValue(_property2, entry2.getValue());
                         } catch (Exception e2) {

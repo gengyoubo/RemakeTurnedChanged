@@ -44,11 +44,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/La4tankmorphrEntity.class */
 public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMob {
     public La4tankmorphrEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.LA_4TANKMORPHR.get(), world);
+        this(LatexModEntities.LA_4TANKMORPHR.get(), world);
     }
 
     public La4tankmorphrEntity(EntityType<La4tankmorphrEntity> type, Level world) {
@@ -58,27 +59,27 @@ public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMo
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0d, true) { // from class: net.ltxprogrammer.turned.entity.La4tankmorphrEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Illusioner.class, true, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Pillager.class, true, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, SpellcasterIllager.class, true, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Vindicator.class, true, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Monster.class, true, false));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Illusioner.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, SpellcasterIllager.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Piglin.class, true, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Monster.class, true, false));
         this.goalSelector.addGoal(12, new LeapAtTargetGoal(this, 0.5f));
         this.goalSelector.addGoal(13, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(14, new FloatGoal(this));
@@ -92,28 +93,24 @@ public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMo
         });
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.TANK_CANNON.get()));
+        spawnAtLocation(new ItemStack(LatexModItems.TANK_CANNON.get()));
     }
 
     public SoundEvent getAmbientSound() {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.hurt"));
     }
 
@@ -128,7 +125,7 @@ public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMo
         return false;
     }
 
-    public void performRangedAttack(LivingEntity target, float flval) {
+    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         TankCannonEntity.shoot(this, target);
     }
 
@@ -136,7 +133,7 @@ public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMo
         return false;
     }
 
-    protected void doPush(Entity entityIn) {
+    protected void doPush(@NotNull Entity entityIn) {
     }
 
     protected void pushEntities() {

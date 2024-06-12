@@ -16,15 +16,12 @@ import net.minecraft.world.level.LevelAccessor;
 public class HertxSolWaitEntityIsHurtProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                Entity entityToSpawn = new HertxvarSolEntity((EntityType<HertxvarSolEntity>) ((EntityType) LatexModEntities.HERTXVAR_SOL.get()), (Level) _level);
+            if (world instanceof ServerLevel _level) {
+                Entity entityToSpawn = new HertxvarSolEntity((EntityType<HertxvarSolEntity>) LatexModEntities.HERTXVAR_SOL.get(), _level);
                 entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                 entityToSpawn.setYBodyRot(entity.getYRot());
                 entityToSpawn.setYHeadRot(entity.getYRot());
-                if (entityToSpawn instanceof Mob) {
-                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                }
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                 world.addFreshEntity(entityToSpawn);
             }
             if (!entity.level.isClientSide()) {

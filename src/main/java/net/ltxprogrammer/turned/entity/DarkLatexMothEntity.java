@@ -6,6 +6,7 @@
 package net.ltxprogrammer.turned.entity;
 
 import java.util.EnumSet;
+import java.util.Objects;
 import java.util.Random;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
@@ -39,6 +40,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexMothEntity extends AbstractDarkLatexEntity {
     public DarkLatexMothEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -52,11 +54,11 @@ public class DarkLatexMothEntity extends AbstractDarkLatexEntity {
         this.moveControl = new FlyingMoveControl(this, 10, true);
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    protected PathNavigation createNavigation(Level world) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
         return new FlyingPathNavigation(this, world);
     }
 
@@ -83,7 +85,7 @@ public class DarkLatexMothEntity extends AbstractDarkLatexEntity {
 
             public void tick() {
                 LivingEntity livingentity = DarkLatexMothEntity.this.getTarget();
-                if (DarkLatexMothEntity.this.getBoundingBox().intersects(livingentity.getBoundingBox())) {
+                if (DarkLatexMothEntity.this.getBoundingBox().intersects(Objects.requireNonNull(livingentity).getBoundingBox())) {
                     DarkLatexMothEntity.this.doHurtTarget(livingentity);
                 } else {
                     double d0 = DarkLatexMothEntity.this.distanceToSqr(livingentity);
@@ -111,12 +113,12 @@ public class DarkLatexMothEntity extends AbstractDarkLatexEntity {
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         DarklatexOnInitialEntitySpawnProcedure.execute(this);
         return retval;

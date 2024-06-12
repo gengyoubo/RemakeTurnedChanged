@@ -11,7 +11,7 @@
 /*    */ import net.minecraft.world.entity.player.Player;
 /*    */ 
 /*    */ public class TargetCheck {
-/*    */   public static Predicate<LivingEntity> IS_SLIMELING;
+/*    */   public static final Predicate<LivingEntity> IS_SLIMELING;
 /*    */   
 /*    */   static {
 /* 17 */     IS_SLIMELING = (entity -> (entity == null) ? false : entity.m_6095_().m_204039_(TagKey.m_203882_(Registry.f_122903_, new ResourceLocation("turned:slimeling"))));
@@ -23,9 +23,9 @@
 /* 23 */     IS_LATEX = (entity -> {
 /*    */         if (entity instanceof net.ltxprogrammer.changed.entity.LatexEntity)
 /*    */           return true; 
-/*    */         if (entity instanceof Player) {
-/*    */           Player player = (Player)entity;
-/*    */           return ProcessTransfur.isPlayerLatex(player);
+/*    */         if (entity instanceof Player player) {
+/*    */
+            /*    */           return ProcessTransfur.isPlayerLatex(player);
 /*    */         } 
 /*    */         return false;
 /*    */       });
@@ -41,24 +41,24 @@
 /*    */ 
 /*    */ 
 /*    */     
-/* 44 */     IS_EVIL = (entity -> (entity == null) ? false : (
-/*    */ 
-/*    */       
-/* 47 */       (entity.m_6095_().m_204039_(TagKey.m_203882_(Registry.f_122903_, new ResourceLocation("turned:evilfaction"))) || entity.m_6844_(EquipmentSlot.HEAD).m_41720_() == LatexModItems.EVIL_BERET_HELMET.get())));
+/* 44 */     IS_EVIL = (entity -> entity != null && (
+            /*    */
+            /*    */
+            /* 47 */       (entity.m_6095_().m_204039_(TagKey.m_203882_(Registry.f_122903_, new ResourceLocation("turned:evilfaction"))) || entity.m_6844_(EquipmentSlot.HEAD).m_41720_() == LatexModItems.EVIL_BERET_HELMET.get())));
 /*    */ 
 /*    */ 
 /*    */     
-/* 51 */     IS_GOOD = (entity -> (entity == null) ? false : (
-/*    */ 
-/*    */       
-/* 54 */       (entity.m_6095_().m_204039_(TagKey.m_203882_(Registry.f_122903_, new ResourceLocation("turned:goodfaction"))) || entity.m_6844_(EquipmentSlot.HEAD).m_41720_() == LatexModItems.GOOD_BERET_HELMET.get())));
+/* 51 */     IS_GOOD = (entity -> entity != null && (
+            /*    */
+            /*    */
+            /* 54 */       (entity.m_6095_().m_204039_(TagKey.m_203882_(Registry.f_122903_, new ResourceLocation("turned:goodfaction"))) || entity.m_6844_(EquipmentSlot.HEAD).m_41720_() == LatexModItems.GOOD_BERET_HELMET.get())));
 /*    */   }
 /*    */   
-/*    */   public static Predicate<LivingEntity> IS_LATEX;
-/*    */   public static Predicate<LivingEntity> IS_HERTX;
-/*    */   public static Predicate<LivingEntity> IS_ROBOT;
-/*    */   public static Predicate<LivingEntity> IS_EVIL;
-/*    */   public static Predicate<LivingEntity> IS_GOOD;
+/*    */   public static final Predicate<LivingEntity> IS_LATEX;
+/*    */   public static final Predicate<LivingEntity> IS_HERTX;
+/*    */   public static final Predicate<LivingEntity> IS_ROBOT;
+/*    */   public static final Predicate<LivingEntity> IS_EVIL;
+/*    */   public static final Predicate<LivingEntity> IS_GOOD;
 /*    */ }
 
 

@@ -15,15 +15,12 @@ import net.minecraft.world.level.LevelAccessor;
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/SneppleBulletHitsBlockProcedure.class */
 public class SneppleBulletHitsBlockProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
-        if (world instanceof ServerLevel) {
-            ServerLevel _level = (ServerLevel) world;
-            Entity entityToSpawn = new DarkLatexSnepEntity((EntityType<DarkLatexSnepEntity>) ((EntityType) LatexModEntities.DARK_LATEX_SNEP.get()), (Level) _level);
+        if (world instanceof ServerLevel _level) {
+            Entity entityToSpawn = new DarkLatexSnepEntity((EntityType<DarkLatexSnepEntity>) LatexModEntities.DARK_LATEX_SNEP.get(), _level);
             entityToSpawn.moveTo(x, y, z, 0.0f, 0.0f);
             entityToSpawn.setYBodyRot(0.0f);
             entityToSpawn.setYHeadRot(0.0f);
-            if (entityToSpawn instanceof Mob) {
-                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-            }
+            ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
             world.addFreshEntity(entityToSpawn);
         }
     }

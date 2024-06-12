@@ -1,6 +1,7 @@
 package net.ltxprogrammer.turned.entity;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import net.ltxprogrammer.changed.block.AbstractLatexBlock;
 import net.ltxprogrammer.changed.entity.LatexType;
@@ -79,6 +80,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/SlimelingEntity.class */
@@ -88,12 +90,12 @@ public class SlimelingEntity extends TamableAnimal {
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SPAWN_BIOMES.contains(event.getName())) {
-            event.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.SLIMELING.get(), 6, 1, 3));
+            event.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData(LatexModEntities.SLIMELING.get(), 6, 1, 3));
         }
     }
 
     public SlimelingEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.SLIMELING.get(), world);
+        this(LatexModEntities.SLIMELING.get(), world);
     }
 
     public SlimelingEntity(EntityType<SlimelingEntity> type, Level world) {
@@ -103,7 +105,7 @@ public class SlimelingEntity extends TamableAnimal {
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -113,11 +115,11 @@ public class SlimelingEntity extends TamableAnimal {
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.goalSelector.addGoal(3, new OwnerHurtByTargetGoal(this));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.2d, false) { // from class: net.ltxprogrammer.turned.entity.SlimelingEntity.1
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
             }
         });
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, 10, false, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, false, false, TargetCheck.IS_LATEX));
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Player.class, true, false) { // from class: net.ltxprogrammer.turned.entity.SlimelingEntity.2
             public boolean canUse() {
                 return canUse() && SlimelingattackconditionsProcedure.execute(SlimelingEntity.this.level, SlimelingEntity.this.getX(), SlimelingEntity.this.getY(), SlimelingEntity.this.getZ(), SlimelingEntity.this);
@@ -173,13 +175,13 @@ public class SlimelingEntity extends TamableAnimal {
                 return canUse() && CheckiftamedProcedure.execute(SlimelingEntity.this.level, SlimelingEntity.this.getX(), SlimelingEntity.this.getY(), SlimelingEntity.this.getZ(), SlimelingEntity.this);
             }
         });
-        this.goalSelector.addGoal(12, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(12, new RevertBlockStateGoal(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
-        this.goalSelector.addGoal(13, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(14, new RemoveBlockGoal((Block) ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(15, new RemoveBlockGoal((Block) ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(24, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(12, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.DARK_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
+        this.goalSelector.addGoal(12, new RevertBlockStateGoal<>(AbstractLatexBlock.COVERED, LatexType.WHITE_LATEX, LatexType.NEUTRAL, this, 1.0d, 3));
+        this.goalSelector.addGoal(13, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_ICE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(14, new RemoveBlockGoal(ChangedBlocks.LATEX_CRYSTAL.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(15, new RemoveBlockGoal(ChangedBlocks.DARK_LATEX_BLOCK.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal(LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
+        this.goalSelector.addGoal(24, new RemoveBlockGoal(LatexModBlocks.DARKLATEXHIVE.get(), this, 1.0d, 3));
         this.goalSelector.addGoal(25, new LookAtPlayerGoal(this, Player.class, 9.0f) { // from class: net.ltxprogrammer.turned.entity.SlimelingEntity.13
             public boolean canUse() {
                 return canUse() && CheckiftamedProcedure.execute(SlimelingEntity.this.level, SlimelingEntity.this.getX(), SlimelingEntity.this.getY(), SlimelingEntity.this.getZ(), SlimelingEntity.this);
@@ -195,7 +197,7 @@ public class SlimelingEntity extends TamableAnimal {
                 return canUse() && CheckiftamedProcedure.execute(SlimelingEntity.this.level, SlimelingEntity.this.getX(), SlimelingEntity.this.getY(), SlimelingEntity.this.getZ(), SlimelingEntity.this);
             }
         });
-        this.goalSelector.addGoal(28, new TemptGoal(this, 0.8d, Ingredient.of(new ItemLike[]{(ItemLike) ChangedItems.DARK_LATEX_GOO.get()}), true) { // from class: net.ltxprogrammer.turned.entity.SlimelingEntity.16
+        this.goalSelector.addGoal(28, new TemptGoal(this, 0.8d, Ingredient.of((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), true) { // from class: net.ltxprogrammer.turned.entity.SlimelingEntity.16
             public boolean canUse() {
                 return canUse() && CheckiftamedProcedure.execute(SlimelingEntity.this.level, SlimelingEntity.this.getX(), SlimelingEntity.this.getY(), SlimelingEntity.this.getZ(), SlimelingEntity.this);
             }
@@ -203,29 +205,21 @@ public class SlimelingEntity extends TamableAnimal {
         this.goalSelector.addGoal(29, new RandomStrollGoal(this, 1.0d));
         this.goalSelector.addGoal(30, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(31, new OpenDoorGoal(this, false));
-        this.targetSelector.addGoal(32, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(32, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(33, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(34, new FloatGoal(this));
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
-    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-        return false;
-    }
-
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.SLIMEESSENCE.get()));
+        spawnAtLocation(new ItemStack(LatexModItems.SLIMEESSENCE.get()));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
@@ -240,12 +234,12 @@ public class SlimelingEntity extends TamableAnimal {
         return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         SlimelingEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
     }
 
-    public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player sourceentity, @NotNull InteractionHand hand) {
         ItemStack itemstack = sourceentity.getItemInHand(hand);
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
@@ -261,7 +255,7 @@ public class SlimelingEntity extends TamableAnimal {
             if (isOwnedBy(sourceentity)) {
                 if (item.isEdible() && isFood(itemstack) && getHealth() < getMaxHealth()) {
                     usePlayerItem(sourceentity, hand, itemstack);
-                    heal((float) item.getFoodProperties().getNutrition());
+                    heal((float) Objects.requireNonNull(item.getFoodProperties()).getNutrition());
                     retval = InteractionResult.sidedSuccess(this.level.isClientSide());
                 } else if (!isFood(itemstack) || getHealth() >= getMaxHealth()) {
                     retval = mobInteract(sourceentity, hand);
@@ -291,26 +285,25 @@ public class SlimelingEntity extends TamableAnimal {
         return retval;
     }
 
-    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
         awardKillScore(entity, score, damageSource);
         SlimelingThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
     }
 
-    public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        SlimelingEntity retval = ((EntityType) LatexModEntities.SLIMELING.get()).create(serverWorld);
-        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
+        SlimelingEntity retval = ((EntityType<?>) LatexModEntities.SLIMELING.get()).create(serverWorld);
+        Objects.requireNonNull(retval).finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
         return retval;
     }
 
     public boolean isFood(ItemStack stack) {
-        return List.of().contains(stack.getItem());
+        stack.getItem();
+        return false;
     }
 
     public static void init() {
-        SpawnPlacements.register((EntityType) LatexModEntities.SLIMELING.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, entityType, world, reason, pos, random -> {
-            return world.getBlockState(pos.below()).getMaterial() == Material.GRASS && world.getRawBrightness(pos, 0) > 8;
-        });
-        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.SLIMELING.get(), 180);
+        SpawnPlacements.register((EntityType) LatexModEntities.SLIMELING.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, entityType, world, reason, pos, random -> world.getBlockState(pos.below()).getMaterial() == Material.GRASS && world.getRawBrightness(pos, 0) > 8);
+        DungeonHooks.addDungeonMob(LatexModEntities.SLIMELING.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

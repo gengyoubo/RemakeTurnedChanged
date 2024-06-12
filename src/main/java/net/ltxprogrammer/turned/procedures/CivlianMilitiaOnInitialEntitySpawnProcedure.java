@@ -16,16 +16,13 @@ import net.minecraft.world.level.LevelAccessor;
 public class CivlianMilitiaOnInitialEntitySpawnProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null && Math.random() < 0.5d) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                Entity entityToSpawn = new CivilianMilitiaMeleeEntity((EntityType<CivilianMilitiaMeleeEntity>) ((EntityType) LatexModEntities.CIVILIAN_MILITIA_MELEE.get()), (Level) _level);
+            if (world instanceof ServerLevel _level) {
+                Entity entityToSpawn = new CivilianMilitiaMeleeEntity((EntityType<CivilianMilitiaMeleeEntity>) LatexModEntities.CIVILIAN_MILITIA_MELEE.get(), _level);
                 entityToSpawn.moveTo(x, y, z, entity.getYRot(), entity.getXRot());
                 entityToSpawn.setYBodyRot(entity.getYRot());
                 entityToSpawn.setYHeadRot(entity.getYRot());
                 entityToSpawn.setDeltaMovement(0.0d, 0.0d, 0.0d);
-                if (entityToSpawn instanceof Mob) {
-                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                }
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                 world.addFreshEntity(entityToSpawn);
             }
             if (!entity.level.isClientSide()) {

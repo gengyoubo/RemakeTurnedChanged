@@ -11,6 +11,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+import java.util.Objects;
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModKeyMappings.class */
 public class LatexModKeyMappings {
@@ -28,7 +30,7 @@ public class LatexModKeyMappings {
         public static void onKeyInput(InputEvent.KeyInputEvent event) {
             if (Minecraft.getInstance().screen == null && event.getKey() == LatexModKeyMappings.RELOADKEY.getKey().getValue() && event.getAction() == 1) {
                 LatexMod.PACKET_HANDLER.sendToServer(new ReloadkeyMessage(0, 0));
-                ReloadkeyMessage.pressAction(Minecraft.getInstance().player, 0, 0);
+                ReloadkeyMessage.pressAction(Objects.requireNonNull(Minecraft.getInstance().player), 0, 0);
             }
         }
     }

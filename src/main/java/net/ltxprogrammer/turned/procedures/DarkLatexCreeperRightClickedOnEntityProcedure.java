@@ -22,10 +22,9 @@ public class DarkLatexCreeperRightClickedOnEntityProcedure {
             if (!entity.level.isClientSide()) {
                 entity.discard();
             }
-            if (world instanceof Level) {
-                Level _level = (Level) world;
+            if (world instanceof Level _level) {
                 if (!_level.isClientSide()) {
-                    _level.explode((Entity) null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
+                    _level.explode(null, x, y, z, 5.0f, Explosion.BlockInteraction.BREAK);
                 }
             }
         }

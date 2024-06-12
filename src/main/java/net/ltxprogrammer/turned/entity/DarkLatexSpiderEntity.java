@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
+import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSpiderEntity extends AbstractDarkLatexEntity {
     public DarkLatexSpiderEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -38,12 +39,12 @@ public class DarkLatexSpiderEntity extends AbstractDarkLatexEntity {
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
-    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
         super.awardKillScore(entity, score, damageSource);
         DarkLatexSpiderThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity);
     }

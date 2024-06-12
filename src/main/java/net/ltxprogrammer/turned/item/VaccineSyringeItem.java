@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/VaccineSyringeItem.class */
 public class VaccineSyringeItem extends Item {
@@ -17,21 +18,21 @@ public class VaccineSyringeItem extends Item {
         super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(8).rarity(Rarity.COMMON));
     }
 
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.BOW;
     }
 
-    public int getUseDuration(ItemStack itemstack) {
+    public int getUseDuration(@NotNull ItemStack itemstack) {
         return 8;
     }
 
-    public InteractionResult useOn(UseOnContext context) {
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         InteractionResult retval = useOn(context);
         VaccineSyringeRightclickedOnBlockProcedure.execute(context.getPlayer());
         return retval;
     }
 
-    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
         boolean retval = hurtEnemy(itemstack, entity, sourceentity);
         VaccineSyringeLivingEntityIsHitWithItemProcedure.execute(entity);
         return retval;

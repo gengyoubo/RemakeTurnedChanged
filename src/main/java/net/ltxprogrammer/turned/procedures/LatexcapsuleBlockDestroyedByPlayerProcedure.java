@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 public class LatexcapsuleBlockDestroyedByPlayerProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (Math.random() < 0.5d) {
-            world.setBlock(new BlockPos(x, y, z), ((Block) ChangedBlocks.DARK_LATEX_BLOCK.get()).defaultBlockState(), 3);
+            world.setBlock(new BlockPos(x, y, z), ChangedBlocks.DARK_LATEX_BLOCK.get().defaultBlockState(), 3);
         }
     }
 }

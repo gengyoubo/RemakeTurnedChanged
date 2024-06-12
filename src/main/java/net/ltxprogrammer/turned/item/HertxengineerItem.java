@@ -19,16 +19,17 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/HertxengineerItem.class */
 public abstract class HertxengineerItem extends ArmorItem {
     public HertxengineerItem(EquipmentSlot slot, Item.Properties properties) {
         super(new ArmorMaterial() { // from class: net.ltxprogrammer.turned.item.HertxengineerItem.1
-            public int getDurabilityForSlot(EquipmentSlot slot2) {
+            public int getDurabilityForSlot(@NotNull EquipmentSlot slot2) {
                 return new int[]{13, 15, 16, 11}[slot2.getIndex()] * 40;
             }
 
-            public int getDefenseForSlot(EquipmentSlot slot2) {
+            public int getDefenseForSlot(@NotNull EquipmentSlot slot2) {
                 return new int[]{2, 1, 5, 2}[slot2.getIndex()];
             }
 
@@ -36,15 +37,15 @@ public abstract class HertxengineerItem extends ArmorItem {
                 return 12;
             }
 
-            public SoundEvent getEquipSound() {
+            public @NotNull SoundEvent getEquipSound() {
                 return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.armor.equip_iron"));
             }
 
-            public Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack[]{new ItemStack(Items.IRON_INGOT), new ItemStack((ItemLike) LatexModItems.BATTERY.get()), new ItemStack(Items.REDSTONE)});
+            public @NotNull Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack(Items.IRON_INGOT), new ItemStack((ItemLike) LatexModItems.BATTERY.get()), new ItemStack(Items.REDSTONE));
             }
 
-            public String getName() {
+            public @NotNull String getName() {
                 return "hertxengineer";
             }
 

@@ -19,7 +19,7 @@ public class DarkLatexCakeEntityIsHurtProcedure {
                     ((LivingEntity) entity).setHealth((entity instanceof LivingEntity ? ((LivingEntity) entity).getHealth() : -1.0f) + 1.0f);
                 }
             } else if (Math.random() < 0.05d && (entity instanceof LivingEntity)) {
-                ((LivingEntity) entity).addEffect(new MobEffectInstance((MobEffect) LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 50, 1, false, false));
+                ((LivingEntity) entity).addEffect(new MobEffectInstance(LatexModMobEffects.DARKLATEXDARTEFFECT.get(), 50, 1, false, false));
             }
         }
     }

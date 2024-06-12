@@ -21,11 +21,12 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/AllydroppodEntity.class */
 public class AllydroppodEntity extends PathfinderMob {
     public AllydroppodEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.ALLYDROPPOD.get(), world);
+        this(LatexModEntities.ALLYDROPPOD.get(), world);
     }
 
     public AllydroppodEntity(EntityType<AllydroppodEntity> type, Level world) {
@@ -35,7 +36,7 @@ public class AllydroppodEntity extends PathfinderMob {
         setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -43,15 +44,11 @@ public class AllydroppodEntity extends PathfinderMob {
         registerGoals();
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
     }
 
@@ -66,7 +63,7 @@ public class AllydroppodEntity extends PathfinderMob {
         return hurt(source, amount);
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         die(source);
         DROPPODEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
     }

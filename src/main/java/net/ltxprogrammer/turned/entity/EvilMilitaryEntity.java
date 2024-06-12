@@ -47,11 +47,12 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/EvilMilitaryEntity.class */
 public class EvilMilitaryEntity extends PathfinderMob implements RangedAttackMob {
     public EvilMilitaryEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.EVIL_MILITARY.get(), world);
+        this(LatexModEntities.EVIL_MILITARY.get(), world);
     }
 
     public EvilMilitaryEntity(EntityType<EvilMilitaryEntity> type, Level world) {
@@ -59,10 +60,10 @@ public class EvilMilitaryEntity extends PathfinderMob implements RangedAttackMob
         this.xpReward = 0;
         setNoAi(false);
         setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.AR_70_ASSAULT_RIFLE.get()));
+        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(LatexModItems.AR_70_ASSAULT_RIFLE.get()));
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -87,18 +88,18 @@ public class EvilMilitaryEntity extends PathfinderMob implements RangedAttackMob
                 return canContinueToUse() && TargetwearingbadberetProcedure.execute(entity);
             }
         });
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_GOOD));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, MilitaryEntity.class, true, false));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MilitaryRiotEntity.class, true, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, MilitaryflameunitEntity.class, true, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, CivilianEntity.class, true, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, CivilianMilitiaMeleeEntity.class, true, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, CivlianMilitiaEntity.class, true, false));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Villager.class, true, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, WanderingTrader.class, true, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_GOOD));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, MilitaryEntity.class, true, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MilitaryRiotEntity.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, MilitaryflameunitEntity.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, CivilianEntity.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, CivilianMilitiaMeleeEntity.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, CivlianMilitiaEntity.class, true, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Villager.class, true, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, WanderingTrader.class, true, false));
         this.goalSelector.addGoal(12, new MeleeAttackGoal(this, 1.0d, false));
-        this.targetSelector.addGoal(13, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(13, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(14, new MoveBackToVillageGoal(this, 0.6d, false));
         this.goalSelector.addGoal(15, new RandomStrollGoal(this, 1.0d));
         this.goalSelector.addGoal(16, new OpenDoorGoal(this, true));
@@ -114,15 +115,11 @@ public class EvilMilitaryEntity extends PathfinderMob implements RangedAttackMob
         });
     }
 
-    public MobType getMobType() {
-        return MobType.UNDEFINED;
-    }
-
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
     }
 
@@ -137,13 +134,13 @@ public class EvilMilitaryEntity extends PathfinderMob implements RangedAttackMob
         return hurt(source, amount);
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
         EvilMilitaryOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
 
-    public void performRangedAttack(LivingEntity target, float flval) {
+    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         AR70AssaultRifleEntity.shoot(this, target);
     }
 

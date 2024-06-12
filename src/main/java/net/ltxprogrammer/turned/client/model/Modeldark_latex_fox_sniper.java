@@ -14,6 +14,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/model/Modeldark_latex_fox_sniper.class */
 public class Modeldark_latex_fox_sniper<T extends Entity> extends EntityModel<T> {
@@ -61,16 +62,16 @@ public class Modeldark_latex_fox_sniper<T extends Entity> extends EntityModel<T>
         return LayerDefinition.create(meshdefinition, 128, 128);
     }
 
-    public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(@NotNull T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.Head.yRot = netHeadYaw / 57.295776f;
         this.Head.xRot = headPitch / 57.295776f;
-        this.RightLeg.xRot = Mth.cos(limbSwing * 1.0f) * 1.0f * limbSwingAmount;
+        this.RightLeg.xRot = Mth.cos(limbSwing) * 1.0f * limbSwingAmount;
         this.RightArm.xRot = Mth.cos((limbSwing * 0.6662f) + 3.1415927f) * limbSwingAmount;
         this.LeftArm.xRot = Mth.cos(limbSwing * 0.6662f) * limbSwingAmount;
-        this.LeftLeg.xRot = Mth.cos(limbSwing * 1.0f) * -1.0f * limbSwingAmount;
+        this.LeftLeg.xRot = Mth.cos(limbSwing) * -1.0f * limbSwingAmount;
     }
 
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         this.Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
         this.Tail.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);

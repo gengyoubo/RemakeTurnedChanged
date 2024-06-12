@@ -59,9 +59,6 @@ public class Secretbasementruins1Feature extends Feature<NoneFeatureConfiguratio
         if (this.template == null) {
             this.template = context.level().getLevel().getStructureManager().getOrCreate(new ResourceLocation(LatexMod.MODID, "secret_basement_ruins"));
         }
-        if (this.template == null) {
-            return false;
-        }
         boolean anyPlaced = false;
         if (context.random().nextInt(1000000) + 1 <= 375) {
             int count = context.random().nextInt(1) + 1;
@@ -70,13 +67,13 @@ public class Secretbasementruins1Feature extends Feature<NoneFeatureConfiguratio
                 int k = context.origin().getZ() + context.random().nextInt(16);
                 int j = context.level().getHeight(Heightmap.Types.OCEAN_FLOOR_WG, i, k) - 1;
                 if (this.base_blocks.contains(context.level().getBlockState(new BlockPos(i, j, k)).getBlock())) {
-                    BlockPos spawnTo = new BlockPos(i + 0, j - 7, k + 0);
+                    BlockPos spawnTo = new BlockPos(i, j - 7, k);
                     WorldGenLevel world = context.level();
                     int x = spawnTo.getX();
                     int y = spawnTo.getY();
                     int z = spawnTo.getZ();
                     if (this.template.placeInWorld(context.level(), spawnTo, spawnTo, new StructurePlaceSettings().setMirror(Mirror.NONE).setRotation(Rotation.NONE).setRandom(context.random()).addProcessor(BlockIgnoreProcessor.STRUCTURE_BLOCK).setIgnoreEntities(false), context.random(), 2)) {
-                        Villagerbunker1OnStructureInstanceGeneratedProcedure.execute(world, (double) x, (double) y, (double) z);
+                        Villagerbunker1OnStructureInstanceGeneratedProcedure.execute(world, x, y, z);
                         anyPlaced = true;
                     }
                 }

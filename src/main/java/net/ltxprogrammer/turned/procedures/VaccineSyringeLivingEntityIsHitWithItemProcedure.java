@@ -17,17 +17,14 @@ public class VaccineSyringeLivingEntityIsHitWithItemProcedure {
     public static void execute(Entity entity) {
         if (entity != null) {
             if (entity instanceof LivingEntity) {
-                ((LivingEntity) entity).addEffect(new MobEffectInstance((MobEffect) LatexModMobEffects.VACCINEEFFECT.get(), 3750, 1));
+                ((LivingEntity) entity).addEffect(new MobEffectInstance(LatexModMobEffects.VACCINEEFFECT.get(), 3750, 1));
+            }
+            if (entity instanceof Player _player) {
+                ItemStack _stktoremove = new ItemStack(LatexModItems.VACCINE_SYRINGE.get());
+                _player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
             }
             if (entity instanceof Player) {
-                Player _player = (Player) entity;
-                ItemStack _stktoremove = new ItemStack((ItemLike) LatexModItems.VACCINE_SYRINGE.get());
-                _player.getInventory().clearOrCountMatchingItems(p -> {
-                    return _stktoremove.getItem() == p.getItem();
-                }, 1, _player.inventoryMenu.getCraftSlots());
-            }
-            if (entity instanceof Player) {
-                ItemStack _setstack = new ItemStack((ItemLike) ChangedItems.SYRINGE.get());
+                ItemStack _setstack = new ItemStack(ChangedItems.SYRINGE.get());
                 _setstack.setCount(1);
                 ItemHandlerHelper.giveItemToPlayer((Player) entity, _setstack);
             }

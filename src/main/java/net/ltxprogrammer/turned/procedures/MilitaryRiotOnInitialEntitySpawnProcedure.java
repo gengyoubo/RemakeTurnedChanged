@@ -10,8 +10,7 @@ import net.minecraft.world.item.Items;
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/procedures/MilitaryRiotOnInitialEntitySpawnProcedure.class */
 public class MilitaryRiotOnInitialEntitySpawnProcedure {
     public static void execute(Entity entity) {
-        if (entity != null && Math.random() < 0.2d && (entity instanceof LivingEntity)) {
-            LivingEntity _entity = (LivingEntity) entity;
+        if (entity != null && Math.random() < 0.2d && (entity instanceof LivingEntity _entity)) {
             ItemStack _setstack = new ItemStack(Items.SHIELD);
             _setstack.setCount(1);
             _entity.setItemInHand(InteractionHand.OFF_HAND, _setstack);

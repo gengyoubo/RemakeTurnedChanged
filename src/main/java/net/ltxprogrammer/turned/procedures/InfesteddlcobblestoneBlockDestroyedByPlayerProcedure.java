@@ -19,20 +19,17 @@ import net.minecraft.world.level.block.Block;
 public class InfesteddlcobblestoneBlockDestroyedByPlayerProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (Math.random() < 0.1d) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                Entity entityToSpawn = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) ((EntityType) LatexModEntities.DARKLATEXSLUG.get()), (Level) _level);
+            if (world instanceof ServerLevel _level) {
+                Entity entityToSpawn = new DarklatexslugEntity((EntityType<DarklatexslugEntity>) LatexModEntities.DARKLATEXSLUG.get(), _level);
                 entityToSpawn.moveTo(x, y, z, 0.0f, 0.0f);
                 entityToSpawn.setYBodyRot(0.0f);
                 entityToSpawn.setYHeadRot(0.0f);
                 entityToSpawn.setDeltaMovement(0.0d, 0.0d, 0.0d);
-                if (entityToSpawn instanceof Mob) {
-                    ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
-                }
+                ((Mob) entityToSpawn).finalizeSpawn(_level, world.getCurrentDifficultyAt(entityToSpawn.blockPosition()), MobSpawnType.MOB_SUMMONED, (SpawnGroupData) null, (CompoundTag) null);
                 world.addFreshEntity(entityToSpawn);
             }
         } else if (Math.random() < 0.001d) {
-            world.setBlock(new BlockPos(x, y, z), ((Block) ChangedBlocks.DARK_LATEX_BLOCK.get()).defaultBlockState(), 3);
+            world.setBlock(new BlockPos(x, y, z), ChangedBlocks.DARK_LATEX_BLOCK.get().defaultBlockState(), 3);
         }
     }
 }

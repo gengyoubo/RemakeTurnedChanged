@@ -13,13 +13,11 @@ import net.minecraft.world.phys.Vec3;
 public class SupplyCrateBlockAddedProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z) {
         if (Math.random() < 0.4d) {
-            if (world instanceof ServerLevel) {
-                ServerLevel _level = (ServerLevel) world;
-                _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), (Entity) null).withSuppressedOutput(), "data merge block ~ ~ ~ {LootTable:\"turned:chests/militaryloot\"}");
+            if (world instanceof ServerLevel _level) {
+                _level.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", new TextComponent(""), _level.getServer(), null).withSuppressedOutput(), "data merge block ~ ~ ~ {LootTable:\"turned:chests/militaryloot\"}");
             }
-        } else if (world instanceof ServerLevel) {
-            ServerLevel _level2 = (ServerLevel) world;
-            _level2.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level2, 4, "", new TextComponent(""), _level2.getServer(), (Entity) null).withSuppressedOutput(), "data merge block ~ ~ ~ {LootTable:\"turned:laboratory_loot\"}");
+        } else if (world instanceof ServerLevel _level2) {
+            _level2.getServer().getCommands().performCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level2, 4, "", new TextComponent(""), _level2.getServer(), null).withSuppressedOutput(), "data merge block ~ ~ ~ {LootTable:\"turned:laboratory_loot\"}");
         }
     }
 }
