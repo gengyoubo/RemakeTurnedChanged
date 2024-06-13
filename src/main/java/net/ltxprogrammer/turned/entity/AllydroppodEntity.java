@@ -1,6 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.AllydroppodOnEntityTickUpdateProcedure;
 import net.ltxprogrammer.turned.procedures.DROPPODEntityDiesProcedure;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,7 +11,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;

@@ -9,7 +9,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.entity.LatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.HertxOnInitialEntitySpawnProcedure;
 import net.ltxprogrammer.turned.procedures.ProtectorSlimelingsitRightClickedOnEntityProcedure;
@@ -55,7 +55,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ProtectorSlimelingsitEntity extends TamableAnimal {
     public ProtectorSlimelingsitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.PROTECTOR_SLIMELINGSIT.get(), world);
+        this((EntityType) LatexModEntities.PROTECTOR_SLIMELINGSIT.get(), world);
     }
 
     public ProtectorSlimelingsitEntity(EntityType<ProtectorSlimelingsitEntity> type, Level world) {
@@ -175,7 +175,7 @@ public class ProtectorSlimelingsitEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        ProtectorSlimelingsitEntity retval = (ProtectorSlimelingsitEntity)((EntityType)LatexModEntities.PROTECTOR_SLIMELINGSIT.get()).create(serverWorld);
+        ProtectorSlimelingsitEntity retval = (ProtectorSlimelingsitEntity)((EntityType) LatexModEntities.PROTECTOR_SLIMELINGSIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

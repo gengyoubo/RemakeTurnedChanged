@@ -16,7 +16,7 @@ import net.ltxprogrammer.turned.entity.EvilSniperEntity;
 import net.ltxprogrammer.turned.entity.HertxEntity;
 import net.ltxprogrammer.turned.entity.NoiseStalkerEntity;
 import net.ltxprogrammer.turned.entity.ScientistEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModGameRules;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

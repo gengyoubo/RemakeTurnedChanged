@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.HertxEntityDiesProcedure;
 import net.ltxprogrammer.turned.procedures.HertxOnInitialEntitySpawnProcedure;
@@ -57,7 +57,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NXTSitEntity extends TamableAnimal {
     public NXTSitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.NXT_SIT.get(), world);
+        this((EntityType) LatexModEntities.NXT_SIT.get(), world);
     }
 
     public NXTSitEntity(EntityType<NXTSitEntity> type, Level world) {
@@ -191,7 +191,7 @@ public class NXTSitEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        NXTSitEntity retval = (NXTSitEntity)((EntityType)LatexModEntities.NXT_SIT.get()).create(serverWorld);
+        NXTSitEntity retval = (NXTSitEntity)((EntityType) LatexModEntities.NXT_SIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

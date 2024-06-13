@@ -9,7 +9,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.entity.LatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.CheckiftamedProcedure;
 import net.ltxprogrammer.turned.procedures.HertxEntityDiesProcedure;
@@ -33,7 +33,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
@@ -60,7 +59,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HertxSitEntity extends TamableAnimal {
     public HertxSitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.HERTX_SIT.get(), world);
+        this((EntityType) LatexModEntities.HERTX_SIT.get(), world);
     }
 
     public HertxSitEntity(EntityType<HertxSitEntity> type, Level world) {
@@ -196,7 +195,7 @@ public class HertxSitEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
-        HertxSitEntity retval = (HertxSitEntity)((EntityType)LatexModEntities.HERTX_SIT.get()).create(serverWorld);
+        HertxSitEntity retval = (HertxSitEntity)((EntityType) LatexModEntities.HERTX_SIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

@@ -7,7 +7,7 @@ import net.ltxprogrammer.turned.entity.TSCHunterEntity;
 import net.ltxprogrammer.turned.entity.TSCOutsiderEntity;
 import net.ltxprogrammer.turned.entity.TSCOutsiderGunnerEntity;
 import net.ltxprogrammer.turned.entity.TSCdroneEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;

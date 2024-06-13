@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import net.ltxprogrammer.turned.entity.ArmedDroneHertxWaitEntity;
 import net.ltxprogrammer.turned.entity.DroneHertxEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -13,7 +13,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;

@@ -19,7 +19,7 @@ import net.ltxprogrammer.turned.entity.DarklatexslugEntity;
 import net.ltxprogrammer.turned.entity.DlsharkEntity;
 import net.ltxprogrammer.turned.entity.NoiseStalkerEntity;
 import net.ltxprogrammer.turned.entity.ScientistEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;

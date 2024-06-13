@@ -2,7 +2,7 @@ package net.ltxprogrammer.turned.entity;
 
 import java.util.Objects;
 import java.util.Random;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.FlamethowerBulletHitsBlockProcedure;
 import net.ltxprogrammer.turned.procedures.FlamethowerWhileBulletFlyingTickProcedure;
 import net.minecraft.network.protocol.Packet;
@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;

@@ -9,7 +9,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModParticleTypes;
 import net.ltxprogrammer.turned.procedures.DarkLatexCreeperEnhancedDiesProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexCreeperEnhancedEntityIsHurtProcedure;
@@ -62,7 +62,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexCreeperEnhancedEntity extends AbstractDarkLatexEntity {
     public DarkLatexCreeperEnhancedEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_CREEPER_ENHANCED.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_CREEPER_ENHANCED.get(), world);
     }
 
     public DarkLatexCreeperEnhancedEntity(EntityType<DarkLatexCreeperEnhancedEntity> type, Level world) {

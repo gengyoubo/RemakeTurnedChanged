@@ -10,7 +10,7 @@ import net.ltxprogrammer.changed.entity.LatexType;
 import net.ltxprogrammer.changed.init.ChangedBlocks;
 import net.ltxprogrammer.turned.entity.ai.RevertBlockStateGoal;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.TSCOutsiderGunnerEntityDiesProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
@@ -40,7 +40,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class TSCOutsiderGunnerEntity extends Monster implements RangedAttackMob {
     public TSCOutsiderGunnerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.TSC_OUTSIDER_GUNNER.get(), world);
+        this((EntityType) LatexModEntities.TSC_OUTSIDER_GUNNER.get(), world);
     }
 
     public TSCOutsiderGunnerEntity(EntityType<TSCOutsiderGunnerEntity> type, Level world) {

@@ -9,7 +9,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexSpiderOnEntityTickUpdateProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexSpiderQueenEntityIsHurtProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexSpiderQueenThisEntityKillsAnotherOneProcedure;
@@ -66,7 +66,7 @@ public class DarkLatexSpiderQueenEntity extends AbstractDarkLatexEntity {
     private final ServerBossEvent bossInfo;
 
     public DarkLatexSpiderQueenEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_SPIDER_QUEEN.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_SPIDER_QUEEN.get(), world);
     }
 
     public DarkLatexSpiderQueenEntity(EntityType<DarkLatexSpiderQueenEntity> type, Level world) {

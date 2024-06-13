@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.AshburySitRightClickedOnEntityProcedure;
 import net.ltxprogrammer.turned.procedures.HertxEntityDiesProcedure;
@@ -31,7 +31,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
@@ -58,7 +57,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AshburySitEntity extends TamableAnimal {
     public AshburySitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.ASHBURY_SIT.get(), world);
+        this((EntityType) LatexModEntities.ASHBURY_SIT.get(), world);
     }
 
     public AshburySitEntity(EntityType<AshburySitEntity> type, Level world) {
@@ -184,7 +183,7 @@ public class AshburySitEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
-        AshburySitEntity retval = (AshburySitEntity)((EntityType)LatexModEntities.ASHBURY_SIT.get()).create(serverWorld);
+        AshburySitEntity retval = (AshburySitEntity)((EntityType) LatexModEntities.ASHBURY_SIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

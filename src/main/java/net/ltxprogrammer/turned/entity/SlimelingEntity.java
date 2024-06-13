@@ -14,7 +14,7 @@ import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.turned.entity.ai.RevertBlockStateGoal;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.CheckiftamedProcedure;
 import net.ltxprogrammer.turned.procedures.SlimelingEntityDiesProcedure;
@@ -95,13 +95,13 @@ public class SlimelingEntity extends TamableAnimal {
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SPAWN_BIOMES.contains(event.getName())) {
-            event.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData((EntityType)LatexModEntities.SLIMELING.get(), 6, 1, 3));
+            event.getSpawns().getSpawner(MobCategory.CREATURE).add(new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.SLIMELING.get(), 6, 1, 3));
         }
 
     }
 
     public SlimelingEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.SLIMELING.get(), world);
+        this((EntityType) LatexModEntities.SLIMELING.get(), world);
     }
 
     public SlimelingEntity(EntityType<SlimelingEntity> type, Level world) {
@@ -392,7 +392,7 @@ public class SlimelingEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        SlimelingEntity retval = (SlimelingEntity)((EntityType)LatexModEntities.SLIMELING.get()).create(serverWorld);
+        SlimelingEntity retval = (SlimelingEntity)((EntityType) LatexModEntities.SLIMELING.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
@@ -402,10 +402,10 @@ public class SlimelingEntity extends TamableAnimal {
     }
 
     public static void init() {
-        SpawnPlacements.register((EntityType)LatexModEntities.SLIMELING.get(), Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) -> {
+        SpawnPlacements.register((EntityType) LatexModEntities.SLIMELING.get(), Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) -> {
             return world.getBlockState(pos.below()).getMaterial() == Material.GRASS && world.getRawBrightness(pos, 0) > 8;
         });
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.SLIMELING.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.SLIMELING.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

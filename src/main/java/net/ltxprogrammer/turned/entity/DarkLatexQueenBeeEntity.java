@@ -7,7 +7,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeeEntityDiesProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeeEntityIsHurtProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeePlayerCollidesWithThisEntityProcedure;
@@ -68,7 +68,7 @@ public class DarkLatexQueenBeeEntity extends AbstractDarkLatexEntity {
     private final ServerBossEvent bossInfo;
 
     public DarkLatexQueenBeeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_QUEEN_BEE.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_QUEEN_BEE.get(), world);
     }
 
     public DarkLatexQueenBeeEntity(EntityType<DarkLatexQueenBeeEntity> type, Level world) {

@@ -1,9 +1,8 @@
 package net.ltxprogrammer.turned.procedures;
 
 import net.ltxprogrammer.turned.entity.CrystalbowEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;

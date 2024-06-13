@@ -1,6 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.TSCOutsiderEntityDiesProcedure;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;

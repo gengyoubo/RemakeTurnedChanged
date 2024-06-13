@@ -11,7 +11,7 @@ import java.util.Random;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.CheckforskyProcedure;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
@@ -42,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DLbeeEntity extends AbstractDarkLatexEntity {
     public DLbeeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.D_LBEE.get(), world);
+        this((EntityType) LatexModEntities.D_LBEE.get(), world);
     }
 
     public DLbeeEntity(EntityType<DLbeeEntity> type, Level world) {

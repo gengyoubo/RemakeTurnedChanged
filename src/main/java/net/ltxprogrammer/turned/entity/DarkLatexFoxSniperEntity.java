@@ -9,7 +9,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexFoxThisEntityKillsAnotherOneProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
@@ -56,7 +56,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements RangedAttackMob {
     public DarkLatexFoxSniperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
     }
 
     public DarkLatexFoxSniperEntity(EntityType<DarkLatexFoxSniperEntity> type, Level world) {

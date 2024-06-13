@@ -3,7 +3,7 @@ package net.ltxprogrammer.turned.procedures;
 import net.ltxprogrammer.changed.init.ChangedSounds;
 import net.ltxprogrammer.turned.entity.DarklatexEntity;
 import net.ltxprogrammer.turned.entity.ProtectorSlimelingEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModGameRules;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

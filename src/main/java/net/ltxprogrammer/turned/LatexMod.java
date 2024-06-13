@@ -10,7 +10,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import net.ltxprogrammer.turned.init.LatexModBlockEntities;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModFeatures;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.init.LatexModMobEffects;

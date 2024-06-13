@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.entity.beast.AquaticEntity;
 import net.ltxprogrammer.changed.util.Color3;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
@@ -19,7 +19,7 @@ import net.minecraftforge.network.PlayMessages;
 
 public class DlSquidDogEntity extends AbstractDarkLatexEntity implements AquaticEntity {
     public DlSquidDogEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DL_SQUID_DOG.get(), world);
+        this((EntityType) LatexModEntities.DL_SQUID_DOG.get(), world);
     }
 
     public DlSquidDogEntity(EntityType<DlSquidDogEntity> type, Level world) {

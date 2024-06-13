@@ -9,7 +9,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModParticleTypes;
 import net.ltxprogrammer.turned.procedures.DarkLatexCreeperEnhancedEntityIsHurtProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexCreeperPlayerCollidesWithThisEntityProcedure;
@@ -65,7 +65,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexCreeperEntity extends AbstractDarkLatexEntity {
     public DarkLatexCreeperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_CREEPER.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_CREEPER.get(), world);
     }
 
     public DarkLatexCreeperEntity(EntityType<DarkLatexCreeperEntity> type, Level world) {
@@ -185,7 +185,7 @@ public class DarkLatexCreeperEntity extends AbstractDarkLatexEntity {
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.DARK_LATEX_CREEPER.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.DARK_LATEX_CREEPER.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

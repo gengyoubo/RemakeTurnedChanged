@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSkeletonEntity extends AbstractDarkLatexEntity {
     public DarkLatexSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get(), world);
     }
 
     public DarkLatexSkeletonEntity(EntityType<DarkLatexSkeletonEntity> type, Level world) {

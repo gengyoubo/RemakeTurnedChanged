@@ -14,7 +14,7 @@ import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.turned.entity.ai.RevertBlockStateGoal;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.CheckiftamedProcedure;
 import net.ltxprogrammer.turned.procedures.SlimelingEntityDiesProcedure;
@@ -84,7 +84,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SlimelingTamedEntity extends TamableAnimal {
     public SlimelingTamedEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.SLIMELING_TAMED.get(), world);
+        this((EntityType) LatexModEntities.SLIMELING_TAMED.get(), world);
     }
 
     public SlimelingTamedEntity(EntityType<SlimelingTamedEntity> type, Level world) {
@@ -326,7 +326,7 @@ public class SlimelingTamedEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        SlimelingTamedEntity retval = (SlimelingTamedEntity)((EntityType)LatexModEntities.SLIMELING_TAMED.get()).create(serverWorld);
+        SlimelingTamedEntity retval = (SlimelingTamedEntity)((EntityType) LatexModEntities.SLIMELING_TAMED.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
@@ -336,7 +336,7 @@ public class SlimelingTamedEntity extends TamableAnimal {
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.SLIMELING_TAMED.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.SLIMELING_TAMED.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

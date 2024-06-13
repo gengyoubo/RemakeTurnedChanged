@@ -7,7 +7,7 @@ import net.ltxprogrammer.turned.entity.DLbeeEntity;
 import net.ltxprogrammer.turned.entity.HertxEntity;
 import net.ltxprogrammer.turned.entity.HertxvarFEntity;
 import net.ltxprogrammer.turned.entity.NXTHertxEntity;
-import net.ltxprogrammer.turned.init.LatexModEntities;
+import LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
@@ -23,7 +23,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 
