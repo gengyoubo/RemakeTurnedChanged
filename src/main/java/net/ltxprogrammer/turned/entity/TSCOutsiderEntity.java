@@ -1,7 +1,7 @@
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.TSCOutsiderEntityDiesProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;

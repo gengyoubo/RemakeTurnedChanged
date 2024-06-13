@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;

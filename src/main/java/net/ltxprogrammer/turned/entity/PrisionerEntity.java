@@ -1,6 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.TargethasabatonProcedure;
 import net.minecraft.core.BlockPos;

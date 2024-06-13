@@ -11,7 +11,7 @@ import java.util.Random;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.CheckforskyProcedure;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;

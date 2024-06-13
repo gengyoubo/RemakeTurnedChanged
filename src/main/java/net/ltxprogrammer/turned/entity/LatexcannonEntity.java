@@ -3,7 +3,7 @@ package net.ltxprogrammer.turned.entity;
 import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.LatexcannonBulletHitsBlockProcedure;
 import net.ltxprogrammer.turned.procedures.LatexcannonBulletHitsPlayerProcedure;
 import net.minecraft.network.protocol.Packet;

@@ -1,6 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;

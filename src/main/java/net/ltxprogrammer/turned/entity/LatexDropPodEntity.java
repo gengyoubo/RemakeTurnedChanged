@@ -1,6 +1,6 @@
 package net.ltxprogrammer.turned.entity;
 
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DROPPODEntityDiesProcedure;
 import net.ltxprogrammer.turned.procedures.LatexDropPodOnEntityTickUpdateProcedure;
 import net.minecraft.core.particles.ParticleTypes;

@@ -7,7 +7,7 @@ package net.ltxprogrammer.turned.entity;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DroneHertxDiesProcedure;
 import net.ltxprogrammer.turned.procedures.DroneHertxWaitEntityIsHurtProcedure;
 import net.ltxprogrammer.turned.procedures.DroneHertxWaitRightClickedOnEntityProcedure;

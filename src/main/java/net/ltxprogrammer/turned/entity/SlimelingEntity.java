@@ -14,7 +14,7 @@ import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.turned.entity.ai.RevertBlockStateGoal;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.CheckiftamedProcedure;
 import net.ltxprogrammer.turned.procedures.SlimelingEntityDiesProcedure;

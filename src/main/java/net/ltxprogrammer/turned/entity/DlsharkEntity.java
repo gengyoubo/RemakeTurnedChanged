@@ -9,7 +9,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractAquaticEntity;
 import net.ltxprogrammer.changed.entity.beast.DarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobType;

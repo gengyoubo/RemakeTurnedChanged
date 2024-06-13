@@ -2,7 +2,7 @@ package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.changed.init.ChangedBlocks;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.TSCdroneEntityDiesProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;

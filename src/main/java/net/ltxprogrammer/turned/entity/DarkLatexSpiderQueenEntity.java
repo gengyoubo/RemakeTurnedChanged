@@ -9,7 +9,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexSpiderOnEntityTickUpdateProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexSpiderQueenEntityIsHurtProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexSpiderQueenThisEntityKillsAnotherOneProcedure;

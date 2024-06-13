@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.ArmedDroneHertxDiesProcedure;
 import net.ltxprogrammer.turned.procedures.ArmedDroneHertxPlayerCollidesWithThisEntityProcedure;
 import net.ltxprogrammer.turned.procedures.ArmedDronehertxrightclickProcedure;

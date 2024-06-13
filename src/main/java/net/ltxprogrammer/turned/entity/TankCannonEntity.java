@@ -2,7 +2,7 @@ package net.ltxprogrammer.turned.entity;
 
 import java.util.Objects;
 import java.util.Random;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.TankCannonBulletHitsBlockProcedure;
 import net.ltxprogrammer.turned.procedures.TankCannonWhileBulletFlyingTickProcedure;
 import net.minecraft.network.protocol.Packet;

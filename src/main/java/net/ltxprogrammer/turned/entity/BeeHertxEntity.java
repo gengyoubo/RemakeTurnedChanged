@@ -8,7 +8,7 @@ package net.ltxprogrammer.turned.entity;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.BeeHertxEntityDiesProcedure;
 import net.ltxprogrammer.turned.procedures.BeeHertxRightClickedOnEntityProcedure;
 import net.ltxprogrammer.turned.procedures.BeeHertxThisEntityKillsAnotherOneProcedure;

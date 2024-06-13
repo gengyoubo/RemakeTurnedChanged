@@ -2,7 +2,7 @@ package net.ltxprogrammer.turned.entity;
 
 import javax.annotation.Nullable;
 import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.PrisionermilitiaOnInitialEntitySpawnProcedure;
 import net.ltxprogrammer.turned.procedures.TargethasabatonProcedure;

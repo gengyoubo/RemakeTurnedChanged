@@ -7,7 +7,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.entity.ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeeEntityDiesProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeeEntityIsHurtProcedure;
 import net.ltxprogrammer.turned.procedures.DarkLatexQueenBeePlayerCollidesWithThisEntityProcedure;

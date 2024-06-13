@@ -10,7 +10,7 @@ import net.ltxprogrammer.changed.entity.LatexType;
 import net.ltxprogrammer.changed.init.ChangedBlocks;
 import net.ltxprogrammer.turned.entity.ai.RevertBlockStateGoal;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.TSCOutsiderGunnerEntityDiesProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;

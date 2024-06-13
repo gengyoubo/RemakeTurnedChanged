@@ -5,7 +5,7 @@ import net.ltxprogrammer.changed.entity.LatexType;
 import net.ltxprogrammer.changed.init.ChangedBlocks;
 import net.ltxprogrammer.turned.entity.p000ai.RevertBlockStateGoal;
 import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;

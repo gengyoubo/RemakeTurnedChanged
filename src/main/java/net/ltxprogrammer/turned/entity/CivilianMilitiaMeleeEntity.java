@@ -2,7 +2,7 @@ package net.ltxprogrammer.turned.entity;
 
 import javax.annotation.Nullable;
 import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.CivilianMilitiaMeleeOnInitialEntitySpawnProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

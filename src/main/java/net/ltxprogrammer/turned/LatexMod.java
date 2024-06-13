@@ -8,15 +8,8 @@ package net.ltxprogrammer.turned;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import net.ltxprogrammer.turned.init.LatexModBlockEntities;
-import net.ltxprogrammer.turned.init.LatexModBlocks;
-import LatexModEntities;
-import net.ltxprogrammer.turned.init.LatexModFeatures;
-import net.ltxprogrammer.turned.init.LatexModItems;
-import net.ltxprogrammer.turned.init.LatexModMobEffects;
-import net.ltxprogrammer.turned.init.LatexModParticleTypes;
-import net.ltxprogrammer.turned.init.LatexModPotions;
-import net.ltxprogrammer.turned.init.LatexModTabs;
+
+import net.ltxprogrammer.turned.init.*;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -41,7 +34,9 @@ public class LatexMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         LatexModBlocks.REGISTRY.register(bus);
         LatexModItems.REGISTRY.register(bus);
-        LatexModEntities.REGISTRY.register(bus);
+        LatexModEntitiesCREATURES.REGISTRY.register(bus);
+        LatexModEntitiesMISC.REGISTRY.register(bus);
+        LatexModEntitiesMONSTER.REGISTRY.register(bus);
         LatexModBlockEntities.REGISTRY.register(bus);
         LatexModFeatures.REGISTRY.register(bus);
         LatexModMobEffects.REGISTRY.register(bus);

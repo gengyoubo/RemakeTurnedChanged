@@ -2,7 +2,7 @@ package net.ltxprogrammer.turned.entity;
 
 import java.util.Objects;
 import java.util.Random;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;

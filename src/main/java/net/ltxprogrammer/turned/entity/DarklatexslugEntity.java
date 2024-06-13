@@ -11,7 +11,7 @@ import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.init.LatexModBlocks;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.DarklatexslugNaturalEntitySpawningConditionProcedure;
 import net.ltxprogrammer.turned.procedures.DarklatexslugOnEntityTickUpdateProcedure;
 import net.ltxprogrammer.turned.procedures.DarklatexslugOnInitialEntitySpawnProcedure;

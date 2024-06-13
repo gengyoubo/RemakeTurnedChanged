@@ -3,7 +3,7 @@ package net.ltxprogrammer.turned.entity;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.init.ChangedItems;
 import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.NightstalkertestPlayerCollidesWithThisEntityProcedure;
 import net.ltxprogrammer.turned.procedures.NoiseStalkerDetectGameruleProcedure;
 import net.ltxprogrammer.turned.procedures.NoiseStalkerOnInitialEntitySpawnProcedure;

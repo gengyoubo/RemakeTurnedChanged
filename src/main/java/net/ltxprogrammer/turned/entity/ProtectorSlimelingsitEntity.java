@@ -9,7 +9,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.entity.LatexEntity;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import LatexModEntities;
+import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.HertxOnInitialEntitySpawnProcedure;
 import net.ltxprogrammer.turned.procedures.ProtectorSlimelingsitRightClickedOnEntityProcedure;
