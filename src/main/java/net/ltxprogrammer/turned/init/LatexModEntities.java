@@ -1,6 +1,6 @@
 package net.ltxprogrammer.turned.init;
 
-import net.ltxprogrammer.changed.entity.LatexEntity;
+//import net.ltxprogrammer.changed.entity.LatexEntity;
 import net.ltxprogrammer.turned.entity.AHVHertxEntity;
 import net.ltxprogrammer.turned.entity.AHVHertxSitEntity;
 import net.ltxprogrammer.turned.entity.AR70AssaultRifleEntity;
@@ -91,7 +91,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType.Builder;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+//import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -273,6 +273,7 @@ public class LatexModEntities {
         });
     }
 
+    /*
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put((EntityType)SLIMELING.get(), SlimelingEntity.createAttributes().build());
@@ -345,44 +346,45 @@ public class LatexModEntities {
         event.put((EntityType)CIVILIAN_MILITIA_MELEE.get(), CivilianMilitiaMeleeEntity.createAttributes().build());
         event.put((EntityType)PRISIONER_MILITIA_MELEE.get(), PrisionerMilitiaMeleeEntity.createAttributes().build());
     }
-
+*/
     static {
         REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITIES, "turned");
         //CREATURES类
         DARK_LATEX_CENTAUR = register("slimeling", Builder.of((EntityType<DarkLatexCentaurEntity> type, Level world) -> new DarkLatexCentaurEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexCentaurEntity::new).sized(0.6F, 1.95F));
         DARK_LATEX_SKELETON = register("dark_latex_skeleton", Builder.of((EntityType<DarkLatexSkeletonEntity> type, Level world) -> new DarkLatexSkeletonEntity(type, world), MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSkeletonEntity::new).sized(0.6F, 1.95F));
         AHV_HERTX = register("ahv_hertx", Builder.of((EntityType<AHVHertxEntity> type, Level world) -> new AHVHertxEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AHVHertxEntity::new).sized(0.6F, 1.95F));
-        ARMED_DRONE_HERTX = register("armed_drone_hertx", Builder.of(ArmedDroneHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(116).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxEntity::new).fireImmune().sized(0.7F, 2.0F));
-        ASHBURY_HERTX = register("ashbury_hertx", Builder.of(AshburyHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(AshburyHertxEntity::new).sized(0.7F, 2.0F));
-        ASHBURY_SIT = register("ashbury_sit", Builder.of(AshburySitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(AshburySitEntity::new).sized(0.8F, 1.2F));
-        BEE_HERTX = register("bee_hertx", Builder.of(BeeHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(BeeHertxEntity::new).sized(0.6F, 2.3F));
-        BEE_HERTX_SIT = register("bee_hertx_sit", Builder.of(BeeHertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(BeeHertxSitEntity::new).sized(0.8F, 1.2F));
-        CIVILIAN = register("civilian", Builder.of(CivilianEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CivilianEntity::new).sized(0.6F, 1.8F));
-        CIVLIAN_MILITIA = register("civlian_militia", Builder.of(CivlianMilitiaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(CivlianMilitiaEntity::new).sized(0.6F, 1.8F));
-        DRONE_HERTX = register("drone_hertx", Builder.of(DroneHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(108).setUpdateInterval(3).setCustomClientFactory(DroneHertxEntity::new).fireImmune().sized(0.7F, 2.0F));
-        EVIL_MILITARY = register("evil_military", Builder.of(EvilMilitaryEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(EvilMilitaryEntity::new).sized(0.6F, 1.8F));
-        EVIL_SCIENTIST = register("evil_scientist", Builder.of(EvilScientistEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(EvilScientistEntity::new).sized(0.6F, 1.8F));
-        EVIL_SNIPER = register("evil_sniper", Builder.of(EvilSniperEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(EvilSniperEntity::new).sized(0.6F, 1.8F));
-        HERTX = register("hertx", Builder.of(HertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxEntity::new).sized(0.7F, 2.0F));
-        HERTX_SIT = register("hertx_sit", Builder.of(HertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxSitEntity::new).sized(0.8F, 1.2F));
-        HERTXVAR_F = register("hertxvar_f", Builder.of(HertxvarFEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxvarFEntity::new).sized(0.7F, 2.0F));
-        HERTXVAR_FB = register("hertxvar_fb", Builder.of(HertxvarFBEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(HertxvarFBEntity::new).sized(0.7F, 2.1F));
-        HERTXVAR_SOL = register("hertxvar_sol", Builder.of(HertxvarSolEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(HertxvarSolEntity::new).sized(0.7F, 2.0F));
-        MILITARY = register("military", Builder.of(MilitaryEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryEntity::new).sized(0.6F, 1.8F));
-        MILITARYFLAMEUNIT = register("militaryflameunit", Builder.of(MilitaryflameunitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryflameunitEntity::new).fireImmune().sized(0.6F, 1.8F));
-        NXT_HERTX = register("nxt_hertx", Builder.of(NXTHertxEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(100).setUpdateInterval(3).setCustomClientFactory(NXTHertxEntity::new).sized(0.7F, 2.0F));
-        PRISIONER = register("prisioner", Builder.of(PrisionerEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerEntity::new).sized(0.6F, 1.8F));
-        PRISIONERMILITIA = register("prisionermilitia", Builder.of(PrisionermilitiaEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(PrisionermilitiaEntity::new).sized(0.6F, 1.8F));
-        SCIENTIST = register("scientist", Builder.of(ScientistEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(ScientistEntity::new).sized(0.6F, 1.8F));
-        SLIMELING = register("slimeling", Builder.of((EntityType<SlimelingEntity> type, Level world) -> new SlimelingEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingEntity::new).sized(1.0F, 1.0F));
-        CIVILIAN_MILITIA_MELEE = register("civilian_militia_melee", Builder.of(CivilianMilitiaMeleeEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(CivilianMilitiaMeleeEntity::new).sized(0.6F, 1.8F));
-        PRISIONER_MILITIA_MELEE = register("prisioner_militia_melee", Builder.of(PrisionerMilitiaMeleeEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(PrisionerMilitiaMeleeEntity::new).sized(0.6F, 1.8F));
-        DRONE_HERTX_WAIT = register("drone_hertx_wait", Builder.of(DroneHertxWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DroneHertxWaitEntity::new).fireImmune().sized(0.7F, 1.2F));
-        ARMED_DRONE_HERTX_WAIT = register("armed_drone_hertx_wait", Builder.of(ArmedDroneHertxWaitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxWaitEntity::new).fireImmune().sized(0.7F, 2.0F));
-        DARK_LATEX_SPIDER = register("dark_latex_spider", Builder.of((EntityType<DarkLatexSpiderEntity> type, Level world) -> new DarkLatexSpiderEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSpiderEntity::new).sized(1.0F, 1.0F));        DL_SQUID_DOG = register("dl_squid_dog", Builder.of(DlSquidDogEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DlSquidDogEntity::new).sized(0.8F, 2.2F));
+        ARMED_DRONE_HERTX = register("armed_drone_hertx", Builder.of((EntityType<ArmedDroneHertxEntity> type, Level world) -> new ArmedDroneHertxEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxEntity::new).sized(0.6F, 1.95F));
+        ASHBURY_HERTX = register("ashbury_hertx", Builder.of((EntityType<AshburyHertxEntity> type, Level world) -> new AshburyHertxEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AshburyHertxEntity::new).sized(0.6F, 1.95F));
+        ASHBURY_SIT = register("ashbury_sit", Builder.of((EntityType<AshburySitEntity> type, Level world) -> new AshburySitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(AshburySitEntity::new).sized(0.6F, 1.95F));
+        BEE_HERTX = register("bee_hertx", Builder.of((EntityType<BeeHertxEntity> type, Level world) -> new BeeHertxEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BeeHertxEntity::new).sized(0.6F, 1.95F));
+        BEE_HERTX_SIT = register("bee_hertx_sit", Builder.of((EntityType<BeeHertxSitEntity> type, Level world) -> new BeeHertxSitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BeeHertxSitEntity::new).sized(0.6F, 1.95F));
+        CIVILIAN = register("civilian", Builder.of((EntityType<CivilianEntity> type, Level world) -> new CivilianEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CivilianEntity::new).sized(0.6F, 1.95F));
+        CIVLIAN_MILITIA = register("civlian_militia", Builder.of((EntityType<CivlianMilitiaEntity> type, Level world) -> new CivlianMilitiaEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CivlianMilitiaEntity::new).sized(0.6F, 1.95F));
+        CIVILIAN_MILITIA_MELEE = register("civlian_militia_melee", Builder.of((EntityType<CivilianMilitiaMeleeEntity> type, Level world) -> new CivilianMilitiaMeleeEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CivilianMilitiaMeleeEntity::new).sized(0.6F, 1.95F));
+        DRONE_HERTX = register("drone_hertx", Builder.of((EntityType<DroneHertxEntity> type, Level world) -> new DroneHertxEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DroneHertxEntity::new).sized(0.6F, 1.95F));
+        HERTX = register("hertx", Builder.of((EntityType<HertxEntity> type, Level world) -> new HertxEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HertxEntity::new).sized(0.6F, 1.95F));
+        HERTX_SIT = register("hertx_sit", Builder.of((EntityType<HertxSitEntity> type, Level world) -> new HertxSitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HertxSitEntity::new).sized(0.6F, 1.95F));
+        HERTXVAR_F = register("hertxvar_f", Builder.of((EntityType<HertxvarFEntity> type, Level world) -> new HertxvarFEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HertxvarFEntity::new).sized(0.6F, 1.95F));
+        HERTXVAR_FB = register("hertxvar_fb", Builder.of((EntityType<HertxvarFBEntity> type, Level world) -> new HertxvarFBEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HertxvarFBEntity::new).sized(0.6F, 1.95F));
+        HERTXVAR_SOL = register("hertxvar_sol", Builder.of((EntityType<HertxvarSolEntity> type, Level world) -> new HertxvarSolEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(HertxvarSolEntity::new).sized(0.6F, 1.95F));
+        MILITARY = register("military", Builder.of((EntityType<MilitaryEntity> type, Level world) -> new MilitaryEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(MilitaryEntity::new).sized(0.6F, 1.95F));
+        MILITARYFLAMEUNIT = register("militaryflameunit",Builder.of((EntityType<MilitaryflameunitEntity> type,Level world) -> new MilitaryflameunitEntity(type,world),MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(MilitaryflameunitEntity::new).sized(0.6F, 1.8F));
+        NXT_HERTX = register("nxt_hertx", Builder.of((EntityType<NXTHertxEntity> type,Level world)-> new NXTHertxEntity(type,world),MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NXTHertxEntity::new).sized(0.7F, 2.0F));
+        PRISIONER = register("prisioner", Builder.of((EntityType<PrisionerEntity> type, Level world) -> new PrisionerEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerEntity::new).sized(0.6F, 1.95F));
+        PRISIONERMILITIA = register("prisionermilitia", Builder.of((EntityType<PrisionermilitiaEntity> type, Level world) -> new PrisionermilitiaEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionermilitiaEntity::new).sized(0.6F, 1.95F));
+        SCIENTIST = register("scientist", Builder.of((EntityType<ScientistEntity> type, Level world) -> new ScientistEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ScientistEntity::new).sized(0.6F, 1.95F));
+        SLIMELING = register("slimeling", Builder.of((EntityType<SlimelingEntity> type, Level world) -> new SlimelingEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingEntity::new).sized(0.6F, 1.95F));
+        PRISIONER_MILITIA_MELEE = register("prisioner_militia_melee", Builder.of((EntityType<PrisionerMilitiaMeleeEntity> type, Level world) -> new PrisionerMilitiaMeleeEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerMilitiaMeleeEntity::new).sized(0.6F, 1.95F));
+        DRONE_HERTX_WAIT = register("drone_hertx_wait", Builder.of((EntityType<DroneHertxWaitEntity> type, Level world) -> new DroneHertxWaitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DroneHertxWaitEntity::new).sized(0.6F, 1.95F));
+        ARMED_DRONE_HERTX_WAIT =register("armed_drone_hertx_wait",Builder.of((EntityType<ArmedDroneHertxWaitEntity>type, Level world) -> new ArmedDroneHertxWaitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxWaitEntity::new).fireImmune().sized(0.7F, 2.0F));
+        DARK_LATEX_SPIDER = register("dark_latex_spider", Builder.of((EntityType<DarkLatexSpiderEntity> type, Level world) -> new DarkLatexSpiderEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DarkLatexSpiderEntity::new).sized(1.0F, 1.0F));
+        EVIL_SCIENTIST = register("evil_scientist", Builder.of((EntityType<EvilScientistEntity> type,Level world) -> new EvilScientistEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(EvilScientistEntity::new).sized(1.0F, 1.0F));
+        EVIL_SNIPER  = register("evil_sniper",Builder.of((EntityType<EvilSniperEntity> type,Level world) -> new EvilSniperEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(EvilSniperEntity::new).sized(1.0F, 1.0F));
+        EVIL_MILITARY = register("evil_militery",Builder.of((EntityType<EvilMilitaryEntity> type,Level world) -> new EvilMilitaryEntity(type,world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(EvilMilitaryEntity::new).sized(1.0F, 1.0F));
+
+        DL_SQUID_DOG = register("dl_squid_dog", Builder.of(DlSquidDogEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(128).setUpdateInterval(3).setCustomClientFactory(DlSquidDogEntity::new).sized(0.8F, 2.2F));
         MILITARY_RIOT = register("military_riot", Builder.of(MilitaryRiotEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(96).setUpdateInterval(3).setCustomClientFactory(MilitaryRiotEntity::new).sized(0.6F, 1.8F));
         PROTECTOR_SLIMELING = register("protector_slimeling", Builder.of(ProtectorSlimelingEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(72).setUpdateInterval(3).setCustomClientFactory(ProtectorSlimelingEntity::new).sized(0.6F, 2.0F));
-
         AHV_HERTX_SIT = register("ahv_hertx_sit", Builder.of(AHVHertxSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(AHVHertxSitEntity::new).sized(0.8F, 1.2F));
         NXT_SIT = register("nxt_sit", Builder.of(NXTSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(NXTSitEntity::new).sized(0.8F, 1.2F));
         HERTX_F_SIT = register("hertx_f_sit", Builder.of(HertxFSitEntity::new, MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(HertxFSitEntity::new).sized(0.8F, 1.2F));
@@ -440,9 +442,3 @@ public class LatexModEntities {
 
     }
 }
-/*
-
-
-
-        把代码分类成CREATURE，MISC，MONSTER
- */
