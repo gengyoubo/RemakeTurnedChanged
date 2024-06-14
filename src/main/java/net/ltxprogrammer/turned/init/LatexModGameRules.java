@@ -1,8 +1,4 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
+/**
 package net.ltxprogrammer.turned.init;
 
 import net.minecraft.world.level.GameRules;
@@ -53,3 +49,4 @@ public class LatexModGameRules {
         CANCOBBLESTONEBEINFESTED = GameRules.register("cancobblestonebeinfested", Category.UPDATES, BooleanValue.create(true));
     }
 }
+*/
