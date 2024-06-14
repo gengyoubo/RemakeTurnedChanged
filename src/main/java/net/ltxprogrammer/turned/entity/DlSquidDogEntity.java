@@ -19,7 +19,7 @@ import net.minecraftforge.network.PlayMessages;
 
 public class DlSquidDogEntity extends AbstractDarkLatexEntity implements AquaticEntity {
     public DlSquidDogEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DL_SQUID_DOG.get(), world);
+        this((EntityType) LatexModEntities.DL_SQUID_DOG.get(), world);
     }
 
     public DlSquidDogEntity(EntityType<DlSquidDogEntity> type, Level world) {

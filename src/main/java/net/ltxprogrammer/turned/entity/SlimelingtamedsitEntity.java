@@ -56,7 +56,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class SlimelingtamedsitEntity extends TamableAnimal {
     public SlimelingtamedsitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.SLIMELINGTAMEDSIT.get(), world);
+        this((EntityType) LatexModEntities.SLIMELINGTAMEDSIT.get(), world);
     }
 
     public SlimelingtamedsitEntity(EntityType<SlimelingtamedsitEntity> type, Level world) {
@@ -181,7 +181,7 @@ public class SlimelingtamedsitEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        SlimelingtamedsitEntity retval = (SlimelingtamedsitEntity)((EntityType)LatexModEntities.SLIMELINGTAMEDSIT.get()).create(serverWorld);
+        SlimelingtamedsitEntity retval = (SlimelingtamedsitEntity)((EntityType) LatexModEntities.SLIMELINGTAMEDSIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

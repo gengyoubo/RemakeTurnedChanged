@@ -66,7 +66,7 @@ public class DarkLatexSpiderQueenEntity extends AbstractDarkLatexEntity {
     private final ServerBossEvent bossInfo;
 
     public DarkLatexSpiderQueenEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_SPIDER_QUEEN.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_SPIDER_QUEEN.get(), world);
     }
 
     public DarkLatexSpiderQueenEntity(EntityType<DarkLatexSpiderQueenEntity> type, Level world) {

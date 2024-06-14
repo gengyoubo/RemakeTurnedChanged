@@ -31,7 +31,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -64,7 +63,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BeeHertxEntity extends TamableAnimal {
     public BeeHertxEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.BEE_HERTX.get(), world);
+        this((EntityType) LatexModEntities.BEE_HERTX.get(), world);
     }
 
     public BeeHertxEntity(EntityType<BeeHertxEntity> type, Level world) {
@@ -204,7 +203,7 @@ public class BeeHertxEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
-        BeeHertxEntity retval = (BeeHertxEntity)((EntityType)LatexModEntities.BEE_HERTX.get()).create(serverWorld);
+        BeeHertxEntity retval = (BeeHertxEntity)((EntityType) LatexModEntities.BEE_HERTX.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

@@ -15,7 +15,7 @@ import net.minecraftforge.network.PlayMessages;
 
 public class DarkLatexFoxEntity extends AbstractDarkLatexEntity {
     public DarkLatexFoxEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_FOX.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_FOX.get(), world);
     }
 
     public DarkLatexFoxEntity(EntityType<DarkLatexFoxEntity> type, Level world) {

@@ -42,7 +42,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DLbeeEntity extends AbstractDarkLatexEntity {
     public DLbeeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.D_LBEE.get(), world);
+        this((EntityType) LatexModEntities.D_LBEE.get(), world);
     }
 
     public DLbeeEntity(EntityType<DLbeeEntity> type, Level world) {

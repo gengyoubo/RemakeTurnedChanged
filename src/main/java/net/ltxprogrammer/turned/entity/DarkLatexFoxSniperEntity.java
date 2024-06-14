@@ -56,7 +56,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexFoxSniperEntity extends AbstractDarkLatexEntity implements RangedAttackMob {
     public DarkLatexFoxSniperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), world);
     }
 
     public DarkLatexFoxSniperEntity(EntityType<DarkLatexFoxSniperEntity> type, Level world) {

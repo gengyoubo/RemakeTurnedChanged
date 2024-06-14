@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSpiderEntity extends AbstractDarkLatexEntity {
     public DarkLatexSpiderEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get(), world);
     }
 
     public DarkLatexSpiderEntity(EntityType<DarkLatexSpiderEntity> type, Level world) {

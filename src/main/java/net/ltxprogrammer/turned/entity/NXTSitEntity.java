@@ -57,7 +57,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NXTSitEntity extends TamableAnimal {
     public NXTSitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.NXT_SIT.get(), world);
+        this((EntityType) LatexModEntities.NXT_SIT.get(), world);
     }
 
     public NXTSitEntity(EntityType<NXTSitEntity> type, Level world) {
@@ -191,7 +191,7 @@ public class NXTSitEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        NXTSitEntity retval = (NXTSitEntity)((EntityType)LatexModEntities.NXT_SIT.get()).create(serverWorld);
+        NXTSitEntity retval = (NXTSitEntity)((EntityType) LatexModEntities.NXT_SIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

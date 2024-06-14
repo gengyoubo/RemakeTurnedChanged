@@ -31,7 +31,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -63,7 +62,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class HertxvarSolEntity extends TamableAnimal {
     public HertxvarSolEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.HERTXVAR_SOL.get(), world);
+        this((EntityType) LatexModEntities.HERTXVAR_SOL.get(), world);
     }
 
     public HertxvarSolEntity(EntityType<HertxvarSolEntity> type, Level world) {
@@ -203,7 +202,7 @@ public class HertxvarSolEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
-        HertxvarSolEntity retval = (HertxvarSolEntity)((EntityType)LatexModEntities.HERTXVAR_SOL.get()).create(serverWorld);
+        HertxvarSolEntity retval = (HertxvarSolEntity)((EntityType) LatexModEntities.HERTXVAR_SOL.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

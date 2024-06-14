@@ -64,7 +64,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NXTHertxEntity extends TamableAnimal {
     public NXTHertxEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.NXT_HERTX.get(), world);
+        this((EntityType) LatexModEntities.NXT_HERTX.get(), world);
     }
 
     public NXTHertxEntity(EntityType<NXTHertxEntity> type, Level world) {
@@ -212,7 +212,7 @@ public class NXTHertxEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        NXTHertxEntity retval = (NXTHertxEntity)((EntityType)LatexModEntities.NXT_HERTX.get()).create(serverWorld);
+        NXTHertxEntity retval = (NXTHertxEntity)((EntityType) LatexModEntities.NXT_HERTX.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }

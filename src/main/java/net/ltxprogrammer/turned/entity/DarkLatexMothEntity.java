@@ -44,7 +44,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexMothEntity extends AbstractDarkLatexEntity {
     public DarkLatexMothEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_MOTH.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_MOTH.get(), world);
     }
 
     public DarkLatexMothEntity(EntityType<DarkLatexMothEntity> type, Level world) {
@@ -134,7 +134,7 @@ public class DarkLatexMothEntity extends AbstractDarkLatexEntity {
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.DARK_LATEX_MOTH.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.DARK_LATEX_MOTH.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

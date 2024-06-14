@@ -62,7 +62,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexCreeperEnhancedEntity extends AbstractDarkLatexEntity {
     public DarkLatexCreeperEnhancedEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_CREEPER_ENHANCED.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_CREEPER_ENHANCED.get(), world);
     }
 
     public DarkLatexCreeperEnhancedEntity(EntityType<DarkLatexCreeperEnhancedEntity> type, Level world) {

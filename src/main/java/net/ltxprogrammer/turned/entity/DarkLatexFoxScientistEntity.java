@@ -54,7 +54,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexFoxScientistEntity extends AbstractDarkLatexEntity {
     public DarkLatexFoxScientistEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), world);
     }
 
     public DarkLatexFoxScientistEntity(EntityType<DarkLatexFoxScientistEntity> type, Level world) {

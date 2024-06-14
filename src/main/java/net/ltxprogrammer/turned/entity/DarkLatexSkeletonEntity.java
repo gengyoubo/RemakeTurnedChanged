@@ -22,7 +22,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSkeletonEntity extends AbstractDarkLatexEntity {
     public DarkLatexSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get(), world);
     }
 
     public DarkLatexSkeletonEntity(EntityType<DarkLatexSkeletonEntity> type, Level world) {

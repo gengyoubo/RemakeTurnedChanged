@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarklatexconeEntity extends AbstractDarkLatexEntity {
     public DarklatexconeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARKLATEXCONE.get(), world);
+        this((EntityType) LatexModEntities.DARKLATEXCONE.get(), world);
     }
 
     public DarklatexconeEntity(EntityType<DarklatexconeEntity> type, Level world) {
@@ -44,7 +44,7 @@ public class DarklatexconeEntity extends AbstractDarkLatexEntity {
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.DARKLATEXCONE.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.DARKLATEXCONE.get(), 180);
     }
 
     public Color3 getDripColor() {

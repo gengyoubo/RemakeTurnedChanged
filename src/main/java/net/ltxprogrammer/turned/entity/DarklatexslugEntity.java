@@ -69,13 +69,13 @@ public class DarklatexslugEntity extends AbstractDarkLatexEntity {
     @SubscribeEvent
     public static void addLivingEntityToBiomes(BiomeLoadingEvent event) {
         if (SPAWN_BIOMES.contains(event.getName())) {
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData((EntityType)LatexModEntities.DARKLATEXSLUG.get(), 5, 1, 3));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARKLATEXSLUG.get(), 5, 1, 3));
         }
 
     }
 
     public DarklatexslugEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARKLATEXSLUG.get(), world);
+        this((EntityType) LatexModEntities.DARKLATEXSLUG.get(), world);
     }
 
     public DarklatexslugEntity(EntityType<DarklatexslugEntity> type, Level world) {
@@ -159,7 +159,7 @@ public class DarklatexslugEntity extends AbstractDarkLatexEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register((EntityType)LatexModEntities.DARKLATEXSLUG.get(), Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) -> {
+        SpawnPlacements.register((EntityType) LatexModEntities.DARKLATEXSLUG.get(), Type.ON_GROUND, Types.MOTION_BLOCKING_NO_LEAVES, (entityType, world, reason, pos, random) -> {
             int x = pos.getX();
             int y = pos.getY();
             int z = pos.getZ();

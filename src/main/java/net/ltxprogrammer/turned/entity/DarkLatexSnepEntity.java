@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DarkLatexSnepEntity extends AbstractDarkLatexEntity {
     public DarkLatexSnepEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.DARK_LATEX_SNEP.get(), world);
+        this((EntityType) LatexModEntities.DARK_LATEX_SNEP.get(), world);
     }
 
     public DarkLatexSnepEntity(EntityType<DarkLatexSnepEntity> type, Level world) {

@@ -83,7 +83,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ProtectorSlimelingEntity extends TamableAnimal {
     public ProtectorSlimelingEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get(), world);
+        this((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get(), world);
     }
 
     public ProtectorSlimelingEntity(EntityType<ProtectorSlimelingEntity> type, Level world) {
@@ -319,7 +319,7 @@ public class ProtectorSlimelingEntity extends TamableAnimal {
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        ProtectorSlimelingEntity retval = (ProtectorSlimelingEntity)((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get()).create(serverWorld);
+        ProtectorSlimelingEntity retval = (ProtectorSlimelingEntity)((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
@@ -329,7 +329,7 @@ public class ProtectorSlimelingEntity extends TamableAnimal {
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.PROTECTOR_SLIMELING.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.PROTECTOR_SLIMELING.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

@@ -40,7 +40,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class TSCOutsiderGunnerEntity extends Monster implements RangedAttackMob {
     public TSCOutsiderGunnerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType)LatexModEntities.TSC_OUTSIDER_GUNNER.get(), world);
+        this((EntityType) LatexModEntities.TSC_OUTSIDER_GUNNER.get(), world);
     }
 
     public TSCOutsiderGunnerEntity(EntityType<TSCOutsiderGunnerEntity> type, Level world) {
