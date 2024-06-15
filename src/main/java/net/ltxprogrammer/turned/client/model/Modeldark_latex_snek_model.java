@@ -1,16 +1,10 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
+/**
 package net.ltxprogrammer.turned.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModel;
-import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModelController;
 import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModelInterface;
-import net.ltxprogrammer.changed.client.renderer.model.LatexHumanoidModelController.Builder;
 import net.ltxprogrammer.turned.entity.DarkLatexSnakeEntity;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -112,3 +106,4 @@ public class Modeldark_latex_snek_model extends LatexHumanoidModel<DarkLatexSnak
         return this.Head;
     }
 }
+*/

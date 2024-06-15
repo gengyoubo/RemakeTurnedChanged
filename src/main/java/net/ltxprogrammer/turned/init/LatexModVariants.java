@@ -43,7 +43,7 @@ public class LatexModVariants {
     public static final LatexVariant<DarkLatexSpiderEntity> DARK_LATEX_SPIDER;
     public static final LatexVariant<DLbeeEntity> DARK_LATEX_BEE;
     public static final LatexVariant<DarklatexconeEntity> DARK_LATEX_CONE;
-    public static final LatexVariant<DarkLatexSnakeEntity> DARK_LATEX_SNAKE;
+    //public static final LatexVariant<DarkLatexSnakeEntity> DARK_LATEX_SNAKE;
     public static final LatexVariant<DarkLatexMothEntity> DARK_LATEX_MOTH;
     public static final LatexVariant<DarkLatexCakeEntity> DARK_LATEX_CAKE;
 
@@ -66,7 +66,7 @@ public class LatexModVariants {
         DARK_LATEX_SPIDER = register(Builder.of(LatexModEntities.DARK_LATEX_SPIDER).faction(LatexType.DARK_LATEX).fusionOf(DARK_LATEX, Spider.class).canClimb().build(LatexMod.modResource("form_dark_latex_spider")));
         DARK_LATEX_BEE = register(Builder.of(LatexModEntities.D_LBEE).faction(LatexType.DARK_LATEX).extraJumps(3).fusionOf(DARK_LATEX, Bee.class).build(LatexMod.modResource("form_d_lbee")));
         DARK_LATEX_CONE = register(Builder.of(LatexVariant.LATEX_TRAFFIC_CONE_DRAGON, LatexModEntities.DARKLATEXCONE).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_darklatexcone")));
-        DARK_LATEX_SNAKE = register(Builder.of(LatexVariant.LATEX_TRAFFIC_CONE_DRAGON, LatexModEntities.DARK_LATEX_SNAKE).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dark_latex_snake")));
+        //DARK_LATEX_SNAKE = register(Builder.of(LatexVariant.LATEX_TRAFFIC_CONE_DRAGON, LatexModEntities.DARK_LATEX_SNAKE).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dark_latex_snake")));
         DARK_LATEX_MOTH = register(Builder.of(LatexModEntities.DARK_LATEX_MOTH).faction(LatexType.DARK_LATEX).extraJumps(3).build(LatexMod.modResource("form_dark_latex_moth")));
         DARK_LATEX_CAKE = register(Builder.of(DARK_LATEX, LatexModEntities.DARK_LATEX_CAKE).build(LatexMod.modResource("form_dark_latex_cake")));
     }

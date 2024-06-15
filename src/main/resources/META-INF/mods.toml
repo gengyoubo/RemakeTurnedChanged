@@ -4,14 +4,14 @@ license="MIT License"
 
 [[mods]]
 modId="turned"
-version="1.27c-PTBv5"
-displayName="Turned: Changed Patch"
-credits="Refined from MCreator"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/turned-the-changed-mod"
+version="1.28"
+displayName="Turned:Changed Extension"
+credits="耿悠博(Refined from MCreator)"
+displayURL="https://legacy.curseforge.com/minecraft/mc-mods/remake-turnedchangedextension"
 logoFile="logo.png"
-authors="Alex n' Italy, LtxProgrammer"
+authors="耿悠博, LtxProgrammer"
 description='''
-The Turned mod adapted as a patch for the Changed: Minecraft Mod.
+This module is a remake of "Turned: Changed Extension"!
 '''
 
 [[dependencies.turned]]

@@ -1,8 +1,4 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
+/**
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
@@ -66,3 +62,4 @@ public class DarkLatexSnakeEntity extends AbstractDarkLatexEntity {
         return Color3.DARK;
     }
 }
+*/

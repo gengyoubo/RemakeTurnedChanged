@@ -19,7 +19,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
 
-version = '1.27c-PTBv5'
+version = '1.28'
 group = 'net.ltxprogrammer.turned' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'turned'
 
@@ -109,6 +109,8 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.21'
     implementation fg.deobf("net.ltxprogrammer.changed:Changed-m1.18.2-f40.2.0:v0.13.1")
     implementation fg.deobf("curse.maven:turned-730838:4352793")
+    implementation fg.deobf("curse.maven:embeddium-908741:5322305")
+    implementation fg.deobf("curse.maven:Oculus-581495:4578744")
 
 }
 

@@ -116,7 +116,7 @@ public class LatexModEntities {
     public static final RegistryObject<EntityType<DarkLatexSnepEntity>> DARK_LATEX_SNEP;
     public static final RegistryObject<EntityType<DarkLatexFoxEntity>> DARK_LATEX_FOX;
     public static final RegistryObject<EntityType<DarkLatexFoxSniperEntity>> DARK_LATEX_FOX_SNIPER;
-    public static final RegistryObject<EntityType<DarkLatexSnakeEntity>> DARK_LATEX_SNAKE;
+    //public static final RegistryObject<EntityType<DarkLatexSnakeEntity>> DARK_LATEX_SNAKE;
     public static final RegistryObject<EntityType<DarkLatexSpiderEntity>> DARK_LATEX_SPIDER;
     public static final RegistryObject<EntityType<DlSquidDogEntity>> DL_SQUID_DOG;
     public static final RegistryObject<EntityType<DLbeeEntity>> D_LBEE;
@@ -417,7 +417,7 @@ public class LatexModEntities {
         DARK_LATEX_SNEP = register("dark_latex_snep", EntityType.Builder.<DarkLatexSnepEntity>of(DarkLatexSnepEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
         DARK_LATEX_FOX = register("dark_latex_fox", EntityType.Builder.<DarkLatexFoxEntity>of(DarkLatexFoxEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
         DARK_LATEX_FOX_SNIPER = register("dark_latex_fox_sniper", EntityType.Builder.<DarkLatexFoxSniperEntity>of(DarkLatexFoxSniperEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
-        DARK_LATEX_SNAKE = register("dark_latex_snake", EntityType.Builder.<DarkLatexSnakeEntity>of(DarkLatexSnakeEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
+        //DARK_LATEX_SNAKE = register("dark_latex_snake", EntityType.Builder.<DarkLatexSnakeEntity>of(DarkLatexSnakeEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
         D_LBEE = register("d_lbee", EntityType.Builder.<DLbeeEntity>of(DLbeeEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
         DARK_LATEX_QUEEN_BEE = register("dark_latex_queen_bee", EntityType.Builder.<DarkLatexQueenBeeEntity>of(DarkLatexQueenBeeEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
         DARK_LATEX_SPIDER_QUEEN = register("dark_latex_spider_queen", EntityType.Builder.<DarkLatexSpiderQueenEntity>of(DarkLatexSpiderQueenEntity::new, MobCategory.MONSTER).sized(1.5F, 1.5F));
