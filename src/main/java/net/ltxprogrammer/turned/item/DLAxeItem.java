@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.item;
 
 import net.ltxprogrammer.changed.init.ChangedBlocks;
@@ -11,22 +16,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DLAxeItem.class */
 public class DLAxeItem extends AxeItem {
     public DLAxeItem() {
-        super(new Tier() { // from class: net.ltxprogrammer.turned.item.DLAxeItem.1
+        super(new Tier() {
             public int getUses() {
                 return 225;
             }
 
             public float getSpeed() {
-                return 5.0f;
+                return 5.0F;
             }
 
             public float getAttackDamageBonus() {
-                return 5.5f;
+                return 5.5F;
             }
 
             public int getLevel() {
@@ -37,14 +40,14 @@ public class DLAxeItem extends AxeItem {
                 return 25;
             }
 
-            public @NotNull Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()));
+            public Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike)ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get())});
             }
-        }, 1.0f, -2.5f, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
+        }, 1.0F, -2.5F, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
     }
 
-    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
-        boolean retval = hurtEnemy(itemstack, entity, sourceentity);
+    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.hurtEnemy(itemstack, entity, sourceentity);
         DLSwordLivingEntityIsHitWithToolProcedure.execute(entity);
         return retval;
     }

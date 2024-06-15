@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.item;
 
 import net.ltxprogrammer.changed.init.ChangedBlocks;
@@ -13,22 +18,20 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DLHoeItem.class */
 public class DLHoeItem extends HoeItem {
     public DLHoeItem() {
-        super(new Tier() { // from class: net.ltxprogrammer.turned.item.DLHoeItem.1
+        super(new Tier() {
             public int getUses() {
                 return 225;
             }
 
             public float getSpeed() {
-                return 5.0f;
+                return 5.0F;
             }
 
             public float getAttackDamageBonus() {
-                return 1.5f;
+                return 1.5F;
             }
 
             public int getLevel() {
@@ -39,19 +42,19 @@ public class DLHoeItem extends HoeItem {
                 return 25;
             }
 
-            public @NotNull Ingredient getRepairIngredient() {
-                return Ingredient.of(new ItemStack((ItemLike) ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike) ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike) ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get()));
+            public Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack[]{new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()), new ItemStack((ItemLike)ChangedBlocks.DARK_LATEX_BLOCK.get()), new ItemStack((ItemLike)ChangedItems.DARK_LATEX_CRYSTAL_FRAGMENT.get())});
             }
-        }, 0, -3.5f, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
+        }, 0, -3.5F, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
     }
 
-    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
-        boolean retval = hurtEnemy(itemstack, entity, sourceentity);
+    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.hurtEnemy(itemstack, entity, sourceentity);
         DLSwordLivingEntityIsHitWithToolProcedure.execute(entity);
         return retval;
     }
 
-    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
-        return useOn(context);
+    public InteractionResult useOn(UseOnContext context) {
+        return super.useOn(context);
     }
 }

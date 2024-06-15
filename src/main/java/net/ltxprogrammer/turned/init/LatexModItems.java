@@ -80,7 +80,7 @@ import net.minecraftforge.registries.RegistryObject;
 /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/init/LatexModItems.class */
 public class LatexModItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, LatexMod.MODID);
-    public static final RegistryObject<Item> SLIMELING = REGISTRY.register("slimeling_spawn_egg", () -> new ForgeSpawnEggItem(LatexModEntities.SLIMELING, -12925126, -16223982, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES)));
+    //public static final RegistryObject<Item> SLIMELING = REGISTRY.register("slimeling_spawn_egg", () -> new ForgeSpawnEggItem(LatexModEntities.SLIMELING, -12925126, -16223982, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES)));
     public static final RegistryObject<Item> DARKLATEXSLUG = REGISTRY.register("darklatexslug_spawn_egg", () -> new ForgeSpawnEggItem(LatexModEntities.DARKLATEXSLUG, -13421773, -10066330, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES)));
     public static final RegistryObject<Item> DARKLATEX = REGISTRY.register("darklatex_spawn_egg", () -> new ForgeSpawnEggItem(LatexModEntities.DARKLATEX, -13421773, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES)));
     public static final RegistryObject<Item> DARK_LATEX_CENTAUR = REGISTRY.register("dark_latex_centaur_spawn_egg", () -> new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_CENTAUR, -13421773, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES)));

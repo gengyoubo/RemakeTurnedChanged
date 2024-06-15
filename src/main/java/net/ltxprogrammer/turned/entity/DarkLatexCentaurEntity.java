@@ -6,15 +6,16 @@
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.changed.Changed;
+import net.ltxprogrammer.changed.ability.AccessSaddleAbility;
 import net.ltxprogrammer.changed.ability.AccessSaddleAbilityInstance;
 import net.ltxprogrammer.changed.entity.beast.AbstractDarkLatexEntity;
 import net.ltxprogrammer.changed.entity.beast.LightLatexCentaur;
 import net.ltxprogrammer.changed.entity.variant.LatexVariant;
+import net.ltxprogrammer.changed.entity.variant.LatexVariantInstance;
 import net.ltxprogrammer.changed.init.ChangedAbilities;
-import net.ltxprogrammer.changed.init.ChangedParticles;
-import net.ltxprogrammer.changed.init.ChangedParticles.Color3;
 import net.ltxprogrammer.changed.network.packet.MountLatexPacket;
 import net.ltxprogrammer.changed.process.ProcessTransfur;
+import net.ltxprogrammer.changed.util.Color3;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.sounds.SoundEvents;
@@ -76,7 +77,7 @@ public class DarkLatexCentaurEntity extends AbstractDarkLatexEntity implements S
         return builder;
     }
 
-    public ChangedParticles.Color3 getDripColor() {
+    public Color3 getDripColor() {
         return Color3.DARK;
     }
 
@@ -94,8 +95,15 @@ public class DarkLatexCentaurEntity extends AbstractDarkLatexEntity implements S
 
     public boolean isSaddled() {
         if (this.getUnderlyingPlayer() != null && ProcessTransfur.isPlayerLatex(this.getUnderlyingPlayer())) {
-            LatexVariant<?> variant = ProcessTransfur.getPlayerLatexVariant(this.getUnderlyingPlayer());
-            AccessSaddleAbilityInstance ability = (AccessSaddleAbilityInstance)variant.getAbilityInstance(ChangedAbilities.ACCESS_SADDLE);
+            // 获取 LatexVariantInstance 而不是 LatexVariant
+            LatexVariantInstance<?> variantInstance = ProcessTransfur.getPlayerLatexVariant(this.getUnderlyingPlayer());
+            if (variantInstance == null) {
+                return false;
+            }
+            // 获取 AccessSaddleAbility 实例
+            AccessSaddleAbility saddleAbility = ChangedAbilities.ACCESS_SADDLE.get();
+            // 使用 LatexVariantInstance 获取能力实例
+            AccessSaddleAbilityInstance ability = (AccessSaddleAbilityInstance)variantInstance.getAbilityInstance(saddleAbility);
             if (ability == null) {
                 return false;
             } else {

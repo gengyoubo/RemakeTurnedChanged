@@ -1,7 +1,12 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import javax.annotation.Nullable;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.ScientistOnInitialEntitySpawnProcedure;
 import net.minecraft.core.BlockPos;
@@ -14,6 +19,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -35,59 +41,61 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/EvilScientistEntity.class */
 public class EvilScientistEntity extends PathfinderMob {
     public EvilScientistEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(LatexModEntities.EVIL_SCIENTIST.get(), world);
+        this((EntityType)LatexModEntities.EVIL_SCIENTIST.get(), world);
     }
 
     public EvilScientistEntity(EntityType<EvilScientistEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Monster.class, 6.0f, 1.2d, 0.9d));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, PathfinderMob.class, 8.0f, 1.5d, 0.8d, TargetCheck.IS_GOOD));
-        this.goalSelector.addGoal(3, new PanicGoal(this, 1.2d));
-        this.targetSelector.addGoal(4, new HurtByTargetGoal(this).setAlertOthers());
-        this.goalSelector.addGoal(5, new MoveBackToVillageGoal(this, 0.6d, false));
-        this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0d));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, PathfinderMob.class, 6.0f));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0f));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, Monster.class, 6.0F, 1.2, 0.9));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal(this, PathfinderMob.class, 8.0F, 1.5, 0.8, TargetCheck.IS_GOOD));
+        this.goalSelector.addGoal(3, new PanicGoal(this, 1.2));
+        this.targetSelector.addGoal(4, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(5, new MoveBackToVillageGoal(this, 0.6, false));
+        this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, PathfinderMob.class, 6.0F));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(10, new OpenDoorGoal(this, false));
         this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(12, new FloatGoal(this));
     }
 
+    public MobType getMobType() {
+        return MobType.UNDEFINED;
+    }
+
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15f, 1.0f);
+    public void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15F, 1.0F);
     }
 
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
     }
 
-    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         ScientistOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
@@ -96,6 +104,12 @@ public class EvilScientistEntity extends PathfinderMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
+        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

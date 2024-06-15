@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.block;
 
 import java.util.Collections;
@@ -22,80 +27,80 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/block/TacticalbombBlock.class */
 public class TacticalbombBlock extends Block {
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final DirectionProperty FACING;
 
     public TacticalbombBlock() {
-        super(BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.GRAVEL).strength(1.0f, 10.0f));
-        registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        super(Properties.of(Material.METAL).sound(SoundType.GRAVEL).strength(1.0F, 10.0F));
+        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
-    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        appendHoverText(itemstack, world, list, flag);
+    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+        super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Creative Only Tool."));
     }
 
-    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return 15;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(new Property[]{FACING});
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    public BlockState rotate(BlockState state, Rotation rot) {
+        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
-    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack(this, 1));
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
 
-    public void neighborChanged(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos fromPos, boolean moving) {
-        neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
+    public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
+        super.neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
         if (world.getBestNeighborSignal(pos) > 0) {
-            TacticalbombOnBlockRightClickedProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+            TacticalbombOnBlockRightClickedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
         }
+
     }
 
-    public void wasExploded(@NotNull Level world, @NotNull BlockPos pos, @NotNull Explosion e) {
-        wasExploded(world, pos, e);
-        TacticalbombBlockDestroyedByExplosionProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+    public void wasExploded(Level world, BlockPos pos, Explosion e) {
+        super.wasExploded(world, pos, e);
+        TacticalbombBlockDestroyedByExplosionProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
-    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player entity, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        use(blockstate, world, pos, entity, hand, hit);
+    public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
+        super.use(blockstate, world, pos, entity, hand, hit);
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        double d = hit.getLocation().x;
-        double d2 = hit.getLocation().y;
-        double d3 = hit.getLocation().z;
-        hit.getDirection();
-        TacticalbombOnBlockRightClickedProcedure.execute(world, x, y, z);
+        double hitX = hit.getLocation().x;
+        double hitY = hit.getLocation().y;
+        double hitZ = hit.getLocation().z;
+        Direction direction = hit.getDirection();
+        TacticalbombOnBlockRightClickedProcedure.execute(world, (double)x, (double)y, (double)z);
         return InteractionResult.SUCCESS;
+    }
+
+    static {
+        FACING = HorizontalDirectionalBlock.FACING;
     }
 }

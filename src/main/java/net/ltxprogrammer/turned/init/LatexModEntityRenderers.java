@@ -87,7 +87,7 @@ public class LatexModEntityRenderers {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer((EntityType) LatexModEntities.SLIMELING.get(), SlimelingRenderer::new);
+        //event.registerEntityRenderer((EntityType) LatexModEntities.SLIMELING.get(), SlimelingRenderer::new);
         event.registerEntityRenderer((EntityType) LatexModEntities.DARKLATEXSLUG.get(), DarklatexslugRenderer::new);
         event.registerEntityRenderer((EntityType) LatexModEntities.DARKLATEX.get(), DarklatexRenderer::new);
         event.registerEntityRenderer((EntityType) LatexModEntities.DARK_LATEX_CENTAUR.get(), DarkLatexCentaurRenderer::new);

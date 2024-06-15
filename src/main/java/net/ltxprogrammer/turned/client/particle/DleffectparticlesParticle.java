@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -9,19 +14,48 @@ import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/particle/DleffectparticlesParticle.class */
 public class DleffectparticlesParticle extends TextureSheetParticle {
     private final SpriteSet spriteSet;
-    private float angularVelocity = 0.0f;
+    private float angularVelocity;
+    private final float angularAcceleration;
 
     public static DleffectparticlesParticleProvider provider(SpriteSet spriteSet) {
         return new DleffectparticlesParticleProvider(spriteSet);
     }
 
-    /* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/client/particle/DleffectparticlesParticle$DleffectparticlesParticleProvider.class */
+    protected DleffectparticlesParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
+        super(world, x, y, z);
+        this.spriteSet = spriteSet;
+        this.setSize(0.5F, 0.5F);
+        this.quadSize *= 0.4F;
+        this.lifetime = 15;
+        this.gravity = -0.4F;
+        this.hasPhysics = true;
+        this.xd = vx * 0.5;
+        this.yd = vy * 0.5;
+        this.zd = vz * 0.5;
+        this.angularVelocity = 0.0F;
+        this.angularAcceleration = 1.2F;
+        this.setSpriteFromAge(spriteSet);
+    }
+
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    }
+
+    public void tick() {
+        super.tick();
+        this.oRoll = this.roll;
+        this.roll += this.angularVelocity;
+        this.angularVelocity += this.angularAcceleration;
+        if (!this.removed) {
+            this.setSprite(this.spriteSet.get(this.age / 15 % 5 + 1, 5));
+        }
+
+    }
+
     public static class DleffectparticlesParticleProvider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
@@ -29,37 +63,8 @@ public class DleffectparticlesParticle extends TextureSheetParticle {
             this.spriteSet = spriteSet;
         }
 
-        public Particle createParticle(@NotNull SimpleParticleType typeIn, @NotNull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             return new DleffectparticlesParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
-        }
-    }
-
-    protected DleffectparticlesParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteSet) {
-        super(world, x, y, z);
-        this.spriteSet = spriteSet;
-        setSize(0.5f, 0.5f);
-        this.quadSize *= 0.4f;
-        this.lifetime = 15;
-        this.gravity = -0.4f;
-        this.hasPhysics = true;
-        this.xd = vx * 0.5d;
-        this.yd = vy * 0.5d;
-        this.zd = vz * 0.5d;
-        setSpriteFromAge(spriteSet);
-    }
-
-    public @NotNull ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
-    }
-
-    public void tick() {
-        tick();
-        this.oRoll = this.roll;
-        this.roll += this.angularVelocity;
-        float angularAcceleration = 1.2f;
-        this.angularVelocity += angularAcceleration;
-        if (!this.removed) {
-            setSprite(this.spriteSet.get(((this.age / 15) % 5) + 1, 5));
         }
     }
 }

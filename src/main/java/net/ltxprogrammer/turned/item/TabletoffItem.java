@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.item;
 
 import net.ltxprogrammer.turned.procedures.TabletoffRightClickedInAirProcedure;
@@ -10,24 +15,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/TabletoffItem.class */
 public class TabletoffItem extends Item {
     public TabletoffItem() {
-        super(new Item.Properties().tab(null).stacksTo(1).rarity(Rarity.COMMON));
+        super((new Item.Properties()).tab((CreativeModeTab)null).stacksTo(1).rarity(Rarity.COMMON));
     }
 
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
+    public UseAnim getUseAnimation(ItemStack itemstack) {
         return UseAnim.EAT;
     }
 
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player entity, @NotNull InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = use(world, entity, hand);
-        ItemStack itemStack = ar.getObject();
-        entity.getX();
-        entity.getY();
-        entity.getZ();
+    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
+        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
+        ItemStack itemstack = (ItemStack)ar.getObject();
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
         TabletoffRightClickedInAirProcedure.execute(entity);
         return ar;
     }

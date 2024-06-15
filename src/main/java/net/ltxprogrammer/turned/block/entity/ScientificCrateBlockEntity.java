@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.block.entity;
 
 import io.netty.buffer.Unpooled;
@@ -27,38 +32,40 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/block/entity/ScientificCrateBlockEntity.class */
 public class ScientificCrateBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(5, ItemStack.EMPTY);
-    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+    private NonNullList<ItemStack> stacks;
+    private final LazyOptional<? extends IItemHandler>[] handlers;
 
     public ScientificCrateBlockEntity(BlockPos position, BlockState state) {
-        super(LatexModBlockEntities.SCIENTIFIC_CRATE.get(), position, state);
+        super((BlockEntityType)LatexModBlockEntities.SCIENTIFIC_CRATE.get(), position, state);
+        this.stacks = NonNullList.withSize(5, ItemStack.EMPTY);
+        this.handlers = SidedInvWrapper.create(this, Direction.values());
     }
 
-    public void load(@NotNull CompoundTag compound) {
-        load(compound);
-        if (!tryLoadLootTable(compound)) {
-            this.stacks = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+    public void load(CompoundTag compound) {
+        super.load(compound);
+        if (!this.tryLoadLootTable(compound)) {
+            this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         }
+
         ContainerHelper.loadAllItems(compound, this.stacks);
     }
 
-    public void saveAdditional(@NotNull CompoundTag compound) {
-        saveAdditional(compound);
-        if (!trySaveLootTable(compound)) {
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
+        if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks);
         }
+
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    public @NotNull CompoundTag getUpdateTag() {
-        return saveWithFullMetadata();
+    public CompoundTag getUpdateTag() {
+        return this.saveWithFullMetadata();
     }
 
     public int getContainerSize() {
@@ -66,57 +73,83 @@ public class ScientificCrateBlockEntity extends RandomizableContainerBlockEntity
     }
 
     public boolean isEmpty() {
-        for (ItemStack stack : this.stacks) {
-            if (!stack.isEmpty()) {
-                return false;
+        Iterator var1 = this.stacks.iterator();
+
+        ItemStack itemstack;
+        do {
+            if (!var1.hasNext()) {
+                return true;
             }
-        }
-        return true;
+
+            itemstack = (ItemStack)var1.next();
+        } while(itemstack.isEmpty());
+
+        return false;
     }
 
-    public @NotNull Component getDefaultName() {
+    public Component getDefaultName() {
         return new TextComponent("scientific_crate");
     }
 
-    public @NotNull AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
-        return new CrateguiMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(this.worldPosition));
+    public int getMaxStackSize() {
+        return 64;
     }
 
-    public @NotNull Component getDisplayName() {
+    public AbstractContainerMenu createMenu(int id, Inventory inventory) {
+        return new CrateguiMenu(id, inventory, (new FriendlyByteBuf(Unpooled.buffer())).writeBlockPos(this.worldPosition));
+    }
+
+    public Component getDisplayName() {
         return new TextComponent("Scientific Crate");
     }
 
-    protected @NotNull NonNullList<ItemStack> getItems() {
+    protected NonNullList<ItemStack> getItems() {
         return this.stacks;
     }
 
-    protected void setItems(@NotNull NonNullList<ItemStack> stacks) {
+    protected void setItems(NonNullList<ItemStack> stacks) {
         this.stacks = stacks;
     }
 
-    public int @NotNull [] getSlotsForFace(@NotNull Direction side) {
-        return IntStream.range(0, getContainerSize()).toArray();
+    public boolean canPlaceItem(int index, ItemStack stack) {
+        return true;
     }
 
-    public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack stack, @Nullable Direction direction) {
-        return canPlaceItem(index, stack);
+    public int[] getSlotsForFace(Direction side) {
+        return IntStream.range(0, this.getContainerSize()).toArray();
     }
 
-    public boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction direction) {
-        return index != 0 && index != 1 && index != 2 && index != 3 && index != 4;
+    public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
+        return this.canPlaceItem(index, stack);
     }
 
-    public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction facing) {
-        if (this.remove || facing == null || capability != CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return getCapability(capability, facing);
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
+        if (index == 0) {
+            return false;
+        } else if (index == 1) {
+            return false;
+        } else if (index == 2) {
+            return false;
+        } else if (index == 3) {
+            return false;
+        } else {
+            return index != 4;
         }
-        return this.handlers[facing.ordinal()].cast();
+    }
+
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
+        return !this.remove && facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? this.handlers[facing.ordinal()].cast() : super.getCapability(capability, facing);
     }
 
     public void setRemoved() {
-        setRemoved();
-        for (LazyOptional<? extends IItemHandler> handler : this.handlers) {
+        super.setRemoved();
+        LazyOptional[] var1 = this.handlers;
+        int var2 = var1.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            LazyOptional<? extends IItemHandler> handler = var1[var3];
             handler.invalidate();
         }
+
     }
 }

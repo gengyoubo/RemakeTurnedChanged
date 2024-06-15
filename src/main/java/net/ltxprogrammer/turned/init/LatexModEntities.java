@@ -105,7 +105,7 @@ import net.minecraftforge.registries.RegistryObject;
 )
 public class LatexModEntities {
     public static final DeferredRegister<EntityType<?>> REGISTRY;
-    public static final RegistryObject<EntityType<SlimelingEntity>> SLIMELING;
+    //public static final RegistryObject<EntityType<SlimelingEntity>> SLIMELING;
     public static final RegistryObject<EntityType<DarklatexslugEntity>> DARKLATEXSLUG;
     public static final RegistryObject<EntityType<DarklatexEntity>> DARKLATEX;
     public static final RegistryObject<EntityType<DarkLatexCentaurEntity>> DARK_LATEX_CENTAUR;
@@ -373,7 +373,7 @@ public class LatexModEntities {
         PRISIONER = register("prisioner", Builder.of((EntityType<PrisionerEntity> type, Level world) -> new PrisionerEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerEntity::new).sized(0.6F, 1.95F));
         PRISIONERMILITIA = register("prisionermilitia", Builder.of((EntityType<PrisionermilitiaEntity> type, Level world) -> new PrisionermilitiaEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionermilitiaEntity::new).sized(0.6F, 1.95F));
         SCIENTIST = register("scientist", Builder.of((EntityType<ScientistEntity> type, Level world) -> new ScientistEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ScientistEntity::new).sized(0.6F, 1.95F));
-        SLIMELING = register("slimeling", Builder.of((EntityType<SlimelingEntity> type, Level world) -> new SlimelingEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingEntity::new).sized(0.6F, 1.95F));
+        //SLIMELING = register("slimeling", Builder.of((EntityType<SlimelingEntity> type, Level world) -> new SlimelingEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SlimelingEntity::new).sized(0.6F, 1.95F));
         PRISIONER_MILITIA_MELEE = register("prisioner_militia_melee", Builder.of((EntityType<PrisionerMilitiaMeleeEntity> type, Level world) -> new PrisionerMilitiaMeleeEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrisionerMilitiaMeleeEntity::new).sized(0.6F, 1.95F));
         DRONE_HERTX_WAIT = register("drone_hertx_wait", Builder.of((EntityType<DroneHertxWaitEntity> type, Level world) -> new DroneHertxWaitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DroneHertxWaitEntity::new).sized(0.6F, 1.95F));
         ARMED_DRONE_HERTX_WAIT =register("armed_drone_hertx_wait",Builder.of((EntityType<ArmedDroneHertxWaitEntity>type, Level world) -> new ArmedDroneHertxWaitEntity(type, world), MobCategory.CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ArmedDroneHertxWaitEntity::new).fireImmune().sized(0.7F, 2.0F));

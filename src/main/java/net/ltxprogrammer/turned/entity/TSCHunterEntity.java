@@ -55,7 +55,7 @@ public class TSCHunterEntity extends AbstractTSCEntity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    protected void registerGoals() {
+    public void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
             protected double getAttackReachSqr(LivingEntity entity) {
@@ -77,7 +77,7 @@ public class TSCHunterEntity extends AbstractTSCEntity {
         return false;
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+    public void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
         super.dropCustomDeathLoot(source, looting, recentlyHitIn);
         this.spawnAtLocation(new ItemStack(Items.IRON_INGOT));
     }

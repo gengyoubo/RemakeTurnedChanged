@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.item;
 
 import net.ltxprogrammer.turned.entity.DartrifleEntity;
@@ -11,49 +16,50 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/DartrifleItem.class */
 public class DartrifleItem extends Item {
     public DartrifleItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1));
     }
 
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, Player entity, @NotNull InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
         entity.startUsingItem(hand);
-        return new InteractionResultHolder<>(InteractionResult.SUCCESS, entity.getItemInHand(hand));
+        return new InteractionResultHolder(InteractionResult.SUCCESS, entity.getItemInHand(hand));
     }
 
     public boolean onEntitySwing(ItemStack itemstack, LivingEntity entity) {
-        boolean retval = onEntitySwing(itemstack, entity);
+        boolean retval = super.onEntitySwing(itemstack, entity);
         DartrifleEntitySwingsItemProcedure.execute(entity);
         return retval;
     }
 
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
+    public UseAnim getUseAnimation(ItemStack itemstack) {
         return UseAnim.NONE;
     }
 
-    public int getUseDuration(@NotNull ItemStack itemstack) {
+    public int getUseDuration(ItemStack itemstack) {
         return 72000;
     }
 
-    public void releaseUsing(@NotNull ItemStack itemstack, Level world, @NotNull LivingEntity entityLiving, int timeLeft) {
-        if (!world.isClientSide() && (entityLiving instanceof ServerPlayer entity)) {
+    public void releaseUsing(ItemStack itemstack, Level world, LivingEntity entityLiving, int timeLeft) {
+        if (!world.isClientSide() && entityLiving instanceof ServerPlayer entity) {
             double x = entity.getX();
             double y = entity.getY();
             double z = entity.getZ();
             if (DartrifleCanUseRangedItemProcedure.execute(entity, itemstack)) {
-                DartrifleEntity entityarrow = DartrifleEntity.shoot(world, entity, world.getRandom(), 2.5f, 2.5d, 0);
-                itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
-                entityarrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+                DartrifleEntity entityarrow = DartrifleEntity.shoot(world, entity, world.getRandom(), 2.5F, 2.5, 0);
+                itemstack.hurtAndBreak(1, entity, (e) -> {
+                    e.broadcastBreakEvent(entity.getUsedItemHand());
+                });
+                entityarrow.pickup = Pickup.DISALLOWED;
                 DartrifleRangedItemUsedProcedure.execute(world, x, y, z, entity, itemstack);
             }
         }
+
     }
 }

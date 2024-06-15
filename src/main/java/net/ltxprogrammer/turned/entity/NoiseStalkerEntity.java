@@ -1,8 +1,13 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import javax.annotation.Nullable;
 import net.ltxprogrammer.changed.init.ChangedItems;
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.procedures.NightstalkertestPlayerCollidesWithThisEntityProcedure;
 import net.ltxprogrammer.turned.procedures.NoiseStalkerDetectGameruleProcedure;
@@ -49,6 +54,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -56,203 +62,215 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/NoiseStalkerEntity.class */
 public class NoiseStalkerEntity extends Monster {
     public NoiseStalkerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(LatexModEntities.NOISE_STALKER.get(), world);
+        this((EntityType)LatexModEntities.NOISE_STALKER.get(), world);
     }
 
     public NoiseStalkerEntity(EntityType<NoiseStalkerEntity> type, Level world) {
         super(type, world);
         this.xpReward = 10;
-        setNoAi(false);
+        this.setNoAi(false);
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new BreakDoorGoal(this, e -> true));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2d, true) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.1
-            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new BreakDoorGoal(this, (e) -> {
+            return true;
+        }));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this).setAlertOthers());
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, false, true, TargetCheck.IS_SLIMELING));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MilitaryEntity.class, false, true));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, ScientistEntity.class, false, true));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, MilitaryflameunitEntity.class, false, true));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, EvilScientistEntity.class, false, true));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, EvilSniperEntity.class, false, true));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, EvilMilitaryEntity.class, false, true));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Player.class, false, true));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, Villager.class, false, true));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, WanderingTrader.class, false, true));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, true));
-        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal<>(this, Witch.class, false, true));
-        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal<>(this, Pillager.class, false, true));
-        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal<>(this, Vindicator.class, false, true));
-        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal<>(this, Evoker.class, false, true));
-        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal<>(this, Zombie.class, false, true));
-        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal<>(this, ZombieVillager.class, false, true));
-        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal<>(this, Piglin.class, false, true));
-        this.targetSelector.addGoal(22, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, true));
-        this.targetSelector.addGoal(23, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, true));
-        this.targetSelector.addGoal(24, new NearestAttackableTargetGoal<>(this, Zoglin.class, false, true));
-        this.goalSelector.addGoal(25, new RemoveBlockGoal(Blocks.SMOOTH_STONE, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.2
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, false, true, TargetCheck.IS_SLIMELING));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MilitaryEntity.class, false, true));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, ScientistEntity.class, false, true));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, MilitaryflameunitEntity.class, false, true));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, EvilScientistEntity.class, false, true));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, EvilSniperEntity.class, false, true));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, EvilMilitaryEntity.class, false, true));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Player.class, false, true));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, Villager.class, false, true));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, WanderingTrader.class, false, true));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, IronGolem.class, false, true));
+        this.targetSelector.addGoal(15, new NearestAttackableTargetGoal(this, Witch.class, false, true));
+        this.targetSelector.addGoal(16, new NearestAttackableTargetGoal(this, Pillager.class, false, true));
+        this.targetSelector.addGoal(17, new NearestAttackableTargetGoal(this, Vindicator.class, false, true));
+        this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, Evoker.class, false, true));
+        this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Zombie.class, false, true));
+        this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, ZombieVillager.class, false, true));
+        this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, Piglin.class, false, true));
+        this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, ZombifiedPiglin.class, false, true));
+        this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, PiglinBrute.class, false, true));
+        this.targetSelector.addGoal(24, new NearestAttackableTargetGoal(this, Zoglin.class, false, true));
+        this.goalSelector.addGoal(25, new RemoveBlockGoal(Blocks.SMOOTH_STONE, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(26, new RemoveBlockGoal(Blocks.SMOOTH_SANDSTONE, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.3
+        this.goalSelector.addGoal(26, new RemoveBlockGoal(Blocks.SMOOTH_SANDSTONE, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(27, new RemoveBlockGoal(Blocks.SMOOTH_RED_SANDSTONE, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.4
+        this.goalSelector.addGoal(27, new RemoveBlockGoal(Blocks.SMOOTH_RED_SANDSTONE, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(28, new RemoveBlockGoal(Blocks.BIRCH_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.5
+        this.goalSelector.addGoal(28, new RemoveBlockGoal(Blocks.BIRCH_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(29, new RemoveBlockGoal(Blocks.SPRUCE_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.6
+        this.goalSelector.addGoal(29, new RemoveBlockGoal(Blocks.SPRUCE_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(30, new RemoveBlockGoal(Blocks.OAK_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.7
+        this.goalSelector.addGoal(30, new RemoveBlockGoal(Blocks.OAK_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(31, new RemoveBlockGoal(Blocks.JUNGLE_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.8
+        this.goalSelector.addGoal(31, new RemoveBlockGoal(Blocks.JUNGLE_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(32, new RemoveBlockGoal(Blocks.ACACIA_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.9
+        this.goalSelector.addGoal(32, new RemoveBlockGoal(Blocks.ACACIA_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(33, new RemoveBlockGoal(Blocks.DARK_OAK_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.10
+        this.goalSelector.addGoal(33, new RemoveBlockGoal(Blocks.DARK_OAK_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(34, new RemoveBlockGoal(Blocks.CRIMSON_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.11
+        this.goalSelector.addGoal(34, new RemoveBlockGoal(Blocks.CRIMSON_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(35, new RemoveBlockGoal(Blocks.WARPED_DOOR, this, 1.0d, 3) { // from class: net.ltxprogrammer.turned.entity.NoiseStalkerEntity.12
+        this.goalSelector.addGoal(35, new RemoveBlockGoal(Blocks.WARPED_DOOR, this, 1.0, 3) {
             public boolean canUse() {
-                NoiseStalkerEntity.this.getX();
-                NoiseStalkerEntity.this.getY();
-                NoiseStalkerEntity.this.getZ();
-                NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-                return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
             }
         });
-        this.goalSelector.addGoal(36, new RandomStrollGoal(this, 0.8d));
+        this.goalSelector.addGoal(36, new RandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(37, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(38, new FloatGoal(this));
     }
 
-    public @NotNull MobType getMobType() {
+    public MobType getMobType() {
         return MobType.ARTHROPOD;
     }
 
-    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack(ChangedItems.DARK_LATEX_GOO.get()));
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)ChangedItems.DARK_LATEX_GOO.get()));
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.ambient"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.ambient"));
     }
 
-    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+    public void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.hurt"));
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
-    public boolean hurt(@NotNull DamageSource source, float amount) {
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS) {
+    public boolean hurt(DamageSource source, float amount) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else {
+            return source == DamageSource.CACTUS ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
-    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         NoiseStalkerOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
 
-    public void awardKillScore(@NotNull Entity entity, int score, @NotNull DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        NoiseStalkerThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
+    public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
+        super.awardKillScore(entity, score, damageSource);
+        NoiseStalkerThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity, this);
     }
 
-    public void playerTouch(@NotNull Player sourceentity) {
-        playerTouch(sourceentity);
+    public void playerTouch(Player sourceentity) {
+        super.playerTouch(sourceentity);
         NightstalkertestPlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
@@ -260,6 +278,14 @@ public class NoiseStalkerEntity extends Monster {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.28d).add(Attributes.MAX_HEALTH, 48.0d).add(Attributes.ARMOR, 4.0d).add(Attributes.ATTACK_DAMAGE, 6.0d).add(Attributes.FOLLOW_RANGE, 24.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.5d).add(Attributes.ATTACK_KNOCKBACK, 0.2d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.28);
+        builder = builder.add(Attributes.MAX_HEALTH, 48.0);
+        builder = builder.add(Attributes.ARMOR, 4.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 6.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 24.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.2);
+        return builder;
     }
 }

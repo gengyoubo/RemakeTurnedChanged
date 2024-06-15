@@ -1,6 +1,11 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
-import net.ltxprogrammer.turned.entity.p000ai.TargetCheck;
+import net.ltxprogrammer.turned.entity.ai.TargetCheck;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.minecraft.core.BlockPos;
@@ -13,6 +18,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -37,93 +43,107 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrownPotion;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/La4tankmorphrEntity.class */
 public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMob {
     public La4tankmorphrEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(LatexModEntities.LA_4TANKMORPHR.get(), world);
+        this((EntityType)LatexModEntities.LA_4TANKMORPHR.get(), world);
     }
 
     public La4tankmorphrEntity(EntityType<La4tankmorphrEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0d, true) { // from class: net.ltxprogrammer.turned.entity.La4tankmorphrEntity.1
-            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
-                return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, true) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this).setAlertOthers());
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Illusioner.class, true, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Pillager.class, true, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, SpellcasterIllager.class, true, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Vindicator.class, true, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Piglin.class, true, false));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, true, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Monster.class, true, false));
-        this.goalSelector.addGoal(12, new LeapAtTargetGoal(this, 0.5f));
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Monster.class, 10, true, false, TargetCheck.IS_LATEX));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, PathfinderMob.class, 10, true, false, TargetCheck.IS_EVIL));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Illusioner.class, true, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Pillager.class, true, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, SpellcasterIllager.class, true, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Vindicator.class, true, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Monster.class, true, false));
+        this.goalSelector.addGoal(12, new LeapAtTargetGoal(this, 0.5F));
         this.goalSelector.addGoal(13, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(14, new FloatGoal(this));
-        this.goalSelector.addGoal(15, new LookAtPlayerGoal(this, Player.class, 6.0f));
-        this.goalSelector.addGoal(16, new LookAtPlayerGoal(this, AHVHertxEntity.class, 6.0f));
-        this.goalSelector.addGoal(17, new RandomStrollGoal(this, 1.0d));
-        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25d, 20, 10.0f) { // from class: net.ltxprogrammer.turned.entity.La4tankmorphrEntity.2
+        this.goalSelector.addGoal(15, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(16, new LookAtPlayerGoal(this, AHVHertxEntity.class, 6.0F));
+        this.goalSelector.addGoal(17, new RandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
             public boolean canContinueToUse() {
-                return canUse();
+                return this.canUse();
             }
         });
+    }
+
+    public MobType getMobType() {
+        return MobType.UNDEFINED;
     }
 
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack(LatexModItems.TANK_CANNON.get()));
+    protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)LatexModItems.TANK_CANNON.get()));
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("turned:deny_beep"));
     }
 
-    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-        playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15f, 1.0f);
+    public void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.step")), 0.15F, 1.0F);
     }
 
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.hurt"));
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.iron_golem.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (!(source.getDirectEntity() instanceof AbstractArrow) && !(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud) && source != DamageSource.CACTUS && source != DamageSource.DRAGON_BREATH && source != DamageSource.WITHER && !source.getMsgId().equals("witherSkull")) {
-            return hurt(source, amount);
+        if (source.getDirectEntity() instanceof AbstractArrow) {
+            return false;
+        } else if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.CACTUS) {
+                return false;
+            } else if (source == DamageSource.DRAGON_BREATH) {
+                return false;
+            } else if (source == DamageSource.WITHER) {
+                return false;
+            } else {
+                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
+            }
+        } else {
+            return false;
         }
-        return false;
     }
 
-    public void performRangedAttack(@NotNull LivingEntity target, float flval) {
+    public void performRangedAttack(LivingEntity target, float flval) {
         TankCannonEntity.shoot(this, target);
     }
 
@@ -131,7 +151,7 @@ public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMo
         return false;
     }
 
-    protected void doPush(@NotNull Entity entityIn) {
+    protected void doPush(Entity entityIn) {
     }
 
     protected void pushEntities() {
@@ -141,6 +161,12 @@ public class La4tankmorphrEntity extends PathfinderMob implements RangedAttackMo
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.15d).add(Attributes.MAX_HEALTH, 500.0d).add(Attributes.ARMOR, 15.0d).add(Attributes.ATTACK_DAMAGE, 8.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.15);
+        builder = builder.add(Attributes.MAX_HEALTH, 500.0);
+        builder = builder.add(Attributes.ARMOR, 15.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 8.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

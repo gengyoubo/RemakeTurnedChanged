@@ -36,7 +36,7 @@ public class LatexModVariants {
     public static final LatexVariant<DarklatexEntity> DARK_LATEX;
     public static final LatexVariant<DarkLatexCentaurEntity> DARK_LATEX_CENTAUR;
     public static final LatexVariant<DlsharkEntity> DARK_LATEX_SHARK;
-    public static final LatexVariant<DlSquidDogEntity> DARK_LATEX_SQUID_DOG;
+    //public static final LatexVariant<DlSquidDogEntity> DARK_LATEX_SQUID_DOG;
     public static final LatexVariant<DarkLatexSnepEntity> DARK_LATEX_SNOW_LEOPARD;
     //public static final LatexVariant<DarkLatexFoxEntity> DARK_LATEX_FOX;
     public static final LatexVariant<DarkLatexSkeletonEntity> DARK_LATEX_SKELETON;
@@ -59,7 +59,7 @@ public class LatexModVariants {
         DARK_LATEX = register(Builder.of(LatexVariant.DARK_LATEX_WOLF.male(), LatexModEntities.DARKLATEX).build(LatexMod.modResource("form_darklatex")));
         DARK_LATEX_CENTAUR = register(Builder.of(LatexVariant.LIGHT_LATEX_CENTAUR, LatexModEntities.DARK_LATEX_CENTAUR).fusionOf(DARK_LATEX, AbstractHorse.class).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dark_latex_centaur")));
         DARK_LATEX_SHARK = register(Builder.of(LatexVariant.LATEX_SHARK, LatexModEntities.DLSHARK).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dlshark")));
-        DARK_LATEX_SQUID_DOG = register(Builder.of(LatexVariant.LATEX_SQUID_DOG, LatexModEntities.DL_SQUID_DOG).fusionOf(DARK_LATEX, Squid.class).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dl_squid_dog")));
+        //DARK_LATEX_SQUID_DOG = register(Builder.of(LatexVariant.LATEX_SQUID_DOG, LatexModEntities.DL_SQUID_DOG).fusionOf(DARK_LATEX, Squid.class).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dl_squid_dog")));
         DARK_LATEX_SNOW_LEOPARD = register(Builder.of(LatexVariant.LATEX_SNOW_LEOPARD.male(), LatexModEntities.DARK_LATEX_SNEP).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dark_latex_snep")));
         //DARK_LATEX_FOX = register(Builder.of(LatexVariant.LATEX_SILVER_FOX, LatexModEntities.DARK_LATEX_FOX).fusionOf(DARK_LATEX, Fox.class).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dark_latex_fox")));
         DARK_LATEX_SKELETON = register(Builder.of(DARK_LATEX, LatexModEntities.DARK_LATEX_SKELETON).fusionOf(DARK_LATEX, Skeleton.class).faction(LatexType.DARK_LATEX).build(LatexMod.modResource("form_dark_latex_skeleton")));

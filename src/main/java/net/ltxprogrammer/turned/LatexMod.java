@@ -34,9 +34,7 @@ public class LatexMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         LatexModBlocks.REGISTRY.register(bus);
         LatexModItems.REGISTRY.register(bus);
-        LatexModEntitiesCREATURES.REGISTRY.register(bus);
-        LatexModEntitiesMISC.REGISTRY.register(bus);
-        LatexModEntitiesMONSTER.REGISTRY.register(bus);
+        LatexModEntities.REGISTRY.register(bus);
         LatexModBlockEntities.REGISTRY.register(bus);
         LatexModFeatures.REGISTRY.register(bus);
         LatexModMobEffects.REGISTRY.register(bus);

@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.world.inventory;
 
 import java.util.HashMap;
@@ -20,46 +25,43 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/world/inventory/BoxguiMenu.class */
 public class BoxguiMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
-    public static final HashMap<String, Object> guistate = new HashMap<>();
+    public static final HashMap<String, Object> guistate = new HashMap();
     public final Level world;
     public final Player entity;
-
-    /* renamed from: x */
-    public int f15x;
-
-    /* renamed from: y */
-    public int f16y;
-
-    /* renamed from: z */
-    public int f17z;
-    private final Map<Integer, Slot> customSlots = new HashMap<>();
+    public int x;
+    public int y;
+    public int z;
+    private IItemHandler internal;
+    private final Map<Integer, Slot> customSlots = new HashMap();
     private boolean bound = false;
-    private IItemHandler internal = new ItemStackHandler(12);
 
     public BoxguiMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
         super(LatexModMenus.BOXGUI, id);
-        ItemStack itemstack;
         this.entity = inv.player;
         this.world = inv.player.level;
+        this.internal = new ItemStackHandler(12);
         BlockPos pos = null;
         if (extraData != null) {
             pos = extraData.readBlockPos();
-            this.f15x = pos.getX();
-            this.f16y = pos.getY();
-            this.f17z = pos.getZ();
+            this.x = pos.getX();
+            this.y = pos.getY();
+            this.z = pos.getZ();
         }
+
+        int si;
         if (pos != null) {
             if (extraData.readableBytes() == 1) {
-                if (extraData.readByte() == 0) {
+                si = extraData.readByte();
+                ItemStack itemstack;
+                if (si == 0) {
                     itemstack = this.entity.getMainHandItem();
                 } else {
                     itemstack = this.entity.getOffhandItem();
                 }
-                itemstack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
+
+                itemstack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (Direction)null).ifPresent((capability) -> {
                     this.internal = capability;
                     this.bound = true;
                 });
@@ -67,123 +69,206 @@ public class BoxguiMenu extends AbstractContainerMenu implements Supplier<Map<In
                 extraData.readByte();
                 Entity entity = this.world.getEntity(extraData.readVarInt());
                 if (entity != null) {
-                    entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
+                    entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (Direction)null).ifPresent((capability) -> {
                         this.internal = capability;
                         this.bound = true;
                     });
                 }
             } else {
-                BlockEntity ent = inv.player.level.getBlockEntity(pos);
+                BlockEntity ent = inv.player != null ? inv.player.level.getBlockEntity(pos) : null;
                 if (ent != null) {
-                    ent.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).ifPresent(capability -> {
+                    ent.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, (Direction)null).ifPresent((capability) -> {
                         this.internal = capability;
                         this.bound = true;
                     });
                 }
             }
         }
-        this.customSlots.put(0, addSlot(new SlotItemHandler(this.internal, 0, 52, 17) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.1
+
+        this.customSlots.put(0, this.addSlot(new SlotItemHandler(this.internal, 0, 52, 17) {
         }));
-        this.customSlots.put(1, addSlot(new SlotItemHandler(this.internal, 1, 70, 17) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.2
+        this.customSlots.put(1, this.addSlot(new SlotItemHandler(this.internal, 1, 70, 17) {
         }));
-        this.customSlots.put(2, addSlot(new SlotItemHandler(this.internal, 2, 88, 17) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.3
+        this.customSlots.put(2, this.addSlot(new SlotItemHandler(this.internal, 2, 88, 17) {
         }));
-        this.customSlots.put(3, addSlot(new SlotItemHandler(this.internal, 3, 106, 17) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.4
+        this.customSlots.put(3, this.addSlot(new SlotItemHandler(this.internal, 3, 106, 17) {
         }));
-        this.customSlots.put(4, addSlot(new SlotItemHandler(this.internal, 4, 52, 35) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.5
+        this.customSlots.put(4, this.addSlot(new SlotItemHandler(this.internal, 4, 52, 35) {
         }));
-        this.customSlots.put(5, addSlot(new SlotItemHandler(this.internal, 5, 70, 35) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.6
+        this.customSlots.put(5, this.addSlot(new SlotItemHandler(this.internal, 5, 70, 35) {
         }));
-        this.customSlots.put(6, addSlot(new SlotItemHandler(this.internal, 6, 88, 35) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.7
+        this.customSlots.put(6, this.addSlot(new SlotItemHandler(this.internal, 6, 88, 35) {
         }));
-        this.customSlots.put(7, addSlot(new SlotItemHandler(this.internal, 7, 106, 35) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.8
+        this.customSlots.put(7, this.addSlot(new SlotItemHandler(this.internal, 7, 106, 35) {
         }));
-        this.customSlots.put(8, addSlot(new SlotItemHandler(this.internal, 8, 52, 53) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.9
+        this.customSlots.put(8, this.addSlot(new SlotItemHandler(this.internal, 8, 52, 53) {
         }));
-        this.customSlots.put(9, addSlot(new SlotItemHandler(this.internal, 9, 70, 53) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.10
+        this.customSlots.put(9, this.addSlot(new SlotItemHandler(this.internal, 9, 70, 53) {
         }));
-        this.customSlots.put(10, addSlot(new SlotItemHandler(this.internal, 10, 88, 53) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.11
+        this.customSlots.put(10, this.addSlot(new SlotItemHandler(this.internal, 10, 88, 53) {
         }));
-        this.customSlots.put(11, addSlot(new SlotItemHandler(this.internal, 11, 106, 53) { // from class: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.12
+        this.customSlots.put(11, this.addSlot(new SlotItemHandler(this.internal, 11, 106, 53) {
         }));
-        for (int si = 0; si < 3; si++) {
-            for (int sj = 0; sj < 9; sj++) {
-                addSlot(new Slot(inv, sj + ((si + 1) * 9), 8 + (sj * 18), 84 + (si * 18)));
+
+        for(si = 0; si < 3; ++si) {
+            for(int sj = 0; sj < 9; ++sj) {
+                this.addSlot(new Slot(inv, sj + (si + 1) * 9, 8 + sj * 18, 84 + si * 18));
             }
         }
-        for (int si2 = 0; si2 < 9; si2++) {
-            addSlot(new Slot(inv, si2, 8 + (si2 * 18), 142));
+
+        for(si = 0; si < 9; ++si) {
+            this.addSlot(new Slot(inv, si, 8 + si * 18, 142));
         }
+
     }
 
-    public boolean stillValid(@NotNull Player player) {
+    public boolean stillValid(Player player) {
         return true;
     }
 
-    public @NotNull ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot.hasItem()) {
+        Slot slot = (Slot)this.slots.get(index);
+        if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
             if (index < 12) {
-                if (!moveItemStackTo(itemstack1, 12, this.slots.size(), true)) {
+                if (!this.moveItemStackTo(itemstack1, 12, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
+
                 slot.onQuickCraft(itemstack1, itemstack);
-            } else if (!moveItemStackTo(itemstack1, 0, 12, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 0, 12, false)) {
                 if (index < 39) {
-                    if (!moveItemStackTo(itemstack1, 39, this.slots.size(), true)) {
+                    if (!this.moveItemStackTo(itemstack1, 39, this.slots.size(), true)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (!moveItemStackTo(itemstack1, 12, 39, false)) {
+                } else if (!this.moveItemStackTo(itemstack1, 12, 39, false)) {
                     return ItemStack.EMPTY;
                 }
+
                 return ItemStack.EMPTY;
             }
+
             if (itemstack1.getCount() == 0) {
                 slot.set(ItemStack.EMPTY);
             } else {
                 slot.setChanged();
             }
+
             if (itemstack1.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
+
             slot.onTake(playerIn, itemstack1);
         }
+
         return itemstack;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:23:0x0086  */
-    /* JADX WARNING: Removed duplicated region for block: B:24:0x009f  */
-    /* JADX WARNING: Removed duplicated region for block: B:59:0x00d1 A[SYNTHETIC] */
-    /* JADX WARNING: Removed duplicated region for block: B:62:0x00cb A[SYNTHETIC] */
-    /* JADX WARNING: Removed duplicated region for block: B:66:0x016b A[SYNTHETIC] */
-    /* JADX WARNING: Removed duplicated region for block: B:70:0x0165 A[SYNTHETIC] */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    protected boolean moveItemStackTo(net.minecraft.world.item.@NotNull ItemStack r5, int r6, int r7, boolean r8) {
-        /*
-        // Method dump skipped, instructions count: 372
-        */
-        throw new UnsupportedOperationException("Method not decompiled: net.ltxprogrammer.turned.world.inventory.BoxguiMenu.moveItemStackTo(net.minecraft.world.item.ItemStack, int, int, boolean):boolean");
-    }
+    protected boolean moveItemStackTo(ItemStack p_38904_, int p_38905_, int p_38906_, boolean p_38907_) {
+        boolean flag = false;
+        int i = p_38905_;
+        if (p_38907_) {
+            i = p_38906_ - 1;
+        }
 
-    public void removed(@NotNull Player playerIn) {
-        removed(playerIn);
-        if (!this.bound && (playerIn instanceof ServerPlayer serverPlayer)) {
-            if (!serverPlayer.isAlive() || serverPlayer.hasDisconnected()) {
-                for (int j = 0; j < this.internal.getSlots(); j++) {
-                    playerIn.drop(this.internal.extractItem(j, this.internal.getStackInSlot(j).getCount(), false), false);
+        Slot slot1;
+        ItemStack itemstack;
+        if (p_38904_.isStackable()) {
+            while(!p_38904_.isEmpty()) {
+                if (p_38907_) {
+                    if (i < p_38905_) {
+                        break;
+                    }
+                } else if (i >= p_38906_) {
+                    break;
                 }
-                return;
-            }
-            for (int i = 0; i < this.internal.getSlots(); i++) {
-                playerIn.getInventory().placeItemBackInInventory(this.internal.extractItem(i, this.internal.getStackInSlot(i).getCount(), false));
+
+                slot1 = (Slot)this.slots.get(i);
+                itemstack = slot1.getItem();
+                if (slot1.mayPlace(itemstack) && !itemstack.isEmpty() && ItemStack.isSameItemSameTags(p_38904_, itemstack)) {
+                    int j = itemstack.getCount() + p_38904_.getCount();
+                    int maxSize = Math.min(slot1.getMaxStackSize(), p_38904_.getMaxStackSize());
+                    if (j <= maxSize) {
+                        p_38904_.setCount(0);
+                        itemstack.setCount(j);
+                        slot1.set(itemstack);
+                        flag = true;
+                    } else if (itemstack.getCount() < maxSize) {
+                        p_38904_.shrink(maxSize - itemstack.getCount());
+                        itemstack.setCount(maxSize);
+                        slot1.set(itemstack);
+                        flag = true;
+                    }
+                }
+
+                if (p_38907_) {
+                    --i;
+                } else {
+                    ++i;
+                }
             }
         }
+
+        if (!p_38904_.isEmpty()) {
+            if (p_38907_) {
+                i = p_38906_ - 1;
+            } else {
+                i = p_38905_;
+            }
+
+            while(true) {
+                if (p_38907_) {
+                    if (i < p_38905_) {
+                        break;
+                    }
+                } else if (i >= p_38906_) {
+                    break;
+                }
+
+                slot1 = (Slot)this.slots.get(i);
+                itemstack = slot1.getItem();
+                if (itemstack.isEmpty() && slot1.mayPlace(p_38904_)) {
+                    if (p_38904_.getCount() > slot1.getMaxStackSize()) {
+                        slot1.set(p_38904_.split(slot1.getMaxStackSize()));
+                    } else {
+                        slot1.set(p_38904_.split(p_38904_.getCount()));
+                    }
+
+                    slot1.setChanged();
+                    flag = true;
+                    break;
+                }
+
+                if (p_38907_) {
+                    --i;
+                } else {
+                    ++i;
+                }
+            }
+        }
+
+        return flag;
     }
 
-    @Override // java.util.function.Supplier
+    public void removed(Player playerIn) {
+        super.removed(playerIn);
+        if (!this.bound && playerIn instanceof ServerPlayer serverPlayer) {
+            int j;
+            if (serverPlayer.isAlive() && !serverPlayer.hasDisconnected()) {
+                for(j = 0; j < this.internal.getSlots(); ++j) {
+                    playerIn.getInventory().placeItemBackInInventory(this.internal.extractItem(j, this.internal.getStackInSlot(j).getCount(), false));
+                }
+            } else {
+                for(j = 0; j < this.internal.getSlots(); ++j) {
+                    playerIn.drop(this.internal.extractItem(j, this.internal.getStackInSlot(j).getCount(), false), false);
+                }
+            }
+        }
+
+    }
+
     public Map<Integer, Slot> get() {
         return this.customSlots;
     }

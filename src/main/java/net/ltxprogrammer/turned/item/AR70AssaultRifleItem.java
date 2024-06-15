@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.item;
 
 import com.google.common.collect.ImmutableMultimap;
@@ -15,57 +20,60 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.AbstractArrow.Pickup;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/AR70AssaultRifleItem.class */
 public class AR70AssaultRifleItem extends Item {
     public AR70AssaultRifleItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).durability(280));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).durability(280));
     }
 
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, Player entity, @NotNull InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
         entity.startUsingItem(hand);
-        return new InteractionResultHolder<>(InteractionResult.SUCCESS, entity.getItemInHand(hand));
+        return new InteractionResultHolder(InteractionResult.SUCCESS, entity.getItemInHand(hand));
     }
 
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
+    public UseAnim getUseAnimation(ItemStack itemstack) {
         return UseAnim.NONE;
     }
 
-    public int getUseDuration(@NotNull ItemStack itemstack) {
+    public int getUseDuration(ItemStack itemstack) {
         return 72000;
     }
 
-    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
-        if (slot != EquipmentSlot.MAINHAND) {
-            return getDefaultAttributeModifiers(slot);
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+        if (slot == EquipmentSlot.MAINHAND) {
+            ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+            builder.putAll(super.getDefaultAttributeModifiers(slot));
+            builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Ranged item modifier", 4.5, Operation.ADDITION));
+            builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Ranged item modifier", -2.4, Operation.ADDITION));
+            return builder.build();
+        } else {
+            return super.getDefaultAttributeModifiers(slot);
         }
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.putAll(getDefaultAttributeModifiers(slot));
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Ranged item modifier", 4.5d, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Ranged item modifier", -2.4d, AttributeModifier.Operation.ADDITION));
-        return builder.build();
     }
 
     public void onUsingTick(ItemStack itemstack, LivingEntity entityLiving, int count) {
         Level world = entityLiving.level;
-        if (!world.isClientSide() && (entityLiving instanceof ServerPlayer entity)) {
-            entity.getX();
-            entity.getY();
-            entity.getZ();
+        if (!world.isClientSide() && entityLiving instanceof ServerPlayer entity) {
+            double x = entity.getX();
+            double y = entity.getY();
+            double z = entity.getZ();
             if (AssaultRifleCanUseRangedItemProcedure.execute(entity, itemstack)) {
-                AR70AssaultRifleEntity entityarrow = AR70AssaultRifleEntity.shoot(world, entity, world.getRandom(), 2.4f, 1.0d, 0);
-                itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
-                entityarrow.pickup = AbstractArrow.Pickup.DISALLOWED;
+                AR70AssaultRifleEntity entityarrow = AR70AssaultRifleEntity.shoot(world, entity, world.getRandom(), 2.4F, 1.0, 0);
+                itemstack.hurtAndBreak(1, entity, (e) -> {
+                    e.broadcastBreakEvent(entity.getUsedItemHand());
+                });
+                entityarrow.pickup = Pickup.DISALLOWED;
                 AssaultRifleRangedItemUsedProcedure.execute(entity, itemstack);
                 entity.releaseUsingItem();
             }
         }
+
     }
 }

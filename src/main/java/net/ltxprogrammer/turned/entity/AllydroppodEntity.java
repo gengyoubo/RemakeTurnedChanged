@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.turned.init.LatexModEntities;
@@ -11,6 +16,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -20,73 +26,110 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/AllydroppodEntity.class */
 public class AllydroppodEntity extends PathfinderMob {
     public AllydroppodEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(LatexModEntities.ALLYDROPPOD.get(), world);
+        this((EntityType)LatexModEntities.ALLYDROPPOD.get(), world);
     }
 
     public AllydroppodEntity(EntityType<AllydroppodEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
-        registerGoals();
+        super.registerGoals();
+    }
+
+    public MobType getMobType() {
+        return MobType.UNDEFINED;
     }
 
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
 
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
+    public SoundEvent getHurtSound(DamageSource ds) {
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.anvil.land"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.anvil.land"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if ((source.getDirectEntity() instanceof Player) || (source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.DROWN || source == DamageSource.LIGHTNING_BOLT || source.getMsgId().equals("trident") || source == DamageSource.ANVIL || source == DamageSource.DRAGON_BREATH || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (source.getDirectEntity() instanceof Player) {
+            return false;
+        } else if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.FALL) {
+                return false;
+            } else if (source == DamageSource.CACTUS) {
+                return false;
+            } else if (source == DamageSource.DROWN) {
+                return false;
+            } else if (source == DamageSource.LIGHTNING_BOLT) {
+                return false;
+            } else if (source.getMsgId().equals("trident")) {
+                return false;
+            } else if (source == DamageSource.ANVIL) {
+                return false;
+            } else if (source == DamageSource.DRAGON_BREATH) {
+                return false;
+            } else if (source == DamageSource.WITHER) {
+                return false;
+            } else {
+                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
+            }
+        } else {
             return false;
         }
-        return hurt(source, amount);
     }
 
-    public void die(@NotNull DamageSource source) {
-        die(source);
-        DROPPODEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
+    public void die(DamageSource source) {
+        super.die(source);
+        DROPPODEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
     public void baseTick() {
-        baseTick();
-        AllydroppodOnEntityTickUpdateProcedure.execute(this.level, getX(), getY(), getZ(), this);
+        super.baseTick();
+        AllydroppodOnEntityTickUpdateProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public void aiStep() {
-        aiStep();
-        double x = getX();
-        double y = getY();
-        double z = getZ();
+        super.aiStep();
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
         Level world = this.level;
-        for (int l = 0; l < 5; l++) {
-            world.addParticle(ParticleTypes.LARGE_SMOKE, x + ((double) this.random.nextFloat()), y + ((double) this.random.nextFloat()), z + ((double) this.random.nextFloat()), (((double) this.random.nextFloat()) - 0.5d) * 0.25d, (((double) this.random.nextFloat()) - 0.5d) * 0.25d, (((double) this.random.nextFloat()) - 0.5d) * 0.25d);
+
+        for(int l = 0; l < 5; ++l) {
+            double x0 = x + (double)this.random.nextFloat();
+            double y0 = y + (double)this.random.nextFloat();
+            double z0 = z + (double)this.random.nextFloat();
+            double dx = ((double)this.random.nextFloat() - 0.5) * 0.25;
+            double dy = ((double)this.random.nextFloat() - 0.5) * 0.25;
+            double dz = ((double)this.random.nextFloat() - 0.5) * 0.25;
+            world.addParticle(ParticleTypes.LARGE_SMOKE, x0, y0, z0, dx, dy, dz);
         }
+
     }
 
     public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.MAX_HEALTH, 25.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+        builder = builder.add(Attributes.MAX_HEALTH, 25.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

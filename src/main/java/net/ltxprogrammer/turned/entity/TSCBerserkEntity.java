@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
 import net.ltxprogrammer.turned.init.LatexModEntities;
@@ -9,30 +14,36 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PlayMessages;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/TSCBerserkEntity.class */
 public class TSCBerserkEntity extends AbstractTSCEntity {
     public TSCBerserkEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(LatexModEntities.TSC_BERSERK.get(), world);
+        this((EntityType)LatexModEntities.TSC_BERSERK.get(), world);
     }
 
     public TSCBerserkEntity(EntityType<TSCBerserkEntity> type, Level world) {
         super(type, world);
         this.xpReward = 16;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
-    public void die(@NotNull DamageSource source) {
-        die(source);
-        TSCOutsiderEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
+    public void die(DamageSource source) {
+        super.die(source);
+        TSCOutsiderEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
     public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.4d).add(Attributes.MAX_HEALTH, 72.0d).add(Attributes.ARMOR, 7.199999999999999d).add(Attributes.ATTACK_DAMAGE, 8.0d).add(Attributes.FOLLOW_RANGE, 32.0d).add(Attributes.KNOCKBACK_RESISTANCE, 1.0d).add(Attributes.ATTACK_KNOCKBACK, 0.5d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.4);
+        builder = builder.add(Attributes.MAX_HEALTH, 72.0);
+        builder = builder.add(Attributes.ARMOR, 7.199999999999999);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 8.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 32.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.5);
+        return builder;
     }
 }

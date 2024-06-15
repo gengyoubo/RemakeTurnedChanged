@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.item;
 
 import net.ltxprogrammer.turned.init.LatexModTabs;
@@ -10,30 +15,28 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
-import org.jetbrains.annotations.NotNull;
 
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/item/VaccineSyringeItem.class */
 public class VaccineSyringeItem extends Item {
     public VaccineSyringeItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(8).rarity(Rarity.COMMON));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(8).rarity(Rarity.COMMON));
     }
 
-    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
+    public UseAnim getUseAnimation(ItemStack itemstack) {
         return UseAnim.BOW;
     }
 
-    public int getUseDuration(@NotNull ItemStack itemstack) {
+    public int getUseDuration(ItemStack itemstack) {
         return 8;
     }
 
-    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
-        InteractionResult retval = useOn(context);
+    public InteractionResult useOn(UseOnContext context) {
+        InteractionResult retval = super.useOn(context);
         VaccineSyringeRightclickedOnBlockProcedure.execute(context.getPlayer());
         return retval;
     }
 
-    public boolean hurtEnemy(@NotNull ItemStack itemstack, @NotNull LivingEntity entity, @NotNull LivingEntity sourceentity) {
-        boolean retval = hurtEnemy(itemstack, entity, sourceentity);
+    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+        boolean retval = super.hurtEnemy(itemstack, entity, sourceentity);
         VaccineSyringeLivingEntityIsHitWithItemProcedure.execute(entity);
         return retval;
     }

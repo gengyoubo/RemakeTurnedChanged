@@ -1,18 +1,25 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.ltxprogrammer.turned.entity;
 
-import java.util.Objects;
 import java.util.Random;
 import net.ltxprogrammer.turned.init.LatexModEntities;
 import net.ltxprogrammer.turned.init.LatexModItems;
 import net.ltxprogrammer.turned.procedures.SneppleBulletHitsBlockProcedure;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,13 +27,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.jetbrains.annotations.NotNull;
 
-@OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
-/* loaded from: turned-730838-4352793_mapped_official_1.18.2.jar:net/ltxprogrammer/turned/entity/SneppleEntity.class */
+@OnlyIn(
+        value = Dist.CLIENT,
+        _interface = ItemSupplier.class
+)
 public class SneppleEntity extends AbstractArrow implements ItemSupplier {
     public SneppleEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super(LatexModEntities.SNEPPLE.get(), world);
+        super((EntityType)LatexModEntities.SNEPPLE.get(), world);
     }
 
     public SneppleEntity(EntityType<? extends SneppleEntity> type, Level world) {
@@ -41,60 +49,61 @@ public class SneppleEntity extends AbstractArrow implements ItemSupplier {
         super(type, entity, world);
     }
 
-    public @NotNull Packet<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public @NotNull ItemStack getItem() {
-        return new ItemStack(LatexModItems.SNEPPLE.get());
+    public ItemStack getItem() {
+        return new ItemStack((ItemLike)LatexModItems.SNEPPLE.get());
     }
 
-    protected @NotNull ItemStack getPickupItem() {
-        return new ItemStack(LatexModItems.SNEPPLE.get());
+    protected ItemStack getPickupItem() {
+        return new ItemStack((ItemLike)LatexModItems.SNEPPLE.get());
     }
 
-    protected void doPostHurtEffects(@NotNull LivingEntity entity) {
-        doPostHurtEffects(entity);
+    protected void doPostHurtEffects(LivingEntity entity) {
+        super.doPostHurtEffects(entity);
         entity.setArrowCount(entity.getArrowCount() - 1);
     }
 
-    public void onHitBlock(@NotNull BlockHitResult blockHitResult) {
-        onHitBlock(blockHitResult);
-        SneppleBulletHitsBlockProcedure.execute(this.level, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+    public void onHitBlock(BlockHitResult blockHitResult) {
+        super.onHitBlock(blockHitResult);
+        SneppleBulletHitsBlockProcedure.execute(this.level, (double)blockHitResult.getBlockPos().getX(), (double)blockHitResult.getBlockPos().getY(), (double)blockHitResult.getBlockPos().getZ());
     }
 
     public void tick() {
-        tick();
+        super.tick();
         if (this.inGround) {
-            discard();
+            this.discard();
         }
+
     }
 
     public static SneppleEntity shoot(Level world, LivingEntity entity, Random random, float power, double damage, int knockback) {
-        SneppleEntity entityarrow = new SneppleEntity(LatexModEntities.SNEPPLE.get(), entity, world);
-        entityarrow.shoot(entity.getViewVector(1.0f).x, entity.getViewVector(1.0f).y, entity.getViewVector(1.0f).z, power * 2.0f, 0.0f);
+        SneppleEntity entityarrow = new SneppleEntity((EntityType)LatexModEntities.SNEPPLE.get(), entity, world);
+        entityarrow.shoot(entity.getViewVector(1.0F).x, entity.getViewVector(1.0F).y, entity.getViewVector(1.0F).z, power * 2.0F, 0.0F);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
         entityarrow.setBaseDamage(damage);
         entityarrow.setKnockback(knockback);
         world.addFreshEntity(entityarrow);
-        world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.witch.throw"))), SoundSource.PLAYERS, 1.0f, (1.0f / ((random.nextFloat() * 0.5f) + 1.0f)) + (power / 2.0f));
+        world.playSound((Player)null, entity.getX(), entity.getY(), entity.getZ(), (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.witch.throw")), SoundSource.PLAYERS, 1.0F, 1.0F / (random.nextFloat() * 0.5F + 1.0F) + power / 2.0F);
         return entityarrow;
     }
 
     public static SneppleEntity shoot(LivingEntity entity, LivingEntity target) {
-        SneppleEntity entityarrow = new SneppleEntity(LatexModEntities.SNEPPLE.get(), entity, entity.level);
+        SneppleEntity entityarrow = new SneppleEntity((EntityType)LatexModEntities.SNEPPLE.get(), entity, entity.level);
         double dx = target.getX() - entity.getX();
-        double dy = (target.getY() + ((double) target.getEyeHeight())) - 1.1d;
+        double dy = target.getY() + (double)target.getEyeHeight() - 1.1;
         double dz = target.getZ() - entity.getZ();
-        entityarrow.shoot(dx, (dy - entityarrow.getY()) + (Math.hypot(dx, dz) * 0.20000000298023224d), dz, 2.0f, 12.0f);
+        entityarrow.shoot(dx, dy - entityarrow.getY() + Math.hypot(dx, dz) * 0.20000000298023224, dz, 2.0F, 12.0F);
         entityarrow.setSilent(true);
-        entityarrow.setBaseDamage(2.0d);
+        entityarrow.setBaseDamage(2.0);
         entityarrow.setKnockback(1);
         entityarrow.setCritArrow(false);
         entity.level.addFreshEntity(entityarrow);
-        entity.level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), Objects.requireNonNull(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.witch.throw"))), SoundSource.PLAYERS, 1.0f, 1.0f / ((new Random().nextFloat() * 0.5f) + 1.0f));
+        entity.level.playSound((Player)null, entity.getX(), entity.getY(), entity.getZ(), (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.witch.throw")), SoundSource.PLAYERS, 1.0F, 1.0F / ((new Random()).nextFloat() * 0.5F + 1.0F));
         return entityarrow;
     }
 }
