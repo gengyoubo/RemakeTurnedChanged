@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
+import org.jetbrains.annotations.NotNull;
 
 public class RedLabStairsBlock extends StairBlock {
     public RedLabStairsBlock() {
@@ -35,16 +36,16 @@ public class RedLabStairsBlock extends StairBlock {
         return 10.0F;
     }
 
-    public boolean isRandomlyTicking(BlockState p_56947_) {
+    public boolean isRandomlyTicking(@NotNull BlockState p_56947_) {
         return false;
     }
 
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Variant C"));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 0;
     }
 
@@ -57,7 +58,7 @@ public class RedLabStairsBlock extends StairBlock {
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }

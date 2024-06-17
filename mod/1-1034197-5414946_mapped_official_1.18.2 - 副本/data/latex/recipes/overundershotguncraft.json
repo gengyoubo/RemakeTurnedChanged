@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "latex:gunbarrel"
+    },
+    "1": {
+      "item": "latex:shotgun_shell"
+    },
+    "2": {
+      "item": "latex:gunrepairkit"
+    },
+    "3": {
+      "item": "latex:gunbarrel"
+    },
+    "4": {
+      "item": "minecraft:iron_ingot"
+    },
+    "5": {
+      "item": "minecraft:iron_ingot"
+    },
+    "6": {
+      "item": "minecraft:lever"
+    },
+    "7": {
+      "tag": "minecraft:planks"
+    },
+    "8": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "latex:overundershotgun",
+    "count": 1
+  }
+}

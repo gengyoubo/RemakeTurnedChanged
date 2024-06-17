@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import java.util.List;
@@ -14,10 +19,9 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/Instafacility3Item.class */
 public class Instafacility3Item extends Item {
     public Instafacility3Item() {
-        super(new Item.Properties().tab((CreativeModeTab) null).stacksTo(1).rarity(Rarity.UNCOMMON));
+        super((new Item.Properties()).tab((CreativeModeTab)null).stacksTo(1).rarity(Rarity.UNCOMMON));
     }
 
     public UseAnim getUseAnimation(ItemStack itemstack) {
@@ -25,13 +29,13 @@ public class Instafacility3Item extends Item {
     }
 
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-        appendHoverText(itemstack, world, list, flag);
+        super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Instant Facility for lazy people!"));
     }
 
     public InteractionResult useOn(UseOnContext context) {
-        InteractionResult retval = useOn(context);
-        Instafacility3RightclickProcedure.execute(context.getLevel(), (double) context.getClickedPos().getX(), (double) context.getClickedPos().getY(), (double) context.getClickedPos().getZ(), context.getPlayer());
+        InteractionResult retval = super.useOn(context);
+        Instafacility3RightclickProcedure.execute(context.getLevel(), (double)context.getClickedPos().getX(), (double)context.getClickedPos().getY(), (double)context.getClickedPos().getZ(), context.getPlayer());
         return retval;
     }
 }

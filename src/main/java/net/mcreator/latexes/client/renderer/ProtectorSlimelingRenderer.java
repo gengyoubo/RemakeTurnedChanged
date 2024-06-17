@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/ProtectorSlimelingRenderer.class */
 public class ProtectorSlimelingRenderer extends MobRenderer<ProtectorSlimelingEntity, ModelSlimeling_remaster<ProtectorSlimelingEntity>> {
@@ -19,7 +20,7 @@ public class ProtectorSlimelingRenderer extends MobRenderer<ProtectorSlimelingEn
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/protector_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class ProtectorSlimelingRenderer extends MobRenderer<ProtectorSlimelingEn
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(ProtectorSlimelingEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull ProtectorSlimelingEntity entity) {
         return new ResourceLocation("latex:textures/entities/protector_remaster_texture.png");
     }
 }

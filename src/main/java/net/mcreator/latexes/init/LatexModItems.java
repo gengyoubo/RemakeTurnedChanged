@@ -89,9 +89,9 @@ import net.minecraftforge.registries.RegistryObject;
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/init/LatexModItems.class */
 public class LatexModItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, LatexMod.MODID);
-    public static final RegistryObject<Item> SLIMELING = REGISTRY.register("slimeling_spawn_egg", () -> {
-        return new ForgeSpawnEggItem(LatexModEntities.SLIMELING, -12925126, -16223982, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
-    });
+    //public static final RegistryObject<Item> SLIMELING = REGISTRY.register("slimeling_spawn_egg", () -> {
+     //   return new ForgeSpawnEggItem(LatexModEntities.SLIMELING, -12925126, -16223982, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
+    //});
     public static final RegistryObject<Item> DARKLATEXSLUG = REGISTRY.register("darklatexslug_spawn_egg", () -> {
         return new ForgeSpawnEggItem(LatexModEntities.DARKLATEXSLUG, -13421773, -10066330, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
     });
@@ -104,9 +104,9 @@ public class LatexModItems {
     public static final RegistryObject<Item> DARK_LATEX_SKELETON = REGISTRY.register("dark_latex_skeleton_spawn_egg", () -> {
         return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_SKELETON, -13421773, -16768763, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
     });
-    public static final RegistryObject<Item> YUFENG = REGISTRY.register("yufeng_spawn_egg", () -> {
-        return new ForgeSpawnEggItem(LatexModEntities.YUFENG, -13421773, -15987700, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
-    });
+    //public static final RegistryObject<Item> YUFENG = REGISTRY.register("yufeng_spawn_egg", () -> {
+     //   return new ForgeSpawnEggItem(LatexModEntities.YUFENG, -13421773, -15987700, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
+    //});
     public static final RegistryObject<Item> NOISE_STALKER = REGISTRY.register("noise_stalker_spawn_egg", () -> {
         return new ForgeSpawnEggItem(LatexModEntities.NOISE_STALKER, -13816531, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
     });
@@ -125,12 +125,12 @@ public class LatexModItems {
     public static final RegistryObject<Item> DARK_LATEX_FOX_SNIPER = REGISTRY.register("dark_latex_fox_sniper_spawn_egg", () -> {
         return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_FOX_SNIPER, -13421773, -16769758, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
     });
-    public static final RegistryObject<Item> DARK_LATEX_SNAKE = REGISTRY.register("dark_latex_snake_spawn_egg", () -> {
-        return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_SNAKE, -15329770, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
-    });
-    public static final RegistryObject<Item> DARK_LATEX_DRAGON = REGISTRY.register("dark_latex_dragon_spawn_egg", () -> {
-        return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_DRAGON, -13421773, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
-    });
+    //public static final RegistryObject<Item> DARK_LATEX_SNAKE = REGISTRY.register("dark_latex_snake_spawn_egg", () -> {
+     //   return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_SNAKE, -15329770, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
+    //});
+    //public static final RegistryObject<Item> DARK_LATEX_DRAGON = REGISTRY.register("dark_latex_dragon_spawn_egg", () -> {
+    //    return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_DRAGON, -13421773, -16777216, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
+    //});
     public static final RegistryObject<Item> DARK_LATEX_SPIDER = REGISTRY.register("dark_latex_spider_spawn_egg", () -> {
         return new ForgeSpawnEggItem(LatexModEntities.DARK_LATEX_SPIDER, -13421773, -13434880, new Item.Properties().tab(LatexModTabs.TAB_LATEXENTITIES));
     });

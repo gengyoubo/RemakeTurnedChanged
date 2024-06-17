@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0  ",
+    " 45",
+    "67 "
+  ],
+  "key": {
+    "0": {
+      "item": "latex:gunbarrel"
+    },
+    "4": {
+      "item": "minecraft:iron_ingot"
+    },
+    "5": {
+      "item": "minecraft:gunpowder"
+    },
+    "6": {
+      "item": "minecraft:lever"
+    },
+    "7": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "latex:matchlock_pistol",
+    "count": 1
+  }
+}

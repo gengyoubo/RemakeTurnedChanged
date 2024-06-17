@@ -94,20 +94,20 @@ public class LatexModEntityRenderers {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer((EntityType)LatexModEntities.SLIMELING.get(), SlimelingRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.SLIMELING.get(), SlimelingRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARKLATEXSLUG.get(), DarklatexslugRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARKLATEX.get(), DarklatexRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_CENTAUR.get(), DarkLatexCentaurRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), DarkLatexSkeletonRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.YUFENG.get(), YufengRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.YUFENG.get(), YufengRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.NOISE_STALKER.get(), NoiseStalkerRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DLSHARK.get(), DlsharkRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_MOTH.get(), DarkLatexMothRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_SNEP.get(), DarkLatexSnepRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_FOX.get(), DarkLatexFoxRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_FOX_SNIPER.get(), DarkLatexFoxSniperRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_SNAKE.get(), DarkLatexSnakeRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_DRAGON.get(), DarkLatexDragonRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_SNAKE.get(), DarkLatexSnakeRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_DRAGON.get(), DarkLatexDragonRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_SPIDER.get(), DarkLatexSpiderRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DL_SQUID_DOG.get(), DlSquidDogRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.D_LBEE.get(), DLbeeRenderer::new);
@@ -135,28 +135,28 @@ public class LatexModEntityRenderers {
         event.registerEntityRenderer((EntityType)LatexModEntities.PRISIONER.get(), PrisionerRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.PRISIONERMILITIA.get(), PrisionermilitiaRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.CIVLIAN_MILITIA.get(), CivlianMilitiaRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.CRYSTALBOW.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.LATEXCANNON.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.REVOLVING_GOO_CANNON.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.DARTRIFLE.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.MATCHLOCK_PISTOL.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.MATCH_LOCK_MUSKET.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.AR_70_ASSAULT_RIFLE.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.M_4_ASSAULT_RIFLE.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.SCRAP_M_16_RIFLE.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.TSC_PISTOL.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.FLAMETHOWER.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.LATEX_DART_RIFLE.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.CRYSTALBOW.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.LATEXCANNON.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.REVOLVING_GOO_CANNON.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.DARTRIFLE.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.MATCHLOCK_PISTOL.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.MATCH_LOCK_MUSKET.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.AR_70_ASSAULT_RIFLE.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.M_4_ASSAULT_RIFLE.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.SCRAP_M_16_RIFLE.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.TSC_PISTOL.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.OVERUNDERSHOTGUN.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.FLAMETHOWER.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.LATEX_DART_RIFLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_FOX_SCIENTIST.get(), DarkLatexFoxScientistRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.BEE_HERTX.get(), BeeHertxRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.AHV_HERTX.get(), AHVHertxRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.TANK_CANNON.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.TANK_CANNON.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.LA_4TANKMORPHR.get(), La4tankmorphrRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.LA_4TANKMORPHM.get(), La4tankmorphmRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.NXT_HERTX.get(), NXTHertxRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DROPPOD.get(), DROPPODRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.SNEPPLE.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.SNEPPLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.ALLYDROPPOD.get(), AllydroppodRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.LATEX_DROP_POD.get(), LatexDropPodRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.HERTXVAR_F.get(), HertxvarFRenderer::new);
@@ -178,7 +178,7 @@ public class LatexModEntityRenderers {
         event.registerEntityRenderer((EntityType)LatexModEntities.DARK_LATEX_CAKE.get(), DarkLatexCakeRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.DRONE_HERTX_WAIT.get(), DroneHertxWaitRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.ARMED_DRONE_HERTX_WAIT.get(), ArmedDroneHertxWaitRenderer::new);
-        event.registerEntityRenderer((EntityType)LatexModEntities.EXPLOSIVEGOO.get(), ThrownItemRenderer::new);
+        //event.registerEntityRenderer((EntityType)LatexModEntities.EXPLOSIVEGOO.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.CIVILIAN_MILITIA_MELEE.get(), CivilianMilitiaMeleeRenderer::new);
         event.registerEntityRenderer((EntityType)LatexModEntities.PRISIONER_MILITIA_MELEE.get(), PrisionerMilitiaMeleeRenderer::new);
     }

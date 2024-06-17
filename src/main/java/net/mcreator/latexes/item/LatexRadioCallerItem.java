@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import net.mcreator.latexes.init.LatexModTabs;
@@ -9,10 +14,9 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/LatexRadioCallerItem.class */
 public class LatexRadioCallerItem extends Item {
     public LatexRadioCallerItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1).rarity(Rarity.UNCOMMON));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1).rarity(Rarity.UNCOMMON));
     }
 
     public UseAnim getUseAnimation(ItemStack itemstack) {
@@ -20,8 +24,8 @@ public class LatexRadioCallerItem extends Item {
     }
 
     public InteractionResult useOn(UseOnContext context) {
-        InteractionResult retval = useOn(context);
-        LatexRadioDropPodCallerProcedure.execute(context.getLevel(), (double) context.getClickedPos().getX(), (double) context.getClickedPos().getY(), (double) context.getClickedPos().getZ(), context.getPlayer(), context.getItemInHand());
+        InteractionResult retval = super.useOn(context);
+        LatexRadioDropPodCallerProcedure.execute(context.getLevel(), (double)context.getClickedPos().getX(), (double)context.getClickedPos().getY(), (double)context.getClickedPos().getZ(), context.getPlayer(), context.getItemInHand());
         return retval;
     }
 }

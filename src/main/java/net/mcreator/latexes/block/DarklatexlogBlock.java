@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
+import org.jetbrains.annotations.NotNull;
 
 public class DarklatexlogBlock extends Block {
     public static final EnumProperty<Direction.Axis> AXIS;
@@ -40,7 +41,7 @@ public class DarklatexlogBlock extends Block {
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(AXIS, Axis.Y));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 15;
     }
 
@@ -52,7 +53,7 @@ public class DarklatexlogBlock extends Block {
         return (BlockState)this.defaultBlockState().setValue(AXIS, context.getClickedFace().getAxis());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rot) {
         if (rot == Rotation.CLOCKWISE_90 || rot == Rotation.COUNTERCLOCKWISE_90) {
             if (state.getValue(AXIS) == Axis.X) {
                 return (BlockState)state.setValue(AXIS, Axis.Z);
@@ -75,17 +76,17 @@ public class DarklatexlogBlock extends Block {
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
 
-    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 200);
     }
 
-    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+    public void tick(@NotNull BlockState blockstate, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
         super.tick(blockstate, world, pos, random);
         int x = pos.getX();
         int y = pos.getY();

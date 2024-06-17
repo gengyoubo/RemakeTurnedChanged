@@ -22,7 +22,7 @@ public class DarklatexcarpetUpdateTick2Procedure {
     public DarklatexcarpetUpdateTick2Procedure() {
     }
 
-    public static boolean execute(LevelAccessor world, double x, double y, double z) {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
         double underblocktransform = 0.0;
         if (!world.getBlockState(new BlockPos(x, y - 1.0, z)).is(BlockTags.create(new ResourceLocation("latex:invalidblockbelow"))) && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != LatexModBlocks.DARKLATEXCRYSTALEGG.get() && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != LatexModBlocks.DARKLATEXICE.get() && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != LatexModBlocks.DARKLATEXBLOCKCRYSTALGROW.get() && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != LatexModBlocks.DARKLATEXBLOCK.get()) {
             if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSPREAD)) {
@@ -85,7 +85,7 @@ public class DarklatexcarpetUpdateTick2Procedure {
                         }
                     } else {
                         if (!world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXFLUIDS)) {
-                            return true;
+                            return;
                         }
 
                         world.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
@@ -129,10 +129,8 @@ public class DarklatexcarpetUpdateTick2Procedure {
                 }
             }
 
-            return false;
         } else {
             world.destroyBlock(new BlockPos(x, y, z), false);
-            return true;
         }
     }
 }

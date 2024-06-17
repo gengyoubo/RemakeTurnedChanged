@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "latex:hertx",
+    "latex:armed_drone_hertx",
+    "zombie",
+    "latex:la_4tankmorphr",
+    "minecart",
+    "chest_minecart",
+    "latex:tsc_outsider",
+    "latex:tsc_outsider_gunner",
+    "iron_golem",
+    "latex:la_4tankmorphm",
+    "command_block_minecart",
+    "tnt_minecart",
+    "latex:nxt_hertx",
+    "latex:tsc_hunter",
+    "latex:tsc_berserk",
+    "latex:ahv_hertx",
+    "latex:armed_drone_hertx_wait",
+    "item",
+    "spawner_minecart",
+    "latex:drone_hertx_wait",
+    "latex:bee_hertx",
+    "furnace_minecart",
+    "latex:ts_cdrone",
+    "hopper_minecart",
+    "latex:drone_hertx",
+    "boat"
+  ]
+}

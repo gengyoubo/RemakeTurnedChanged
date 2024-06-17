@@ -35,6 +35,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
+import org.jetbrains.annotations.NotNull;
 
 public class DarklatexblockcrystalgrowBlock extends Block {
     public static final DirectionProperty FACING;
@@ -44,12 +45,12 @@ public class DarklatexblockcrystalgrowBlock extends Block {
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Crystal Grow"));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 15;
     }
 
@@ -61,11 +62,11 @@ public class DarklatexblockcrystalgrowBlock extends Block {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
@@ -86,12 +87,12 @@ public class DarklatexblockcrystalgrowBlock extends Block {
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
     }
 
-    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+    public void tick(@NotNull BlockState blockstate, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
         super.tick(blockstate, world, pos, random);
         int x = pos.getX();
         int y = pos.getY();

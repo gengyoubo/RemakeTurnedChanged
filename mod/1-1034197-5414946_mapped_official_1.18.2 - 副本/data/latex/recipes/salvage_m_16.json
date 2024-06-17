@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "latex:brokenm_16"
+    },
+    {
+      "item": "latex:gunrepairkit"
+    }
+  ],
+  "result": {
+    "item": "latex:scrap_m_16_rifle",
+    "count": 1
+  }
+}

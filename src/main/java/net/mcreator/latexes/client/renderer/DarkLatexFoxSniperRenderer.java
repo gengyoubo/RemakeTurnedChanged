@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/DarkLatexFoxSniperRenderer.class */
 public class DarkLatexFoxSniperRenderer extends HumanoidMobRenderer<DarkLatexFoxSniperEntity, HumanoidModel<DarkLatexFoxSniperEntity>> {
@@ -15,7 +16,7 @@ public class DarkLatexFoxSniperRenderer extends HumanoidMobRenderer<DarkLatexFox
         addLayer(new HumanoidArmorLayer(this, new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_INNER_ARMOR)), new HumanoidModel(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR))));
     }
 
-    public ResourceLocation getTextureLocation(DarkLatexFoxSniperEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull DarkLatexFoxSniperEntity entity) {
         return new ResourceLocation("latex:textures/entities/darklatexfoxsniper.png");
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/HertxFSitRenderer.class */
 public class HertxFSitRenderer extends MobRenderer<HertxFSitEntity, Modelhertx_sit_model_f<HertxFSitEntity>> {
@@ -19,7 +20,7 @@ public class HertxFSitRenderer extends MobRenderer<HertxFSitEntity, Modelhertx_s
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/hertx_variant_f_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class HertxFSitRenderer extends MobRenderer<HertxFSitEntity, Modelhertx_s
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(HertxFSitEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull HertxFSitEntity entity) {
         return new ResourceLocation("latex:textures/entities/hertx_variant_f_texture.png");
     }
 }

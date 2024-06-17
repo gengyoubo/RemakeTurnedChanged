@@ -57,6 +57,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, EntityBlock {
     public static final DirectionProperty FACING;
@@ -69,11 +70,11 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
     }
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return state.getFluidState().isEmpty();
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 0;
     }
 
@@ -86,19 +87,19 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, flag);
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor world, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         if ((Boolean)state.getValue(WATERLOGGED)) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
@@ -115,20 +116,20 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModBlocks.BOX_INVENTORY.get()));
     }
 
-    public InteractionResult use(BlockState blockstate, Level world, final BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level world, final @NotNull BlockPos pos, @NotNull Player entity, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(blockstate, world, pos, entity, hand, hit);
         if (entity instanceof ServerPlayer player) {
             NetworkHooks.openGui(player, new MenuProvider() {
-                public Component getDisplayName() {
+                public @NotNull Component getDisplayName() {
                     return new TextComponent("Small Box");
                 }
 
-                public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+                public AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory, @NotNull Player player) {
                     return new SmallboxguiMenu(id, inventory, (new FriendlyByteBuf(Unpooled.buffer())).writeBlockPos(pos));
                 }
             }, pos);
@@ -137,7 +138,7 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         return InteractionResult.SUCCESS;
     }
 
-    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+    public MenuProvider getMenuProvider(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);
         MenuProvider var10000;
         if (tileEntity instanceof MenuProvider menuProvider) {
@@ -149,17 +150,17 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
         return var10000;
     }
 
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new SmallBoxBlockEntity(pos, state);
     }
 
-    public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
+    public boolean triggerEvent(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, int eventID, int eventParam) {
         super.triggerEvent(state, world, pos, eventID, eventParam);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity == null ? false : blockEntity.triggerEvent(eventID, eventParam);
     }
 
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, @NotNull Level world, @NotNull BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof SmallBoxBlockEntity) {
@@ -173,11 +174,11 @@ public class SmallBoxBlock extends Block implements SimpleWaterloggedBlock, Enti
 
     }
 
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
-    public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
+    public int getAnalogOutputSignal(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos) {
         BlockEntity tileentity = world.getBlockEntity(pos);
         if (tileentity instanceof SmallBoxBlockEntity be) {
             return AbstractContainerMenu.getRedstoneSignalFromContainer(be);

@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import javax.annotation.Nullable;
@@ -54,23 +59,21 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity.class */
 public class NoiseStalkerEntity extends Monster {
     public NoiseStalkerEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.NOISE_STALKER.get(), world);
+        this((EntityType)LatexModEntities.NOISE_STALKER.get(), world);
     }
 
     public NoiseStalkerEntity(EntityType<NoiseStalkerEntity> type, Level world) {
         super(type, world);
         this.xpReward = 10;
-        setNoAi(false);
+        this.setNoAi(false);
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -78,13 +81,35 @@ public class NoiseStalkerEntity extends Monster {
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new BreakDoorGoal(this, e -> {
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new BreakDoorGoal(this, (e) -> {
             return true;
         }));
-        this.goalSelector.addGoal(2, new AnonymousClass1(this, 1.2d, true));
-        this.targetSelector.addGoal(3, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(4, new AnonymousClass2(this, PathfinderMob.class, false, true));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.2, true) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && TargetwearingmaskProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, PathfinderMob.class, false, true) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && CheckSlimelingProcedure.execute(entity);
+            }
+        });
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MilitaryEntity.class, false, true));
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, ScientistEntity.class, false, true));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, MilitaryflameunitEntity.class, false, true));
@@ -105,234 +130,119 @@ public class NoiseStalkerEntity extends Monster {
         this.targetSelector.addGoal(22, new NearestAttackableTargetGoal(this, ZombifiedPiglin.class, false, true));
         this.targetSelector.addGoal(23, new NearestAttackableTargetGoal(this, PiglinBrute.class, false, true));
         this.targetSelector.addGoal(24, new NearestAttackableTargetGoal(this, Zoglin.class, false, true));
-        this.goalSelector.addGoal(25, new AnonymousClass3(Blocks.SMOOTH_STONE, this, 1.0d, 3));
-        this.goalSelector.addGoal(26, new AnonymousClass4(Blocks.SMOOTH_SANDSTONE, this, 1.0d, 3));
-        this.goalSelector.addGoal(27, new AnonymousClass5(Blocks.SMOOTH_RED_SANDSTONE, this, 1.0d, 3));
-        this.goalSelector.addGoal(28, new AnonymousClass6(Blocks.BIRCH_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(29, new AnonymousClass7(Blocks.SPRUCE_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(30, new AnonymousClass8(Blocks.OAK_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(31, new AnonymousClass9(Blocks.JUNGLE_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(32, new AnonymousClass10(Blocks.ACACIA_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(33, new AnonymousClass11(Blocks.DARK_OAK_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(34, new AnonymousClass12(Blocks.CRIMSON_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(35, new AnonymousClass13(Blocks.WARPED_DOOR, this, 1.0d, 3));
-        this.goalSelector.addGoal(36, new RandomStrollGoal(this, 0.8d));
+        this.goalSelector.addGoal(25, new RemoveBlockGoal(Blocks.SMOOTH_STONE, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(26, new RemoveBlockGoal(Blocks.SMOOTH_SANDSTONE, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(27, new RemoveBlockGoal(Blocks.SMOOTH_RED_SANDSTONE, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(28, new RemoveBlockGoal(Blocks.BIRCH_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(29, new RemoveBlockGoal(Blocks.SPRUCE_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(30, new RemoveBlockGoal(Blocks.OAK_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(31, new RemoveBlockGoal(Blocks.JUNGLE_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(32, new RemoveBlockGoal(Blocks.ACACIA_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(33, new RemoveBlockGoal(Blocks.DARK_OAK_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(34, new RemoveBlockGoal(Blocks.CRIMSON_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(35, new RemoveBlockGoal(Blocks.WARPED_DOOR, this, 1.0, 3) {
+            public boolean canUse() {
+                double x = NoiseStalkerEntity.this.getX();
+                double y = NoiseStalkerEntity.this.getY();
+                double z = NoiseStalkerEntity.this.getZ();
+                Entity entity = NoiseStalkerEntity.this;
+                Level world = NoiseStalkerEntity.this.level;
+                return super.canUse() && NoiseStalkerDetectGameruleProcedure.execute(world);
+            }
+        });
+        this.goalSelector.addGoal(36, new RandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(37, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(38, new FloatGoal(this));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$1.class */
-    class AnonymousClass1 extends MeleeAttackGoal {
-        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            Entity entity = NoiseStalkerEntity.this;
-            Level level = NoiseStalkerEntity.this.level;
-            return canUse() && TargetwearingmaskProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            Entity entity = NoiseStalkerEntity.this;
-            Level level = NoiseStalkerEntity.this.level;
-            return canUse() && CheckSlimelingProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$3  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$3.class */
-    class AnonymousClass3 extends RemoveBlockGoal {
-        AnonymousClass3(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$4  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$4.class */
-    class AnonymousClass4 extends RemoveBlockGoal {
-        AnonymousClass4(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$5  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$5.class */
-    class AnonymousClass5 extends RemoveBlockGoal {
-        AnonymousClass5(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$6  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$6.class */
-    class AnonymousClass6 extends RemoveBlockGoal {
-        AnonymousClass6(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$7  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$7.class */
-    class AnonymousClass7 extends RemoveBlockGoal {
-        AnonymousClass7(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$8  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$8.class */
-    class AnonymousClass8 extends RemoveBlockGoal {
-        AnonymousClass8(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$9  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$9.class */
-    class AnonymousClass9 extends RemoveBlockGoal {
-        AnonymousClass9(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$10  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$10.class */
-    class AnonymousClass10 extends RemoveBlockGoal {
-        AnonymousClass10(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$11  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$11.class */
-    class AnonymousClass11 extends RemoveBlockGoal {
-        AnonymousClass11(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$12  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$12.class */
-    class AnonymousClass12 extends RemoveBlockGoal {
-        AnonymousClass12(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.NoiseStalkerEntity$13  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/NoiseStalkerEntity$13.class */
-    class AnonymousClass13 extends RemoveBlockGoal {
-        AnonymousClass13(Block arg0, PathfinderMob arg1, double arg2, int arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            NoiseStalkerEntity.this.getX();
-            NoiseStalkerEntity.this.getY();
-            NoiseStalkerEntity.this.getZ();
-            NoiseStalkerEntity noiseStalkerEntity = NoiseStalkerEntity.this;
-            return canUse() && NoiseStalkerDetectGameruleProcedure.execute(NoiseStalkerEntity.this.level);
-        }
     }
 
     public MobType getMobType() {
@@ -340,51 +250,52 @@ public class NoiseStalkerEntity extends Monster {
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.ambient"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.ambient"));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else {
+            return source == DamageSource.CACTUS ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        DarklatexEntityDiesProcedure.execute(this.level, getX(), getY(), getZ(), this);
+        super.die(source);
+        DarklatexEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         NoiseStalkerOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        NoiseStalkerThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
+        super.awardKillScore(entity, score, damageSource);
+        NoiseStalkerThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity, this);
     }
 
     public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
+        super.playerTouch(sourceentity);
         NightstalkertestPlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
@@ -392,6 +303,14 @@ public class NoiseStalkerEntity extends Monster {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.28d).add(Attributes.MAX_HEALTH, 48.0d).add(Attributes.ARMOR, 4.0d).add(Attributes.ATTACK_DAMAGE, 6.0d).add(Attributes.FOLLOW_RANGE, 24.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.5d).add(Attributes.ATTACK_KNOCKBACK, 0.2d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.28);
+        builder = builder.add(Attributes.MAX_HEALTH, 48.0);
+        builder = builder.add(Attributes.ARMOR, 4.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 6.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 24.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.2);
+        return builder;
     }
 }

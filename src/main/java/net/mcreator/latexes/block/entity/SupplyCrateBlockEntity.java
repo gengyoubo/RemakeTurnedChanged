@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block.entity;
 
 import io.netty.buffer.Unpooled;
@@ -28,28 +33,31 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/entity/SupplyCrateBlockEntity.class */
 public class SupplyCrateBlockEntity extends RandomizableContainerBlockEntity implements WorldlyContainer {
-    private NonNullList<ItemStack> stacks = NonNullList.withSize(36, ItemStack.EMPTY);
-    private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
+    private NonNullList<ItemStack> stacks;
+    private final LazyOptional<? extends IItemHandler>[] handlers;
 
     public SupplyCrateBlockEntity(BlockPos position, BlockState state) {
-        super((BlockEntityType) LatexModBlockEntities.SUPPLY_CRATE.get(), position, state);
+        super((BlockEntityType)LatexModBlockEntities.SUPPLY_CRATE.get(), position, state);
+        this.stacks = NonNullList.withSize(36, ItemStack.EMPTY);
+        this.handlers = SidedInvWrapper.create(this, Direction.values());
     }
 
     public void load(CompoundTag compound) {
-        load(compound);
-        if (!tryLoadLootTable(compound)) {
-            this.stacks = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+        super.load(compound);
+        if (!this.tryLoadLootTable(compound)) {
+            this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         }
+
         ContainerHelper.loadAllItems(compound, this.stacks);
     }
 
     public void saveAdditional(CompoundTag compound) {
-        saveAdditional(compound);
-        if (!trySaveLootTable(compound)) {
+        super.saveAdditional(compound);
+        if (!this.trySaveLootTable(compound)) {
             ContainerHelper.saveAllItems(compound, this.stacks);
         }
+
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -57,7 +65,7 @@ public class SupplyCrateBlockEntity extends RandomizableContainerBlockEntity imp
     }
 
     public CompoundTag getUpdateTag() {
-        return saveWithFullMetadata();
+        return this.saveWithFullMetadata();
     }
 
     public int getContainerSize() {
@@ -65,13 +73,18 @@ public class SupplyCrateBlockEntity extends RandomizableContainerBlockEntity imp
     }
 
     public boolean isEmpty() {
-        Iterator it = this.stacks.iterator();
-        while (it.hasNext()) {
-            if (!((ItemStack) it.next()).isEmpty()) {
-                return false;
+        Iterator var1 = this.stacks.iterator();
+
+        ItemStack itemstack;
+        do {
+            if (!var1.hasNext()) {
+                return true;
             }
-        }
-        return true;
+
+            itemstack = (ItemStack)var1.next();
+        } while(itemstack.isEmpty());
+
+        return false;
     }
 
     public Component getDefaultName() {
@@ -83,7 +96,7 @@ public class SupplyCrateBlockEntity extends RandomizableContainerBlockEntity imp
     }
 
     public AbstractContainerMenu createMenu(int id, Inventory inventory) {
-        return new SupplyCrateGuiMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(this.worldPosition));
+        return new SupplyCrateGuiMenu(id, inventory, (new FriendlyByteBuf(Unpooled.buffer())).writeBlockPos(this.worldPosition));
     }
 
     public Component getDisplayName() {
@@ -103,31 +116,102 @@ public class SupplyCrateBlockEntity extends RandomizableContainerBlockEntity imp
     }
 
     public int[] getSlotsForFace(Direction side) {
-        return IntStream.range(0, getContainerSize()).toArray();
+        return IntStream.range(0, this.getContainerSize()).toArray();
     }
 
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return canPlaceItem(index, stack);
+        return this.canPlaceItem(index, stack);
     }
 
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == 0 || index == 1 || index == 2 || index == 3 || index == 4 || index == 5 || index == 6 || index == 7 || index == 8 || index == 9 || index == 10 || index == 11 || index == 12 || index == 13 || index == 14 || index == 15 || index == 16 || index == 17 || index == 18 || index == 19 || index == 20 || index == 21 || index == 22 || index == 23 || index == 24 || index == 25 || index == 26 || index == 27 || index == 28 || index == 29 || index == 30 || index == 31 || index == 32 || index == 33 || index == 34 || index == 35) {
+        if (index == 0) {
             return false;
+        } else if (index == 1) {
+            return false;
+        } else if (index == 2) {
+            return false;
+        } else if (index == 3) {
+            return false;
+        } else if (index == 4) {
+            return false;
+        } else if (index == 5) {
+            return false;
+        } else if (index == 6) {
+            return false;
+        } else if (index == 7) {
+            return false;
+        } else if (index == 8) {
+            return false;
+        } else if (index == 9) {
+            return false;
+        } else if (index == 10) {
+            return false;
+        } else if (index == 11) {
+            return false;
+        } else if (index == 12) {
+            return false;
+        } else if (index == 13) {
+            return false;
+        } else if (index == 14) {
+            return false;
+        } else if (index == 15) {
+            return false;
+        } else if (index == 16) {
+            return false;
+        } else if (index == 17) {
+            return false;
+        } else if (index == 18) {
+            return false;
+        } else if (index == 19) {
+            return false;
+        } else if (index == 20) {
+            return false;
+        } else if (index == 21) {
+            return false;
+        } else if (index == 22) {
+            return false;
+        } else if (index == 23) {
+            return false;
+        } else if (index == 24) {
+            return false;
+        } else if (index == 25) {
+            return false;
+        } else if (index == 26) {
+            return false;
+        } else if (index == 27) {
+            return false;
+        } else if (index == 28) {
+            return false;
+        } else if (index == 29) {
+            return false;
+        } else if (index == 30) {
+            return false;
+        } else if (index == 31) {
+            return false;
+        } else if (index == 32) {
+            return false;
+        } else if (index == 33) {
+            return false;
+        } else if (index == 34) {
+            return false;
+        } else {
+            return index != 35;
         }
-        return true;
     }
 
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-        if (this.remove || facing == null || capability != CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return getCapability(capability, facing);
-        }
-        return this.handlers[facing.ordinal()].cast();
+        return !this.remove && facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? this.handlers[facing.ordinal()].cast() : super.getCapability(capability, facing);
     }
 
     public void setRemoved() {
-        setRemoved();
-        for (LazyOptional<? extends IItemHandler> handler : this.handlers) {
+        super.setRemoved();
+        LazyOptional[] var1 = this.handlers;
+        int var2 = var1.length;
+
+        for(int var3 = 0; var3 < var2; ++var3) {
+            LazyOptional<? extends IItemHandler> handler = var1[var3];
             handler.invalidate();
         }
+
     }
 }

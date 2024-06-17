@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/init/LatexModSounds.class */
 public class LatexModSounds {
-    public static Map<ResourceLocation, SoundEvent> REGISTRY = new HashMap();
+    public static final Map<ResourceLocation, SoundEvent> REGISTRY = new HashMap();
 
     static {
         REGISTRY.put(new ResourceLocation(LatexMod.MODID, "computer_on"), new SoundEvent(new ResourceLocation(LatexMod.MODID, "computer_on")));

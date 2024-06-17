@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import net.mcreator.latexes.init.LatexModBlocks;
@@ -45,54 +50,63 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/MilitaryflameunitEntity.class */
 public class MilitaryflameunitEntity extends PathfinderMob implements RangedAttackMob {
     public MilitaryflameunitEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.MILITARYFLAMEUNIT.get(), world);
+        this((EntityType)LatexModEntities.MILITARYFLAMEUNIT.get(), world);
     }
 
     public MilitaryflameunitEntity(EntityType<MilitaryflameunitEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.FLAMETHOWER.get()));
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)LatexModItems.FLAMETHOWER.get()));
     }
 
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    /* renamed from: net.mcreator.latexes.entity.MilitaryflameunitEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/MilitaryflameunitEntity$1.class */
-    class AnonymousClass1 extends NearestAttackableTargetGoal {
-        AnonymousClass1(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            MilitaryflameunitEntity.this.getX();
-            MilitaryflameunitEntity.this.getY();
-            MilitaryflameunitEntity.this.getZ();
-            Entity entity = MilitaryflameunitEntity.this;
-            Level level = MilitaryflameunitEntity.this.level;
-            return canUse() && CheckEvilProcedure.execute(entity);
-        }
-
-        public boolean canContinueToUse() {
-            MilitaryflameunitEntity.this.getX();
-            MilitaryflameunitEntity.this.getY();
-            MilitaryflameunitEntity.this.getZ();
-            Entity entity = MilitaryflameunitEntity.this;
-            Level level = MilitaryflameunitEntity.this.level;
-            return canContinueToUse() && CheckEvilProcedure.execute(entity);
-        }
-    }
-
     protected void registerGoals() {
-        registerGoals();
-        this.targetSelector.addGoal(1, new AnonymousClass1(this, PathfinderMob.class, true, false));
-        this.targetSelector.addGoal(2, new AnonymousClass2(this, Monster.class, true, false));
+        super.registerGoals();
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, PathfinderMob.class, true, false) {
+            public boolean canUse() {
+                double x = MilitaryflameunitEntity.this.getX();
+                double y = MilitaryflameunitEntity.this.getY();
+                double z = MilitaryflameunitEntity.this.getZ();
+                Entity entity = MilitaryflameunitEntity.this;
+                Level world = MilitaryflameunitEntity.this.level;
+                return super.canUse() && CheckEvilProcedure.execute(entity);
+            }
+
+            public boolean canContinueToUse() {
+                double x = MilitaryflameunitEntity.this.getX();
+                double y = MilitaryflameunitEntity.this.getY();
+                double z = MilitaryflameunitEntity.this.getZ();
+                Entity entity = MilitaryflameunitEntity.this;
+                Level world = MilitaryflameunitEntity.this.level;
+                return super.canContinueToUse() && CheckEvilProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, Monster.class, true, false) {
+            public boolean canUse() {
+                double x = MilitaryflameunitEntity.this.getX();
+                double y = MilitaryflameunitEntity.this.getY();
+                double z = MilitaryflameunitEntity.this.getZ();
+                Entity entity = MilitaryflameunitEntity.this;
+                Level world = MilitaryflameunitEntity.this.level;
+                return super.canUse() && CheckentityislatexProcedure.execute(entity);
+            }
+
+            public boolean canContinueToUse() {
+                double x = MilitaryflameunitEntity.this.getX();
+                double y = MilitaryflameunitEntity.this.getY();
+                double z = MilitaryflameunitEntity.this.getZ();
+                Entity entity = MilitaryflameunitEntity.this;
+                Level world = MilitaryflameunitEntity.this.level;
+                return super.canContinueToUse() && CheckentityislatexProcedure.execute(entity);
+            }
+        });
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, EvilMilitaryEntity.class, true, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, EvilSniperEntity.class, true, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, PrisionermilitiaEntity.class, true, false));
@@ -104,67 +118,25 @@ public class MilitaryflameunitEntity extends PathfinderMob implements RangedAtta
         this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, Monster.class, true, false));
-        this.goalSelector.addGoal(14, new AnonymousClass3(this, 1.0d, false));
-        this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.6d));
+        this.goalSelector.addGoal(14, new MeleeAttackGoal(this, 1.0, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+        });
+        this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(16, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(17, new OpenDoorGoal(this, false));
-        this.goalSelector.addGoal(18, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXBLOCK.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(19, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXBLOCKHARMLESS.get(), this, 1.0d, 3));
-        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block) LatexModBlocks.DARKLATEXBLOCKCRYSTALGROW.get(), this, 1.0d, 3));
-        this.targetSelector.addGoal(21, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(18, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXBLOCK.get(), this, 1.0, 3));
+        this.goalSelector.addGoal(19, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXBLOCKHARMLESS.get(), this, 1.0, 3));
+        this.goalSelector.addGoal(20, new RemoveBlockGoal((Block)LatexModBlocks.DARKLATEXBLOCKCRYSTALGROW.get(), this, 1.0, 3));
+        this.targetSelector.addGoal(21, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(22, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(23, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new AnonymousClass4(this, 1.25d, 20, 10.0f));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.MilitaryflameunitEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/MilitaryflameunitEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            MilitaryflameunitEntity.this.getX();
-            MilitaryflameunitEntity.this.getY();
-            MilitaryflameunitEntity.this.getZ();
-            Entity entity = MilitaryflameunitEntity.this;
-            Level level = MilitaryflameunitEntity.this.level;
-            return canUse() && CheckentityislatexProcedure.execute(entity);
-        }
-
-        public boolean canContinueToUse() {
-            MilitaryflameunitEntity.this.getX();
-            MilitaryflameunitEntity.this.getY();
-            MilitaryflameunitEntity.this.getZ();
-            Entity entity = MilitaryflameunitEntity.this;
-            Level level = MilitaryflameunitEntity.this.level;
-            return canContinueToUse() && CheckentityislatexProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.MilitaryflameunitEntity$3  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/MilitaryflameunitEntity$3.class */
-    class AnonymousClass3 extends MeleeAttackGoal {
-        AnonymousClass3(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.MilitaryflameunitEntity$4  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/MilitaryflameunitEntity$4.class */
-    class AnonymousClass4 extends RangedAttackGoal {
-        AnonymousClass4(RangedAttackMob arg0, double arg1, int arg2, float arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canContinueToUse() {
-            return canUse();
-        }
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
+            public boolean canContinueToUse() {
+                return this.canUse();
+            }
+        });
     }
 
     public MobType getMobType() {
@@ -176,18 +148,25 @@ public class MilitaryflameunitEntity extends PathfinderMob implements RangedAtta
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.DRAGON_BREATH || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.DRAGON_BREATH) {
+                return false;
+            } else if (source == DamageSource.WITHER) {
+                return false;
+            } else {
+                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
+            }
+        } else {
             return false;
         }
-        return hurt(source, amount);
     }
 
     public void performRangedAttack(LivingEntity target, float flval) {
@@ -198,6 +177,12 @@ public class MilitaryflameunitEntity extends PathfinderMob implements RangedAtta
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
+        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

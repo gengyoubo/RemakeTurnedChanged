@@ -1,0 +1,12 @@
+{
+  "parent": "latex:custom/small_carboard_box",
+  "textures": {
+    "all": "latex:blocks/box_side_1",
+    "particle": "latex:blocks/box_side_1",
+    "0": "latex:blocks/box_down",
+    "1": "latex:blocks/box_side_1",
+    "2": "latex:blocks/box_side_2",
+    "3": "latex:blocks/box_side_3",
+    "4": "latex:blocks/box_up"
+  }
+}

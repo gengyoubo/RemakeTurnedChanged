@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "latex:bunkerdooropen",
+    "latex:controlpaneloff",
+    "latex:bunker_wall",
+    "latex:bunker_block_striped",
+    "latex:bunker_stairs",
+    "latex:bunkerhatch",
+    "latex:bunker_hatch_open",
+    "latex:bunker_slabs",
+    "latex:save_station",
+    "latex:bunker_door",
+    "latex:bunkerblock",
+    "latex:bunker_block_smooth",
+    "latex:controlpanelon"
+  ]
+}

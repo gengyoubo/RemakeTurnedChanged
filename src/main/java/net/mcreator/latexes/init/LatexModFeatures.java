@@ -147,11 +147,6 @@ public class LatexModFeatures {
     }
 
     private static record FeatureRegistration(GenerationStep.Decoration stage, Set<ResourceLocation> biomes, Supplier<Holder<PlacedFeature>> placedFeature) {
-        private FeatureRegistration(GenerationStep.Decoration stage, Set<ResourceLocation> biomes, Supplier<Holder<PlacedFeature>> placedFeature) {
-            this.stage = stage;
-            this.biomes = biomes;
-            this.placedFeature = placedFeature;
-        }
 
         public GenerationStep.Decoration stage() {
             return this.stage;

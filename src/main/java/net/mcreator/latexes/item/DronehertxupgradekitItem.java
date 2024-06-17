@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import java.util.List;
@@ -14,21 +19,23 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/DronehertxupgradekitItem.class */
 public class DronehertxupgradekitItem extends Item {
     public DronehertxupgradekitItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON));
     }
 
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-        appendHoverText(itemstack, world, list, flag);
+        super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Turn your drone hertx in a military one!"));
     }
 
     public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = use(world, entity, hand);
-        ItemStack itemStack = (ItemStack) ar.getObject();
-        DronehertxupgradekitRightclickedProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity);
+        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
+        ItemStack itemstack = (ItemStack)ar.getObject();
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+        DronehertxupgradekitRightclickedProcedure.execute(world, x, y, z, entity);
         return ar;
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/TSCdroneRenderer.class */
 public class TSCdroneRenderer extends MobRenderer<TSCdroneEntity, Modeltsc_drone_model<TSCdroneEntity>> {
@@ -19,7 +20,7 @@ public class TSCdroneRenderer extends MobRenderer<TSCdroneEntity, Modeltsc_drone
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/tsc_drone_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class TSCdroneRenderer extends MobRenderer<TSCdroneEntity, Modeltsc_drone
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(TSCdroneEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull TSCdroneEntity entity) {
         return new ResourceLocation("latex:textures/entities/tsc_drone_texture.png");
     }
 }

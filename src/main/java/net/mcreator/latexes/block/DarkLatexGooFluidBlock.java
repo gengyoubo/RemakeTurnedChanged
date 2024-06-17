@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block;
 
 import java.util.Random;
@@ -11,17 +16,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Material;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/DarkLatexGooFluidBlock.class */
 public class DarkLatexGooFluidBlock extends LiquidBlock {
     public DarkLatexGooFluidBlock() {
         super(() -> {
-            return (FlowingFluid) LatexModFluids.DARK_LATEX_GOO_FLUID.get();
-        }, BlockBehaviour.Properties.of(Material.WATER).strength(125.0f));
+            return (FlowingFluid)LatexModFluids.DARK_LATEX_GOO_FLUID.get();
+        }, Properties.of(Material.WATER).strength(125.0F));
     }
 
     public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
@@ -33,18 +37,18 @@ public class DarkLatexGooFluidBlock extends LiquidBlock {
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
-        onPlace(blockstate, world, pos, oldState, moving);
+        super.onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 10);
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
-        tick(blockstate, world, pos, random);
-        DarkLatexGooFluidUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        super.tick(blockstate, world, pos, random);
+        DarkLatexGooFluidUpdateTickProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
         world.scheduleTick(pos, this, 10);
     }
 
     public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
-        entityInside(blockstate, world, pos, entity);
+        super.entityInside(blockstate, world, pos, entity);
         DarklatexblockEntityCollidesInTheBlockProcedure.execute(entity);
     }
 }

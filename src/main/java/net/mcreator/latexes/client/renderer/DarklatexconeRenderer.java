@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/DarklatexconeRenderer.class */
 public class DarklatexconeRenderer extends MobRenderer<DarklatexconeEntity, Modeldark_latex_cone_model<DarklatexconeEntity>> {
@@ -19,7 +20,7 @@ public class DarklatexconeRenderer extends MobRenderer<DarklatexconeEntity, Mode
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/dark_latex_cone_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class DarklatexconeRenderer extends MobRenderer<DarklatexconeEntity, Mode
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(DarklatexconeEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull DarklatexconeEntity entity) {
         return new ResourceLocation("latex:textures/entities/dark_latex_cone_texture.png");
     }
 }

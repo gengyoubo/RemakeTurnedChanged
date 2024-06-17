@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/HertxSolWaitRenderer.class */
 public class HertxSolWaitRenderer extends MobRenderer<HertxSolWaitEntity, Modelhertx_model_wait_s1<HertxSolWaitEntity>> {
@@ -19,7 +20,7 @@ public class HertxSolWaitRenderer extends MobRenderer<HertxSolWaitEntity, Modelh
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/hertx_variant_soldier_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class HertxSolWaitRenderer extends MobRenderer<HertxSolWaitEntity, Modelh
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(HertxSolWaitEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull HertxSolWaitEntity entity) {
         return new ResourceLocation("latex:textures/entities/hertx_variant_soldier_texture.png");
     }
 }

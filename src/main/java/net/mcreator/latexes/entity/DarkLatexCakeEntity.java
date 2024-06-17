@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import net.mcreator.latexes.init.LatexModEntities;
@@ -19,7 +24,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
@@ -54,50 +58,68 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexCakeEntity.class */
 public class DarkLatexCakeEntity extends Monster {
     public DarkLatexCakeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.DARK_LATEX_CAKE.get(), world);
+        this((EntityType)LatexModEntities.DARK_LATEX_CAKE.get(), world);
     }
 
     public DarkLatexCakeEntity(EntityType<DarkLatexCakeEntity> type, Level world) {
         super(type, world);
         this.xpReward = 6;
-        setNoAi(false);
+        this.setNoAi(false);
     }
 
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexCakeEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexCakeEntity$1.class */
-    class AnonymousClass1 extends MeleeAttackGoal {
-        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-
-        public boolean canUse() {
-            DarkLatexCakeEntity.this.getX();
-            DarkLatexCakeEntity.this.getY();
-            DarkLatexCakeEntity.this.getZ();
-            Entity entity = DarkLatexCakeEntity.this;
-            Level level = DarkLatexCakeEntity.this.level;
-            return canUse() && TargetwearingmaskProcedure.execute(entity);
-        }
-    }
-
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new AnonymousClass1(this, 1.3d, false));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(3, new AnonymousClass2(this, LivingEntity.class, false, false));
-        this.targetSelector.addGoal(4, new AnonymousClass3(this, LivingEntity.class, true, false));
-        this.targetSelector.addGoal(5, new AnonymousClass4(this, LivingEntity.class, true, false));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.3, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+
+            public boolean canUse() {
+                double x = DarkLatexCakeEntity.this.getX();
+                double y = DarkLatexCakeEntity.this.getY();
+                double z = DarkLatexCakeEntity.this.getZ();
+                Entity entity = DarkLatexCakeEntity.this;
+                Level world = DarkLatexCakeEntity.this.level;
+                return super.canUse() && TargetwearingmaskProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, LivingEntity.class, false, false) {
+            public boolean canUse() {
+                double x = DarkLatexCakeEntity.this.getX();
+                double y = DarkLatexCakeEntity.this.getY();
+                double z = DarkLatexCakeEntity.this.getZ();
+                Entity entity = DarkLatexCakeEntity.this;
+                Level world = DarkLatexCakeEntity.this.level;
+                return super.canUse() && CheckSlimelingProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, true, false) {
+            public boolean canUse() {
+                double x = DarkLatexCakeEntity.this.getX();
+                double y = DarkLatexCakeEntity.this.getY();
+                double z = DarkLatexCakeEntity.this.getZ();
+                Entity entity = DarkLatexCakeEntity.this;
+                Level world = DarkLatexCakeEntity.this.level;
+                return super.canUse() && CheckGoodProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, true, false) {
+            public boolean canUse() {
+                double x = DarkLatexCakeEntity.this.getX();
+                double y = DarkLatexCakeEntity.this.getY();
+                double z = DarkLatexCakeEntity.this.getZ();
+                Entity entity = DarkLatexCakeEntity.this;
+                Level world = DarkLatexCakeEntity.this.level;
+                return super.canUse() && CheckSlimelingProcedure.execute(entity);
+            }
+        });
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Player.class, true, false));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, WanderingTrader.class, true, false));
         this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Villager.class, true, false));
@@ -113,63 +135,12 @@ public class DarkLatexCakeEntity extends Monster {
         this.targetSelector.addGoal(18, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
         this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
         this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.goalSelector.addGoal(21, new BreakDoorGoal(this, e -> {
+        this.goalSelector.addGoal(21, new BreakDoorGoal(this, (e) -> {
             return true;
         }));
-        this.goalSelector.addGoal(22, new RandomStrollGoal(this, 0.8d));
+        this.goalSelector.addGoal(22, new RandomStrollGoal(this, 0.8));
         this.goalSelector.addGoal(23, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(24, new FloatGoal(this));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexCakeEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexCakeEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            DarkLatexCakeEntity.this.getX();
-            DarkLatexCakeEntity.this.getY();
-            DarkLatexCakeEntity.this.getZ();
-            Entity entity = DarkLatexCakeEntity.this;
-            Level level = DarkLatexCakeEntity.this.level;
-            return canUse() && CheckSlimelingProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexCakeEntity$3  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexCakeEntity$3.class */
-    class AnonymousClass3 extends NearestAttackableTargetGoal {
-        AnonymousClass3(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            DarkLatexCakeEntity.this.getX();
-            DarkLatexCakeEntity.this.getY();
-            DarkLatexCakeEntity.this.getZ();
-            Entity entity = DarkLatexCakeEntity.this;
-            Level level = DarkLatexCakeEntity.this.level;
-            return canUse() && CheckGoodProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexCakeEntity$4  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexCakeEntity$4.class */
-    class AnonymousClass4 extends NearestAttackableTargetGoal {
-        AnonymousClass4(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            DarkLatexCakeEntity.this.getX();
-            DarkLatexCakeEntity.this.getY();
-            DarkLatexCakeEntity.this.getZ();
-            Entity entity = DarkLatexCakeEntity.this;
-            Level level = DarkLatexCakeEntity.this.level;
-            return canUse() && CheckSlimelingProcedure.execute(entity);
-        }
     }
 
     public MobType getMobType() {
@@ -177,50 +148,62 @@ public class DarkLatexCakeEntity extends Monster {
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
         DarkLatexCakeEntityIsHurtProcedure.execute(this);
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else if (source == DamageSource.CACTUS) {
+            return false;
+        } else if (source == DamageSource.WITHER) {
+            return false;
+        } else {
+            return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        DarklatexEntityDiesProcedure.execute(this.level, getX(), getY(), getZ(), this);
+        super.die(source);
+        DarklatexEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        DarkLatexCakeThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
+        super.awardKillScore(entity, score, damageSource);
+        DarkLatexCakeThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity, this);
     }
 
     public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
+        super.playerTouch(sourceentity);
         DarkLatexCakePlayerCollidesWithThisEntityProcedure.execute(this, sourceentity);
     }
 
     public static void init() {
-        DungeonHooks.addDungeonMob((EntityType) LatexModEntities.DARK_LATEX_CAKE.get(), 180);
+        DungeonHooks.addDungeonMob((EntityType)LatexModEntities.DARK_LATEX_CAKE.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.2d).add(Attributes.MAX_HEALTH, 25.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 2.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.2d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.2);
+        builder = builder.add(Attributes.MAX_HEALTH, 25.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 2.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.2);
+        return builder;
     }
 }

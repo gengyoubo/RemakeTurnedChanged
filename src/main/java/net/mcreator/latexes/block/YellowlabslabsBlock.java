@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block;
 
 import java.util.Collections;
@@ -7,16 +12,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/YellowlabslabsBlock.class */
 public class YellowlabslabsBlock extends SlabBlock {
     public YellowlabslabsBlock() {
-        super(BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.2f, 12.5f).friction(0.5f));
+        super(Properties.of(Material.STONE).sound(SoundType.STONE).strength(1.2F, 12.5F).friction(0.5F));
     }
 
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
@@ -24,10 +28,7 @@ public class YellowlabslabsBlock extends SlabBlock {
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack(this, state.getValue(TYPE) == SlabType.DOUBLE ? 2 : 1));
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, state.getValue(TYPE) == SlabType.DOUBLE ? 2 : 1));
     }
 }

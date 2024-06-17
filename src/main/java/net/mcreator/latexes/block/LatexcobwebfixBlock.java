@@ -45,6 +45,7 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 public class LatexcobwebfixBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED;
@@ -56,11 +57,11 @@ public class LatexcobwebfixBlock extends Block implements SimpleWaterloggedBlock
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(WATERLOGGED, false));
     }
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return state.getFluidState().isEmpty();
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 0;
     }
 
@@ -73,11 +74,11 @@ public class LatexcobwebfixBlock extends Block implements SimpleWaterloggedBlock
         return (BlockState)this.defaultBlockState().setValue(WATERLOGGED, flag);
     }
 
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor world, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         if ((Boolean)state.getValue(WATERLOGGED)) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
@@ -97,7 +98,7 @@ public class LatexcobwebfixBlock extends Block implements SimpleWaterloggedBlock
         return BlockPathTypes.STICKY_HONEY;
     }
 
-    public BlockBehaviour.OffsetType getOffsetType() {
+    public BlockBehaviour.@NotNull OffsetType getOffsetType() {
         return OffsetType.XYZ;
     }
 
@@ -110,17 +111,17 @@ public class LatexcobwebfixBlock extends Block implements SimpleWaterloggedBlock
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
 
-    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 80);
     }
 
-    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+    public void tick(@NotNull BlockState blockstate, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
         super.tick(blockstate, world, pos, random);
         int x = pos.getX();
         int y = pos.getY();
@@ -129,7 +130,7 @@ public class LatexcobwebfixBlock extends Block implements SimpleWaterloggedBlock
         world.scheduleTick(pos, this, 80);
     }
 
-    public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Entity entity) {
         super.entityInside(blockstate, world, pos, entity);
         LatexcobwebEntityCollidesInTheBlockProcedure.execute(entity);
     }

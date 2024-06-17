@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import net.mcreator.latexes.init.LatexModTabs;
@@ -11,10 +16,9 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/TabletItem.class */
 public class TabletItem extends Item {
     public TabletItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1).rarity(Rarity.COMMON));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(1).rarity(Rarity.COMMON));
     }
 
     public UseAnim getUseAnimation(ItemStack itemstack) {
@@ -22,11 +26,11 @@ public class TabletItem extends Item {
     }
 
     public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = use(world, entity, hand);
-        ItemStack itemStack = (ItemStack) ar.getObject();
-        entity.getX();
-        entity.getY();
-        entity.getZ();
+        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
+        ItemStack itemstack = (ItemStack)ar.getObject();
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
         TabletRightClickedInAirProcedure.execute(entity);
         return ar;
     }

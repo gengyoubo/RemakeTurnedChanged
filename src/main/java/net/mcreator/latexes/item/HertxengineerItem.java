@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import net.mcreator.latexes.init.LatexModItems;
@@ -19,57 +24,48 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/HertxengineerItem.class */
 public abstract class HertxengineerItem extends ArmorItem {
-
-    /* renamed from: net.mcreator.latexes.item.HertxengineerItem$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/HertxengineerItem$1.class */
-    class AnonymousClass1 implements ArmorMaterial {
-        AnonymousClass1() {
-        }
-
-        public int getDurabilityForSlot(EquipmentSlot slot) {
-            return new int[]{13, 15, 16, 11}[slot.getIndex()] * 40;
-        }
-
-        public int getDefenseForSlot(EquipmentSlot slot) {
-            return new int[]{2, 1, 5, 2}[slot.getIndex()];
-        }
-
-        public int getEnchantmentValue() {
-            return 12;
-        }
-
-        public SoundEvent getEquipSound() {
-            return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.armor.equip_iron"));
-        }
-
-        public Ingredient getRepairIngredient() {
-            return Ingredient.of(new ItemStack[]{new ItemStack(Items.IRON_INGOT), new ItemStack((ItemLike) LatexModItems.BATTERY.get()), new ItemStack(Items.REDSTONE)});
-        }
-
-        public String getName() {
-            return "hertxengineer";
-        }
-
-        public float getToughness() {
-            return 0.0f;
-        }
-
-        public float getKnockbackResistance() {
-            return 0.0f;
-        }
-    }
-
     public HertxengineerItem(EquipmentSlot slot, Item.Properties properties) {
-        super(new AnonymousClass1(), slot, properties);
+        super(new ArmorMaterial() {
+            public int getDurabilityForSlot(@NotNull EquipmentSlot slot) {
+                return (new int[]{13, 15, 16, 11})[slot.getIndex()] * 40;
+            }
+
+            public int getDefenseForSlot(@NotNull EquipmentSlot slot) {
+                return (new int[]{2, 1, 5, 2})[slot.getIndex()];
+            }
+
+            public int getEnchantmentValue() {
+                return 12;
+            }
+
+            public @NotNull SoundEvent getEquipSound() {
+                return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.armor.equip_iron"));
+            }
+
+            public @NotNull Ingredient getRepairIngredient() {
+                return Ingredient.of(new ItemStack[]{new ItemStack(Items.IRON_INGOT), new ItemStack((ItemLike)LatexModItems.BATTERY.get()), new ItemStack(Items.REDSTONE)});
+            }
+
+            public @NotNull String getName() {
+                return "hertxengineer";
+            }
+
+            public float getToughness() {
+                return 0.0F;
+            }
+
+            public float getKnockbackResistance() {
+                return 0.0F;
+            }
+        }, slot, properties);
     }
 
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/HertxengineerItem$Helmet.class */
-    public static class Helmet extends HertxengineerItem {
-        public Helmet() {
-            super(EquipmentSlot.HEAD, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
+    public static class Boots extends HertxengineerItem {
+        public Boots() {
+            super(EquipmentSlot.FEET, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
         }
 
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
@@ -77,14 +73,23 @@ public abstract class HertxengineerItem extends ArmorItem {
         }
 
         public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
-            HertxengineerHelmetTickEventProcedure.execute(entity);
+            HertxengineerBootsTickEventProcedure.execute(entity);
         }
     }
 
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/HertxengineerItem$Chestplate.class */
+    public static class Leggings extends HertxengineerItem {
+        public Leggings() {
+            super(EquipmentSlot.LEGS, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
+        }
+
+        public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+            return "latex:textures/models/armor/drone_hertx_armor__layer_2.png";
+        }
+    }
+
     public static class Chestplate extends HertxengineerItem {
         public Chestplate() {
-            super(EquipmentSlot.CHEST, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
+            super(EquipmentSlot.CHEST, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
         }
 
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
@@ -96,21 +101,9 @@ public abstract class HertxengineerItem extends ArmorItem {
         }
     }
 
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/HertxengineerItem$Leggings.class */
-    public static class Leggings extends HertxengineerItem {
-        public Leggings() {
-            super(EquipmentSlot.LEGS, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
-        }
-
-        public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return "latex:textures/models/armor/drone_hertx_armor__layer_2.png";
-        }
-    }
-
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/HertxengineerItem$Boots.class */
-    public static class Boots extends HertxengineerItem {
-        public Boots() {
-            super(EquipmentSlot.FEET, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
+    public static class Helmet extends HertxengineerItem {
+        public Helmet() {
+            super(EquipmentSlot.HEAD, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
         }
 
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
@@ -118,7 +111,7 @@ public abstract class HertxengineerItem extends ArmorItem {
         }
 
         public void onArmorTick(ItemStack itemstack, Level world, Player entity) {
-            HertxengineerBootsTickEventProcedure.execute(entity);
+            HertxengineerHelmetTickEventProcedure.execute(entity);
         }
     }
 }

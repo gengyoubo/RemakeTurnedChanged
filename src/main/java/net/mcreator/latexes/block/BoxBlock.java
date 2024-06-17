@@ -40,6 +40,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
+import org.jetbrains.annotations.NotNull;
 
 public class BoxBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING;
@@ -49,12 +50,12 @@ public class BoxBlock extends Block implements EntityBlock {
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Random Loot"));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 15;
     }
 
@@ -66,11 +67,11 @@ public class BoxBlock extends Block implements EntityBlock {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
@@ -83,17 +84,17 @@ public class BoxBlock extends Block implements EntityBlock {
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModBlocks.BOX_INVENTORY.get()));
     }
 
-    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
         BoxBlockAddedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
-    public MenuProvider getMenuProvider(BlockState state, Level worldIn, BlockPos pos) {
+    public MenuProvider getMenuProvider(@NotNull BlockState state, Level worldIn, @NotNull BlockPos pos) {
         BlockEntity tileEntity = worldIn.getBlockEntity(pos);
         MenuProvider var10000;
         if (tileEntity instanceof MenuProvider menuProvider) {
@@ -105,17 +106,17 @@ public class BoxBlock extends Block implements EntityBlock {
         return var10000;
     }
 
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new BoxBlockEntity(pos, state);
     }
 
-    public boolean triggerEvent(BlockState state, Level world, BlockPos pos, int eventID, int eventParam) {
+    public boolean triggerEvent(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, int eventID, int eventParam) {
         super.triggerEvent(state, world, pos, eventID, eventParam);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         return blockEntity == null ? false : blockEntity.triggerEvent(eventID, eventParam);
     }
 
-    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, @NotNull Level world, @NotNull BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof BoxBlockEntity) {
@@ -129,11 +130,11 @@ public class BoxBlock extends Block implements EntityBlock {
 
     }
 
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    public boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
-    public int getAnalogOutputSignal(BlockState blockState, Level world, BlockPos pos) {
+    public int getAnalogOutputSignal(@NotNull BlockState blockState, Level world, @NotNull BlockPos pos) {
         BlockEntity tileentity = world.getBlockEntity(pos);
         if (tileentity instanceof BoxBlockEntity be) {
             return AbstractContainerMenu.getRedstoneSignalFromContainer(be);

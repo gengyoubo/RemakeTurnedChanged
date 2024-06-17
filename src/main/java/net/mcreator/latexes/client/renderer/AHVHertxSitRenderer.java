@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/AHVHertxSitRenderer.class */
 public class AHVHertxSitRenderer extends MobRenderer<AHVHertxSitEntity, ModelAHV_hertx_sit_model<AHVHertxSitEntity>> {
@@ -19,7 +20,7 @@ public class AHVHertxSitRenderer extends MobRenderer<AHVHertxSitEntity, ModelAHV
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/ahv_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class AHVHertxSitRenderer extends MobRenderer<AHVHertxSitEntity, ModelAHV
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(AHVHertxSitEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull AHVHertxSitEntity entity) {
         return new ResourceLocation("latex:textures/entities/ahv_texture.png");
     }
 }

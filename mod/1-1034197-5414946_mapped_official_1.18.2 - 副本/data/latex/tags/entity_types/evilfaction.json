@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "latex:evil_military",
+    "latex:evil_scientist",
+    "latex:prisionermilitia",
+    "latex:prisioner_militia_melee",
+    "latex:ts_cdrone",
+    "latex:evil_sniper",
+    "latex:tsc_hunter",
+    "latex:tsc_outsider",
+    "latex:tsc_outsider_gunner",
+    "latex:tsc_berserk"
+  ]
+}

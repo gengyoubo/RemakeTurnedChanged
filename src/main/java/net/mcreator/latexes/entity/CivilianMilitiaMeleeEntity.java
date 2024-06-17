@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import javax.annotation.Nullable;
@@ -40,17 +45,16 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/CivilianMilitiaMeleeEntity.class */
 public class CivilianMilitiaMeleeEntity extends PathfinderMob {
     public CivilianMilitiaMeleeEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.CIVILIAN_MILITIA_MELEE.get(), world);
+        this((EntityType)LatexModEntities.CIVILIAN_MILITIA_MELEE.get(), world);
     }
 
     public CivilianMilitiaMeleeEntity(EntityType<CivilianMilitiaMeleeEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -58,69 +62,53 @@ public class CivilianMilitiaMeleeEntity extends PathfinderMob {
     }
 
     protected void registerGoals() {
-        registerGoals();
+        super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Monster.class, true, false));
-        this.targetSelector.addGoal(2, new AnonymousClass1(this, PathfinderMob.class, true, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, PathfinderMob.class, true, false) {
+            public boolean canUse() {
+                double x = CivilianMilitiaMeleeEntity.this.getX();
+                double y = CivilianMilitiaMeleeEntity.this.getY();
+                double z = CivilianMilitiaMeleeEntity.this.getZ();
+                Entity entity = CivilianMilitiaMeleeEntity.this;
+                Level world = CivilianMilitiaMeleeEntity.this.level;
+                return super.canUse() && CheckEvilProcedure.execute(entity);
+            }
+
+            public boolean canContinueToUse() {
+                double x = CivilianMilitiaMeleeEntity.this.getX();
+                double y = CivilianMilitiaMeleeEntity.this.getY();
+                double z = CivilianMilitiaMeleeEntity.this.getZ();
+                Entity entity = CivilianMilitiaMeleeEntity.this;
+                Level world = CivilianMilitiaMeleeEntity.this.level;
+                return super.canContinueToUse() && CheckEvilProcedure.execute(entity);
+            }
+        });
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, EvilMilitaryEntity.class, true, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, EvilSniperEntity.class, true, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, PrisionermilitiaEntity.class, true, false));
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, PrisionerMilitiaMeleeEntity.class, true, false));
-        this.goalSelector.addGoal(7, new AnonymousClass2(this, 1.0d, false));
-        this.targetSelector.addGoal(8, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(7, new MeleeAttackGoal(this, 1.0, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+        });
+        this.targetSelector.addGoal(8, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(10, new AvoidEntityGoal(this, Monster.class, 9.0f, 1.2d, 0.8d));
-        this.goalSelector.addGoal(11, new AvoidEntityGoal(this, EvilMilitaryEntity.class, 8.0f, 1.2d, 0.8d));
-        this.goalSelector.addGoal(12, new AvoidEntityGoal(this, EvilSniperEntity.class, 8.0f, 1.2d, 0.8d));
-        this.goalSelector.addGoal(13, new AvoidEntityGoal(this, PrisionermilitiaEntity.class, 8.0f, 1.2d, 0.8d));
-        this.goalSelector.addGoal(14, new AvoidEntityGoal(this, PrisionerMilitiaMeleeEntity.class, 8.0f, 1.2d, 0.8d));
-        this.goalSelector.addGoal(15, new AvoidEntityGoal(this, SlimelingEntity.class, 9.0f, 1.2d, 0.8d));
-        this.goalSelector.addGoal(16, new MoveBackToVillageGoal(this, 0.6d, false));
-        this.goalSelector.addGoal(17, new LookAtPlayerGoal(this, Player.class, 6.0f));
-        this.goalSelector.addGoal(18, new LookAtPlayerGoal(this, MilitaryEntity.class, 6.0f));
-        this.goalSelector.addGoal(19, new LookAtPlayerGoal(this, ScientistEntity.class, 6.0f));
-        this.goalSelector.addGoal(20, new LookAtPlayerGoal(this, EvilScientistEntity.class, 6.0f));
-        this.goalSelector.addGoal(21, new RandomStrollGoal(this, 0.6d));
+        this.goalSelector.addGoal(10, new AvoidEntityGoal(this, Monster.class, 9.0F, 1.2, 0.8));
+        this.goalSelector.addGoal(11, new AvoidEntityGoal(this, EvilMilitaryEntity.class, 8.0F, 1.2, 0.8));
+        this.goalSelector.addGoal(12, new AvoidEntityGoal(this, EvilSniperEntity.class, 8.0F, 1.2, 0.8));
+        this.goalSelector.addGoal(13, new AvoidEntityGoal(this, PrisionermilitiaEntity.class, 8.0F, 1.2, 0.8));
+        this.goalSelector.addGoal(14, new AvoidEntityGoal(this, PrisionerMilitiaMeleeEntity.class, 8.0F, 1.2, 0.8));
+        this.goalSelector.addGoal(15, new AvoidEntityGoal(this, SlimelingEntity.class, 9.0F, 1.2, 0.8));
+        this.goalSelector.addGoal(16, new MoveBackToVillageGoal(this, 0.6, false));
+        this.goalSelector.addGoal(17, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(18, new LookAtPlayerGoal(this, MilitaryEntity.class, 6.0F));
+        this.goalSelector.addGoal(19, new LookAtPlayerGoal(this, ScientistEntity.class, 6.0F));
+        this.goalSelector.addGoal(20, new LookAtPlayerGoal(this, EvilScientistEntity.class, 6.0F));
+        this.goalSelector.addGoal(21, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(22, new OpenDoorGoal(this, false));
         this.goalSelector.addGoal(23, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(24, new FloatGoal(this));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.CivilianMilitiaMeleeEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/CivilianMilitiaMeleeEntity$1.class */
-    class AnonymousClass1 extends NearestAttackableTargetGoal {
-        AnonymousClass1(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            CivilianMilitiaMeleeEntity.this.getX();
-            CivilianMilitiaMeleeEntity.this.getY();
-            CivilianMilitiaMeleeEntity.this.getZ();
-            Entity entity = CivilianMilitiaMeleeEntity.this;
-            Level level = CivilianMilitiaMeleeEntity.this.level;
-            return canUse() && CheckEvilProcedure.execute(entity);
-        }
-
-        public boolean canContinueToUse() {
-            CivilianMilitiaMeleeEntity.this.getX();
-            CivilianMilitiaMeleeEntity.this.getY();
-            CivilianMilitiaMeleeEntity.this.getZ();
-            Entity entity = CivilianMilitiaMeleeEntity.this;
-            Level level = CivilianMilitiaMeleeEntity.this.level;
-            return canContinueToUse() && CheckEvilProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.CivilianMilitiaMeleeEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/CivilianMilitiaMeleeEntity$2.class */
-    class AnonymousClass2 extends MeleeAttackGoal {
-        AnonymousClass2(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
     }
 
     public MobType getMobType() {
@@ -132,19 +120,19 @@ public class CivilianMilitiaMeleeEntity extends PathfinderMob {
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.ambient")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.ambient")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.death"));
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         CivilianMilitiaMeleeOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
@@ -153,6 +141,12 @@ public class CivilianMilitiaMeleeEntity extends PathfinderMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 2.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
+        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 2.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "latex:custom/shotgun_remaster",
+  "textures": {
+    "1": "latex:blocks/shotgun_remaster_texture",
+    "particle": "latex:items/dev_gun"
+  }
+}

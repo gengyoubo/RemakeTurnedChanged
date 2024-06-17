@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import net.mcreator.latexes.init.LatexModTabs;
@@ -11,57 +16,48 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/EvilBeretItem.class */
 public abstract class EvilBeretItem extends ArmorItem {
-
-    /* renamed from: net.mcreator.latexes.item.EvilBeretItem$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/EvilBeretItem$1.class */
-    class AnonymousClass1 implements ArmorMaterial {
-        AnonymousClass1() {
-        }
-
-        public int getDurabilityForSlot(EquipmentSlot slot) {
-            return new int[]{13, 15, 16, 11}[slot.getIndex()] * 20;
-        }
-
-        public int getDefenseForSlot(EquipmentSlot slot) {
-            return new int[]{2, 5, 6, 1}[slot.getIndex()];
-        }
-
-        public int getEnchantmentValue() {
-            return 9;
-        }
-
-        public SoundEvent getEquipSound() {
-            return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
-        }
-
-        public Ingredient getRepairIngredient() {
-            return Ingredient.EMPTY;
-        }
-
-        public String getName() {
-            return "evil_beret";
-        }
-
-        public float getToughness() {
-            return 0.0f;
-        }
-
-        public float getKnockbackResistance() {
-            return 0.0f;
-        }
-    }
-
     public EvilBeretItem(EquipmentSlot slot, Item.Properties properties) {
-        super(new AnonymousClass1(), slot, properties);
+        super(new ArmorMaterial() {
+            public int getDurabilityForSlot(@NotNull EquipmentSlot slot) {
+                return (new int[]{13, 15, 16, 11})[slot.getIndex()] * 20;
+            }
+
+            public int getDefenseForSlot(@NotNull EquipmentSlot slot) {
+                return (new int[]{2, 5, 6, 1})[slot.getIndex()];
+            }
+
+            public int getEnchantmentValue() {
+                return 9;
+            }
+
+            public @NotNull SoundEvent getEquipSound() {
+                return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(""));
+            }
+
+            public @NotNull Ingredient getRepairIngredient() {
+                return Ingredient.EMPTY;
+            }
+
+            public @NotNull String getName() {
+                return "evil_beret";
+            }
+
+            public float getToughness() {
+                return 0.0F;
+            }
+
+            public float getKnockbackResistance() {
+                return 0.0F;
+            }
+        }, slot, properties);
     }
 
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/EvilBeretItem$Helmet.class */
     public static class Helmet extends EvilBeretItem {
         public Helmet() {
-            super(EquipmentSlot.HEAD, new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS));
+            super(EquipmentSlot.HEAD, (new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS));
         }
 
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {

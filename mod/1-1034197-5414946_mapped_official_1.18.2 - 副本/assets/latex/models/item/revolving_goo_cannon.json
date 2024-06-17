@@ -1,0 +1,7 @@
+{
+  "parent": "latex:custom/revolving_goo_cannon",
+  "textures": {
+    "0": "latex:blocks/revolving_goo_cannon_texture",
+    "particle": "latex:items/dark_latex_launcher"
+  }
+}

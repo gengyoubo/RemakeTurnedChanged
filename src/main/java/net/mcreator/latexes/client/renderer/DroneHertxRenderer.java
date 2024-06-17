@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/DroneHertxRenderer.class */
 public class DroneHertxRenderer extends MobRenderer<DroneHertxEntity, ModelDrone_Hertx<DroneHertxEntity>> {
@@ -19,7 +20,7 @@ public class DroneHertxRenderer extends MobRenderer<DroneHertxEntity, ModelDrone
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/drone_hertx_texture_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class DroneHertxRenderer extends MobRenderer<DroneHertxEntity, ModelDrone
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(DroneHertxEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull DroneHertxEntity entity) {
         return new ResourceLocation("latex:textures/entities/drone_hertx_texture.png");
     }
 }

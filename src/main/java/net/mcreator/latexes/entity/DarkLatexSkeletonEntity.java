@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import net.mcreator.latexes.init.LatexModEntities;
@@ -19,7 +24,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
@@ -56,50 +60,68 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexSkeletonEntity.class */
 public class DarkLatexSkeletonEntity extends Monster {
     public DarkLatexSkeletonEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get(), world);
+        this((EntityType)LatexModEntities.DARK_LATEX_SKELETON.get(), world);
     }
 
     public DarkLatexSkeletonEntity(EntityType<DarkLatexSkeletonEntity> type, Level world) {
         super(type, world);
         this.xpReward = 8;
-        setNoAi(false);
+        this.setNoAi(false);
     }
 
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexSkeletonEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexSkeletonEntity$1.class */
-    class AnonymousClass1 extends MeleeAttackGoal {
-        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-
-        public boolean canUse() {
-            DarkLatexSkeletonEntity.this.getX();
-            DarkLatexSkeletonEntity.this.getY();
-            DarkLatexSkeletonEntity.this.getZ();
-            Entity entity = DarkLatexSkeletonEntity.this;
-            Level level = DarkLatexSkeletonEntity.this.level;
-            return canUse() && TargetwearingmaskProcedure.execute(entity);
-        }
-    }
-
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new AnonymousClass1(this, 1.1d, true));
-        this.targetSelector.addGoal(2, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.targetSelector.addGoal(3, new AnonymousClass2(this, LivingEntity.class, false, true));
-        this.targetSelector.addGoal(4, new AnonymousClass3(this, LivingEntity.class, true, false));
-        this.targetSelector.addGoal(5, new AnonymousClass4(this, LivingEntity.class, true, false));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.1, true) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+
+            public boolean canUse() {
+                double x = DarkLatexSkeletonEntity.this.getX();
+                double y = DarkLatexSkeletonEntity.this.getY();
+                double z = DarkLatexSkeletonEntity.this.getZ();
+                Entity entity = DarkLatexSkeletonEntity.this;
+                Level world = DarkLatexSkeletonEntity.this.level;
+                return super.canUse() && TargetwearingmaskProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, LivingEntity.class, false, true) {
+            public boolean canUse() {
+                double x = DarkLatexSkeletonEntity.this.getX();
+                double y = DarkLatexSkeletonEntity.this.getY();
+                double z = DarkLatexSkeletonEntity.this.getZ();
+                Entity entity = DarkLatexSkeletonEntity.this;
+                Level world = DarkLatexSkeletonEntity.this.level;
+                return super.canUse() && CheckSlimelingProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, LivingEntity.class, true, false) {
+            public boolean canUse() {
+                double x = DarkLatexSkeletonEntity.this.getX();
+                double y = DarkLatexSkeletonEntity.this.getY();
+                double z = DarkLatexSkeletonEntity.this.getZ();
+                Entity entity = DarkLatexSkeletonEntity.this;
+                Level world = DarkLatexSkeletonEntity.this.level;
+                return super.canUse() && CheckGoodProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, LivingEntity.class, true, false) {
+            public boolean canUse() {
+                double x = DarkLatexSkeletonEntity.this.getX();
+                double y = DarkLatexSkeletonEntity.this.getY();
+                double z = DarkLatexSkeletonEntity.this.getZ();
+                Entity entity = DarkLatexSkeletonEntity.this;
+                Level world = DarkLatexSkeletonEntity.this.level;
+                return super.canUse() && CheckEvilProcedure.execute(entity);
+            }
+        });
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Skeleton.class, false, true));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, WitherSkeleton.class, false, true));
         this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Player.class, true, false));
@@ -116,83 +138,24 @@ public class DarkLatexSkeletonEntity extends Monster {
         this.targetSelector.addGoal(19, new NearestAttackableTargetGoal(this, ZombieVillager.class, true, false));
         this.targetSelector.addGoal(20, new NearestAttackableTargetGoal(this, Piglin.class, true, false));
         this.targetSelector.addGoal(21, new NearestAttackableTargetGoal(this, PiglinBrute.class, true, false));
-        this.goalSelector.addGoal(22, new BreakDoorGoal(this, e -> {
+        this.goalSelector.addGoal(22, new BreakDoorGoal(this, (e) -> {
             return true;
         }));
-        this.goalSelector.addGoal(23, new RandomStrollGoal(this, 0.8d));
-        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, DarkLatexDragonEntity.class, 7.0f));
-        this.goalSelector.addGoal(25, new LeapAtTargetGoal(this, 0.5f));
-        this.goalSelector.addGoal(26, new AnonymousClass5(this, LivingEntity.class, 4.0f));
+        this.goalSelector.addGoal(23, new RandomStrollGoal(this, 0.8));
+        this.goalSelector.addGoal(24, new LookAtPlayerGoal(this, DarkLatexDragonEntity.class, 7.0F));
+        this.goalSelector.addGoal(25, new LeapAtTargetGoal(this, 0.5F));
+        this.goalSelector.addGoal(26, new LookAtPlayerGoal(this, LivingEntity.class, 4.0F) {
+            public boolean canUse() {
+                double x = DarkLatexSkeletonEntity.this.getX();
+                double y = DarkLatexSkeletonEntity.this.getY();
+                double z = DarkLatexSkeletonEntity.this.getZ();
+                Entity entity = DarkLatexSkeletonEntity.this;
+                Level world = DarkLatexSkeletonEntity.this.level;
+                return super.canUse() && CheckentityislatexProcedure.execute(entity);
+            }
+        });
         this.goalSelector.addGoal(27, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(28, new FloatGoal(this));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexSkeletonEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexSkeletonEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            DarkLatexSkeletonEntity.this.getX();
-            DarkLatexSkeletonEntity.this.getY();
-            DarkLatexSkeletonEntity.this.getZ();
-            Entity entity = DarkLatexSkeletonEntity.this;
-            Level level = DarkLatexSkeletonEntity.this.level;
-            return canUse() && CheckSlimelingProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexSkeletonEntity$3  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexSkeletonEntity$3.class */
-    class AnonymousClass3 extends NearestAttackableTargetGoal {
-        AnonymousClass3(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            DarkLatexSkeletonEntity.this.getX();
-            DarkLatexSkeletonEntity.this.getY();
-            DarkLatexSkeletonEntity.this.getZ();
-            Entity entity = DarkLatexSkeletonEntity.this;
-            Level level = DarkLatexSkeletonEntity.this.level;
-            return canUse() && CheckGoodProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexSkeletonEntity$4  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexSkeletonEntity$4.class */
-    class AnonymousClass4 extends NearestAttackableTargetGoal {
-        AnonymousClass4(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            DarkLatexSkeletonEntity.this.getX();
-            DarkLatexSkeletonEntity.this.getY();
-            DarkLatexSkeletonEntity.this.getZ();
-            Entity entity = DarkLatexSkeletonEntity.this;
-            Level level = DarkLatexSkeletonEntity.this.level;
-            return canUse() && CheckEvilProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.DarkLatexSkeletonEntity$5  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/DarkLatexSkeletonEntity$5.class */
-    class AnonymousClass5 extends LookAtPlayerGoal {
-        AnonymousClass5(Mob arg0, Class cls, float arg2) {
-            super(arg0, cls, arg2);
-        }
-
-        public boolean canUse() {
-            DarkLatexSkeletonEntity.this.getX();
-            DarkLatexSkeletonEntity.this.getY();
-            DarkLatexSkeletonEntity.this.getZ();
-            Entity entity = DarkLatexSkeletonEntity.this;
-            Level level = DarkLatexSkeletonEntity.this.level;
-            return canUse() && CheckentityislatexProcedure.execute(entity);
-        }
     }
 
     public MobType getMobType() {
@@ -200,43 +163,52 @@ public class DarkLatexSkeletonEntity extends Monster {
     }
 
     protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
-        dropCustomDeathLoot(source, looting, recentlyHitIn);
-        spawnAtLocation(new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
+        this.spawnAtLocation(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.skeleton.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.skeleton.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.skeleton.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.skeleton.death"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else {
+            return source == DamageSource.CACTUS ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        DarklatexEntityDiesProcedure.execute(this.level, getX(), getY(), getZ(), this);
+        super.die(source);
+        DarklatexEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), this);
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        DarkLatexSkeletonThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity, this);
+        super.awardKillScore(entity, score, damageSource);
+        DarkLatexSkeletonThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity, this);
     }
 
     public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.MAX_HEALTH, 24.0d).add(Attributes.ARMOR, 2.5d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.4d).add(Attributes.ATTACK_KNOCKBACK, 0.1d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+        builder = builder.add(Attributes.MAX_HEALTH, 24.0);
+        builder = builder.add(Attributes.ARMOR, 2.5);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.4);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.1);
+        return builder;
     }
 }
