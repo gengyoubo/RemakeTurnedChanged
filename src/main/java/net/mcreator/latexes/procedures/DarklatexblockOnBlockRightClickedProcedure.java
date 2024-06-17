@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.procedures;
 
 import com.google.common.collect.UnmodifiableIterator;
@@ -16,38 +21,62 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/DarklatexblockOnBlockRightClickedProcedure.class */
 public class DarklatexblockOnBlockRightClickedProcedure {
+    public DarklatexblockOnBlockRightClickedProcedure() {
+    }
+
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
         if (entity != null) {
-            if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getOffhandItem() : ItemStack.EMPTY).getItem() != Items.BONE_MEAL) {
-                if ((entity instanceof LivingEntity ? ((LivingEntity) entity).getMainHandItem() : ItemStack.EMPTY).getItem() != Items.BONE_MEAL) {
+            ItemStack var10000;
+            if (entity instanceof LivingEntity) {
+                LivingEntity _livEnt = (LivingEntity)entity;
+                var10000 = _livEnt.getOffhandItem();
+            } else {
+                var10000 = ItemStack.EMPTY;
+            }
+
+            if (var10000.getItem() != Items.BONE_MEAL) {
+                if (entity instanceof LivingEntity) {
+                    LivingEntity _livEnt = (LivingEntity)entity;
+                    var10000 = _livEnt.getMainHandItem();
+                } else {
+                    var10000 = ItemStack.EMPTY;
+                }
+
+                if (var10000.getItem() != Items.BONE_MEAL) {
                     return;
                 }
             }
+
             if (world instanceof ServerLevel) {
-                ((ServerLevel) world).sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0d, 2.0d, 1.0d, 1.0d);
+                ServerLevel _level = (ServerLevel)world;
+                _level.sendParticles(ParticleTypes.HAPPY_VILLAGER, x, y, z, 5, 1.0, 2.0, 1.0, 1.0);
             }
+
             if (entity instanceof Player) {
-                Player _player = (Player) entity;
+                Player _player = (Player)entity;
                 ItemStack _stktoremove = new ItemStack(Items.BONE_MEAL);
-                _player.getInventory().clearOrCountMatchingItems(p -> {
+                _player.getInventory().clearOrCountMatchingItems((p) -> {
                     return _stktoremove.getItem() == p.getItem();
                 }, 1, _player.inventoryMenu.getCraftSlots());
             }
+
             BlockPos _bp = new BlockPos(x, y, z);
-            BlockState _bs = ((Block) LatexModBlocks.DARKLATEXBLOCKHARMLESS.get()).defaultBlockState();
-            UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-            while (it.hasNext()) {
-                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                if (!(_property == null || _bs.getValue(_property) == null)) {
+            BlockState _bs = ((Block)LatexModBlocks.DARKLATEXBLOCKHARMLESS.get()).defaultBlockState();
+            BlockState _bso = world.getBlockState(_bp);
+            UnmodifiableIterator var13 = _bso.getValues().entrySet().iterator();
+
+            while(var13.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry)var13.next();
+                Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
+                if (_property != null && _bs.getValue(_property) != null) {
                     try {
-                        _bs = (BlockState) _bs.setValue(_property, entry.getValue());
-                    } catch (Exception e) {
+                        _bs = (BlockState)_bs.setValue(_property, (Comparable)entry.getValue());
+                    } catch (Exception var17) {
                     }
                 }
             }
+
             world.setBlock(_bp, _bs, 3);
         }
     }

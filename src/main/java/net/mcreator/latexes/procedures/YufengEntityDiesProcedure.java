@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.procedures;
 
 import com.google.common.collect.UnmodifiableIterator;
@@ -16,36 +21,38 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/procedures/YufengEntityDiesProcedure.class */
 public class YufengEntityDiesProcedure {
+    public YufengEntityDiesProcedure() {
+    }
+
     public static void execute(LevelAccessor world, double x, double y, double z) {
-        if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK)) {
-            if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.BEDROCK)) {
-                if (!(world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.CAVE_AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.AIR || world.getBlockState(new BlockPos(x, y - 1.0d, z)).getBlock() == Blocks.VOID_AIR)) {
-                    BlockPos _bp = new BlockPos(x, y, z);
-                    BlockState _bs = ((Block) LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState();
-                    UnmodifiableIterator it = world.getBlockState(_bp).getValues().entrySet().iterator();
-                    while (it.hasNext()) {
-                        Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry) it.next();
-                        Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());
-                        if (!(_property == null || _bs.getValue(_property) == null)) {
-                            try {
-                                _bs = (BlockState) _bs.setValue(_property, entry.getValue());
-                            } catch (Exception e) {
-                            }
-                        }
+        if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXESLEAVEBLOCK) && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != Blocks.BEDROCK && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != Blocks.CAVE_AIR && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != Blocks.AIR && world.getBlockState(new BlockPos(x, y - 1.0, z)).getBlock() != Blocks.VOID_AIR) {
+            BlockPos _bp = new BlockPos(x, y, z);
+            BlockState _bs = ((Block)LatexModBlocks.DARKLATEXCARPET.get()).defaultBlockState();
+            BlockState _bso = world.getBlockState(_bp);
+            UnmodifiableIterator var10 = _bso.getValues().entrySet().iterator();
+
+            while(var10.hasNext()) {
+                Map.Entry<Property<?>, Comparable<?>> entry = (Map.Entry)var10.next();
+                Property _property = _bs.getBlock().getStateDefinition().getProperty(((Property)entry.getKey()).getName());
+                if (_property != null && _bs.getValue(_property) != null) {
+                    try {
+                        _bs = (BlockState)_bs.setValue(_property, (Comparable)entry.getValue());
+                    } catch (Exception var14) {
                     }
-                    world.setBlock(_bp, _bs, 3);
                 }
             }
+
+            world.setBlock(_bp, _bs, 3);
         }
-        if (Math.random() < 0.01d && (world instanceof Level)) {
-            Level _level = (Level) world;
+
+        if (Math.random() < 0.01 && world instanceof Level _level) {
             if (!_level.isClientSide()) {
-                ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike) LatexModItems.YUFENGBODY_CHESTPLATE.get()));
+                ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack((ItemLike)LatexModItems.YUFENGBODY_CHESTPLATE.get()));
                 entityToSpawn.setPickUpDelay(10);
                 _level.addFreshEntity(entityToSpawn);
             }
         }
+
     }
 }
