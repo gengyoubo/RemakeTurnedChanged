@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import java.util.List;
@@ -15,10 +20,9 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/DronehertxiconItem.class */
 public class DronehertxiconItem extends Item {
     public DronehertxiconItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(4).rarity(Rarity.COMMON));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(4).rarity(Rarity.COMMON));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -27,13 +31,13 @@ public class DronehertxiconItem extends Item {
     }
 
     public void appendHoverText(ItemStack itemstack, Level world, List<Component> list, TooltipFlag flag) {
-        appendHoverText(itemstack, world, list, flag);
+        super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("Place down your new companion!"));
     }
 
     public InteractionResult useOn(UseOnContext context) {
-        InteractionResult retval = useOn(context);
-        DronehertxiconRightclickedOnBlockProcedure.execute(context.getLevel(), (double) context.getClickedPos().getX(), (double) context.getClickedPos().getY(), (double) context.getClickedPos().getZ(), context.getPlayer());
+        InteractionResult retval = super.useOn(context);
+        DronehertxiconRightclickedOnBlockProcedure.execute(context.getLevel(), (double)context.getClickedPos().getX(), (double)context.getClickedPos().getY(), (double)context.getClickedPos().getZ(), context.getPlayer());
         return retval;
     }
 }

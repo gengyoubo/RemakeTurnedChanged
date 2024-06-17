@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import net.mcreator.latexes.init.LatexModTabs;
@@ -9,10 +14,9 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/BloodSyringeItem.class */
 public class BloodSyringeItem extends Item {
     public BloodSyringeItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON));
     }
 
     public UseAnim getUseAnimation(ItemStack itemstack) {
@@ -24,7 +28,7 @@ public class BloodSyringeItem extends Item {
     }
 
     public InteractionResult useOn(UseOnContext context) {
-        InteractionResult retval = useOn(context);
+        InteractionResult retval = super.useOn(context);
         BloodSyringeRightclickedOnBlockProcedure.execute(context.getPlayer());
         return retval;
     }

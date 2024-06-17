@@ -54,6 +54,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 public class AHVHertxSitEntity extends TamableAnimal {
     public AHVHertxSitEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -69,14 +70,14 @@ public class AHVHertxSitEntity extends TamableAnimal {
         this.setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
             }
         });
@@ -97,7 +98,7 @@ public class AHVHertxSitEntity extends TamableAnimal {
         this.goalSelector.addGoal(7, new FloatGoal(this));
     }
 
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.UNDEFINED;
     }
 
@@ -109,11 +110,11 @@ public class AHVHertxSitEntity extends TamableAnimal {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:robot_beep"));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
         this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
@@ -121,7 +122,7 @@ public class AHVHertxSitEntity extends TamableAnimal {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:death_beep"));
     }
 
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         if (source == DamageSource.FALL) {
             return false;
         } else if (source == DamageSource.CACTUS) {
@@ -135,18 +136,18 @@ public class AHVHertxSitEntity extends TamableAnimal {
         }
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         super.die(source);
         HertxEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         HertxOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
-    public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player sourceentity, @NotNull InteractionHand hand) {
         ItemStack itemstack = sourceentity.getItemInHand(hand);
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
@@ -195,12 +196,12 @@ public class AHVHertxSitEntity extends TamableAnimal {
         return retval;
     }
 
-    public void playerTouch(Player sourceentity) {
+    public void playerTouch(@NotNull Player sourceentity) {
         super.playerTouch(sourceentity);
         HertxPlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
-    public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
         AHVHertxSitEntity retval = (AHVHertxSitEntity)((EntityType)LatexModEntities.AHV_HERTX_SIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;

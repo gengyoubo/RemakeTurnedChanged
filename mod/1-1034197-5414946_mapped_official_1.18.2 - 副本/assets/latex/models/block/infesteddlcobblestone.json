@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "latex:blocks/infested_dl_cobblestone",
+    "up": "latex:blocks/infested_dl_cobblestone",
+    "north": "latex:blocks/infested_dl_cobblestone",
+    "east": "latex:blocks/infested_dl_cobblestone",
+    "south": "latex:blocks/infested_dl_cobblestone",
+    "west": "latex:blocks/infested_dl_cobblestone",
+    "particle": "latex:blocks/infested_dl_cobblestone"
+  }
+}

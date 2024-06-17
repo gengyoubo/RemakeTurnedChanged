@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.item;
 
 import net.mcreator.latexes.init.LatexModTabs;
@@ -13,10 +18,9 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/LatexSoupItem.class */
 public class LatexSoupItem extends Item {
     public LatexSoupItem() {
-        super(new Item.Properties().tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON).food(new FoodProperties.Builder().nutrition(5).saturationMod(0.5f).build()));
+        super((new Item.Properties()).tab(LatexModTabs.TAB_LATEXITEMS).stacksTo(16).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(5).saturationMod(0.5F).build()));
     }
 
     public UseAnim getUseAnimation(ItemStack itemstack) {
@@ -28,25 +32,27 @@ public class LatexSoupItem extends Item {
     }
 
     public float getDestroySpeed(ItemStack par1ItemStack, BlockState par2Block) {
-        return 0.0f;
+        return 0.0F;
     }
 
     public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
         ItemStack retval = new ItemStack(Items.BOWL);
-        finishUsingItem(itemstack, world, entity);
-        entity.getX();
-        entity.getY();
-        entity.getZ();
+        super.finishUsingItem(itemstack, world, entity);
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
         LatexSoupFoodEatenProcedure.execute(entity);
         if (itemstack.isEmpty()) {
             return retval;
-        }
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            if (!player.getAbilities().instabuild && !player.getInventory().add(retval)) {
-                player.drop(retval, false);
+        } else {
+            if (entity instanceof Player) {
+                Player player = (Player)entity;
+                if (!player.getAbilities().instabuild && !player.getInventory().add(retval)) {
+                    player.drop(retval, false);
+                }
             }
+
+            return itemstack;
         }
-        return itemstack;
     }
 }

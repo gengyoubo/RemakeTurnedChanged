@@ -31,6 +31,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
+import org.jetbrains.annotations.NotNull;
 
 public class DarklatexblockharmlessBlock extends Block {
     public static final DirectionProperty FACING;
@@ -40,12 +41,12 @@ public class DarklatexblockharmlessBlock extends Block {
         this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("But harmless"));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 15;
     }
 
@@ -57,11 +58,11 @@ public class DarklatexblockharmlessBlock extends Block {
         return (BlockState)this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
@@ -82,12 +83,12 @@ public class DarklatexblockharmlessBlock extends Block {
         }
     }
 
-    public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Entity entity) {
         super.entityInside(blockstate, world, pos, entity);
         DarklatexblockEntityCollidesInTheBlockProcedure.execute(entity);
     }
 
-    public void stepOn(Level world, BlockPos pos, BlockState blockstate, Entity entity) {
+    public void stepOn(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState blockstate, @NotNull Entity entity) {
         super.stepOn(world, pos, blockstate, entity);
         DarklatexblockEntityCollidesInTheBlockProcedure.execute(entity);
     }

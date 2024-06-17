@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "latex:prisioner",
+    "latex:evil_military",
+    "player",
+    "vindicator",
+    "latex:prisionermilitia",
+    "latex:militaryflameunit",
+    "zombie",
+    "latex:civilian_militia_melee",
+    "husk",
+    "zombie",
+    "latex:scientist",
+    "latex:civilian",
+    "illusioner",
+    "latex:evil_scientist",
+    "latex:military",
+    "latex:military_riot",
+    "latex:prisioner_militia_melee",
+    "villager",
+    "latex:evil_sniper",
+    "wandering_trader",
+    "zombie_villager",
+    "latex:civlian_militia",
+    "pillager"
+  ]
+}

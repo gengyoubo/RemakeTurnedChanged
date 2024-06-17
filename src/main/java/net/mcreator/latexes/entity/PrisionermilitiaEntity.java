@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import javax.annotation.Nullable;
@@ -47,18 +52,17 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/PrisionermilitiaEntity.class */
 public class PrisionermilitiaEntity extends PathfinderMob implements RangedAttackMob {
     public PrisionermilitiaEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.PRISIONERMILITIA.get(), world);
+        this((EntityType)LatexModEntities.PRISIONERMILITIA.get(), world);
     }
 
     public PrisionermilitiaEntity(EntityType<PrisionermilitiaEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
-        setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike) LatexModItems.SCRAP_M_16_RIFLE.get()));
+        this.setNoAi(false);
+        this.setPersistenceRequired();
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack((ItemLike)LatexModItems.SCRAP_M_16_RIFLE.get()));
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -66,122 +70,82 @@ public class PrisionermilitiaEntity extends PathfinderMob implements RangedAttac
     }
 
     protected void registerGoals() {
-        registerGoals();
+        super.registerGoals();
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Monster.class, true, false));
-        this.targetSelector.addGoal(2, new AnonymousClass1(this, PathfinderMob.class, true, false));
-        this.targetSelector.addGoal(3, new AnonymousClass2(this, Player.class, true, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, PathfinderMob.class, true, false) {
+            public boolean canUse() {
+                double x = PrisionermilitiaEntity.this.getX();
+                double y = PrisionermilitiaEntity.this.getY();
+                double z = PrisionermilitiaEntity.this.getZ();
+                Entity entity = PrisionermilitiaEntity.this;
+                Level world = PrisionermilitiaEntity.this.level;
+                return super.canUse() && CheckGoodProcedure.execute(entity);
+            }
+
+            public boolean canContinueToUse() {
+                double x = PrisionermilitiaEntity.this.getX();
+                double y = PrisionermilitiaEntity.this.getY();
+                double z = PrisionermilitiaEntity.this.getZ();
+                Entity entity = PrisionermilitiaEntity.this;
+                Level world = PrisionermilitiaEntity.this.level;
+                return super.canContinueToUse() && CheckGoodProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Player.class, true, false) {
+            public boolean canUse() {
+                double x = PrisionermilitiaEntity.this.getX();
+                double y = PrisionermilitiaEntity.this.getY();
+                double z = PrisionermilitiaEntity.this.getZ();
+                Entity entity = PrisionermilitiaEntity.this;
+                Level world = PrisionermilitiaEntity.this.level;
+                return super.canUse() && CheckGoodProcedure.execute(entity);
+            }
+
+            public boolean canContinueToUse() {
+                double x = PrisionermilitiaEntity.this.getX();
+                double y = PrisionermilitiaEntity.this.getY();
+                double z = PrisionermilitiaEntity.this.getZ();
+                Entity entity = PrisionermilitiaEntity.this;
+                Level world = PrisionermilitiaEntity.this.level;
+                return super.canContinueToUse() && CheckGoodProcedure.execute(entity);
+            }
+        });
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, MilitaryEntity.class, true, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, MilitaryflameunitEntity.class, true, false));
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, MilitaryRiotEntity.class, true, false));
         this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, CivilianMilitiaMeleeEntity.class, true, false));
         this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, CivlianMilitiaEntity.class, true, false));
-        this.targetSelector.addGoal(9, new AnonymousClass3(this, new Class[0]));
-        this.goalSelector.addGoal(10, new AnonymousClass4(this, 1.0d, false));
+        this.targetSelector.addGoal(9, new HurtByTargetGoal(this, new Class[0]) {
+            public boolean canUse() {
+                double x = PrisionermilitiaEntity.this.getX();
+                double y = PrisionermilitiaEntity.this.getY();
+                double z = PrisionermilitiaEntity.this.getZ();
+                Entity entity = PrisionermilitiaEntity.this;
+                Level world = PrisionermilitiaEntity.this.level;
+                return super.canUse() && TargethasabatonProcedure.execute(entity);
+            }
+        });
+        this.goalSelector.addGoal(10, new MeleeAttackGoal(this, 1.0, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+        });
         this.goalSelector.addGoal(11, new OpenDoorGoal(this, true));
-        this.goalSelector.addGoal(12, new MoveBackToVillageGoal(this, 0.6d, false));
-        this.goalSelector.addGoal(13, new AvoidEntityGoal(this, Monster.class, 7.0f, 1.5d, 0.8d));
-        this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, Player.class, 5.0f));
-        this.goalSelector.addGoal(15, new LookAtPlayerGoal(this, EvilScientistEntity.class, 6.0f));
-        this.goalSelector.addGoal(16, new LookAtPlayerGoal(this, EvilMilitaryEntity.class, 6.0f));
-        this.goalSelector.addGoal(17, new LookAtPlayerGoal(this, LivingEntity.class, 4.0f));
-        this.goalSelector.addGoal(18, new RandomStrollGoal(this, 0.6d));
+        this.goalSelector.addGoal(12, new MoveBackToVillageGoal(this, 0.6, false));
+        this.goalSelector.addGoal(13, new AvoidEntityGoal(this, Monster.class, 7.0F, 1.5, 0.8));
+        this.goalSelector.addGoal(14, new LookAtPlayerGoal(this, Player.class, 5.0F));
+        this.goalSelector.addGoal(15, new LookAtPlayerGoal(this, EvilScientistEntity.class, 6.0F));
+        this.goalSelector.addGoal(16, new LookAtPlayerGoal(this, EvilMilitaryEntity.class, 6.0F));
+        this.goalSelector.addGoal(17, new LookAtPlayerGoal(this, LivingEntity.class, 4.0F));
+        this.goalSelector.addGoal(18, new RandomStrollGoal(this, 0.6));
         this.goalSelector.addGoal(19, new OpenDoorGoal(this, false));
         this.goalSelector.addGoal(20, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(21, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new AnonymousClass5(this, 1.25d, 20, 10.0f));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.PrisionermilitiaEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/PrisionermilitiaEntity$1.class */
-    class AnonymousClass1 extends NearestAttackableTargetGoal {
-        AnonymousClass1(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            PrisionermilitiaEntity.this.getX();
-            PrisionermilitiaEntity.this.getY();
-            PrisionermilitiaEntity.this.getZ();
-            Entity entity = PrisionermilitiaEntity.this;
-            Level level = PrisionermilitiaEntity.this.level;
-            return canUse() && CheckGoodProcedure.execute(entity);
-        }
-
-        public boolean canContinueToUse() {
-            PrisionermilitiaEntity.this.getX();
-            PrisionermilitiaEntity.this.getY();
-            PrisionermilitiaEntity.this.getZ();
-            Entity entity = PrisionermilitiaEntity.this;
-            Level level = PrisionermilitiaEntity.this.level;
-            return canContinueToUse() && CheckGoodProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.PrisionermilitiaEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/PrisionermilitiaEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            PrisionermilitiaEntity.this.getX();
-            PrisionermilitiaEntity.this.getY();
-            PrisionermilitiaEntity.this.getZ();
-            Entity entity = PrisionermilitiaEntity.this;
-            Level level = PrisionermilitiaEntity.this.level;
-            return canUse() && CheckGoodProcedure.execute(entity);
-        }
-
-        public boolean canContinueToUse() {
-            PrisionermilitiaEntity.this.getX();
-            PrisionermilitiaEntity.this.getY();
-            PrisionermilitiaEntity.this.getZ();
-            Entity entity = PrisionermilitiaEntity.this;
-            Level level = PrisionermilitiaEntity.this.level;
-            return canContinueToUse() && CheckGoodProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.PrisionermilitiaEntity$3  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/PrisionermilitiaEntity$3.class */
-    class AnonymousClass3 extends HurtByTargetGoal {
-        AnonymousClass3(PathfinderMob arg0, Class... clsArr) {
-            super(arg0, clsArr);
-        }
-
-        public boolean canUse() {
-            PrisionermilitiaEntity.this.getX();
-            PrisionermilitiaEntity.this.getY();
-            PrisionermilitiaEntity.this.getZ();
-            Entity entity = PrisionermilitiaEntity.this;
-            Level level = PrisionermilitiaEntity.this.level;
-            return canUse() && TargethasabatonProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.PrisionermilitiaEntity$4  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/PrisionermilitiaEntity$4.class */
-    class AnonymousClass4 extends MeleeAttackGoal {
-        AnonymousClass4(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.PrisionermilitiaEntity$5  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/PrisionermilitiaEntity$5.class */
-    class AnonymousClass5 extends RangedAttackGoal {
-        AnonymousClass5(RangedAttackMob arg0, double arg1, int arg2, float arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canContinueToUse() {
-            return canUse();
-        }
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
+            public boolean canContinueToUse() {
+                return this.canUse();
+            }
+        });
     }
 
     public MobType getMobType() {
@@ -193,20 +157,20 @@ public class PrisionermilitiaEntity extends PathfinderMob implements RangedAttac
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        PrisionermilitiaOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        PrisionermilitiaOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
@@ -218,6 +182,12 @@ public class PrisionermilitiaEntity extends PathfinderMob implements RangedAttac
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 1.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
+        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 1.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

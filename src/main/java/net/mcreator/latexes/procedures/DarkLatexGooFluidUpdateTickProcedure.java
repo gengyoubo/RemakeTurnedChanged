@@ -20,10 +20,10 @@ public class DarkLatexGooFluidUpdateTickProcedure {
     public DarkLatexGooFluidUpdateTickProcedure() {
     }
 
-    public static boolean execute(LevelAccessor world, double x, double y, double z) {
+    public static void execute(LevelAccessor world, double x, double y, double z) {
         if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXFLUIDS) && world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSPREAD)) {
             if (world.getLevelData().getGameRules().getBoolean(LatexModGameRules.DARKLATEXSUNLIGHTONLY) && (!world.canSeeSkyFromBelowWater(new BlockPos(x, y + 1.0, z)) || world.getMaxLocalRawBrightness(new BlockPos(x, y + 1.0, z)) < 5)) {
-                return true;
+                return;
             }
 
             if (Math.random() * 100.0 <= (double)world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED) && Math.random() * 100.0 < (double)world.getLevelData().getGameRules().getInt(LatexModGameRules.DARKLATEXSPREADSPEED)) {
@@ -155,6 +155,5 @@ public class DarkLatexGooFluidUpdateTickProcedure {
             }
         }
 
-        return false;
     }
 }

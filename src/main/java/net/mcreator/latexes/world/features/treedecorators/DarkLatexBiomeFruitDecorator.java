@@ -15,14 +15,15 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.CocoaDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/world/features/treedecorators/DarkLatexBiomeFruitDecorator.class */
 public class DarkLatexBiomeFruitDecorator extends CocoaDecorator {
     public static final DarkLatexBiomeFruitDecorator INSTANCE = new DarkLatexBiomeFruitDecorator();
-    public static Codec<DarkLatexBiomeFruitDecorator> codec = Codec.unit(() -> {
+    public static final Codec<DarkLatexBiomeFruitDecorator> codec = Codec.unit(() -> {
         return INSTANCE;
     });
-    public static TreeDecoratorType<?> tdt = new TreeDecoratorType<>(codec);
+    public static final TreeDecoratorType<?> tdt = new TreeDecoratorType<>(codec);
 
     static {
         tdt.setRegistryName("dark_latex_biome_tree_fruit_decorator");
@@ -33,11 +34,11 @@ public class DarkLatexBiomeFruitDecorator extends CocoaDecorator {
         super(0.2f);
     }
 
-    protected TreeDecoratorType<?> type() {
+    protected @NotNull TreeDecoratorType<?> type() {
         return tdt;
     }
 
-    public void place(LevelSimulatedReader level, BiConsumer<BlockPos, BlockState> biConsumer, Random random, List<BlockPos> blocks, List<BlockPos> blocks2) {
+    public void place(@NotNull LevelSimulatedReader level, @NotNull BiConsumer<BlockPos, BlockState> biConsumer, Random random, @NotNull List<BlockPos> blocks, @NotNull List<BlockPos> blocks2) {
         if (random.nextFloat() < 0.2f) {
             int i = blocks.get(0).getY();
             blocks.stream().filter(p_69980_ -> {

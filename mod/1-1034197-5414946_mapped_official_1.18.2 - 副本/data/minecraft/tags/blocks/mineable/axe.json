@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "latex:darklatexhive",
+    "latex:darklatexlog",
+    "latex:small_box",
+    "latex:box",
+    "latex:box_inventory",
+    "latex:box_trap",
+    "latex:scientific_crate",
+    "latex:crate",
+    "latex:ches_trap",
+    "latex:cone",
+    "latex:planter",
+    "latex:thecone"
+  ]
+}

@@ -18,6 +18,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/item/ExplosivegooItem.class */
 public class ExplosivegooItem extends Item {
@@ -25,21 +26,21 @@ public class ExplosivegooItem extends Item {
         super(new Item.Properties().tab((CreativeModeTab) null).stacksTo(8));
     }
 
-    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, Player entity, @NotNull InteractionHand hand) {
         entity.startUsingItem(hand);
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, entity.getItemInHand(hand));
     }
 
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.SPEAR;
     }
 
-    public int getUseDuration(ItemStack itemstack) {
+    public int getUseDuration(@NotNull ItemStack itemstack) {
         return 72000;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(ItemStack itemstack) {
+    public boolean isFoil(@NotNull ItemStack itemstack) {
         return true;
     }
 

@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "latex:armed_drone_hertx_wait",
+    "latex:hertx",
+    "latex:hertxvar_sol",
+    "latex:armed_drone_hertx",
+    "latex:drone_hertx_wait",
+    "latex:bee_hertx",
+    "latex:hertxvar_fb",
+    "latex:hertx_f_sit",
+    "latex:ahv_hertx_sit",
+    "latex:ashbury_hertx",
+    "latex:bee_hertx_sit",
+    "latex:hertx_fb_sit",
+    "latex:hertx_sit",
+    "latex:nxt_hertx",
+    "latex:drone_hertx",
+    "latex:hertx_sol_wait",
+    "latex:hertxvar_f",
+    "latex:ahv_hertx"
+  ]
+}

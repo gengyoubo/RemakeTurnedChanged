@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.potion;
 
 import net.mcreator.latexes.procedures.DarklatexdarteffectPotionExpiresProcedure;
@@ -8,7 +13,6 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/potion/DarklatexdarteffectMobEffect.class */
 public class DarklatexdarteffectMobEffect extends MobEffect {
     public DarklatexdarteffectMobEffect() {
         super(MobEffectCategory.HARMFUL, -14803426);
@@ -27,7 +31,7 @@ public class DarklatexdarteffectMobEffect extends MobEffect {
     }
 
     public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
-        removeAttributeModifiers(entity, attributeMap, amplifier);
+        super.removeAttributeModifiers(entity, attributeMap, amplifier);
         DarklatexdarteffectPotionExpiresProcedure.execute(entity);
     }
 

@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import javax.annotation.Nullable;
@@ -38,17 +43,16 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/EvilScientistEntity.class */
 public class EvilScientistEntity extends PathfinderMob {
     public EvilScientistEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.EVIL_SCIENTIST.get(), world);
+        this((EntityType)LatexModEntities.EVIL_SCIENTIST.get(), world);
     }
 
     public EvilScientistEntity(EntityType<EvilScientistEntity> type, Level world) {
         super(type, world);
         this.xpReward = 0;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
     public Packet<?> getAddEntityPacket() {
@@ -56,45 +60,37 @@ public class EvilScientistEntity extends PathfinderMob {
     }
 
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, Monster.class, 6.0f, 1.2d, 0.9d));
-        this.goalSelector.addGoal(2, new AnonymousClass1(this, PathfinderMob.class, 8.0f, 1.5d, 0.8d));
-        this.goalSelector.addGoal(3, new PanicGoal(this, 1.2d));
-        this.targetSelector.addGoal(4, new HurtByTargetGoal(this, new Class[0]).setAlertOthers(new Class[0]));
-        this.goalSelector.addGoal(5, new MoveBackToVillageGoal(this, 0.6d, false));
-        this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0d));
-        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, PathfinderMob.class, 6.0f));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0f));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new AvoidEntityGoal(this, Monster.class, 6.0F, 1.2, 0.9));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<PathfinderMob>(this, PathfinderMob.class, 8.0F, 1.5, 0.8) {
+            public boolean canUse() {
+                double x = EvilScientistEntity.this.getX();
+                double y = EvilScientistEntity.this.getY();
+                double z = EvilScientistEntity.this.getZ();
+                Entity entity = EvilScientistEntity.this;
+                Level world = EvilScientistEntity.this.level;
+                return super.canUse() && CheckGoodProcedure.execute(entity);
+            }
+
+            public boolean canContinueToUse() {
+                double x = EvilScientistEntity.this.getX();
+                double y = EvilScientistEntity.this.getY();
+                double z = EvilScientistEntity.this.getZ();
+                Entity entity = EvilScientistEntity.this;
+                Level world = EvilScientistEntity.this.level;
+                return super.canContinueToUse() && CheckGoodProcedure.execute(entity);
+            }
+        });
+        this.goalSelector.addGoal(3, new PanicGoal(this, 1.2));
+        this.targetSelector.addGoal(4, (new HurtByTargetGoal(this, new Class[0])).setAlertOthers(new Class[0]));
+        this.goalSelector.addGoal(5, new MoveBackToVillageGoal(this, 0.6, false));
+        this.goalSelector.addGoal(6, new RandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, PathfinderMob.class, 6.0F));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(10, new OpenDoorGoal(this, false));
         this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(12, new FloatGoal(this));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.EvilScientistEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/EvilScientistEntity$1.class */
-    class AnonymousClass1 extends AvoidEntityGoal<PathfinderMob> {
-        AnonymousClass1(PathfinderMob arg0, Class cls, float arg2, double arg3, double arg4) {
-            super(arg0, cls, arg2, arg3, arg4);
-        }
-
-        public boolean canUse() {
-            EvilScientistEntity.this.getX();
-            EvilScientistEntity.this.getY();
-            EvilScientistEntity.this.getZ();
-            Entity entity = EvilScientistEntity.this;
-            Level level = EvilScientistEntity.this.level;
-            return canUse() && CheckGoodProcedure.execute(entity);
-        }
-
-        public boolean canContinueToUse() {
-            EvilScientistEntity.this.getX();
-            EvilScientistEntity.this.getY();
-            EvilScientistEntity.this.getZ();
-            Entity entity = EvilScientistEntity.this;
-            Level level = EvilScientistEntity.this.level;
-            return canContinueToUse() && CheckGoodProcedure.execute(entity);
-        }
     }
 
     public MobType getMobType() {
@@ -106,19 +102,19 @@ public class EvilScientistEntity extends PathfinderMob {
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.ambient")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.vindicator.death"));
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         ScientistOnInitialEntitySpawnProcedure.execute(this);
         return retval;
     }
@@ -127,6 +123,12 @@ public class EvilScientistEntity extends PathfinderMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.25d).add(Attributes.MAX_HEALTH, 20.0d).add(Attributes.ARMOR, 0.0d).add(Attributes.ATTACK_DAMAGE, 3.0d).add(Attributes.FOLLOW_RANGE, 16.0d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.25);
+        builder = builder.add(Attributes.MAX_HEALTH, 20.0);
+        builder = builder.add(Attributes.ARMOR, 0.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 3.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        return builder;
     }
 }

@@ -50,6 +50,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 public class ArmedDroneHertxWaitEntity extends TamableAnimal {
     public ArmedDroneHertxWaitEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -65,7 +66,7 @@ public class ArmedDroneHertxWaitEntity extends TamableAnimal {
         this.setPersistenceRequired();
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public @NotNull Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -76,7 +77,7 @@ public class ArmedDroneHertxWaitEntity extends TamableAnimal {
         this.goalSelector.addGoal(3, new FloatGoal(this));
     }
 
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.UNDEFINED;
     }
 
@@ -88,11 +89,11 @@ public class ArmedDroneHertxWaitEntity extends TamableAnimal {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:robot_beep"));
     }
 
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
         this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
@@ -117,18 +118,18 @@ public class ArmedDroneHertxWaitEntity extends TamableAnimal {
         }
     }
 
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         super.die(source);
         ArmedDroneHertxDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         HertxOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
-    public InteractionResult mobInteract(Player sourceentity, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player sourceentity, @NotNull InteractionHand hand) {
         ItemStack itemstack = sourceentity.getItemInHand(hand);
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
@@ -177,7 +178,7 @@ public class ArmedDroneHertxWaitEntity extends TamableAnimal {
         return retval;
     }
 
-    public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
+    public AgeableMob getBreedOffspring(@NotNull ServerLevel serverWorld, @NotNull AgeableMob ageable) {
         ArmedDroneHertxWaitEntity retval = (ArmedDroneHertxWaitEntity)((EntityType)LatexModEntities.ARMED_DRONE_HERTX_WAIT.get()).create(serverWorld);
         retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;

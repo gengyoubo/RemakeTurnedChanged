@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/DarkLatexQueenBeeRenderer.class */
 public class DarkLatexQueenBeeRenderer extends HumanoidMobRenderer<DarkLatexQueenBeeEntity, HumanoidModel<DarkLatexQueenBeeEntity>> {
@@ -26,12 +27,12 @@ public class DarkLatexQueenBeeRenderer extends HumanoidMobRenderer<DarkLatexQuee
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/dark_latex_queen_bee_glow.png"));
         }
     }
 
-    public ResourceLocation getTextureLocation(DarkLatexQueenBeeEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull DarkLatexQueenBeeEntity entity) {
         return new ResourceLocation("latex:textures/entities/dark_latex_queen_bee_texture.png");
     }
 }

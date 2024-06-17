@@ -34,18 +34,19 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 public class LatexeaterslimeBlock extends Block {
     public LatexeaterslimeBlock() {
         super(Properties.of(Material.SPONGE, MaterialColor.COLOR_LIGHT_GREEN).sound(SoundType.SLIME_BLOCK).strength(0.5F, 5.0F).requiresCorrectToolForDrops().friction(0.5F).speedFactor(0.6F).jumpFactor(0.9F));
     }
 
-    public void appendHoverText(ItemStack itemstack, BlockGetter world, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, BlockGetter world, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, world, list, flag);
         list.add(new TextComponent("it destroys dark latex blocks."));
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 15;
     }
 
@@ -58,17 +59,17 @@ public class LatexeaterslimeBlock extends Block {
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(Items.SLIME_BALL, 3));
     }
 
-    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 25);
     }
 
-    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+    public void tick(@NotNull BlockState blockstate, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
         super.tick(blockstate, world, pos, random);
         int x = pos.getX();
         int y = pos.getY();
@@ -78,7 +79,7 @@ public class LatexeaterslimeBlock extends Block {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState blockstate, Level world, BlockPos pos, Random random) {
+    public void animateTick(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Random random) {
         super.animateTick(blockstate, world, pos, random);
         Player entity = Minecraft.getInstance().player;
         int x = pos.getX();
@@ -97,12 +98,12 @@ public class LatexeaterslimeBlock extends Block {
 
     }
 
-    public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Entity entity) {
         super.entityInside(blockstate, world, pos, entity);
         LatexeaterslimeEntityWalksOnTheBlockProcedure.execute(entity);
     }
 
-    public void stepOn(Level world, BlockPos pos, BlockState blockstate, Entity entity) {
+    public void stepOn(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState blockstate, @NotNull Entity entity) {
         super.stepOn(world, pos, blockstate, entity);
         LatexeaterslimeEntityWalksOnTheBlockProcedure.execute(entity);
     }

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "latex:block/high_pressure_cylinder_red"
+    },
+    "facing=east": {
+      "model": "latex:block/high_pressure_cylinder_red",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "latex:block/high_pressure_cylinder_red",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "latex:block/high_pressure_cylinder_red",
+      "y": 270
+    }
+  }
+}

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/SlimelingtamedsitRenderer.class */
 public class SlimelingtamedsitRenderer extends MobRenderer<SlimelingtamedsitEntity, ModelSlimeling_remaster_sit<SlimelingtamedsitEntity>> {
@@ -19,7 +20,7 @@ public class SlimelingtamedsitRenderer extends MobRenderer<SlimelingtamedsitEnti
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/slimeling_tamed_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class SlimelingtamedsitRenderer extends MobRenderer<SlimelingtamedsitEnti
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(SlimelingtamedsitEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull SlimelingtamedsitEntity entity) {
         return new ResourceLocation("latex:textures/entities/slimeling_tamed_texture.png");
     }
 }

@@ -54,13 +54,13 @@ public class DarkLatexBiomeBiome {
         BiomeDefaultFeatures.addDefaultMonsterRoom(biomeGenerationSettings);
         MobSpawnSettings.Builder mobSpawnInfo = new MobSpawnSettings.Builder();
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARKLATEX.get(), 5, 1, 4));
-        mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.YUFENG.get(), 4, 1, 2));
+        //mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.YUFENG.get(), 4, 1, 2));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.NOISE_STALKER.get(), 2, 1, 3));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_FOX.get(), 3, 1, 1));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_SKELETON.get(), 2, 1, 3));
         mobSpawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARKLATEXSLUG.get(), 8, 1, 2));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_SPIDER.get(), 2, 1, 2));
-        mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_SNAKE.get(), 3, 1, 1));
+        //mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_SNAKE.get(), 3, 1, 1));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_MOTH.get(), 2, 1, 1));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DLSHARK.get(), 3, 1, 2));
         mobSpawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData((EntityType) LatexModEntities.DARK_LATEX_CREEPER.get(), 3, 1, 2));

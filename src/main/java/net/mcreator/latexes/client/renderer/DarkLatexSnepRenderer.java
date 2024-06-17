@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/DarkLatexSnepRenderer.class */
 public class DarkLatexSnepRenderer extends MobRenderer<DarkLatexSnepEntity, ModelDark_latex_snep<DarkLatexSnepEntity>> {
@@ -19,7 +20,7 @@ public class DarkLatexSnepRenderer extends MobRenderer<DarkLatexSnepEntity, Mode
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/dark_latex_snep_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class DarkLatexSnepRenderer extends MobRenderer<DarkLatexSnepEntity, Mode
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(DarkLatexSnepEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull DarkLatexSnepEntity entity) {
         return new ResourceLocation("latex:textures/entities/dl_snep_texture.png");
     }
 }

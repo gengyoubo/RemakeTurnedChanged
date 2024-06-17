@@ -52,6 +52,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING;
@@ -68,15 +69,15 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
         return new float[]{0.0F, 0.0F, 0.0F};
     }
 
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
+    public boolean propagatesSkylightDown(BlockState state, @NotNull BlockGetter reader, @NotNull BlockPos pos) {
         return state.getFluidState().isEmpty();
     }
 
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+    public int getLightBlock(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos) {
         return 0;
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         VoxelShape var10000;
         switch ((Direction)state.getValue(FACING)) {
             case NORTH -> var10000 = box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
@@ -97,19 +98,19 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
         return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, flag);
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
         return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
-    public FluidState getFluidState(BlockState state) {
+    public @NotNull FluidState getFluidState(BlockState state) {
         return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor world, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         if ((Boolean)state.getValue(WATERLOGGED)) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
@@ -117,7 +118,7 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
         return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
+    public boolean canBeReplaced(@NotNull BlockState state, BlockPlaceContext context) {
         return context.getItemInHand().getItem() != this.asItem();
     }
 
@@ -142,18 +143,18 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
         }
     }
 
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         List<ItemStack> dropsOriginal = super.getDrops(state, builder);
         return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
     }
 
-    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+    public void onPlace(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean moving) {
         super.onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 120);
         DarklatexcarpetBlockAddedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
-    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
+    public void tick(@NotNull BlockState blockstate, @NotNull ServerLevel world, @NotNull BlockPos pos, @NotNull Random random) {
         super.tick(blockstate, world, pos, random);
         int x = pos.getX();
         int y = pos.getY();
@@ -162,7 +163,7 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
         world.scheduleTick(pos, this, 120);
     }
 
-    public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Entity entity) {
         super.entityInside(blockstate, world, pos, entity);
         DarklatexcarpetEntityCollidesInTheBlockProcedure.execute(entity);
     }

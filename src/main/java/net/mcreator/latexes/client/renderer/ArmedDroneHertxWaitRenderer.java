@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/ArmedDroneHertxWaitRenderer.class */
 public class ArmedDroneHertxWaitRenderer extends MobRenderer<ArmedDroneHertxWaitEntity, ModelArmed_Drone_Hertx_Rest<ArmedDroneHertxWaitEntity>> {
@@ -19,7 +20,7 @@ public class ArmedDroneHertxWaitRenderer extends MobRenderer<ArmedDroneHertxWait
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/armed_drone_hertx_texture_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class ArmedDroneHertxWaitRenderer extends MobRenderer<ArmedDroneHertxWait
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(ArmedDroneHertxWaitEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull ArmedDroneHertxWaitEntity entity) {
         return new ResourceLocation("latex:textures/entities/armed_drone_hertx_texture.png");
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/client/renderer/TSCOutsiderGunnerRenderer.class */
 public class TSCOutsiderGunnerRenderer extends MobRenderer<TSCOutsiderGunnerEntity, Modeltsc_outsider_ranged_model<TSCOutsiderGunnerEntity>> {
@@ -19,7 +20,7 @@ public class TSCOutsiderGunnerRenderer extends MobRenderer<TSCOutsiderGunnerEnti
             super(renderLayerParent);
         }
 
-        public RenderType renderType() {
+        public @NotNull RenderType renderType() {
             return RenderType.eyes(new ResourceLocation("latex:textures/entities/tsc_outsider_gunner_glow.png"));
         }
     }
@@ -29,7 +30,7 @@ public class TSCOutsiderGunnerRenderer extends MobRenderer<TSCOutsiderGunnerEnti
         addLayer(new AnonymousClass1(this));
     }
 
-    public ResourceLocation getTextureLocation(TSCOutsiderGunnerEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull TSCOutsiderGunnerEntity entity) {
         return new ResourceLocation("latex:textures/entities/tsc_outsider_gunner_texture.png");
     }
 }
