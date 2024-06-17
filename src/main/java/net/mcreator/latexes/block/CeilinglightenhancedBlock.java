@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block;
 
 import java.util.Collections;
@@ -9,14 +14,15 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -24,12 +30,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/CeilinglightenhancedBlock.class */
 public class CeilinglightenhancedBlock extends Block {
     public CeilinglightenhancedBlock() {
-        super(BlockBehaviour.Properties.of(Material.GLASS).sound(SoundType.GLASS).strength(0.65f, 6.5f).lightLevel(s -> {
+        super(Properties.of(Material.GLASS).sound(SoundType.GLASS).strength(0.65F, 6.5F).lightLevel((s) -> {
             return 14;
-        }).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor(bs, br, bp -> {
+        }).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> {
             return false;
         }));
     }
@@ -43,35 +48,36 @@ public class CeilinglightenhancedBlock extends Block {
     }
 
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        return box(0.0d, 13.0d, 0.0d, 16.0d, 16.0d, 16.0d);
+        return box(0.0, 13.0, 0.0, 16.0, 16.0, 16.0);
     }
 
     public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-        TieredItem tieredItem = player.getInventory().getSelected().getItem();
-        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 0;
+        Item var6 = player.getInventory().getSelected().getItem();
+        if (var6 instanceof TieredItem tieredItem) {
+            return tieredItem.getTier().getLevel() >= 0;
+        } else {
+            return false;
+        }
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack(this, 1));
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
 
     public void neighborChanged(BlockState blockstate, Level world, BlockPos pos, Block neighborBlock, BlockPos fromPos, boolean moving) {
-        neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
-        CeilinglightBlockIsPlacedByProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        super.neighborChanged(blockstate, world, pos, neighborBlock, fromPos, moving);
+        CeilinglightBlockIsPlacedByProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
     public void setPlacedBy(Level world, BlockPos pos, BlockState blockstate, LivingEntity entity, ItemStack itemstack) {
-        setPlacedBy(world, pos, blockstate, entity, itemstack);
-        CeilinglightBlockIsPlacedByProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        super.setPlacedBy(world, pos, blockstate, entity, itemstack);
+        CeilinglightBlockIsPlacedByProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.CEILINGLIGHTENHANCED.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.CEILINGLIGHTENHANCED.get(), (renderType) -> {
             return renderType == RenderType.cutout();
         });
     }

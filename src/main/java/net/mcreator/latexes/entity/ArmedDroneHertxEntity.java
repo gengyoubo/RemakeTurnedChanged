@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import java.util.List;
@@ -28,7 +33,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -60,110 +64,74 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ArmedDroneHertxEntity.class */
 public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttackMob {
     public ArmedDroneHertxEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.ARMED_DRONE_HERTX.get(), world);
+        this((EntityType)LatexModEntities.ARMED_DRONE_HERTX.get(), world);
     }
 
     public ArmedDroneHertxEntity(EntityType<ArmedDroneHertxEntity> type, Level world) {
         super(type, world);
         this.xpReward = 14;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    /* renamed from: net.mcreator.latexes.entity.ArmedDroneHertxEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ArmedDroneHertxEntity$1.class */
-    class AnonymousClass1 extends MeleeAttackGoal {
-        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-    }
-
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new AnonymousClass1(this, 1.2d, false));
-        this.targetSelector.addGoal(2, new AnonymousClass2(this, SlimelingEntity.class, true, true));
-        this.targetSelector.addGoal(3, new AnonymousClass3(this, Mob.class, true, false));
-        this.targetSelector.addGoal(4, new AnonymousClass4(this, Mob.class, false, false));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+        });
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, SlimelingEntity.class, true, true) {
+            public boolean canUse() {
+                double x = ArmedDroneHertxEntity.this.getX();
+                double y = ArmedDroneHertxEntity.this.getY();
+                double z = ArmedDroneHertxEntity.this.getZ();
+                Entity entity = ArmedDroneHertxEntity.this;
+                Level world = ArmedDroneHertxEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
+            }
+        });
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, Mob.class, true, false) {
+            public boolean canUse() {
+                double x = ArmedDroneHertxEntity.this.getX();
+                double y = ArmedDroneHertxEntity.this.getY();
+                double z = ArmedDroneHertxEntity.this.getZ();
+                Entity entity = ArmedDroneHertxEntity.this;
+                Level world = ArmedDroneHertxEntity.this.level;
+                return super.canUse() && CheckEvilProcedure.execute(entity);
+            }
+        });
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Mob.class, false, false) {
+            public boolean canUse() {
+                double x = ArmedDroneHertxEntity.this.getX();
+                double y = ArmedDroneHertxEntity.this.getY();
+                double z = ArmedDroneHertxEntity.this.getZ();
+                Entity entity = ArmedDroneHertxEntity.this;
+                Level world = ArmedDroneHertxEntity.this.level;
+                return super.canUse() && CheckentityislatexProcedure.execute(entity);
+            }
+        });
         this.goalSelector.addGoal(5, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(6, new OwnerHurtTargetGoal(this));
-        this.goalSelector.addGoal(7, new FollowOwnerGoal(this, 0.9d, 4.0f, 36.0f, false));
+        this.goalSelector.addGoal(7, new FollowOwnerGoal(this, 0.9, 4.0F, 36.0F, false));
         this.goalSelector.addGoal(8, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(9, new OpenDoorGoal(this, false));
-        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0f));
-        this.goalSelector.addGoal(11, new RandomStrollGoal(this, 0.7d));
+        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(11, new RandomStrollGoal(this, 0.7));
         this.targetSelector.addGoal(12, new HurtByTargetGoal(this, new Class[0]));
         this.goalSelector.addGoal(13, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(14, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new AnonymousClass5(this, 1.25d, 20, 10.0f));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.ArmedDroneHertxEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ArmedDroneHertxEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            return canUse() && CheckiftamedProcedure.execute(ArmedDroneHertxEntity.this.level, ArmedDroneHertxEntity.this.getX(), ArmedDroneHertxEntity.this.getY(), ArmedDroneHertxEntity.this.getZ(), ArmedDroneHertxEntity.this);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.ArmedDroneHertxEntity$3  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ArmedDroneHertxEntity$3.class */
-    class AnonymousClass3 extends NearestAttackableTargetGoal {
-        AnonymousClass3(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            ArmedDroneHertxEntity.this.getX();
-            ArmedDroneHertxEntity.this.getY();
-            ArmedDroneHertxEntity.this.getZ();
-            Entity entity = ArmedDroneHertxEntity.this;
-            Level level = ArmedDroneHertxEntity.this.level;
-            return canUse() && CheckEvilProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.ArmedDroneHertxEntity$4  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ArmedDroneHertxEntity$4.class */
-    class AnonymousClass4 extends NearestAttackableTargetGoal {
-        AnonymousClass4(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            ArmedDroneHertxEntity.this.getX();
-            ArmedDroneHertxEntity.this.getY();
-            ArmedDroneHertxEntity.this.getZ();
-            Entity entity = ArmedDroneHertxEntity.this;
-            Level level = ArmedDroneHertxEntity.this.level;
-            return canUse() && CheckentityislatexProcedure.execute(entity);
-        }
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.ArmedDroneHertxEntity$5  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/ArmedDroneHertxEntity$5.class */
-    class AnonymousClass5 extends RangedAttackGoal {
-        AnonymousClass5(RangedAttackMob arg0, double arg1, int arg2, float arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canContinueToUse() {
-            return canUse();
-        }
+        this.goalSelector.addGoal(1, new RangedAttackGoal(this, 1.25, 20, 10.0F) {
+            public boolean canContinueToUse() {
+                return this.canUse();
+            }
+        });
     }
 
     public MobType getMobType() {
@@ -175,36 +143,47 @@ public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttack
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:robot_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:robot_beep"));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.step")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.step")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.hit"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.metal.hit"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:death_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:death_beep"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if ((source.getDirectEntity() instanceof ThrownPotion) || (source.getDirectEntity() instanceof AreaEffectCloud) || source == DamageSource.CACTUS || source == DamageSource.DROWN || source == DamageSource.DRAGON_BREATH || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (!(source.getDirectEntity() instanceof ThrownPotion) && !(source.getDirectEntity() instanceof AreaEffectCloud)) {
+            if (source == DamageSource.CACTUS) {
+                return false;
+            } else if (source == DamageSource.DROWN) {
+                return false;
+            } else if (source == DamageSource.DRAGON_BREATH) {
+                return false;
+            } else if (source == DamageSource.WITHER) {
+                return false;
+            } else {
+                return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
+            }
+        } else {
             return false;
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        ArmedDroneHertxDiesProcedure.execute(this.level, getX(), getY(), getZ());
+        super.die(source);
+        ArmedDroneHertxDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        HertxOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        HertxOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
@@ -213,49 +192,52 @@ public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttack
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
         if (itemstack.getItem() instanceof SpawnEggItem) {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
         } else if (this.level.isClientSide()) {
-            if ((!isTame() || !isOwnedBy(sourceentity)) && !isFood(itemstack)) {
-                retval = InteractionResult.PASS;
-            } else {
-                retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-            }
-        } else if (isTame()) {
-            if (isOwnedBy(sourceentity)) {
-                if (item.isEdible() && isFood(itemstack) && getHealth() < getMaxHealth()) {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal((float) item.getFoodProperties().getNutrition());
+            retval = (!this.isTame() || !this.isOwnedBy(sourceentity)) && !this.isFood(itemstack) ? InteractionResult.PASS : InteractionResult.sidedSuccess(this.level.isClientSide());
+        } else if (this.isTame()) {
+            if (this.isOwnedBy(sourceentity)) {
+                if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal((float)item.getFoodProperties().getNutrition());
                     retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-                } else if (!isFood(itemstack) || getHealth() >= getMaxHealth()) {
-                    retval = mobInteract(sourceentity, hand);
+                } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal(4.0F);
+                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
                 } else {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal(4.0f);
-                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
+                    retval = super.mobInteract(sourceentity, hand);
                 }
             }
-        } else if (isFood(itemstack)) {
-            usePlayerItem(sourceentity, hand, itemstack);
-            if (this.random.nextInt(3) != 0 || ForgeEventFactory.onAnimalTame(this, sourceentity)) {
-                this.level.broadcastEntityEvent(this, (byte) 6);
+        } else if (this.isFood(itemstack)) {
+            this.usePlayerItem(sourceentity, hand, itemstack);
+            if (this.random.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, sourceentity)) {
+                this.tame(sourceentity);
+                this.level.broadcastEntityEvent(this, (byte)7);
             } else {
-                tame(sourceentity);
-                this.level.broadcastEntityEvent(this, (byte) 7);
+                this.level.broadcastEntityEvent(this, (byte)6);
             }
-            setPersistenceRequired();
+
+            this.setPersistenceRequired();
             retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         } else {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
             if (retval == InteractionResult.SUCCESS || retval == InteractionResult.CONSUME) {
-                setPersistenceRequired();
+                this.setPersistenceRequired();
             }
         }
-        ArmedDronehertxrightclickProcedure.execute(this.level, getX(), getY(), getZ(), this, sourceentity);
+
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        Entity entity = this;
+        Level world = this.level;
+        ArmedDronehertxrightclickProcedure.execute(world, x, y, z, entity, sourceentity);
         return retval;
     }
 
     public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
+        super.playerTouch(sourceentity);
         ArmedDroneHertxPlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
@@ -264,8 +246,8 @@ public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttack
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        ArmedDroneHertxEntity retval = ((EntityType) LatexModEntities.ARMED_DRONE_HERTX.get()).create(serverWorld);
-        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
+        ArmedDroneHertxEntity retval = (ArmedDroneHertxEntity)((EntityType)LatexModEntities.ARMED_DRONE_HERTX.get()).create(serverWorld);
+        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
 
@@ -277,6 +259,14 @@ public class ArmedDroneHertxEntity extends TamableAnimal implements RangedAttack
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.3d).add(Attributes.MAX_HEALTH, 58.0d).add(Attributes.ARMOR, 9.0d).add(Attributes.ATTACK_DAMAGE, 5.0d).add(Attributes.FOLLOW_RANGE, 24.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.6d).add(Attributes.ATTACK_KNOCKBACK, 0.2d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+        builder = builder.add(Attributes.MAX_HEALTH, 58.0);
+        builder = builder.add(Attributes.ARMOR, 9.0);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 5.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 24.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.6);
+        builder = builder.add(Attributes.ATTACK_KNOCKBACK, 0.2);
+        return builder;
     }
 }

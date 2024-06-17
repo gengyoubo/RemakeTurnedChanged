@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block;
 
 import java.util.Collections;
@@ -16,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -30,9 +36,9 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -47,20 +53,19 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/DarklatexcarpetBlock.class */
 public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBlock {
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final DirectionProperty FACING;
+    public static final BooleanProperty WATERLOGGED;
 
     public DarklatexcarpetBlock() {
-        super(BlockBehaviour.Properties.of(Material.DIRT).sound(SoundType.SLIME_BLOCK).strength(1.0f, 10.0f).requiresCorrectToolForDrops().noCollission().speedFactor(0.4f).jumpFactor(0.6f).noOcclusion().isRedstoneConductor(bs, br, bp -> {
+        super(Properties.of(Material.DIRT).sound(SoundType.SLIME_BLOCK).strength(1.0F, 10.0F).requiresCorrectToolForDrops().noCollission().speedFactor(0.4F).jumpFactor(0.6F).noOcclusion().isRedstoneConductor((bs, br, bp) -> {
             return false;
         }));
-        registerDefaultState((BlockState) ((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
+        this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
     }
 
     public float[] getBeaconColorMultiplier(BlockState state, LevelReader world, BlockPos pos, BlockPos beaconPos) {
-        return new float[]{0.0f, 0.0f, 0.0f};
+        return new float[]{0.0F, 0.0F, 0.0F};
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -71,38 +76,16 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
         return 0;
     }
 
-    /* renamed from: net.mcreator.latexes.block.DarklatexcarpetBlock$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/DarklatexcarpetBlock$1.class */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$net$minecraft$core$Direction = new int[Direction.values().length];
-
-        static {
-            try {
-                $SwitchMap$net$minecraft$core$Direction[Direction.NORTH.ordinal()] = 1;
-            } catch (NoSuchFieldError e) {
-            }
-            try {
-                $SwitchMap$net$minecraft$core$Direction[Direction.EAST.ordinal()] = 2;
-            } catch (NoSuchFieldError e2) {
-            }
-            try {
-                $SwitchMap$net$minecraft$core$Direction[Direction.WEST.ordinal()] = 3;
-            } catch (NoSuchFieldError e3) {
-            }
-        }
-    }
-
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        switch (AnonymousClass1.$SwitchMap$net$minecraft$core$Direction[state.getValue(FACING).ordinal()]) {
-            case 1:
-                return box(0.0d, 0.0d, 0.0d, 16.0d, 1.0d, 16.0d);
-            case 2:
-                return box(0.0d, 0.0d, 0.0d, 16.0d, 1.0d, 16.0d);
-            case 3:
-                return box(0.0d, 0.0d, 0.0d, 16.0d, 1.0d, 16.0d);
-            default:
-                return box(0.0d, 0.0d, 0.0d, 16.0d, 1.0d, 16.0d);
+        VoxelShape var10000;
+        switch ((Direction)state.getValue(FACING)) {
+            case NORTH -> var10000 = box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
+            case EAST -> var10000 = box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
+            case WEST -> var10000 = box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
+            default -> var10000 = box(0.0, 0.0, 0.0, 16.0, 1.0, 16.0);
         }
+
+        return var10000;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -110,30 +93,32 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) ((BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
+        boolean flag = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
+        return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, flag);
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+        return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
     public FluidState getFluidState(BlockState state) {
-        return ((Boolean) state.getValue(WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
+        return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if (((Boolean) state.getValue(WATERLOGGED)).booleanValue()) {
+        if ((Boolean)state.getValue(WATERLOGGED)) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-        return updateShape(state, facing, facingState, world, currentPos, facingPos);
+
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
     public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
-        return context.getItemInHand().getItem() != asItem();
+        return context.getItemInHand().getItem() != this.asItem();
     }
 
     public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
@@ -149,39 +134,48 @@ public class DarklatexcarpetBlock extends Block implements SimpleWaterloggedBloc
     }
 
     public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-        TieredItem tieredItem = player.getInventory().getSelected().getItem();
-        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 0;
+        Item var6 = player.getInventory().getSelected().getItem();
+        if (var6 instanceof TieredItem tieredItem) {
+            return tieredItem.getTier().getLevel() >= 0;
+        } else {
+            return false;
+        }
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModItems.DARKLATEXGOO.get()));
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModItems.DARKLATEXGOO.get()));
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
-        onPlace(blockstate, world, pos, oldState, moving);
+        super.onPlace(blockstate, world, pos, oldState, moving);
         world.scheduleTick(pos, this, 120);
-        DarklatexcarpetBlockAddedProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        DarklatexcarpetBlockAddedProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ());
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
-        tick(blockstate, world, pos, random);
-        DarklatexcarpetUpdateTick2Procedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        super.tick(blockstate, world, pos, random);
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        DarklatexcarpetUpdateTick2Procedure.execute(world, (double)x, (double)y, (double)z);
         world.scheduleTick(pos, this, 120);
     }
 
     public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
-        entityInside(blockstate, world, pos, entity);
+        super.entityInside(blockstate, world, pos, entity);
         DarklatexcarpetEntityCollidesInTheBlockProcedure.execute(entity);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.DARKLATEXCARPET.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.DARKLATEXCARPET.get(), (renderType) -> {
             return renderType == RenderType.cutout();
         });
+    }
+
+    static {
+        FACING = HorizontalDirectionalBlock.FACING;
+        WATERLOGGED = BlockStateProperties.WATERLOGGED;
     }
 }

@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block;
 
 import java.util.Collections;
@@ -15,6 +20,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -28,9 +34,9 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -43,16 +49,15 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/DarklatexcrystaleggBlock.class */
 public class DarklatexcrystaleggBlock extends Block implements SimpleWaterloggedBlock {
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final DirectionProperty FACING;
+    public static final BooleanProperty WATERLOGGED;
 
     public DarklatexcrystaleggBlock() {
-        super(BlockBehaviour.Properties.of(Material.ICE_SOLID).sound(SoundType.GLASS).strength(5.0f, 1.0f).requiresCorrectToolForDrops().noCollission().friction(0.9f).noOcclusion().randomTicks().isRedstoneConductor(bs, br, bp -> {
+        super(Properties.of(Material.ICE_SOLID).sound(SoundType.GLASS).strength(5.0F, 1.0F).requiresCorrectToolForDrops().noCollission().friction(0.9F).noOcclusion().randomTicks().isRedstoneConductor((bs, br, bp) -> {
             return false;
         }));
-        registerDefaultState((BlockState) ((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
+        this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(WATERLOGGED, false));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -68,26 +73,28 @@ public class DarklatexcrystaleggBlock extends Block implements SimpleWaterlogged
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) ((BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, Boolean.valueOf(context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER));
+        boolean flag = context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
+        return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(WATERLOGGED, flag);
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+        return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
     public FluidState getFluidState(BlockState state) {
-        return ((Boolean) state.getValue(WATERLOGGED)).booleanValue() ? Fluids.WATER.getSource(false) : getFluidState(state);
+        return (Boolean)state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
-        if (((Boolean) state.getValue(WATERLOGGED)).booleanValue()) {
+        if ((Boolean)state.getValue(WATERLOGGED)) {
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-        return updateShape(state, facing, facingState, world, currentPos, facingPos);
+
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
     public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, Mob entity) {
@@ -95,32 +102,41 @@ public class DarklatexcrystaleggBlock extends Block implements SimpleWaterlogged
     }
 
     public boolean canHarvestBlock(BlockState state, BlockGetter world, BlockPos pos, Player player) {
-        TieredItem tieredItem = player.getInventory().getSelected().getItem();
-        return (tieredItem instanceof TieredItem) && tieredItem.getTier().getLevel() >= 0;
+        Item var6 = player.getInventory().getSelected().getItem();
+        if (var6 instanceof TieredItem tieredItem) {
+            return tieredItem.getTier().getLevel() >= 0;
+        } else {
+            return false;
+        }
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack((ItemLike) LatexModItems.DARKLATEXCRYSTAL.get(), 2));
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack((ItemLike)LatexModItems.DARKLATEXCRYSTAL.get(), 2));
     }
 
     public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, Random random) {
-        tick(blockstate, world, pos, random);
-        DarklatexcrystaleggUpdateTickProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ());
+        super.tick(blockstate, world, pos, random);
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+        DarklatexcrystaleggUpdateTickProcedure.execute(world, (double)x, (double)y, (double)z);
     }
 
     public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
-        entityInside(blockstate, world, pos, entity);
-        DarklatexcrystaleggEntityCollidesInTheBlockProcedure.execute(world, (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), entity);
+        super.entityInside(blockstate, world, pos, entity);
+        DarklatexcrystaleggEntityCollidesInTheBlockProcedure.execute(world, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), entity);
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.DARKLATEXCRYSTALEGG.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.DARKLATEXCRYSTALEGG.get(), (renderType) -> {
             return renderType == RenderType.translucent();
         });
+    }
+
+    static {
+        FACING = HorizontalDirectionalBlock.FACING;
+        WATERLOGGED = BlockStateProperties.WATERLOGGED;
     }
 }

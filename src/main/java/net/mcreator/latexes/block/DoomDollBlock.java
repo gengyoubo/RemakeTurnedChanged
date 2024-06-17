@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.block;
 
 import java.util.Collections;
@@ -20,9 +25,9 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.Material;
@@ -33,15 +38,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/DoomDollBlock.class */
 public class DoomDollBlock extends Block {
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final DirectionProperty FACING;
 
     public DoomDollBlock() {
-        super(BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.75f, 7.5f).friction(0.5f).noOcclusion().isRedstoneConductor(bs, br, bp -> {
+        super(Properties.of(Material.WOOD).sound(SoundType.WOOD).strength(0.75F, 7.5F).friction(0.5F).noOcclusion().isRedstoneConductor((bs, br, bp) -> {
             return false;
         }));
-        registerDefaultState((BlockState) this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH));
     }
 
     public boolean propagatesSkylightDown(BlockState state, BlockGetter reader, BlockPos pos) {
@@ -52,38 +56,16 @@ public class DoomDollBlock extends Block {
         return 0;
     }
 
-    /* renamed from: net.mcreator.latexes.block.DoomDollBlock$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/block/DoomDollBlock$1.class */
-    static /* synthetic */ class AnonymousClass1 {
-        static final /* synthetic */ int[] $SwitchMap$net$minecraft$core$Direction = new int[Direction.values().length];
-
-        static {
-            try {
-                $SwitchMap$net$minecraft$core$Direction[Direction.NORTH.ordinal()] = 1;
-            } catch (NoSuchFieldError e) {
-            }
-            try {
-                $SwitchMap$net$minecraft$core$Direction[Direction.EAST.ordinal()] = 2;
-            } catch (NoSuchFieldError e2) {
-            }
-            try {
-                $SwitchMap$net$minecraft$core$Direction[Direction.WEST.ordinal()] = 3;
-            } catch (NoSuchFieldError e3) {
-            }
-        }
-    }
-
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        switch (AnonymousClass1.$SwitchMap$net$minecraft$core$Direction[state.getValue(FACING).ordinal()]) {
-            case 1:
-                return box(4.0d, 0.0d, 6.0d, 12.0d, 14.0d, 10.0d);
-            case 2:
-                return box(6.0d, 0.0d, 4.0d, 10.0d, 14.0d, 12.0d);
-            case 3:
-                return box(6.0d, 0.0d, 4.0d, 10.0d, 14.0d, 12.0d);
-            default:
-                return box(4.0d, 0.0d, 6.0d, 12.0d, 14.0d, 10.0d);
+        VoxelShape var10000;
+        switch ((Direction)state.getValue(FACING)) {
+            case NORTH -> var10000 = box(4.0, 0.0, 6.0, 12.0, 14.0, 10.0);
+            case EAST -> var10000 = box(6.0, 0.0, 4.0, 10.0, 14.0, 12.0);
+            case WEST -> var10000 = box(6.0, 0.0, 4.0, 10.0, 14.0, 12.0);
+            default -> var10000 = box(4.0, 0.0, 6.0, 12.0, 14.0, 10.0);
         }
+
+        return var10000;
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
@@ -91,42 +73,43 @@ public class DoomDollBlock extends Block {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState) defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return (BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rot) {
-        return (BlockState) state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+        return (BlockState)state.setValue(FACING, rot.rotate((Direction)state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+        return state.rotate(mirrorIn.getRotation((Direction)state.getValue(FACING)));
     }
 
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-        List<ItemStack> dropsOriginal = getDrops(state, builder);
-        if (!dropsOriginal.isEmpty()) {
-            return dropsOriginal;
-        }
-        return Collections.singletonList(new ItemStack(this, 1));
+        List<ItemStack> dropsOriginal = super.getDrops(state, builder);
+        return !dropsOriginal.isEmpty() ? dropsOriginal : Collections.singletonList(new ItemStack(this, 1));
     }
 
     public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
-        use(blockstate, world, pos, entity, hand, hit);
+        super.use(blockstate, world, pos, entity, hand, hit);
         int x = pos.getX();
         int y = pos.getY();
         int z = pos.getZ();
-        double d = hit.getLocation().x;
-        double d2 = hit.getLocation().y;
-        double d3 = hit.getLocation().z;
-        hit.getDirection();
-        DoomDollOnBlockRightClickedProcedure.execute(world, (double) x, (double) y, (double) z);
+        double hitX = hit.getLocation().x;
+        double hitY = hit.getLocation().y;
+        double hitZ = hit.getLocation().z;
+        Direction direction = hit.getDirection();
+        DoomDollOnBlockRightClickedProcedure.execute(world, (double)x, (double)y, (double)z);
         return InteractionResult.SUCCESS;
     }
 
     @OnlyIn(Dist.CLIENT)
     public static void registerRenderLayer() {
-        ItemBlockRenderTypes.setRenderLayer((Block) LatexModBlocks.DOOM_DOLL.get(), renderType -> {
+        ItemBlockRenderTypes.setRenderLayer((Block)LatexModBlocks.DOOM_DOLL.get(), (renderType) -> {
             return renderType == RenderType.cutout();
         });
+    }
+
+    static {
+        FACING = HorizontalDirectionalBlock.FACING;
     }
 }

@@ -1,3 +1,8 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package net.mcreator.latexes.entity;
 
 import java.util.List;
@@ -56,62 +61,50 @@ import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 
-/* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/AshburyHertxEntity.class */
 public class AshburyHertxEntity extends TamableAnimal {
     public AshburyHertxEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this((EntityType) LatexModEntities.ASHBURY_HERTX.get(), world);
+        this((EntityType)LatexModEntities.ASHBURY_HERTX.get(), world);
     }
 
     public AshburyHertxEntity(EntityType<AshburyHertxEntity> type, Level world) {
         super(type, world);
         this.xpReward = 15;
-        setNoAi(false);
-        setPersistenceRequired();
+        this.setNoAi(false);
+        this.setPersistenceRequired();
     }
 
     public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    /* renamed from: net.mcreator.latexes.entity.AshburyHertxEntity$1  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/AshburyHertxEntity$1.class */
-    class AnonymousClass1 extends MeleeAttackGoal {
-        AnonymousClass1(PathfinderMob arg0, double arg1, boolean arg2) {
-            super(arg0, arg1, arg2);
-        }
-
-        protected double getAttackReachSqr(LivingEntity entity) {
-            return 4.0d + ((double) (entity.getBbWidth() * entity.getBbWidth()));
-        }
-    }
-
     protected void registerGoals() {
-        registerGoals();
-        this.goalSelector.addGoal(1, new AnonymousClass1(this, 1.2d, false));
-        this.targetSelector.addGoal(2, new AnonymousClass2(this, SlimelingEntity.class, false, false));
+        super.registerGoals();
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 4.0 + (double)(entity.getBbWidth() * entity.getBbWidth());
+            }
+        });
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, SlimelingEntity.class, false, false) {
+            public boolean canUse() {
+                double x = AshburyHertxEntity.this.getX();
+                double y = AshburyHertxEntity.this.getY();
+                double z = AshburyHertxEntity.this.getZ();
+                Entity entity = AshburyHertxEntity.this;
+                Level world = AshburyHertxEntity.this.level;
+                return super.canUse() && CheckiftamedProcedure.execute(world, x, y, z, entity);
+            }
+        });
         this.goalSelector.addGoal(3, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(4, new OwnerHurtTargetGoal(this));
-        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0d, 2.0f, 64.0f, false));
+        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0, 2.0F, 64.0F, false));
         this.goalSelector.addGoal(6, new OpenDoorGoal(this, true));
         this.goalSelector.addGoal(7, new OpenDoorGoal(this, false));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0f));
-        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, PathfinderMob.class, 6.0f));
-        this.goalSelector.addGoal(10, new RandomStrollGoal(this, 1.0d));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, PathfinderMob.class, 6.0F));
+        this.goalSelector.addGoal(10, new RandomStrollGoal(this, 1.0));
         this.targetSelector.addGoal(11, new HurtByTargetGoal(this, new Class[0]));
         this.goalSelector.addGoal(12, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(13, new FloatGoal(this));
-    }
-
-    /* renamed from: net.mcreator.latexes.entity.AshburyHertxEntity$2  reason: invalid class name */
-    /* loaded from: 1-1034197-5414946_mapped_official_1.18.2.jar:net/mcreator/latexes/entity/AshburyHertxEntity$2.class */
-    class AnonymousClass2 extends NearestAttackableTargetGoal {
-        AnonymousClass2(Mob arg0, Class arg1, boolean arg2, boolean arg3) {
-            super(arg0, arg1, arg2, arg3);
-        }
-
-        public boolean canUse() {
-            return canUse() && CheckiftamedProcedure.execute(AshburyHertxEntity.this.level, AshburyHertxEntity.this.getX(), AshburyHertxEntity.this.getY(), AshburyHertxEntity.this.getZ(), AshburyHertxEntity.this);
-        }
     }
 
     public MobType getMobType() {
@@ -123,36 +116,43 @@ public class AshburyHertxEntity extends TamableAnimal {
     }
 
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:robot_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:robot_beep"));
     }
 
     public void playStepSound(BlockPos pos, BlockState blockIn) {
-        playSound((SoundEvent) ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15f, 1.0f);
+        this.playSound((SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.squish")), 0.15F, 1.0F);
     }
 
     public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
     }
 
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:death_beep"));
+        return (SoundEvent)ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("latex:death_beep"));
     }
 
     public boolean hurt(DamageSource source, float amount) {
-        if (source == DamageSource.FALL || source == DamageSource.CACTUS || source == DamageSource.DROWN || source == DamageSource.WITHER || source.getMsgId().equals("witherSkull")) {
+        if (source == DamageSource.FALL) {
             return false;
+        } else if (source == DamageSource.CACTUS) {
+            return false;
+        } else if (source == DamageSource.DROWN) {
+            return false;
+        } else if (source == DamageSource.WITHER) {
+            return false;
+        } else {
+            return source.getMsgId().equals("witherSkull") ? false : super.hurt(source, amount);
         }
-        return hurt(source, amount);
     }
 
     public void die(DamageSource source) {
-        die(source);
-        HertxEntityDiesProcedure.execute(this.level, getX(), getY(), getZ());
+        super.die(source);
+        HertxEntityDiesProcedure.execute(this.level, this.getX(), this.getY(), this.getZ());
     }
 
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        HertxOnInitialEntitySpawnProcedure.execute(world, getX(), getY(), getZ(), this);
+        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
+        HertxOnInitialEntitySpawnProcedure.execute(world, this.getX(), this.getY(), this.getZ(), this);
         return retval;
     }
 
@@ -161,71 +161,81 @@ public class AshburyHertxEntity extends TamableAnimal {
         InteractionResult retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         Item item = itemstack.getItem();
         if (itemstack.getItem() instanceof SpawnEggItem) {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
         } else if (this.level.isClientSide()) {
-            if ((!isTame() || !isOwnedBy(sourceentity)) && !isFood(itemstack)) {
-                retval = InteractionResult.PASS;
-            } else {
-                retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-            }
-        } else if (isTame()) {
-            if (isOwnedBy(sourceentity)) {
-                if (item.isEdible() && isFood(itemstack) && getHealth() < getMaxHealth()) {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal((float) item.getFoodProperties().getNutrition());
+            retval = (!this.isTame() || !this.isOwnedBy(sourceentity)) && !this.isFood(itemstack) ? InteractionResult.PASS : InteractionResult.sidedSuccess(this.level.isClientSide());
+        } else if (this.isTame()) {
+            if (this.isOwnedBy(sourceentity)) {
+                if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal((float)item.getFoodProperties().getNutrition());
                     retval = InteractionResult.sidedSuccess(this.level.isClientSide());
-                } else if (!isFood(itemstack) || getHealth() >= getMaxHealth()) {
-                    retval = mobInteract(sourceentity, hand);
+                } else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+                    this.usePlayerItem(sourceentity, hand, itemstack);
+                    this.heal(4.0F);
+                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
                 } else {
-                    usePlayerItem(sourceentity, hand, itemstack);
-                    heal(4.0f);
-                    retval = InteractionResult.sidedSuccess(this.level.isClientSide());
+                    retval = super.mobInteract(sourceentity, hand);
                 }
             }
-        } else if (isFood(itemstack)) {
-            usePlayerItem(sourceentity, hand, itemstack);
-            if (this.random.nextInt(3) != 0 || ForgeEventFactory.onAnimalTame(this, sourceentity)) {
-                this.level.broadcastEntityEvent(this, (byte) 6);
+        } else if (this.isFood(itemstack)) {
+            this.usePlayerItem(sourceentity, hand, itemstack);
+            if (this.random.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, sourceentity)) {
+                this.tame(sourceentity);
+                this.level.broadcastEntityEvent(this, (byte)7);
             } else {
-                tame(sourceentity);
-                this.level.broadcastEntityEvent(this, (byte) 7);
+                this.level.broadcastEntityEvent(this, (byte)6);
             }
-            setPersistenceRequired();
+
+            this.setPersistenceRequired();
             retval = InteractionResult.sidedSuccess(this.level.isClientSide());
         } else {
-            retval = mobInteract(sourceentity, hand);
+            retval = super.mobInteract(sourceentity, hand);
             if (retval == InteractionResult.SUCCESS || retval == InteractionResult.CONSUME) {
-                setPersistenceRequired();
+                this.setPersistenceRequired();
             }
         }
-        AshburyHertxRightClickedOnEntityProcedure.execute(this.level, getX(), getY(), getZ(), this, sourceentity);
+
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        Entity entity = this;
+        Level world = this.level;
+        AshburyHertxRightClickedOnEntityProcedure.execute(world, x, y, z, entity, sourceentity);
         return retval;
     }
 
     public void awardKillScore(Entity entity, int score, DamageSource damageSource) {
-        awardKillScore(entity, score, damageSource);
-        HertxThisEntityKillsAnotherOneProcedure.execute(this.level, getX(), getY(), getZ(), entity);
+        super.awardKillScore(entity, score, damageSource);
+        HertxThisEntityKillsAnotherOneProcedure.execute(this.level, this.getX(), this.getY(), this.getZ(), entity);
     }
 
     public void playerTouch(Player sourceentity) {
-        playerTouch(sourceentity);
+        super.playerTouch(sourceentity);
         HertxPlayerCollidesWithThisEntityProcedure.execute(this);
     }
 
     public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
-        AshburyHertxEntity retval = ((EntityType) LatexModEntities.ASHBURY_HERTX.get()).create(serverWorld);
-        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
+        AshburyHertxEntity retval = (AshburyHertxEntity)((EntityType)LatexModEntities.ASHBURY_HERTX.get()).create(serverWorld);
+        retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, (SpawnGroupData)null, (CompoundTag)null);
         return retval;
     }
 
     public boolean isFood(ItemStack stack) {
-        return List.of((Item) LatexModItems.DARKLATEXGOO.get(), Items.ORANGE_DYE).contains(stack.getItem());
+        return List.of((Item)LatexModItems.DARKLATEXGOO.get(), Items.ORANGE_DYE).contains(stack.getItem());
     }
 
     public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.35d).add(Attributes.MAX_HEALTH, 52.0d).add(Attributes.ARMOR, 4.5d).add(Attributes.ATTACK_DAMAGE, 4.0d).add(Attributes.FOLLOW_RANGE, 16.0d).add(Attributes.KNOCKBACK_RESISTANCE, 0.1d);
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.35);
+        builder = builder.add(Attributes.MAX_HEALTH, 52.0);
+        builder = builder.add(Attributes.ARMOR, 4.5);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 4.0);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 16.0);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.1);
+        return builder;
     }
 }
